@@ -1345,9 +1345,7 @@ Public Class BasinBorderOperations
         If (Method = OperationsMethod.VolumeBalance) Then
             Me.BuildOperationsGridVolBal()
         Else
-            mWorldWindow.RemoveSrfrStatusHandler()
             Me.RefineOperationsGridSrfrSim(Method)
-            mWorldWindow.AddSrfrStatusHandler()
         End If
         '
         ' Build Dreq = Dmin or Dreq = Dlq curve
