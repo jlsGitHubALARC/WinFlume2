@@ -527,7 +527,7 @@ Public MustInherit Class OperationsAnalysis
         For rdx = 0 To rowBound - 1
             For cdx = 0 To colBound - 1
 
-                ' Get refined corner points
+                ' Update Contour Cell with refined corner points
                 mContourGrid.Cell(rdx, cdx).BL = mContourGrid.Point(rdx, cdx)            ' Bottom-left
                 mContourGrid.Cell(rdx, cdx).BR = mContourGrid.Point(rdx, cdx + 1)        ' Bottom-right
                 mContourGrid.Cell(rdx, cdx).TL = mContourGrid.Point(rdx + 1, cdx)        ' Top-left
@@ -590,66 +590,28 @@ Public MustInherit Class OperationsAnalysis
         SrfrAPI.Irrigation.Results.Clear()
 
         SrfrAPI.Inflow.Tco = Point.X.Value
-        SrfrAPI.Inflow.Q0 = Point.Y.Value
+
+        If (mUnit.CrossSection = CrossSections.Furrow) Then
+            If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
+                SrfrAPI.CrossSection.FurrowsPerSet = Point.Y.Value
+                SrfrAPI.CrossSection.BorderWidth = Point.Y.Value * mSystemGeometry.FurrowSpacing.Value
+            Else ' WidthGiven
+                SrfrAPI.Inflow.Q0 = Point.Y.Value
+            End If
+        Else ' Border
+            SrfrAPI.Inflow.Q0 = Point.Y.Value
+        End If
 
         SrfrAPI.Simulate(mSolutionModel)
 
-        Dim results As Srfr.Results = SrfrAPI.Irrigation.Results.Clone
+        Dim SrfrResults As Srfr.Results = SrfrAPI.Irrigation.Results.Clone
+
+        SrfrResultsToPoint(SrfrResults, Point)
 
         SrfrAPI.Irrigation.ClearResults()
 
-        Dim sParam As SingleParameter
-
-        sParam = Point.Z(0)
-        sParam.Value = results.Width                ' Border Width
-
-        sParam = Point.Z(1)
-        sParam.Value = results.AE                   ' Application Efficiency
-
-        If (mDepthCriterion = InfiltratedDepthCriteria.MinimumDepth) Then
-            sParam = Point.Z(2)
-            sParam.Value = results.DUmin            ' Minimum Distribution Uniformity
-
-            sParam = Point.Z(3)
-            sParam.Value = results.ADmin            ' Minimum Adequacy
-        Else ' Low-Quarter
-            sParam = Point.Z(2)
-            sParam.Value = results.DUlq             ' Low-Quarter Distribution Uniformity
-
-            sParam = Point.Z(3)
-            sParam.Value = results.ADlq             ' Low-Quarter Adequacy
-        End If
-
-        sParam = Point.Z(4)
-        sParam.Value = results.ROpct                ' Runoff
-
-        sParam = Point.Z(5)
-        sParam.Value = results.DPpct                ' Deep percolation
-
-        sParam = Point.Z(6)
-        sParam.Value = results.Dapp                 ' Applied Depth
-
-        If (mDepthCriterion = InfiltratedDepthCriteria.MinimumDepth) Then
-            sParam = Point.Z(7)
-            sParam.Value = results.Dmin             ' Minimum Depth
-        Else
-            sParam = Point.Z(7)
-            sParam.Value = results.Dlq              ' Low-Quarter Depth
-        End If
-
-        sParam = Point.Z(8)
-        sParam.Value = results.Txa                  ' Maximum Advance time
-
-        sParam = Point.Z(9)
-        sParam.Value = results.XR                   ' Relative cutoff
-
-        ' 10 & 11 are fillers
-
-        sParam = Point.Z(12)
-        sParam.Value = results.WaterCostPerHectare  ' Cost
-
-        results.Clear()
-        results = Nothing
+        SrfrResults.Clear()
+        SrfrResults = Nothing
 
     End Sub
 
@@ -658,6 +620,60 @@ Public MustInherit Class OperationsAnalysis
     End Sub
 
     Public Sub RefineOperationsPointBgThreads(ByVal Point As ContourPoint)
+
+    End Sub
+
+    Public Sub SrfrResultsToPoint(ByVal SrfrResults As Srfr.Results, ByVal Point As ContourPoint)
+
+        Dim sParam As SingleParameter
+
+        sParam = Point.Z(0)
+        sParam.Value = SrfrResults.Width                ' Border Width
+
+        sParam = Point.Z(1)
+        sParam.Value = SrfrResults.AE                   ' Application Efficiency
+
+        If (mDepthCriterion = InfiltratedDepthCriteria.MinimumDepth) Then
+            sParam = Point.Z(2)
+            sParam.Value = SrfrResults.DUmin            ' Minimum Distribution Uniformity
+
+            sParam = Point.Z(3)
+            sParam.Value = SrfrResults.ADmin            ' Minimum Adequacy
+        Else ' Low-Quarter
+            sParam = Point.Z(2)
+            sParam.Value = SrfrResults.DUlq             ' Low-Quarter Distribution Uniformity
+
+            sParam = Point.Z(3)
+            sParam.Value = SrfrResults.ADlq             ' Low-Quarter Adequacy
+        End If
+
+        sParam = Point.Z(4)
+        sParam.Value = SrfrResults.ROpct                ' Runoff
+
+        sParam = Point.Z(5)
+        sParam.Value = SrfrResults.DPpct                ' Deep percolation
+
+        sParam = Point.Z(6)
+        sParam.Value = SrfrResults.Dapp                 ' Applied Depth
+
+        If (mDepthCriterion = InfiltratedDepthCriteria.MinimumDepth) Then
+            sParam = Point.Z(7)
+            sParam.Value = SrfrResults.Dmin             ' Minimum Depth
+        Else
+            sParam = Point.Z(7)
+            sParam.Value = SrfrResults.Dlq              ' Low-Quarter Depth
+        End If
+
+        sParam = Point.Z(8)
+        sParam.Value = SrfrResults.Txa                  ' Maximum Advance time
+
+        sParam = Point.Z(9)
+        sParam.Value = SrfrResults.XR                   ' Relative cutoff
+
+        ' 10 & 11 are fillers
+
+        sParam = Point.Z(12)
+        sParam.Value = SrfrResults.WaterCostPerHectare  ' Cost
 
     End Sub
 
