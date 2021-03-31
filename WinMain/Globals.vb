@@ -2025,7 +2025,7 @@ Public Module Globals
     Public Enum OperationsMethod
         VolumeBalance
         SrfrUiThread
-        SrfrBgThread
+        'SrfrBgThread
         SrfrBgThreads
     End Enum
     '

@@ -1722,7 +1722,7 @@ Public Class ctl_OperationsExecution
     Private Sub RefinenWithSRFRButton_Click(sender As Object, e As EventArgs) _
         Handles RefinenWithSRFRButton.Click
         Me.Focus()
-        mOperationsWorld.RunOperationsAnalysis(OperationsMethod.SrfrUiThread)
+        mOperationsWorld.RunOperationsAnalysis(OperationsMethod.SrfrBgThreads)
     End Sub
 
     Private Sub AddContourOverlays_Click(ByVal sender As System.Object, ByVal e As EventArgs) _

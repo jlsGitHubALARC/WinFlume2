@@ -5,6 +5,7 @@
 ' Desc: Base class for all WinSRFR Operations Analyses; derived from Analysis
 '*************************************************************************************************************
 Imports DataStore
+Imports Srfr
 
 Public MustInherit Class OperationsAnalysis
     Inherits Analysis
@@ -45,12 +46,84 @@ Public MustInherit Class OperationsAnalysis
 
 #End Region
 
+#Region " SRFR Simulations "
+
+    Private mRunContourSimulations As RunContourSimulations
+
+#End Region
+
+#Region " SRFR Results List "
+
+    Friend Property SrfrResults As ArrayList = Nothing
+    Private SrfrSim As Srfr.SrfrSimulation              ' Package for running background simulations
+
+    '*********************************************************************************************************
+    ' Sub ClearResultsList()    - clear all results from list
+    ' Sub AddToResultsList()    - add SRFR Results to end of list
+    ' Sub SortResultsList()     - sort results by Simulation Number
+    '*********************************************************************************************************
+    Friend Sub ClearResultsList()
+        Try
+            If (Me.SrfrResults Is Nothing) Then
+                Me.SrfrResults = New ArrayList
+            End If
+
+            SrfrResults.Clear()
+        Catch ex As Exception
+            Debug.Assert(False, ex.Message)
+        End Try
+    End Sub
+
+    Friend Sub AddToResultsList(ByVal SrfrResults As Srfr.Results)
+        Try
+            If (Me.SrfrResults Is Nothing) Then
+                Me.SrfrResults = New ArrayList
+            End If
+
+            Me.SrfrResults.Add(SrfrResults)
+        Catch ex As Exception
+            Debug.Assert(False, ex.Message)
+        End Try
+    End Sub
+
+    Friend Sub SortResultsList()
+        Try
+            If (Me.SrfrResults IsNot Nothing) Then
+                If (1 < Me.SrfrResults.Count) Then
+                    Dim sorted As Boolean = False
+                    While Not sorted ' keep sorting until all are in order
+                        sorted = True
+                        Dim results0 As Srfr.Results = Me.SrfrResults(0)
+                        Dim results1 As Srfr.Results = Me.SrfrResults(1)
+
+                        For rdx As Integer = 1 To Me.SrfrResults.Count - 1
+                            results1 = Me.SrfrResults(rdx)
+                            If (results1.SimNum < results0.SimNum) Then ' out-of-order
+                                sorted = False
+                                ' correctly sort these two results
+                                Me.SrfrResults(rdx) = results0
+                                Me.SrfrResults(rdx - 1) = results1
+                            Else ' in-order
+                                results0 = results1
+                            End If
+                        Next rdx
+                    End While
+                End If
+            End If
+        Catch ex As Exception
+            Debug.Assert(False, ex.Message)
+        End Try
+    End Sub
+
+#End Region
+
 #End Region
 
 #Region " Constructor "
 
     Public Sub New(ByVal unit As Unit, ByVal worldWindow As WorldWindow)
         MyBase.New(unit, worldWindow)
+        mRunContourSimulations = New RunContourSimulations
     End Sub
 
 #End Region
@@ -370,15 +443,15 @@ Public MustInherit Class OperationsAnalysis
                 Dim edgeFlags As Integer = ContourCell.Edge.NoEdge
 
                 If (rdx = 0) Then
-                    edgeFlags = edgeFlags + ContourCell.Edge.Bottom
+                    edgeFlags += ContourCell.Edge.Bottom
                 ElseIf (rdx = rowBound - 1) Then
-                    edgeFlags = edgeFlags + ContourCell.Edge.Top
+                    edgeFlags += ContourCell.Edge.Top
                 End If
 
                 If (cdx = 0) Then
-                    edgeFlags = edgeFlags + ContourCell.Edge.Left
+                    edgeFlags += ContourCell.Edge.Left
                 ElseIf (cdx = colBound - 1) Then
-                    edgeFlags = edgeFlags + ContourCell.Edge.Right
+                    edgeFlags += ContourCell.Edge.Right
                 End If
 
                 cell.CellEdge = edgeFlags
@@ -497,31 +570,83 @@ Public MustInherit Class OperationsAnalysis
     '*********************************************************************************************************
     Protected Function RefineOperationsGridSrfrSim(ByVal Method As OperationsMethod) As Boolean
 
+        ' Define variables
         Dim point As ContourPoint = Nothing
         Dim rdx, cdx As Integer
 
         Me.StatusMessage &= " - " & mDictionary.tRefiningContourGrid.Translated
 
-        ' Refine previously calculated contour grid points
         Dim rowBound As Integer = mContourGrid.PointArray.GetUpperBound(0)
         Dim colBound As Integer = mContourGrid.PointArray.GetUpperBound(1)
+        Dim numRows As Integer = rowBound + 1
+        Dim numCols As Integer = colBound + 1
 
         Dim numSimRun As Integer = 0
-        Dim numPoints As Integer = (rowBound + 1) * (colBound + 1) + rowBound * colBound
+        Dim numPoints As Integer = numRows * numCols + rowBound * colBound
         Dim status As String
 
+        ' Display BG thread window, if necessary
+        Select Case (Method)
+            Case OperationsMethod.SrfrUiThread
+            Case OperationsMethod.SrfrBgThreads
+                ClearResultsList()
+                mRunContourSimulations.Show()
+                mRunContourSimulations.BringToFront()
+            Case Else ' OperationsMethod.VolumeBalance
+                Debug.Assert(False)
+        End Select
+
+        ' Refine previously calculated contour grid points
         For rdx = 0 To rowBound
             For cdx = 0 To colBound
                 numSimRun += 1
                 status = numSimRun & " / " & numPoints.ToString
                 mWorldWindow.ProgressMessage = status
 
-                point = mContourGrid.Point(rdx, cdx)
-                Me.RefineOperationsPointSrfrSim(point, Method)
-            Next cdx
+                If (mRunContourSimulations.Visible) Then
+                    mRunContourSimulations.ProgressMessage = status
+                End If
 
-            'Me.RunProgress = CInt((100 * rdx) / rowBound)
+                point = mContourGrid.Point(rdx, cdx)
+                Me.RefineOperationsPointSrfrSim(point, Method, numSimRun)
+            Next cdx
         Next rdx
+
+        ' Retrieve SRFR results for grid points, if necessary
+        Select Case (Method)
+            Case OperationsMethod.SrfrUiThread
+            Case OperationsMethod.SrfrBgThreads
+                ' Wait for background threads to finish
+                mRunContourSimulations.WaitforSrfrSimsToComplete()
+
+                ' Get SRFR Results from just completed background SRFR runs
+                For Each SrfrSim In mRunContourSimulations.SrfrRunMgr.SrfrSims
+                    If Not (SrfrSim.ResultsUploaded) Then
+                        If (SrfrSim.uiSrfrAPI IsNot Nothing) Then
+                            Dim results As Srfr.Results = SrfrSim.uiSrfrAPI.Irrigation.Results
+                            AddToResultsList(results)
+                            SrfrSim.ResultsUploaded = True
+                        End If
+                    End If
+                Next
+
+                ' Sort SRFR Results since BG threads may completed out-of-order started
+                SortResultsList()
+
+                ' Move SRFR Results into grid points
+                For Each results As Srfr.Results In Me.SrfrResults
+                    Dim runNo As Integer = results.SimNum - 1
+                    cdx = runNo Mod numCols
+                    rdx = Math.Floor(runNo / numCols)
+                    point = mContourGrid.Point(rdx, cdx)
+
+                    SrfrResultsToContourPoint(results, point)
+                Next
+
+                ClearResultsList()
+            Case Else ' OperationsMethod.VolumeBalance
+                Debug.Assert(False)
+        End Select
 
         ' Update contour cells from refined contour grid points
         For rdx = 0 To rowBound - 1
@@ -538,23 +663,75 @@ Public MustInherit Class OperationsAnalysis
                 status = numSimRun & " / " & numPoints.ToString
                 mWorldWindow.ProgressMessage = status
 
-                point = mContourGrid.Cell(rdx, cdx).C
-                Me.RefineOperationsPointSrfrSim(point, Method)
+                If (mRunContourSimulations.Visible) Then
+                    mRunContourSimulations.ProgressMessage = status
+                End If
 
-                ' Build the cell's Error Contour as a standard contour
+                point = mContourGrid.Cell(rdx, cdx).C
+                Me.RefineOperationsPointSrfrSim(point, Method, numSimRun)
+            Next cdx
+        Next rdx
+
+        ' Retrieve SRFR results for cell center points, if necessary
+        Select Case (Method)
+            Case OperationsMethod.SrfrUiThread
+            Case OperationsMethod.SrfrBgThreads
+                ' Wait for background threads to finish
+                mRunContourSimulations.WaitforSrfrSimsToComplete()
+
+                ' Get SRFR Results from just completed background SRFR runs
+                For Each SrfrSim In mRunContourSimulations.SrfrRunMgr.SrfrSims
+                    If Not (SrfrSim.ResultsUploaded) Then
+                        If (SrfrSim.uiSrfrAPI IsNot Nothing) Then
+                            Dim results As Srfr.Results = SrfrSim.uiSrfrAPI.Irrigation.Results
+                            AddToResultsList(results)
+                            SrfrSim.ResultsUploaded = True
+                        End If
+                    End If
+                Next
+
+                ' Sort SRFR Results since BG threads may completed out-of-order started
+                SortResultsList()
+
+                ' Move SRFR Results into cell center points
+                For Each results As Srfr.Results In Me.SrfrResults
+                    Dim runNo As Integer = results.SimNum - (numRows * numCols) - 1
+                    cdx = runNo Mod (numCols - 1)
+                    rdx = Math.Floor(runNo / (numCols - 1))
+                    point = mContourGrid.Cell(rdx, cdx).C
+
+                    SrfrResultsToContourPoint(results, point)
+                Next
+
+            Case Else ' OperationsMethod.VolumeBalance
+                Debug.Assert(False)
+        End Select
+
+        ' Build the cells Error Contours as a standard contour
+        For rdx = 0 To rowBound - 1
+            For cdx = 0 To colBound - 1
                 Dim cell As PrecisionContourCell = mContourGrid.Cell(rdx, cdx)
 
                 cell.Precision = Globals.ContourPrecision.Standard
                 cell.BuildLimitContour()
+
+                ' Restore cell precision to user selected value
                 If (WinSRFR.UserPreferences.CalculatePrecisionContours = True) Then
                     cell.Precision = Globals.ContourPrecision.Precise
                 Else
                     cell.Precision = Globals.ContourPrecision.Standard
                 End If
             Next cdx
-
-            'Me.RunProgress = CInt((100 * rdx) / rowBound)
         Next rdx
+
+        ' Hide BG thread window, if necessary
+        Select Case (Method)
+            Case OperationsMethod.SrfrUiThread
+            Case OperationsMethod.SrfrBgThreads
+                mRunContourSimulations.Hide()
+            Case Else ' OperationsMethod.VolumeBalance
+                Debug.Assert(False)
+        End Select
 
     End Function
 
@@ -563,34 +740,40 @@ Public MustInherit Class OperationsAnalysis
 #Region " Refine Operations Point - SRFR Simulation "
 
     '*********************************************************************************************************
-    ' Function RefineOperationsPointSrfrSim() - Refine an Operations Point using SRFR Simulation
-    '
-    ' Called By:    Refine Operations Grid  - to refine the Operations Point at a Contour Grid Point
+    ' Function RefineOperationsPointSrfrSim() - Refine an Operations Point using a SRFR Simulation
     '
     ' Input(s):     Point                   - Operations Point to refine
     '               Method                  - OperationsMethod to use for refinement
     '*********************************************************************************************************
-    Public Sub RefineOperationsPointSrfrSim(ByVal Point As ContourPoint, ByVal Method As OperationsMethod)
+    Public Sub RefineOperationsPointSrfrSim(ByVal Point As ContourPoint,
+                                            ByVal Method As OperationsMethod,
+                                            ByVal RunNo As Integer)
 
         Select Case (Method)
             Case OperationsMethod.SrfrUiThread
-                RefineOperationsPointUiThread(Point)
-            Case OperationsMethod.SrfrBgThread
-                RefineOperationsPointBgThread(Point)
+                RefineOperationsPointUiThread(Point, RunNo)
             Case OperationsMethod.SrfrBgThreads
-                RefineOperationsPointBgThreads(Point)
+                RefineOperationsPointBgThreads(Point, RunNo)
             Case Else ' OperationsMethod.VolumeBalance
                 Debug.Assert(False)
         End Select
 
     End Sub
 
-    Public Sub RefineOperationsPointUiThread(ByVal Point As ContourPoint)
+    '*********************************************************************************************************
+    ' Sub RefineOperationsPointUiThread()   - run SRFR Simulation in User Interface (UI) thread
+    ' Sub RefineOperationsPointBgThreads()  -  "    "       "      " Background     (BG)    "
+    '
+    ' Input(s):     Point                   - Operations Point to refine
+    '*********************************************************************************************************
+    Public Sub RefineOperationsPointUiThread(ByVal Point As ContourPoint,
+                                             ByVal RunNo As Integer)
 
-        SrfrAPI.Irrigation.Results.Clear()
-
+        ' Contour's X-axis is always Cutoff Time (Tco)
         SrfrAPI.Inflow.Tco = Point.X.Value
 
+        ' Contour's Y axis for Borders is always Inflow Rate (Q0)
+        '    "      "   "   "  Furrows is either Inflow Rate (Q0) or Width
         If (mUnit.CrossSection = CrossSections.Furrow) Then
             If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
                 SrfrAPI.CrossSection.FurrowsPerSet = Point.Y.Value
@@ -602,33 +785,112 @@ Public MustInherit Class OperationsAnalysis
             SrfrAPI.Inflow.Q0 = Point.Y.Value
         End If
 
+        ' Run the SRFR Simulation
         SrfrAPI.Simulate(mSolutionModel)
 
+        ' Get the Results and move them into the Contour Point
         Dim SrfrResults As Srfr.Results = SrfrAPI.Irrigation.Results.Clone
 
-        SrfrResultsToPoint(SrfrResults, Point)
-
-        SrfrAPI.Irrigation.ClearResults()
-
-        SrfrResults.Clear()
-        SrfrResults = Nothing
+        SrfrResultsToContourPoint(SrfrResults, Point)
 
     End Sub
 
-    Public Sub RefineOperationsPointBgThread(ByVal Point As ContourPoint)
+    Public Sub RefineOperationsPointBgThreads(ByVal Point As ContourPoint,
+                                              ByVal RunNo As Integer)
+        Dim pointID As String = ""
+
+        ' Contour's X-axis is always Cutoff Time (Tco)
+        SrfrAPI.Inflow.Tco = Point.X.Value
+        pointID &= "Tco = " & Point.X.Value.ToString
+
+        ' Contour's Y axis for Borders is always Inflow Rate (Q0)
+        '    "      "   "   "  Furrows is either Inflow Rate (Q0) or Width
+        If (mUnit.CrossSection = CrossSections.Furrow) Then
+            If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
+                SrfrAPI.CrossSection.FurrowsPerSet = Point.Y.Value
+                SrfrAPI.CrossSection.BorderWidth = Point.Y.Value * mSystemGeometry.FurrowSpacing.Value
+                pointID &= "; BW = " & Point.Y.Value.ToString
+            Else ' WidthGiven
+                SrfrAPI.Inflow.Q0 = Point.Y.Value
+                pointID &= "; Q0 = " & Point.Y.Value.ToString
+            End If
+        Else ' Border
+            SrfrAPI.Inflow.Q0 = Point.Y.Value
+            pointID &= "; Q0 = " & Point.Y.Value.ToString
+        End If
+
+        ' Get next available SRFR Simulation
+        Dim SrfrSim As Srfr.SrfrSimulation = mRunContourSimulations.GetAvailableSrfrSimulation
+
+        With SrfrSim
+            If (.uiSrfrAPI Is Nothing) Then ' SrfrAPI needs to be instantiated
+                .uiSrfrAPI = New Srfr.SrfrAPI
+
+            Else ' SrfrAPI may contain results from previous simulation, save them
+                If Not (.ResultsUploaded) Then
+                    Dim results As Srfr.Results = .uiSrfrAPI.Irrigation.Results
+                    AddToResultsList(results)
+                    .ResultsUploaded = True
+                End If
+            End If
+
+            With .uiSrfrAPI
+                ' Copy the UI's SrfrAPI inputs to the BG SrfrAPI
+                .CrossSection = SrfrAPI.CrossSection.Clone
+                .Roughness = SrfrAPI.Roughness.Clone
+                .Infiltration = SrfrAPI.Infiltration.Clone
+                .Inflow = SrfrAPI.Inflow.Clone
+                .SimName = pointID
+                .SimNum = RunNo.ToString
+            End With
+
+            ' Define Solution Model to use for Simulation
+            Dim uiSolMod As SolutionModel
+            If (SrfrAPI.SolMod.GetType Is GetType(KinematicWave)) Then
+                Dim KW = New KinematicWave With {
+                        .ZeroInertiaRecession = True
+                    }
+                uiSolMod = KW
+            Else
+                Dim ZI = New ZeroInertia()
+                uiSolMod = ZI
+            End If
+
+            uiSolMod.CellDensity = SrfrAPI.SolMod.CellDensity
+            uiSolMod.StatusEventCriteria = Srfr.SolutionModel.StatusEvents.BFLGS
+
+            .uiSolMod = uiSolMod
+
+            .ResultsUploaded = False
+
+            ' Run SRFR simulation using a background thread
+            .Run() ' returns immediately; does not wait for simulation to finish
+
+        End With
 
     End Sub
 
-    Public Sub RefineOperationsPointBgThreads(ByVal Point As ContourPoint)
+    '*********************************************************************************************************
+    ' Sub SrfrResultsToContourPoint() - move results from SRFR Simulation into Contour Point
+    '
+    ' Input(s):     SrfrResults     - Results from SRFR Simulation run
+    '               Point           - Operations Point to refine
+    '*********************************************************************************************************
+    Public Sub SrfrResultsToContourPoint(ByVal SrfrResults As Srfr.Results,
+                                         ByVal Point As ContourPoint)
 
-    End Sub
+        ' Z(0) is value not defined by X & Y contour axes
+        Dim sParam As SingleParameter = Point.Z(0)
 
-    Public Sub SrfrResultsToPoint(ByVal SrfrResults As Srfr.Results, ByVal Point As ContourPoint)
-
-        Dim sParam As SingleParameter
-
-        sParam = Point.Z(0)
-        sParam.Value = SrfrResults.Width                ' Border Width
+        If (mUnit.CrossSection = CrossSections.Furrow) Then
+            If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
+                sParam.Value = SrfrResults.Tco          ' Inflow Rate
+            Else ' WidthGiven
+                sParam.Value = SrfrResults.Width        ' Border Width
+            End If
+        Else ' Border
+            sParam.Value = SrfrResults.Width            ' Border Width
+        End If
 
         sParam = Point.Z(1)
         sParam.Value = SrfrResults.AE                   ' Application Efficiency

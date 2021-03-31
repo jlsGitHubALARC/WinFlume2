@@ -505,6 +505,12 @@
     <Compile Include="DialogBoxes\RunMultiSimulations.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DialogBoxes\RunContourSimulations.Designer.vb">
+      <DependentUpon>RunContourSimulations.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\RunContourSimulations.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DialogBoxes\SandSiltClayTable.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -833,6 +839,9 @@
     <EmbeddedResource Include="DialogBoxes\RunMultiSimulations.resx">
       <DependentUpon>RunMultiSimulations.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\RunContourSimulations.resx">
+      <DependentUpon>RunContourSimulations.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DialogBoxes\SandSiltClayTable.resx">
       <DependentUpon>SandSiltClayTable.vb</DependentUpon>

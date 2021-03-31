@@ -1584,22 +1584,28 @@ Public Class WorldWindow
 
 #Region " SRFR Animation "
 
+    Public Sub RemoveSrfrStatusHandler()
+        If (mSolutionModel IsNot Nothing) Then
+            RemoveHandler mSolutionModel.SrfrStatus, AddressOf SolutionModel_SrfrStatus
+        End If
+    End Sub
+
+    Public Sub AddSrfrStatusHandler()
+        If (mSolutionModel IsNot Nothing) Then
+            AddHandler mSolutionModel.SrfrStatus, AddressOf SolutionModel_SrfrStatus
+        End If
+    End Sub
+
     '*********************************************************************************************************
     ' InitSrfrAnimation() - define data to be displayed by the SRFR Simulation Animation Viewer
     '*********************************************************************************************************
     Public Sub InitSrfrAnimation()
         '
-        ' Get current Solution Model whose SrfrStatus event is handled by SolutionModel_SrfrStatus
+        ' SrfrStatus event is handled by SolutionModel
         '
-        If (mSolutionModel IsNot Nothing) Then
-            RemoveHandler mSolutionModel.SrfrStatus, AddressOf SolutionModel_SrfrStatus
-            mSolutionModel = Nothing
-        End If
-
-        mSolutionModel = CurrentAnalysis.SolutionModel
-        If (mSolutionModel IsNot Nothing) Then
-            AddHandler mSolutionModel.SrfrStatus, AddressOf SolutionModel_SrfrStatus
-        End If
+        RemoveSrfrStatusHandler()                           ' Remove SrfrStatus handler from old SolutionModel
+        mSolutionModel = CurrentAnalysis.SolutionModel      ' Get new SolutionModel
+        AddSrfrStatusHandler()                              ' Add SrfrStatus handler to new SolutionModel
         '
         ' Build new animation DataSet for the Animation View
         '
