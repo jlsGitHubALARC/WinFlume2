@@ -2855,7 +2855,10 @@ SellTheFarm:
 
     Private Sub LoadExamplesFileList()
 
-        Dim examplesDirectory As String = Application.CommonAppDataPath + "\Examples"
+        Dim examplesDirectory As String = Application.CommonAppDataPath & "\Examples"
+        If Not (Directory.Exists(examplesDirectory)) Then
+            examplesDirectory = WinSrfrDirectory & "\Examples"
+        End If
 
         If (mExamplesFileList Is Nothing) Then
             mExamplesFileList = New ArrayList
@@ -5846,7 +5849,11 @@ SellTheFarm:
 
         ' Sender should be MenuItem
         If (sender.GetType Is GetType(MenuItem)) Then
-            Dim examplesDirectory As String = Application.CommonAppDataPath + "\Examples\"
+            Dim examplesDirectory As String = Application.CommonAppDataPath & "\Examples\"
+            If Not (Directory.Exists(examplesDirectory)) Then
+                examplesDirectory = WinSrfrDirectory & "\Examples\"
+            End If
+
             Dim _menuItem As MenuItem = DirectCast(sender, MenuItem)
 
             ' Get the selected File Path
