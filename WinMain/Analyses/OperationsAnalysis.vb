@@ -46,9 +46,11 @@ Public MustInherit Class OperationsAnalysis
 
 #End Region
 
-#Region " SRFR Simulations "
+#Region " Operations "
 
-    Private mRunContourSimulations As RunContourSimulations
+    Protected mOperationsMethod As OperationsMethod
+
+    Protected mRunContourSimulations As RunContourSimulations
 
 #End Region
 
@@ -549,17 +551,135 @@ Public MustInherit Class OperationsAnalysis
                                                           ByVal NumDistances As Integer) As ContourPoint
 #End Region
 
-#Region " Compute Operations Point - Grid Interpolation "
+#Region " Compute Operations Point - Interpolation "
 
     '*********************************************************************************************************
-    ' Function OperationsPointGridInterpolate() - Compute an Operations Point using Grid Interpolation
+    ' Function OperationsPointInterpolate() - Compute an Operations Point using Grid Interpolation
     '
-    ' Called By:    Calculate Solution      - to simulate the Operations Point at the Solution Point
-    '               Estimate Tuning Factors - to simulate the Operations Point at the Tuning Point
+    ' Input(s):     x                       - Cutoff Time (Tco) or Cutoff Distance (XR)
+    '               y                       - Inflow Rate (Q0) or Border Width (BW)
     '
-    ' Returns:      ContourPoint            - the Operation Point
+    ' Called By:    Calculate Solution      - to estimate the Operations Point at a selected Point
+    '
+    ' Returns:      ContourPoint            - the Operations Point
     '*********************************************************************************************************
-    Protected MustOverride Function OperationsPointGridInterpolate() As ContourPoint
+    Protected Function OperationsPointInterpolate(ByVal x As Double, ByVal y As Double) As ContourPoint
+        Dim point As ContourPoint = Nothing
+
+        If (mContourGrid IsNot Nothing) Then
+
+            Dim cells As ContourCell(,) = mContourGrid.CellArray
+
+            Dim minx As Single = mContourGrid.MinX
+            Dim maxx As Single = mContourGrid.MaxX
+            Dim rngx As Single = maxx - minx
+            Debug.Assert(minx <= x And x <= maxx And 0 < rngx)
+
+            Dim miny As Single = mContourGrid.MinY
+            Dim maxy As Single = mContourGrid.MaxY
+            Dim rngy As Single = maxy - miny
+            Debug.Assert(miny <= y And y <= maxy And 0 < rngy)
+
+            For row As Integer = 0 To cells.GetUpperBound(0)
+                For col As Integer = 0 To cells.GetUpperBound(1)
+                    Dim cell As ContourCell = mContourGrid.Cell(row, col)
+
+                    If (cell.BL.X.Value <= x And x <= cell.BR.X.Value) Then
+                        If (cell.BL.Y.Value <= y And y <= cell.TL.Y.Value) Then
+                            ' Found Cell containing selected Operations Point;
+                            '  find interior triangle containing point
+
+                            Dim P As PointF = New PointF(x, y)
+
+                            Dim V1, V2, V3 As PointF
+                            Dim W1, W2, W3 As Single
+
+                            ' Check left triangle
+                            V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                            V2 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
+                            V3 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
+
+                            Dim inLeft As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                            If (inLeft) Then
+                                point = InterpolateContourPoint(cell.C, cell.TL, cell.BL, x, y, W1, W2, W3)
+                            End If
+
+                            ' Check top triangle
+                            V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                            V2 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
+                            V3 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
+
+                            Dim inTop As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                            If (inTop) Then
+                                point = InterpolateContourPoint(cell.C, cell.TR, cell.TL, x, y, W1, W2, W3)
+                            End If
+
+                            ' Check right triangle
+                            V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                            V2 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
+                            V3 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
+
+                            Dim inRight As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                            If (inRight) Then
+                                point = InterpolateContourPoint(cell.C, cell.BR, cell.TR, x, y, W1, W2, W3)
+                            End If
+
+                            ' Check bottom triangle
+                            V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                            V2 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
+                            V3 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
+
+                            Dim inBottom As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                            If (inBottom) Then
+                                point = InterpolateContourPoint(cell.C, cell.BL, cell.BR, x, y, W1, W2, W3)
+                            End If
+
+                        End If
+                    End If
+                Next col
+            Next row
+
+        End If
+
+        Return point
+    End Function
+
+    '*********************************************************************************************************
+    ' Function InterpolateContourPoint() - interpolate values of new contour point given enclosing triangle
+    '
+    ' Input(s):     P1              - contour point 1                    P1
+    '               P2              -    "     "    2                   /  \
+    '               P3              -    "     "    3                  /  P \
+    '                                                                P2 ---- P3
+    '               x               - X location of P
+    '               y               - Y     "     " "
+    '
+    '               W1              - interpolation weight for values from P1
+    '               W2              -       "          "    "     "     "  P2
+    '               W3              -       "          "    "     "     "  P3
+    '
+    ' Returns:      ContourPoint    - new interpolated ContourPoint
+    '*********************************************************************************************************
+    Private Function InterpolateContourPoint(ByVal P1 As ContourPoint, ByVal P2 As ContourPoint, ByVal P3 As ContourPoint,
+                                             ByVal x As Double, ByVal y As Double, ByVal W1 As Single, ByVal W2 As Single, ByVal W3 As Single) As ContourPoint
+        ' Start with clone of point 1
+        Dim point As ContourPoint = New ContourPoint(P1, True)
+
+        ' Load specified contour location
+        point.X.Value = x
+        point.Y.Value = y
+
+        ' Interpolate Z value from input enclosing triangular ContourPoints
+        For zdx As Integer = 0 To point.Z.Count - 1
+            Dim V1 As Single = DirectCast(P1.Z(zdx), SingleParameter).Value
+            Dim V2 As Single = DirectCast(P2.Z(zdx), SingleParameter).Value
+            Dim V3 As Single = DirectCast(P3.Z(zdx), SingleParameter).Value
+
+            DirectCast(point.Z(zdx), SingleParameter).Value = V1 * W1 + V2 * W2 + V3 * W3
+        Next zdx
+
+        Return point
+    End Function
 
 #End Region
 
@@ -943,39 +1063,52 @@ Public MustInherit Class OperationsAnalysis
 
 #Region " Contour Point "
 
-    '******************************************************************************************
-    ' Method to get a specified Operations Contour Point
+    '*********************************************************************************************************
+    ' Function GetContourPoint() - get a specified Operations Contour Point
     '
+    ' Input(s):     x               - Cutoff Time (Tco) or Cutoff Distance (XR)
+    '               y               - Inflow Rate (Q0) or Border Width (BW)
+    '
+    ' Returns:      ContourPoint    - the Operations Point
+    '*********************************************************************************************************
     Public Overrides Function GetContourPoint(ByVal x As Double, ByVal y As Double,
                                               ByVal numDistances As Integer) As ContourPoint
         Dim point As ContourPoint = Nothing
 
-        ' Y is Inflow Rate or Width
-        Select Case (mBorderCriteria.OperationsOption.Value)
-            Case OperationsOptions.InflowRateGiven
-                mWidth = y
-            Case Else ' Assume OperationsOptions.WidthGiven
-                mInflowRate = y
-        End Select
+        If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
 
-        ' X is Cutoff Time or Distance
-        Dim cutoffMethod As CutoffMethods = CType(mInflowManagement.CutoffMethod.Value, CutoffMethods)
-        Select Case (cutoffMethod)
-            Case CutoffMethods.DistanceBased
-                mXR = x
+            ' Y is Inflow Rate or Width
+            Select Case (mBorderCriteria.OperationsOption.Value)
+                Case OperationsOptions.InflowRateGiven
+                    mWidth = y
+                Case Else ' Assume OperationsOptions.WidthGiven
+                    mInflowRate = y
+            End Select
 
-                point = OperationsPointVolBal(mInflowRate, mWidth, mXR, numDistances)
-            Case Else ' Assume CutoffMethods.TimeBased
-                mTco = x
+            ' X is Cutoff Time or Distance
+            Dim cutoffMethod As CutoffMethods = CType(mInflowManagement.CutoffMethod.Value, CutoffMethods)
+            Select Case (cutoffMethod)
+                Case CutoffMethods.DistanceBased
+                    mXR = x
 
-                If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-                    point = OperationsPointVolBal(mInflowRate, mWidth, mTco, numDistances)
-                Else
-                    mCutbackRateRatio = mInflowManagement.CutbackRateRatio.Value
-                    mCutbackRate = mInflowRate * mCutbackRateRatio
-                    point = OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate, numDistances)
-                End If
-        End Select
+                    point = OperationsPointVolBal(mInflowRate, mWidth, mXR, numDistances)
+                Case Else ' Assume CutoffMethods.TimeBased
+                    mTco = x
+
+                    If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
+                        point = OperationsPointVolBal(mInflowRate, mWidth, mTco, numDistances)
+                    Else
+                        mCutbackRateRatio = mInflowManagement.CutbackRateRatio.Value
+                        mCutbackRate = mInflowRate * mCutbackRateRatio
+                        point = OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate, numDistances)
+                    End If
+            End Select
+
+        Else ' SRFR Simulation
+
+            point = OperationsPointInterpolate(x, y)
+
+        End If
 
         Return point
     End Function

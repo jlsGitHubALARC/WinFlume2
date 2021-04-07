@@ -539,6 +539,8 @@ Public Class FurrowOperations
     Public Overrides Sub RunOperations(ByVal Method As OperationsMethod)
         Me.StartRun("Furrow Operations", True)
 
+        mOperationsMethod = Method
+
         If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
             '
             ' Width is calculated from the Furrows/Set range
@@ -769,24 +771,6 @@ Public Class FurrowOperations
 
         MyBase.EndRun()
     End Sub
-
-#End Region
-
-#Region " Furrow Operations Point - SRFR Simulation "
-
-    '*********************************************************************************************************
-    ' Function OperationsPointGridInterpolate() - Compute an Operations Point using Grid Interpolation
-    '
-    ' Called By:    Calculate Solution      - to simulate the Operations Point at the Solution Point
-    '               Estimate Tuning Factors - to simulate the Operations Point at the Tuning Point
-    '
-    ' Returns:      ContourPoint            - the Operations Point
-    '*********************************************************************************************************
-    Protected Overloads Overrides Function OperationsPointGridInterpolate() As ContourPoint
-        Dim point As ContourPoint = Nothing
-
-        Return point
-    End Function
 
 #End Region
 

@@ -1338,6 +1338,8 @@ Public Class BasinBorderOperations
 
     Public Overrides Sub RunOperations(ByVal Method As OperationsMethod)
         Me.StartRun("Basin / Border Operations", True)
+
+        mOperationsMethod = Method
         '
         ' Build operations contour grid
         '
@@ -1553,24 +1555,6 @@ Public Class BasinBorderOperations
 
         MyBase.EndRun()
     End Sub
-
-#End Region
-
-#Region " Basin / Border Operations Point - SRFR Simulation "
-
-    '*********************************************************************************************************
-    ' Function OperationsPointGridInterpolate() - Compute an Operations Point using Grid Interpolation
-    '
-    ' Called By:    Calculate Solution      - to simulate the Operations Point at the Solution Point
-    '               Estimate Tuning Factors - to simulate the Operations Point at the Tuning Point
-    '
-    ' Returns:      ContourPoint            - the Operations Point
-    '*********************************************************************************************************
-    Protected Overloads Overrides Function OperationsPointGridInterpolate() As ContourPoint
-        Dim point As ContourPoint = Nothing
-
-        Return point
-    End Function
 
 #End Region
 

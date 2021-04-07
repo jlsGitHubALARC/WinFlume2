@@ -1565,7 +1565,7 @@ Module Utilities
 
     End Function
 
-    Public Function SumOfSquares(ByVal Table1 As DataTable, ByVal Table2 As DataTable, _
+    Public Function SumOfSquares(ByVal Table1 As DataTable, ByVal Table2 As DataTable,
                                  ByVal xCol As Integer, ByVal yCol As Integer) As Double
         SumOfSquares = 0.0
 
@@ -1582,6 +1582,48 @@ Module Utilities
             Debug.Assert(False)
             SumOfSquares = Double.NaN
         End Try
+    End Function
+
+    '*********************************************************************************************************
+    ' Function TriangularInterpolation()    - calculate interpolation weights within enclosing triangle
+    '
+    ' Input(s):     V1      - location of point 1 values                    V1
+    '               V2      -     "     "   "   2    "                     /  \
+    '               V3      -     "     "   "   3    "                    /  P \
+    '               P       -     "     " new point                     V2 ---- V3
+    '
+    ' Output(s)     W1      - weight for V1 values
+    '               W2      -    "    "  V2    "
+    '               W3      -    "    "  V3    "
+    '
+    ' Returns:      Boolean - true if P within triangle; false otherwise
+    '
+    ' Note  - based on Barymetric Coordinates
+    '
+    ' See   - codeplea.com/triangular interpolation
+    '*********************************************************************************************************
+    Public Function TriangularInterpolation(ByVal V1 As PointF, ByVal V2 As PointF, ByVal V3 As PointF, ByVal P As PointF,
+                                            ByRef W1 As Single, ByRef W2 As Single, ByRef W3 As Single) As Boolean
+        Dim InTriangle As Boolean = True
+
+        ' Equation numerators
+        Dim W1num As Single = (V2.Y - V3.Y) * (P.X - V3.X) + (V3.X - V2.X) * (P.Y - V3.Y)
+        Dim W2num As Single = (V3.Y - V1.Y) * (P.X - V3.X) + (V1.X - V3.X) * (P.Y - V3.Y)
+
+        ' Equation denominators
+        Dim den As Single = (V2.Y - V3.Y) * (V1.X - V3.X) + (V3.X - V2.X) * (V1.Y - V3.Y)
+
+        ' Weights
+        W1 = W1num / den
+        W2 = W2num / den
+        W3 = 1 - W1 - W2
+
+        ' Check if P is within enclosing triangle (any negative W means outside)
+        If (W1 < 0 Or W2 < 0 Or W3 < 0) Then
+            InTriangle = False
+        End If
+
+        Return InTriangle
     End Function
 
 #End Region
