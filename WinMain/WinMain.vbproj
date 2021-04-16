@@ -436,6 +436,7 @@
     <Compile Include="DataStore\SoilCropProperties.vb">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataStore\SrfrContourParameter.vb" />
     <Compile Include="DataStore\SrfrCriteria.vb">
       <SubType>Code</SubType>
     </Compile>
