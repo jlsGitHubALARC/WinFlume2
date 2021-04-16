@@ -6,6 +6,7 @@
 '*************************************************************************************************************
 Imports DataStore
 Imports Srfr
+Imports WinMain.SrfrContourParameter
 
 Public MustInherit Class OperationsAnalysis
     Inherits Analysis
@@ -57,7 +58,6 @@ Public MustInherit Class OperationsAnalysis
 #Region " SRFR Results List "
 
     Friend Property SrfrResults As ArrayList = Nothing
-    Private SrfrSim As Srfr.SrfrSimulation              ' Package for running background simulations
 
     '*********************************************************************************************************
     ' Sub ClearResultsList()    - clear all results from list
@@ -256,7 +256,7 @@ Public MustInherit Class OperationsAnalysis
     '*********************************************************************************************************
     Protected Function BuildOperationsGridVolBal() As Boolean
 
-        Dim point As ContourPoint = Nothing
+        Dim point As ContourPoint
         Dim rdx, cdx As Integer
 
         Me.StatusMessage &= " - " & mDictionary.tBuildingContourGrid.Translated
@@ -563,6 +563,18 @@ Public MustInherit Class OperationsAnalysis
     '
     ' Returns:      ContourPoint            - the Operations Point
     '*********************************************************************************************************
+    Protected Function OperationsPointInterpolate() As ContourPoint
+        If (mUnit.CrossSection = CrossSections.Furrow) Then
+            If (mBorderCriteria.DesignOption.Value = DesignOptions.InflowRateGiven) Then
+                Return Me.OperationsPointInterpolate(Tco, Width)
+            Else
+                Return Me.OperationsPointInterpolate(Tco, InflowRate)
+            End If
+        Else ' Border
+            Return Me.OperationsPointInterpolate(Tco, InflowRate)
+        End If
+    End Function
+
     Protected Function OperationsPointInterpolate(ByVal x As Double, ByVal y As Double) As ContourPoint
         Dim point As ContourPoint = Nothing
 
@@ -584,10 +596,10 @@ Public MustInherit Class OperationsAnalysis
                 For col As Integer = 0 To cells.GetUpperBound(1)
                     Dim cell As ContourCell = mContourGrid.Cell(row, col)
 
+                    ' Find Cell containing selected Operations Point;
                     If (cell.BL.X.Value <= x And x <= cell.BR.X.Value) Then
                         If (cell.BL.Y.Value <= y And y <= cell.TL.Y.Value) Then
-                            ' Found Cell containing selected Operations Point;
-                            '  find interior triangle containing point
+                            ' Found Cell; find interior triangle containing point
 
                             Dim P As PointF = New PointF(x, y)
 
@@ -658,25 +670,228 @@ Public MustInherit Class OperationsAnalysis
     '               W2              -       "          "    "     "     "  P2
     '               W3              -       "          "    "     "     "  P3
     '
-    ' Returns:      ContourPoint    - new interpolated ContourPoint
+    ' Returns:      SrfrContourPoint    - new interpolated SrfrContourPoint
     '*********************************************************************************************************
-    Private Function InterpolateContourPoint(ByVal P1 As ContourPoint, ByVal P2 As ContourPoint, ByVal P3 As ContourPoint,
-                                             ByVal x As Double, ByVal y As Double, ByVal W1 As Single, ByVal W2 As Single, ByVal W3 As Single) As ContourPoint
-        ' Start with clone of point 1
-        Dim point As ContourPoint = New ContourPoint(P1, True)
+    Private Function InterpolateContourPoint(ByVal P1 As SrfrContourPoint, ByVal P2 As SrfrContourPoint, ByVal P3 As SrfrContourPoint,
+                                             ByVal x As Double, ByVal y As Double, ByVal W1 As Single, ByVal W2 As Single, ByVal W3 As Single) As SrfrContourPoint
+
+        ' Start with clone (i.e structure but no data) of point 1
+        Dim point As SrfrContourPoint = New SrfrContourPoint(P1, True)
+        Dim L1, L2, L3 As Integer
 
         ' Load specified contour location
         point.X.Value = x
         point.Y.Value = y
 
-        ' Interpolate Z value from input enclosing triangular ContourPoints
-        For zdx As Integer = 0 To point.Z.Count - 1
-            Dim V1 As Single = DirectCast(P1.Z(zdx), SingleParameter).Value
-            Dim V2 As Single = DirectCast(P2.Z(zdx), SingleParameter).Value
-            Dim V3 As Single = DirectCast(P3.Z(zdx), SingleParameter).Value
+        Try
+            ' Interpolate contour Z values from enclosing triangular ContourPoints
+            For zdx As Integer = 0 To point.Z.Count - 1
+                Dim V1 As Single = DirectCast(P1.Z(zdx), SingleParameter).Value
+                Dim V2 As Single = DirectCast(P2.Z(zdx), SingleParameter).Value
+                Dim V3 As Single = DirectCast(P3.Z(zdx), SingleParameter).Value
 
-            DirectCast(point.Z(zdx), SingleParameter).Value = V1 * W1 + V2 * W2 + V3 * W3
-        Next zdx
+                DirectCast(point.Z(zdx), SingleParameter).Value = V1 * W1 + V2 * W2 + V3 * W3
+            Next zdx
+
+            ' Interpolate Advance Curve, if it exists
+            If (point.SrfrResults.AdvanceCurve IsNot Nothing) Then
+                L1 = P1.SrfrResults.AdvanceCurve.Rows.Count
+                L2 = P2.SrfrResults.AdvanceCurve.Rows.Count
+                L3 = P3.SrfrResults.AdvanceCurve.Rows.Count
+
+                Debug.Assert(L1 = L2 And L2 = L3)
+
+                mDistances.Clear()
+                mAdvTimes.Clear()
+
+                For idx As Integer = 0 To L1 - 1
+                    Dim V1 As Double = CDbl(P1.SrfrResults.AdvanceCurve.Rows(idx).Item(1))
+                    Dim V2 As Double = CDbl(P2.SrfrResults.AdvanceCurve.Rows(idx).Item(1))
+                    Dim V3 As Double = CDbl(P3.SrfrResults.AdvanceCurve.Rows(idx).Item(1))
+
+                    Dim row As DataRow = point.SrfrResults.AdvanceCurve.NewRow()
+                    row.Item(0) = P1.SrfrResults.AdvanceCurve.Rows(idx).Item(0)
+                    row.Item(1) = V1 * W1 + V2 * W2 + V3 * W3
+                    point.SrfrResults.AdvanceCurve.Rows.Add(row)
+
+                    mDistances.Add(row.Item(0))
+                    mAdvTimes.Add(row.Item(1))
+                Next idx
+
+                'mSurfaceFlow.Advance.Value = point.SrfrResults.AdvanceCurve.Copy
+            End If
+
+            ' Interpolate Recession Curve, if it exists
+            If (point.SrfrResults.RecessionCurve IsNot Nothing) Then
+                L1 = P1.SrfrResults.RecessionCurve.Rows.Count
+                L2 = P2.SrfrResults.RecessionCurve.Rows.Count
+                L3 = P3.SrfrResults.RecessionCurve.Rows.Count
+
+                Debug.Assert(L1 = L2 And L2 = L3)
+
+                mRecTimes.Clear()
+
+                For idx As Integer = 0 To L1 - 1
+                    Dim V1 As Double = CDbl(P1.SrfrResults.RecessionCurve.Rows(idx).Item(1))
+                    Dim V2 As Double = CDbl(P2.SrfrResults.RecessionCurve.Rows(idx).Item(1))
+                    Dim V3 As Double = CDbl(P3.SrfrResults.RecessionCurve.Rows(idx).Item(1))
+
+                    Dim row As DataRow = point.SrfrResults.RecessionCurve.NewRow()
+                    row.Item(0) = P1.SrfrResults.RecessionCurve.Rows(idx).Item(0)
+                    row.Item(1) = V1 * W1 + V2 * W2 + V3 * W3
+                    point.SrfrResults.RecessionCurve.Rows.Add(row)
+
+                    mRecTimes.Add(row.Item(1))
+                Next idx
+
+                'mSurfaceFlow.Recession.Value = point.SrfrResults.RecessionCurve.Copy
+            End If
+
+            ' Interpolate Infiltration Curve, if it exists
+            If (point.SrfrResults.InfiltrationCurve IsNot Nothing) Then
+                L1 = P1.SrfrResults.InfiltrationCurve.Rows.Count
+                L2 = P2.SrfrResults.InfiltrationCurve.Rows.Count
+                L3 = P3.SrfrResults.InfiltrationCurve.Rows.Count
+
+                Debug.Assert(L1 = L2 And L2 = L3)
+
+                mInfDepths.Clear()
+
+                For idx As Integer = 0 To L1 - 1
+                    Dim V1 As Double = CDbl(P1.SrfrResults.InfiltrationCurve.Rows(idx).Item(1))
+                    Dim V2 As Double = CDbl(P2.SrfrResults.InfiltrationCurve.Rows(idx).Item(1))
+                    Dim V3 As Double = CDbl(P3.SrfrResults.InfiltrationCurve.Rows(idx).Item(1))
+
+                    Dim row As DataRow = point.SrfrResults.InfiltrationCurve.NewRow()
+                    row.Item(0) = P1.SrfrResults.InfiltrationCurve.Rows(idx).Item(0)
+                    row.Item(1) = V1 * W1 + V2 * W2 + V3 * W3
+                    point.SrfrResults.InfiltrationCurve.Rows.Add(row)
+
+                    mInfDepths.Add(row.Item(1))
+                Next idx
+
+                'mSubsurfaceFlow.LongitudinalInfiltration.Value = point.SrfrResults.InfiltrationCurve.Copy
+            End If
+
+            ' Interpolate Analysis performance parameters
+            Dim D1, D2, D3 As Double
+            D1 = P1.SrfrResults.Length
+            D2 = P2.SrfrResults.Length
+            D3 = P3.SrfrResults.Length
+            point.SrfrResults.Length = D1 * W1 + D2 * W2 + D3 * W3
+            mLength = point.SrfrResults.Length
+
+            'D1 = P1.SrfrResults.Width
+            'D2 = P2.SrfrResults.Width
+            'D3 = P3.SrfrResults.Width
+            'point.SrfrResults.Width = D1 * W1 + D2 * W2 + D3 * W3
+            'mWidth = point.SrfrResults.Width
+
+            D1 = P1.SrfrResults.Q0avg
+            D2 = P2.SrfrResults.Q0avg
+            D3 = P3.SrfrResults.Q0avg
+            point.SrfrResults.Q0avg = D1 * W1 + D2 * W2 + D3 * W3
+            mInflowRate = point.SrfrResults.Q0avg
+
+            D1 = P1.SrfrResults.Tcb
+            D2 = P2.SrfrResults.Tcb
+            D3 = P3.SrfrResults.Tcb
+            point.SrfrResults.Tcb = D1 * W1 + D2 * W2 + D3 * W3
+            mTcb = point.SrfrResults.Tcb
+
+            D1 = P1.SrfrResults.Qcb
+            D2 = P2.SrfrResults.Qcb
+            D3 = P3.SrfrResults.Qcb
+            point.SrfrResults.Qcb = D1 * W1 + D2 * W2 + D3 * W3
+            mCutbackRate = point.SrfrResults.Qcb
+
+            D1 = P1.SrfrResults.TL
+            D2 = P2.SrfrResults.TL
+            D3 = P3.SrfrResults.TL
+            point.SrfrResults.TL = D1 * W1 + D2 * W2 + D3 * W3
+            mTL = point.SrfrResults.TL
+
+            D1 = P1.SrfrResults.XR
+            D2 = P2.SrfrResults.XR
+            D3 = P3.SrfrResults.XR
+            point.SrfrResults.XR = D1 * W1 + D2 * W2 + D3 * W3
+            mXR = point.SrfrResults.XR
+
+            ' Performance indicators
+
+            D1 = P1.SrfrResults.AE
+            D2 = P2.SrfrResults.AE
+            D3 = P3.SrfrResults.AE
+            point.SrfrResults.AE = D1 * W1 + D2 * W2 + D3 * W3
+            mAE = point.SrfrResults.AE
+
+            D1 = P1.SrfrResults.PAElq
+            D2 = P2.SrfrResults.PAElq
+            D3 = P3.SrfrResults.PAElq
+            point.SrfrResults.PAElq = D1 * W1 + D2 * W2 + D3 * W3
+            mPAElq = point.SrfrResults.PAElq
+
+            D1 = P1.SrfrResults.DUlq
+            D2 = P2.SrfrResults.DUlq
+            D3 = P3.SrfrResults.DUlq
+            point.SrfrResults.DUlq = D1 * W1 + D2 * W2 + D3 * W3
+            mDUlq = point.SrfrResults.DUlq
+
+            D1 = P1.SrfrResults.DUmin
+            D2 = P2.SrfrResults.DUmin
+            D3 = P3.SrfrResults.DUmin
+            point.SrfrResults.DUmin = D1 * W1 + D2 * W2 + D3 * W3
+            mDUmin = point.SrfrResults.DUmin
+
+            ' Depths
+
+            D1 = P1.SrfrResults.Dapp
+            D2 = P2.SrfrResults.Dapp
+            D3 = P3.SrfrResults.Dapp
+            point.SrfrResults.Dapp = D1 * W1 + D2 * W2 + D3 * W3
+            mDApp = point.SrfrResults.Dapp
+
+            D1 = P1.SrfrResults.Dro
+            D2 = P2.SrfrResults.Dro
+            D3 = P3.SrfrResults.Dro
+            point.SrfrResults.Dro = D1 * W1 + D2 * W2 + D3 * W3
+            mRoDepth = point.SrfrResults.Dro
+            mRoFraction = mRoDepth / mDApp
+
+            D1 = P1.SrfrResults.Ddp
+            D2 = P2.SrfrResults.Ddp
+            D3 = P3.SrfrResults.Ddp
+            point.SrfrResults.Ddp = D1 * W1 + D2 * W2 + D3 * W3
+            mDpDepth = point.SrfrResults.Ddp
+            mDpFraction = mDpDepth / mDApp
+
+            D1 = P1.SrfrResults.Dmin
+            D2 = P2.SrfrResults.Dmin
+            D3 = P3.SrfrResults.Dmin
+            point.SrfrResults.Dmin = D1 * W1 + D2 * W2 + D3 * W3
+            mDMin = point.SrfrResults.Dmin
+
+            D1 = P1.SrfrResults.Dlq
+            D2 = P2.SrfrResults.Dlq
+            D3 = P3.SrfrResults.Dlq
+            point.SrfrResults.Dlq = D1 * W1 + D2 * W2 + D3 * W3
+            mDLf = point.SrfrResults.Dlq
+
+            D1 = P1.SrfrResults.Dinf
+            D2 = P2.SrfrResults.Dinf
+            D3 = P3.SrfrResults.Dinf
+            point.SrfrResults.Dinf = D1 * W1 + D2 * W2 + D3 * W3
+            mDInf = point.SrfrResults.Dinf
+
+            D1 = P1.SrfrResults.WaterCostPerHectare
+            D2 = P2.SrfrResults.WaterCostPerHectare
+            D3 = P3.SrfrResults.WaterCostPerHectare
+            point.SrfrResults.WaterCostPerHectare = D1 * W1 + D2 * W2 + D3 * W3
+            mCost = point.SrfrResults.WaterCostPerHectare
+
+        Catch ex As Exception
+            Debug.Assert(False, ex.Message)
+        End Try
 
         Return point
     End Function
@@ -691,7 +906,9 @@ Public MustInherit Class OperationsAnalysis
     Protected Function RefineOperationsGridSrfrSim(ByVal Method As OperationsMethod) As Boolean
 
         ' Define variables
-        Dim point As ContourPoint = Nothing
+        Dim SrfrSim As Srfr.SrfrSimulation
+
+        Dim point As SrfrContourPoint
         Dim rdx, cdx As Integer
 
         Me.StatusMessage &= " - " & mDictionary.tRefiningContourGrid.Translated
@@ -727,8 +944,9 @@ Public MustInherit Class OperationsAnalysis
                     mRunContourSimulations.ProgressMessage = status
                 End If
 
-                point = mContourGrid.Point(rdx, cdx)
+                point = New SrfrContourPoint(mContourGrid.Point(rdx, cdx), True)
                 Me.RefineOperationsPointSrfrSim(point, Method, numSimRun)
+                mContourGrid.Point(rdx, cdx) = point
             Next cdx
         Next rdx
 
@@ -758,9 +976,10 @@ Public MustInherit Class OperationsAnalysis
                     Dim runNo As Integer = results.SimNum - 1
                     cdx = runNo Mod numCols
                     rdx = Math.Floor(runNo / numCols)
-                    point = mContourGrid.Point(rdx, cdx)
 
+                    point = New SrfrContourPoint(mContourGrid.Point(rdx, cdx), True)
                     SrfrResultsToContourPoint(results, point)
+                    mContourGrid.Point(rdx, cdx) = point
                 Next
 
                 ClearResultsList()
@@ -787,8 +1006,9 @@ Public MustInherit Class OperationsAnalysis
                     mRunContourSimulations.ProgressMessage = status
                 End If
 
-                point = mContourGrid.Cell(rdx, cdx).C
+                point = New SrfrContourPoint(mContourGrid.Cell(rdx, cdx).C, True)
                 Me.RefineOperationsPointSrfrSim(point, Method, numSimRun)
+                mContourGrid.Cell(rdx, cdx).C = point
             Next cdx
         Next rdx
 
@@ -818,11 +1038,13 @@ Public MustInherit Class OperationsAnalysis
                     Dim runNo As Integer = results.SimNum - (numRows * numCols) - 1
                     cdx = runNo Mod (numCols - 1)
                     rdx = Math.Floor(runNo / (numCols - 1))
-                    point = mContourGrid.Cell(rdx, cdx).C
 
+                    point = New SrfrContourPoint(mContourGrid.Cell(rdx, cdx).C, True)
                     SrfrResultsToContourPoint(results, point)
+                    mContourGrid.Cell(rdx, cdx).C = point
                 Next
 
+                ClearResultsList()
             Case Else ' OperationsMethod.VolumeBalance
                 Debug.Assert(False)
         End Select
@@ -997,7 +1219,7 @@ Public MustInherit Class OperationsAnalysis
     '               Point           - Operations Point to refine
     '*********************************************************************************************************
     Public Sub SrfrResultsToContourPoint(ByVal SrfrResults As Srfr.Results,
-                                         ByVal Point As ContourPoint)
+                                         ByVal Point As SrfrContourPoint)
 
         ' Z(0) is value not defined by X & Y contour axes
         Dim sParam As SingleParameter = Point.Z(0)
@@ -1057,6 +1279,8 @@ Public MustInherit Class OperationsAnalysis
         sParam = Point.Z(12)
         sParam.Value = SrfrResults.WaterCostPerHectare  ' Cost
 
+        Point.SrfrResults = SrfrResults.Clone ' structure AND data
+
     End Sub
 
 #End Region
@@ -1073,42 +1297,46 @@ Public MustInherit Class OperationsAnalysis
     '*********************************************************************************************************
     Public Overrides Function GetContourPoint(ByVal x As Double, ByVal y As Double,
                                               ByVal numDistances As Integer) As ContourPoint
-        Dim point As ContourPoint = Nothing
+        Dim point As ContourPoint
 
-        If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
+        ' Y is Inflow Rate or Width
+        Select Case (mBorderCriteria.OperationsOption.Value)
+            Case OperationsOptions.InflowRateGiven
+                mWidth = y
+            Case Else ' Assume OperationsOptions.WidthGiven
+                mInflowRate = y
+        End Select
 
-            ' Y is Inflow Rate or Width
-            Select Case (mBorderCriteria.OperationsOption.Value)
-                Case OperationsOptions.InflowRateGiven
-                    mWidth = y
-                Case Else ' Assume OperationsOptions.WidthGiven
-                    mInflowRate = y
-            End Select
+        ' X is Cutoff Time or Distance
+        Dim cutoffMethod As CutoffMethods = CType(mInflowManagement.CutoffMethod.Value, CutoffMethods)
+        Select Case (cutoffMethod)
+            Case CutoffMethods.DistanceBased
+                mXR = x
 
-            ' X is Cutoff Time or Distance
-            Dim cutoffMethod As CutoffMethods = CType(mInflowManagement.CutoffMethod.Value, CutoffMethods)
-            Select Case (cutoffMethod)
-                Case CutoffMethods.DistanceBased
-                    mXR = x
-
+                If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
                     point = OperationsPointVolBal(mInflowRate, mWidth, mXR, numDistances)
-                Case Else ' Assume CutoffMethods.TimeBased
-                    mTco = x
+                Else ' SRFR Simulation
+                    point = OperationsPointInterpolate(x, y)
+                End If
+            Case Else ' Assume CutoffMethods.TimeBased
+                mTco = x
 
-                    If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
+                If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
+                    If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
                         point = OperationsPointVolBal(mInflowRate, mWidth, mTco, numDistances)
-                    Else
-                        mCutbackRateRatio = mInflowManagement.CutbackRateRatio.Value
-                        mCutbackRate = mInflowRate * mCutbackRateRatio
-                        point = OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate, numDistances)
+                    Else ' SRFR Simulation
+                        point = OperationsPointInterpolate(x, y)
                     End If
-            End Select
-
-        Else ' SRFR Simulation
-
-            point = OperationsPointInterpolate(x, y)
-
-        End If
+                Else
+                    mCutbackRateRatio = mInflowManagement.CutbackRateRatio.Value
+                    mCutbackRate = mInflowRate * mCutbackRateRatio
+                    If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
+                        point = OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate, numDistances)
+                    Else ' SRFR Simulation
+                        point = OperationsPointInterpolate(x, y)
+                    End If
+                End If
+        End Select
 
         Return point
     End Function
@@ -1122,7 +1350,11 @@ Public MustInherit Class OperationsAnalysis
 
         ' Calculate Operations Point
         Try
-            mSolutionPoint = Me.OperationsPointVolBal()
+            If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
+                mSolutionPoint = Me.OperationsPointVolBal()
+            Else ' SRFR Simulation
+                mSolutionPoint = Me.OperationsPointInterpolate()
+            End If
         Catch ex As Exception
             mWinSRFR.UsageException("CalculateSolution[OperationsPoint] ", ex)
         End Try
@@ -1181,22 +1413,22 @@ Public MustInherit Class OperationsAnalysis
             Case InfiltrationFunctions.GreenAmpt
 
                 ' Green-Ampt not available for Operations Analysis
-                AddSetupError(Analysis.ErrorFlags.GreenAmptNotAvailable, _
-                         mDictionary.tGreenAmptNotAvailable.Translated, _
+                AddSetupError(Analysis.ErrorFlags.GreenAmptNotAvailable,
+                         mDictionary.tGreenAmptNotAvailable.Translated,
                          mDictionary.tGreenAmptNotAvailableForOperationsAnalysis.Translated)
 
             Case InfiltrationFunctions.WarrickGreenAmpt
 
                 ' Warrick Green-Ampt not available for Operations Analysis
-                AddSetupError(Analysis.ErrorFlags.WarrickGreenAmptNotAvailable, _
-                         mDictionary.tWarrickGreenAmptNotAvailable.Translated, _
+                AddSetupError(Analysis.ErrorFlags.WarrickGreenAmptNotAvailable,
+                         mDictionary.tWarrickGreenAmptNotAvailable.Translated,
                          mDictionary.tWarrickGreenAmptNotAvailableForOperationsAnalysis.Translated)
 
             Case InfiltrationFunctions.Hydrus1D
 
                 ' HYDRUS-1D not available for Operations Analysis
-                AddSetupError(Analysis.ErrorFlags.Hydrus1DNotAvailable, _
-                         mDictionary.tHydrus1DNotAvailable.Translated, _
+                AddSetupError(Analysis.ErrorFlags.Hydrus1DNotAvailable,
+                         mDictionary.tHydrus1DNotAvailable.Translated,
                          mDictionary.tHydrus1DNotAvailableForOperationsAnalysis.Translated)
         End Select
 
