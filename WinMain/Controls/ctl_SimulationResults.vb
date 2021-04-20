@@ -163,7 +163,6 @@ Public Class ctl_SimulationResults
     ' Array of Results Pages & Panels
     '
     Private mResultsPages As ArrayList
-    Private mResultsPanels As ArrayList
     Private mPageNumber As Integer = 1
     Private mTotalPages As Integer = 1
     '
@@ -237,7 +236,6 @@ Public Class ctl_SimulationResults
     Private Sub InitializeResults()
 
         mResultsPages = New ArrayList
-        mResultsPanels = New ArrayList
 
         PrintPreviewDialog.Size = New Size(700, 500)
 
@@ -3508,12 +3506,11 @@ Public Class ctl_SimulationResults
         End If
     End Sub
     '
-    ' Clear all the Results Pages & Panels
+    ' Clear all the Results Pages
     '
     Private Sub ClearResultsPages()
         '
-        ' Dispose of all resources (especially Bitmaps) so Garbage Collection can reclaim
-        ' the memory.
+        ' Dispose of resources (especially Bitmaps) so Garbage Collection can reclaim the memory
         '
         Me.SuspendLayout()
         '
@@ -3568,28 +3565,6 @@ Public Class ctl_SimulationResults
         Next
 
         mResultsPages.Clear()
-        '
-        ' Clear the Results Panels
-        '
-        For _idx As Integer = mResultsPanels.Count - 1 To 0 Step -1
-            Try
-                ' Get Results Panel at the end of the list
-                Dim _panel As Panel = CType(mResultsPanels(_idx), Panel)
-                If (_panel IsNot Nothing) Then
-                    ' First, clear its resources
-                    ReleaseResources(_panel)
-                    ' Then, remove & dispose of the Results Panel
-                    mResultsPanels.RemoveAt(_idx)
-                    RemoveHandler _panel.Paint, AddressOf Panel_PaintGraph
-                    _panel.Dispose()
-                    _panel = Nothing
-                End If
-
-            Catch ex As Exception
-            End Try
-        Next
-
-        mResultsPanels.Clear()
 
         Me.ResumeLayout()
 
