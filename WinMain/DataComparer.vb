@@ -728,7 +728,6 @@ Public Class DataComparer
             mInitializing = True
             LoadComparisonParameters()
             mInitializing = False
-            ResetDataComparer()
         End If
     End Sub
 

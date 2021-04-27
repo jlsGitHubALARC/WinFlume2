@@ -145,7 +145,7 @@ Public Class ctl_Comparisons
     Private ReadOnly LandscapeGraphSize As Size = New Size(LandscapeGraphWidth, LandscapeGraphHeight)
     Private ReadOnly LandscapeGraphLocation As Point = New Point(LandscapeGraphLeft, LandscapeGraphTop)
     '
-    ' Array of Results Pages & Panels
+    ' Results Pages & Panels
     '
     Private mResultsPages As ArrayList
     Private mResultsPanels As ArrayList
@@ -254,12 +254,9 @@ Public Class ctl_Comparisons
 #Region " Initialization "
 
     Private Sub InitializeComparisons()
-
         mResultsPages = New ArrayList
         mResultsPanels = New ArrayList
-
         PrintPreviewDialog.Size = New Size(700, 500)
-
     End Sub
 
 #End Region
@@ -310,6 +307,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tInflow)
 
+            If (mInflowPageGraph IsNot Nothing) Then
+                mInflowPageGraph.Dispose()
+                mInflowPageGraph = Nothing
+            End If
             mInflowPageGraph = GetNew2dGraphPage(_dataSet, tInflow)
             mInflowPageGraph.UnitsX = UnitsDefinition.Units.Seconds
             mInflowPageGraph.UnitsY = UnitsDefinition.Units.Cms
@@ -318,6 +319,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tInflow)
 
+            If (mInflowPanelGraph IsNot Nothing) Then
+                mInflowPanelGraph.Dispose()
+                mInflowPanelGraph = Nothing
+            End If
             mInflowPanelGraph = GetNew2dGraphPanel(_dataSet, tInflow)
             mInflowPanelGraph.UnitsX = UnitsDefinition.Units.Seconds
             mInflowPanelGraph.UnitsY = UnitsDefinition.Units.Cms
@@ -329,6 +334,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tInflowRunoff)
 
+            If (mInflowRunoffPageGraph IsNot Nothing) Then
+                mInflowRunoffPageGraph.Dispose()
+                mInflowRunoffPageGraph = Nothing
+            End If
             mInflowRunoffPageGraph = GetNew2dGraphPage(_dataSet, tInflowRunoff)
             mInflowRunoffPageGraph.UnitsX = UnitsDefinition.Units.Seconds
             mInflowRunoffPageGraph.UnitsY = UnitsDefinition.Units.Cms
@@ -337,6 +346,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tInflowRunoff)
 
+            If (mInflowRunoffPanelGraph IsNot Nothing) Then
+                mInflowRunoffPanelGraph.Dispose()
+                mInflowRunoffPanelGraph = Nothing
+            End If
             mInflowRunoffPanelGraph = GetNew2dGraphPanel(_dataSet, tInflowRunoff)
             mInflowRunoffPanelGraph.UnitsX = UnitsDefinition.Units.Seconds
             mInflowRunoffPanelGraph.UnitsY = UnitsDefinition.Units.Cms
@@ -348,6 +361,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tAdvance)
 
+            If (mAdvancePageGraph IsNot Nothing) Then
+                mAdvancePageGraph.Dispose()
+                mAdvancePageGraph = Nothing
+            End If
             mAdvancePageGraph = GetNew2dGraphPage(_dataSet, tAdvance)
             mAdvancePageGraph.UnitsX = UnitsDefinition.Units.Meters
             mAdvancePageGraph.UnitsY = UnitsDefinition.Units.Seconds
@@ -358,6 +375,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tAdvance)
 
+            If (mAdvancePanelGraph IsNot Nothing) Then
+                mAdvancePanelGraph.Dispose()
+                mAdvancePanelGraph = Nothing
+            End If
             mAdvancePanelGraph = GetNew2dGraphPanel(_dataSet, tAdvance)
             mAdvancePanelGraph.UnitsX = UnitsDefinition.Units.Meters
             mAdvancePanelGraph.UnitsY = UnitsDefinition.Units.Seconds
@@ -371,6 +392,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tAdvanceRecession)
 
+            If (mAdvanceRecessionPageGraph IsNot Nothing) Then
+                mAdvanceRecessionPageGraph.Dispose()
+                mAdvanceRecessionPageGraph = Nothing
+            End If
             mAdvanceRecessionPageGraph = GetNew2dGraphPage(_dataSet, tAdvanceRecession)
             mAdvanceRecessionPageGraph.UnitsX = UnitsDefinition.Units.Meters
             mAdvanceRecessionPageGraph.UnitsY = UnitsDefinition.Units.Seconds
@@ -381,6 +406,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tAdvanceRecession)
 
+            If (mAdvanceRecessionPanelGraph IsNot Nothing) Then
+                mAdvanceRecessionPanelGraph.Dispose()
+                mAdvanceRecessionPanelGraph = Nothing
+            End If
             mAdvanceRecessionPanelGraph = GetNew2dGraphPanel(_dataSet, tAdvanceRecession)
             mAdvanceRecessionPanelGraph.UnitsX = UnitsDefinition.Units.Meters
             mAdvanceRecessionPanelGraph.UnitsY = UnitsDefinition.Units.Seconds
@@ -394,6 +423,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tInfiltration)
 
+            If (mVolumeBalanceVsTimePageGraph IsNot Nothing) Then
+                mVolumeBalanceVsTimePageGraph.Dispose()
+                mVolumeBalanceVsTimePageGraph = Nothing
+            End If
             mVolumeBalanceVsTimePageGraph = GetNew2dGraphPage(_dataSet, tInfiltration)
             mVolumeBalanceVsTimePageGraph.UnitsX = UnitsDefinition.Units.Seconds
             mVolumeBalanceVsTimePageGraph.UnitsY = UnitsDefinition.Units.CubicMeters
@@ -404,6 +437,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tInfiltration)
 
+            If (mVolumeBalanceVsTimePanelGraph IsNot Nothing) Then
+                mVolumeBalanceVsTimePanelGraph.Dispose()
+                mVolumeBalanceVsTimePanelGraph = Nothing
+            End If
             mVolumeBalanceVsTimePanelGraph = GetNew2dGraphPanel(_dataSet, tInfiltration)
             mVolumeBalanceVsTimePanelGraph.UnitsX = UnitsDefinition.Units.Seconds
             mVolumeBalanceVsTimePanelGraph.UnitsY = UnitsDefinition.Units.CubicMeters
@@ -417,6 +454,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tInfiltration)
 
+            If (mVolumeBalanceVsAdvPageGraph IsNot Nothing) Then
+                mVolumeBalanceVsAdvPageGraph.Dispose()
+                mVolumeBalanceVsAdvPageGraph = Nothing
+            End If
             mVolumeBalanceVsAdvPageGraph = GetNew2dGraphPage(_dataSet, tInfiltration)
             mVolumeBalanceVsAdvPageGraph.UnitsX = UnitsDefinition.Units.Meters
             mVolumeBalanceVsAdvPageGraph.UnitsY = UnitsDefinition.Units.CubicMeters
@@ -427,6 +468,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tInfiltration)
 
+            If (mVolumeBalanceVsAdvPanelGraph IsNot Nothing) Then
+                mVolumeBalanceVsAdvPanelGraph.Dispose()
+                mVolumeBalanceVsAdvPanelGraph = Nothing
+            End If
             mVolumeBalanceVsAdvPanelGraph = GetNew2dGraphPanel(_dataSet, tInfiltration)
             mVolumeBalanceVsAdvPanelGraph.UnitsX = UnitsDefinition.Units.Meters
             mVolumeBalanceVsAdvPanelGraph.UnitsY = UnitsDefinition.Units.CubicMeters
@@ -440,6 +485,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tInfiltration)
 
+            If (mInfiltrationPageGraph IsNot Nothing) Then
+                mInfiltrationPageGraph.Dispose()
+                mInfiltrationPageGraph = Nothing
+            End If
             mInfiltrationPageGraph = GetNew2dGraphPage(_dataSet, tInfiltration)
             mInfiltrationPageGraph.UnitsX = UnitsDefinition.Units.Meters
             mInfiltrationPageGraph.UnitsY = UnitsDefinition.Units.Millimeters
@@ -450,6 +499,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tInfiltration)
 
+            If (mInfiltrationPanelGraph IsNot Nothing) Then
+                mInfiltrationPanelGraph.Dispose()
+                mInfiltrationPanelGraph = Nothing
+            End If
             mInfiltrationPanelGraph = GetNew2dGraphPanel(_dataSet, tInfiltration)
             mInfiltrationPanelGraph.UnitsX = UnitsDefinition.Units.Meters
             mInfiltrationPanelGraph.UnitsY = UnitsDefinition.Units.Millimeters
@@ -463,6 +516,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tUpstreamInfiltrationDepth)
 
+            If (mUpstreamInfiltrationPageGraph IsNot Nothing) Then
+                mUpstreamInfiltrationPageGraph.Dispose()
+                mUpstreamInfiltrationPageGraph = Nothing
+            End If
             mUpstreamInfiltrationPageGraph = GetNew2dGraphPage(_dataSet, tUpstreamInfiltrationDepth)
             mUpstreamInfiltrationPageGraph.UnitsX = UnitsDefinition.Units.Seconds
             mUpstreamInfiltrationPageGraph.UnitsY = UnitsDefinition.Units.Millimeters
@@ -471,6 +528,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tUpstreamInfiltrationDepth)
 
+            If (mUpstreamInfiltrationPanelGraph IsNot Nothing) Then
+                mUpstreamInfiltrationPanelGraph.Dispose()
+                mUpstreamInfiltrationPanelGraph = Nothing
+            End If
             mUpstreamInfiltrationPanelGraph = GetNew2dGraphPanel(_dataSet, tUpstreamInfiltrationDepth)
             mUpstreamInfiltrationPanelGraph.UnitsX = UnitsDefinition.Units.Seconds
             mUpstreamInfiltrationPanelGraph.UnitsY = UnitsDefinition.Units.Millimeters
@@ -482,6 +543,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tInfiltrationFunction)
 
+            If (mInfiltrationFunctionPageGraph IsNot Nothing) Then
+                mInfiltrationFunctionPageGraph.Dispose()
+                mInfiltrationFunctionPageGraph = Nothing
+            End If
             mInfiltrationFunctionPageGraph = GetNew2dGraphPage(_dataSet, tInfiltrationFunction)
             mInfiltrationFunctionPageGraph.UnitsX = UnitsDefinition.Units.Seconds
             mInfiltrationFunctionPageGraph.UnitsY = UnitsDefinition.Units.SquareMeters
@@ -490,6 +555,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tInfiltrationFunction)
 
+            If (mInfiltrationFunctionPanelGraph IsNot Nothing) Then
+                mInfiltrationFunctionPanelGraph.Dispose()
+                mInfiltrationFunctionPanelGraph = Nothing
+            End If
             mInfiltrationFunctionPanelGraph = GetNew2dGraphPanel(_dataSet, tInfiltrationFunction)
             mInfiltrationFunctionPanelGraph.UnitsX = UnitsDefinition.Units.Seconds
             mInfiltrationFunctionPanelGraph.UnitsY = UnitsDefinition.Units.SquareMeters
@@ -501,6 +570,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(tInfiltrationDepthFunction)
 
+            If (mInfiltrationDepthFunctionPageGraph IsNot Nothing) Then
+                mInfiltrationDepthFunctionPageGraph.Dispose()
+                mInfiltrationDepthFunctionPageGraph = Nothing
+            End If
             mInfiltrationDepthFunctionPageGraph = GetNew2dGraphPage(_dataSet, tInfiltrationDepthFunction)
             mInfiltrationDepthFunctionPageGraph.UnitsX = UnitsDefinition.Units.Seconds
             mInfiltrationDepthFunctionPageGraph.UnitsY = UnitsDefinition.Units.Millimeters
@@ -509,6 +582,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(tInfiltrationDepthFunction)
 
+            If (mInfiltrationDepthFunctionPanelGraph IsNot Nothing) Then
+                mInfiltrationDepthFunctionPanelGraph.Dispose()
+                mInfiltrationDepthFunctionPanelGraph = Nothing
+            End If
             mInfiltrationDepthFunctionPanelGraph = GetNew2dGraphPanel(_dataSet, tInfiltrationDepthFunction)
             mInfiltrationDepthFunctionPanelGraph.UnitsX = UnitsDefinition.Units.Seconds
             mInfiltrationDepthFunctionPanelGraph.UnitsY = UnitsDefinition.Units.Millimeters
@@ -520,6 +597,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(sErosionG)
 
+            If (mErosionGPageGraph IsNot Nothing) Then
+                mErosionGPageGraph.Dispose()
+                mErosionGPageGraph = Nothing
+            End If
             mErosionGPageGraph = GetNew2dGraphPage(_dataSet, sErosionG)
             mErosionGPageGraph.UnitsX = UnitsDefinition.Units.Seconds
             mErosionGPageGraph.UnitsY = UnitsDefinition.Units.KilogramsPerSecond
@@ -528,6 +609,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(sErosionG)
 
+            If (mErosionGPanelGraph IsNot Nothing) Then
+                mErosionGPanelGraph.Dispose()
+                mErosionGPanelGraph = Nothing
+            End If
             mErosionGPanelGraph = GetNew2dGraphPanel(_dataSet, sErosionG)
             mErosionGPanelGraph.UnitsX = UnitsDefinition.Units.Seconds
             mErosionGPanelGraph.UnitsY = UnitsDefinition.Units.KilogramsPerSecond
@@ -539,6 +624,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(sErosionCGm)
 
+            If (mErosionCGmPageGraph IsNot Nothing) Then
+                mErosionCGmPageGraph.Dispose()
+                mErosionCGmPageGraph = Nothing
+            End If
             mErosionCGmPageGraph = GetNew2dGraphPage(_dataSet, sErosionCGm)
             mErosionCGmPageGraph.UnitsX = UnitsDefinition.Units.Seconds
             mErosionCGmPageGraph.UnitsY = UnitsDefinition.Units.GramsPerLiter
@@ -547,6 +636,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(sErosionCGm)
 
+            If (mErosionCGmPanelGraph IsNot Nothing) Then
+                mErosionCGmPanelGraph.Dispose()
+                mErosionCGmPanelGraph = Nothing
+            End If
             mErosionCGmPanelGraph = GetNew2dGraphPanel(_dataSet, sErosionCGm)
             mErosionCGmPanelGraph.UnitsX = UnitsDefinition.Units.Seconds
             mErosionCGmPanelGraph.UnitsY = UnitsDefinition.Units.GramsPerLiter
@@ -558,6 +651,10 @@ Public Class ctl_Comparisons
             ' Full Page view for Display, Print & Print Preview
             _dataSet = New DataSet(sErosionCGv)
 
+            If (mErosionCGvPageGraph IsNot Nothing) Then
+                mErosionCGvPageGraph.Dispose()
+                mErosionCGvPageGraph = Nothing
+            End If
             mErosionCGvPageGraph = GetNew2dGraphPage(_dataSet, sErosionCGv)
             mErosionCGvPageGraph.UnitsX = UnitsDefinition.Units.Seconds
             mErosionCGvPageGraph.UnitsY = UnitsDefinition.Units.LitersPerLiter
@@ -566,6 +663,10 @@ Public Class ctl_Comparisons
             ' Graphic Only view for Display
             _dataSet = New DataSet(sErosionCGv)
 
+            If (mErosionCGvPanelGraph IsNot Nothing) Then
+                mErosionCGvPanelGraph.Dispose()
+                mErosionCGvPanelGraph = Nothing
+            End If
             mErosionCGvPanelGraph = GetNew2dGraphPanel(_dataSet, sErosionCGv)
             mErosionCGvPanelGraph.UnitsX = UnitsDefinition.Units.Seconds
             mErosionCGvPanelGraph.UnitsY = UnitsDefinition.Units.LitersPerLiter
@@ -631,8 +732,61 @@ Public Class ctl_Comparisons
 
         ' Clear the current tab pages
         mUpdatingTabPages = True
+
         Me.TabPages.Clear()
+        '
+        ' Recover memory used by Results Pages & Panels
+        '
+        For pdx As Integer = mResultsPages.Count - 1 To 0 Step -1
+            Try
+                ' Get Results Page at the end of the list
+                Dim rpage As RtfPage = CType(mResultsPages(pdx), RtfPage)
+                If (rpage IsNot Nothing) Then
+                    ' First, clear its images
+                    DisposeImages(rpage)
+                    ' Then, remove & dispose of the Results Page
+                    mResultsPages.RemoveAt(pdx)
+                    RemoveHandler rpage.RtfCtrl.MouseWheel, AddressOf RtfCtrl_MouseWheel
+                    For cdx As Integer = rpage.Controls.Count - 1 To 0 Step -1
+                        Dim ctrl As Control = rpage.Controls(cdx)
+                        If (ctrl.GetType Is GetType(grf_XYGraph)) Then
+                            rpage.Controls.Remove(ctrl)
+                            ctrl = Nothing
+                        End If
+                    Next cdx
+                    rpage.Dispose()
+                    rpage = Nothing
+                End If
+            Catch ex As Exception
+            End Try
+        Next
+
         mResultsPages.Clear()
+
+        For pdx As Integer = mResultsPanels.Count - 1 To 0 Step -1
+            Try
+                ' Get Results Panel at the end of the list
+                Dim rpanel As Panel = CType(mResultsPanels(pdx), Panel)
+                If (rpanel IsNot Nothing) Then
+                    ' First, clear its images
+                    DisposeImages(rpanel)
+                    ' Then, remove & dispose of the Results Panel
+                    mResultsPanels.RemoveAt(pdx)
+                    RemoveHandler rpanel.Paint, AddressOf Panel_Paint2DGraph
+                    For cdx As Integer = rpanel.Controls.Count - 1 To 0 Step -1
+                        Dim ctrl As Control = rpanel.Controls(cdx)
+                        If (ctrl.GetType Is GetType(grf_XYGraph)) Then
+                            rpanel.Controls.Remove(ctrl)
+                            ctrl = Nothing
+                        End If
+                    Next cdx
+                    rpanel.Dispose()
+                    rpanel = Nothing
+                End If
+            Catch ex As Exception
+            End Try
+        Next
+
         mResultsPanels.Clear()
 
         ' Reset the page numbering
@@ -1671,17 +1825,11 @@ Public Class ctl_Comparisons
         mInflowRunoffPageGraph.RemoveAllData()
         mInflowRunoffPanelGraph.RemoveAllData()
 
-        mInflowRunoffPageGraph.RemoveAllData()
-        mInflowRunoffPanelGraph.RemoveAllData()
-
         ' Advance curve
         mAdvancePageGraph.RemoveAllData()
         mAdvancePanelGraph.RemoveAllData()
 
         ' Advance / Recession curve
-        mAdvanceRecessionPageGraph.RemoveAllData()
-        mAdvanceRecessionPanelGraph.RemoveAllData()
-
         mAdvanceRecessionPageGraph.RemoveAllData()
         mAdvanceRecessionPanelGraph.RemoveAllData()
 
@@ -1727,7 +1875,7 @@ Public Class ctl_Comparisons
 
         ' If page number is within range of pages; return that page
         If ((0 < _pageNumber) And (_pageNumber <= NumberOfPages)) Then
-            Dim _page As RtfPage = CType(mResultsPages.Item(_pageNumber - 1), RtfPage)
+            Dim _page As RtfPage = mResultsPages.Item(_pageNumber - 1)
             Return _page
         End If
 
@@ -1747,11 +1895,13 @@ Public Class ctl_Comparisons
         ' Add event handler for Paint events
         AddHandler _panel.Paint, AddressOf Panel_Paint2DGraph
 
+        mResultsPanels.Add(_panel)
+
         Return _panel
 
     End Function
 
-    Private Function GetNewResultsPage(ByVal _title As String, _
+    Private Function GetNewResultsPage(ByVal _title As String,
                                        ByVal _view As ResultsViews) As RtfPage
 
         ' Instantiate a new Results Page
@@ -1779,7 +1929,7 @@ Public Class ctl_Comparisons
 
     End Function
 
-    Private Function GetNew2dGraphPanel(ByVal _dataSet As DataSet, _
+    Private Function GetNew2dGraphPanel(ByVal _dataSet As DataSet,
                                         ByVal _title As String) As grf_XYGraph
 
         Dim _2dGraph As grf_XYGraph = New grf_XYGraph(_dataSet)
@@ -1795,7 +1945,7 @@ Public Class ctl_Comparisons
 
     End Function
 
-    Private Function GetNew2dGraphPage(ByVal _dataSet As DataSet, _
+    Private Function GetNew2dGraphPage(ByVal _dataSet As DataSet,
                                        ByVal _title As String) As grf_XYGraph
 
         Dim _2dGraph As grf_XYGraph = New grf_XYGraph(_dataSet)
@@ -1824,7 +1974,7 @@ Public Class ctl_Comparisons
 
             ' Program & ALARC names
             AppendBoldText(_rtf, Application.ProductName)
-            AppendLine(_rtf, " " + Application.ProductVersion + " - " + _
+            AppendLine(_rtf, " " + Application.ProductVersion + " - " +
                                 CenterName + ", " + CenterCity + ", " + CenterState)
 
             AdvanceLine(_rtf)
@@ -1835,8 +1985,8 @@ Public Class ctl_Comparisons
     '******************************************************************************************
     ' DisplayResultsFooter() - displays the results footer
     '
-    Private Sub DisplayResultsFooter(ByVal _rtf As RichTextBox, _
-                                     ByVal _pageNumber As Integer, _
+    Private Sub DisplayResultsFooter(ByVal _rtf As RichTextBox,
+                                     ByVal _pageNumber As Integer,
                                      ByVal _totalPages As Integer)
 
         ' Print blank lines until end-of-page
@@ -1852,7 +2002,7 @@ Public Class ctl_Comparisons
 
     End Sub
 
-    Private Function AddResultsPage(ByVal _title As String, _
+    Private Function AddResultsPage(ByVal _title As String,
                                     ByVal _2dGraph As grf_XYGraph) As TabPage
 
         Debug.Assert(_title IsNot Nothing And _2dGraph IsNot Nothing)
@@ -1891,7 +2041,7 @@ Public Class ctl_Comparisons
 
     End Function
 
-    Private Function AddResultsPanel(ByVal _title As String, _
+    Private Function AddResultsPanel(ByVal _title As String,
                                      ByVal _2dGraph As grf_XYGraph) As TabPage
 
         Debug.Assert(_title IsNot Nothing And _2dGraph IsNot Nothing)
@@ -2048,7 +2198,7 @@ Public Class ctl_Comparisons
         End If
     End Sub
 
-    Private Sub UpdatePerformanceIndicatorsPage(ByVal rtb As RichTextBox, ByVal pageNo As Integer, _
+    Private Sub UpdatePerformanceIndicatorsPage(ByVal rtb As RichTextBox, ByVal pageNo As Integer,
                                                 ByVal firstUnit As Integer, ByVal lastUnit As Integer, ByVal ColWidth As Integer)
         Dim _name As String
 
@@ -2333,7 +2483,7 @@ Public Class ctl_Comparisons
         End If
     End Sub
 
-    Private Sub UpdateGoodnessOfFitPage(ByVal rtb As RichTextBox, ByVal pageNo As Integer, _
+    Private Sub UpdateGoodnessOfFitPage(ByVal rtb As RichTextBox, ByVal pageNo As Integer,
                                         ByVal firstUnit As Integer, ByVal secondUnit As Integer)
 
         If Not (rtb Is Nothing) Then
@@ -2665,7 +2815,7 @@ Public Class ctl_Comparisons
 
     End Sub
 
-    Private Sub UpdateStringLine(ByVal rtb As RichTextBox, ByVal first As Integer, ByVal last As Integer, ByVal ColWidth As Integer, _
+    Private Sub UpdateStringLine(ByVal rtb As RichTextBox, ByVal first As Integer, ByVal last As Integer, ByVal ColWidth As Integer,
                                  ByVal name As String, ByVal label As String, ByVal selections() As Selection)
 
         Dim _label As String = "  " + label
@@ -2700,8 +2850,8 @@ Public Class ctl_Comparisons
 
     End Sub
 
-    Private Sub UpdateDoubleLine(ByVal rtb As RichTextBox, _
-                                 ByVal first As Integer, ByVal last As Integer, ByVal ColWidth As Integer, _
+    Private Sub UpdateDoubleLine(ByVal rtb As RichTextBox,
+                                 ByVal first As Integer, ByVal last As Integer, ByVal ColWidth As Integer,
                                  ByVal name As String, ByVal label As String)
 
         Dim _label As String = String.Empty
@@ -2765,7 +2915,7 @@ Public Class ctl_Comparisons
 
     End Sub
 
-    Private Sub UpdateIntegerLine(ByVal rtb As RichTextBox, ByVal first As Integer, ByVal last As Integer, ByVal ColWidth As Integer, _
+    Private Sub UpdateIntegerLine(ByVal rtb As RichTextBox, ByVal first As Integer, ByVal last As Integer, ByVal ColWidth As Integer,
                                   ByVal name As String, ByVal label As String)
 
         Dim _label As String = "  " + label
@@ -2830,7 +2980,7 @@ Public Class ctl_Comparisons
             If Not (_rtfPage Is Nothing) Then
 
                 ' Set page to match the display
-                Dim _margins As Margins = New Margins(PortraitLeftMargin - 10, PortraitRightMargin, _
+                Dim _margins As Margins = New Margins(PortraitLeftMargin - 10, PortraitRightMargin,
                                                       PortraitTopMargin, PortraitBottomMargin)
 
                 PrintDocument.DefaultPageSettings.Margins = _margins
@@ -2853,7 +3003,7 @@ Public Class ctl_Comparisons
     Public Sub PrintPreview(ByVal sender As System.Object, ByVal e As System.EventArgs, ByVal _view As ResultsViews)
 
         ' Set page to match the display
-        Dim _margins As Margins = New Margins(PortraitLeftMargin - 10, PortraitRightMargin, _
+        Dim _margins As Margins = New Margins(PortraitLeftMargin - 10, PortraitRightMargin,
                                               PortraitTopMargin, PortraitBottomMargin)
 
         PrintDocument.DefaultPageSettings.Margins = _margins

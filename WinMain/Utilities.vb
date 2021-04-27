@@ -2339,6 +2339,39 @@ Module Utilities
         RandomString = RandomString.Replace(".", "")
     End Function
 
+    '*********************************************************************************************************
+    ' Sub DisposeImages() - recursively traverses Controls looking for ExPictureBoxes so their Images can
+    '                       be properly Disposed
+    '*********************************************************************************************************
+    Public Sub DisposeImages(ByVal Ctrl As Control)
+        If (Ctrl IsNot Nothing) Then
+            ' Look for ex_pictureBox or derived class
+            If ((Ctrl.GetType Is GetType(ex_PictureBox)) _
+             Or (Ctrl.GetType.IsSubclassOf(GetType(ex_PictureBox)))) Then
+
+                ' Properly Dispose of Image
+                Dim exPictureBox As ex_PictureBox = DirectCast(Ctrl, ex_PictureBox)
+                If (exPictureBox.Image IsNot Nothing) Then
+                    exPictureBox.Image.Dispose()
+                    exPictureBox.Image = Nothing
+                End If
+            Else
+                ' Traverse backwards through all contained controls
+                For cdx As Integer = Ctrl.Controls.Count - 1 To 0 Step -1
+                    Try
+                        ' Get Control at the end of the list
+                        Dim eCtrl As Control = Ctrl.Controls(cdx)
+                        If (eCtrl IsNot Nothing) Then
+                            ' First, clear its resources
+                            DisposeImages(eCtrl)
+                        End If
+                    Catch ex As Exception
+                    End Try
+                Next cdx
+            End If
+        End If
+    End Sub
+
 #End Region
 
 #Region " Infiltrated Volume "
