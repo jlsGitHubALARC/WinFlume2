@@ -5,7 +5,6 @@
 '                          Inflow & Runoff
 '*************************************************************************************************************
 Imports DataStore
-Imports GraphingUI
 
 Public Class grf_SurfaceFlowSummary
     Inherits grf_XYGraph
@@ -105,7 +104,7 @@ Public Class grf_SurfaceFlowSummary
         MyBase.New()
     End Sub
 
-    Protected Overrides Sub DisposeGraph2D()
+    Public Overrides Sub DisposeGraph2D()
         MyBase.DisposeGraph2D()
 
         mAdvRec = Nothing

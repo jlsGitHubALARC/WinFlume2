@@ -24,7 +24,7 @@ Public Class grf_XYGraph
         Me.FontAdjustment = WinSRFR.UserPreferences.FontAdjustment
     End Sub
 
-    Protected Overrides Sub DisposeGraph2D()
+    Public Overrides Sub DisposeGraph2D()
         MyBase.DisposeGraph2D()
     End Sub
 

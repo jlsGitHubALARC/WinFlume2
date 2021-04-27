@@ -7,7 +7,6 @@
 ' The graph is drawn as a Bitmap.
 '
 Imports DataStore
-Imports GraphingUI
 
 Public Class grf_HydraulicSummary
     Inherits grf_XYGraph
@@ -250,7 +249,7 @@ Public Class grf_HydraulicSummary
 
     End Sub
 
-    Protected Overrides Sub DisposeGraph2D()
+    Public Overrides Sub DisposeGraph2D()
         MyBase.DisposeGraph2D()
 
         mAdvRec = Nothing
