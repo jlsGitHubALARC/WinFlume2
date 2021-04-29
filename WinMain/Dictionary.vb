@@ -357,6 +357,8 @@ Public Class Dictionary
     Public tAdvance As TString = New TString("Advance")
     Public tRecession As TString = New TString("Recession")
 
+    Public tAdvanceDidNotReachDistance As TString = New TString("Advance did not reach distance")
+
     Public tQinRunoffPerFurrow As TString = New TString("Qin and Runoff values are per furrow")
     Public tVolumesPerFurrow As TString = New TString("Volumes are per furrow")
 

@@ -1981,6 +1981,11 @@ Public MustInherit Class Analysis
                 ' Update HYDRUS' surface water hydrograph from SRFR hydrographs
                 syncOK = GenerateHydrusWaterHydrograph(hydrusProject, dist, tMin, tMax)
                 If Not (syncOK) Then ' Hydrograph not generated for this Dist
+                    If (Double.IsNaN(tMin)) Then ' Advance did not reach Dist
+                        AddExecutionWarning(WarningFlags.ExecutionWarning, mDictionary.tAdvance.Translated,
+                            mDictionary.tAdvanceDidNotReachDistance.Translated & ": " & LengthString(dist))
+                        syncOK = True
+                    End If
                     Exit For
                 End If
 
