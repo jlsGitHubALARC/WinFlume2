@@ -1700,11 +1700,11 @@ Public MustInherit Class Analysis
         End If
 
         Try
-            Me.StartRun("Sync w/HYDRUS", False)
+            'Me.StartRun("Sync w/HYDRUS", False)
 
             SyncWithHydrus = Me.SyncParallelHydrusWithSRFR()
 
-            Me.EndRun()
+            'Me.EndRun()
 
         Catch ex As Exception
             Debug.Assert(False, ex.Message)
@@ -2416,6 +2416,8 @@ Public MustInherit Class Analysis
                     Next
 
                     MsgBox(msg, MsgBoxStyle.OkOnly, title)
+
+                    AddExecutionError(ErrorFlags.ExecutionError, title, msg)
                 End If
             End If
         End If

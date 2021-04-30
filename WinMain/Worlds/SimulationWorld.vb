@@ -770,22 +770,37 @@ Public Class SimulationWorld
     End Sub
 
     Private Sub RunSrfrSimulation()
-        Me.StartRun() ' Common World code to Start a Run
 
-        ' Execute the Simulation
+        ' Run SRFR in-sync with HYDRUS if selected
         Try
-            ' Run SRFR in-sync with HYDRUS if selected
             If (mSoilCropProperties.InfiltrationFunction.Value = InfiltrationFunctions.Hydrus1D) Then
+
+                ' DataHasChangedSince() uses the Run Time to track subsequent input changes
+                Dim runTime As DateTimeParameter = mUnit.UnitControlRef.RunDateTime
+                runTime.Value = System.DateTime.Now
+                runTime.Source = DataStore.Globals.ValueSources.Calculated
+                mUnit.UnitControlRef.RunDateTime = runTime
+
                 Dim syncOK As Boolean = CurrentAnalysis.SyncWithHydrus()
+                'Dim syncOK As Boolean = CurrentAnalysis.SyncParallelHydrusWithSRFR()
 
                 If (syncOK) Then
                     Me.WorldStatusMessage = mDictionary.tSyncHYDRUScompleted.Translated
                 Else
                     Me.WorldStatusMessage = mDictionary.tSyncHYDRUSterminated.Translated
-                    Me.EndRun() ' Common World code to End a Run
+
+                    Dim Dapp As DoubleParameter = mUnit.SubsurfaceFlowRef.Dapp
+                    mUnit.SubsurfaceFlowRef.Dapp = Dapp
                     Return
                 End If
             End If
+        Catch ex As Exception
+        End Try
+
+        Me.StartRun() ' Common World code to Start a Run
+
+        ' Execute the Simulation
+        Try
 
             CurrentAnalysis.RunSimulation()
             CurrentAnalysis.CheckOverflow()
