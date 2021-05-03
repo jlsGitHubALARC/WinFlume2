@@ -510,28 +510,28 @@ Public Module Globals
     '   80-90% - 
     '   90+%   - Green
     '
-    Public ColorScaleLevels() As System.Drawing.Color = {Color.FromArgb(255, 80, 80), _
-                                                         Color.FromArgb(255, 120, 80), _
-                                                         Color.FromArgb(255, 160, 80), _
-                                                         Color.FromArgb(255, 200, 160), _
-                                                         Color.FromArgb(255, 255, 160), _
-                                                         Color.FromArgb(160, 185, 255), _
-                                                         Color.FromArgb(160, 222, 255), _
-                                                         Color.FromArgb(160, 255, 222), _
-                                                         Color.FromArgb(160, 255, 185), _
+    Public ColorScaleLevels() As System.Drawing.Color = {Color.FromArgb(255, 80, 80),
+                                                         Color.FromArgb(255, 120, 80),
+                                                         Color.FromArgb(255, 160, 80),
+                                                         Color.FromArgb(255, 200, 160),
+                                                         Color.FromArgb(255, 255, 160),
+                                                         Color.FromArgb(160, 185, 255),
+                                                         Color.FromArgb(160, 222, 255),
+                                                         Color.FromArgb(160, 255, 222),
+                                                         Color.FromArgb(160, 255, 185),
                                                          Color.FromArgb(160, 255, 160)}
     '
     ' Gray-scale levels:
     '
-    Public GrayScaleLevels() As System.Drawing.Color = {Color.FromArgb(80, 80, 80), _
-                                                        Color.FromArgb(100, 100, 100), _
-                                                        Color.FromArgb(120, 120, 120), _
-                                                        Color.FromArgb(140, 140, 140), _
-                                                        Color.FromArgb(160, 160, 160), _
-                                                        Color.FromArgb(180, 180, 180), _
-                                                        Color.FromArgb(200, 200, 200), _
-                                                        Color.FromArgb(220, 220, 220), _
-                                                        Color.FromArgb(240, 240, 240), _
+    Public GrayScaleLevels() As System.Drawing.Color = {Color.FromArgb(80, 80, 80),
+                                                        Color.FromArgb(100, 100, 100),
+                                                        Color.FromArgb(120, 120, 120),
+                                                        Color.FromArgb(140, 140, 140),
+                                                        Color.FromArgb(160, 160, 160),
+                                                        Color.FromArgb(180, 180, 180),
+                                                        Color.FromArgb(200, 200, 200),
+                                                        Color.FromArgb(220, 220, 220),
+                                                        Color.FromArgb(240, 240, 240),
                                                         Color.FromArgb(255, 255, 255)}
 
 #End Region
@@ -555,9 +555,9 @@ Public Module Globals
     Public Const sBorder As String = "Border"
     Public Const sFurrow As String = "Furrow"
 
-    Public CrossSectionSelections() As Selection = _
-        {New Selection(sBasin, 0), _
-         New Selection(sBorder, 0), _
+    Public CrossSectionSelections() As Selection =
+        {New Selection(sBasin, 0),
+         New Selection(sBorder, 0),
          New Selection(sFurrow, 0)}
 
     Public Const sCrossSectionArea As String = "Cross Section Area"
@@ -578,8 +578,8 @@ Public Module Globals
     Public Const sNoDrainback As String = "No Drainback"
     Public Const sDrainback As String = "Drainback"
 
-    Public UpstreamConditionSelections() As Selection = _
-        {New Selection(sNoDrainback, 0), _
+    Public UpstreamConditionSelections() As Selection =
+        {New Selection(sNoDrainback, 0),
          New Selection(sDrainback, SelFlags.BasinBorder)}
     '
     ' Downstream Conditions
@@ -597,8 +597,8 @@ Public Module Globals
     Public Const sOpenEnd As String = "Open End"
     Public Const sBlockedEnd As String = "Blocked End"
 
-    Public DownstreamConditionSelections() As Selection = _
-        {New Selection(sOpenEnd, SelFlags.Basin), _
+    Public DownstreamConditionSelections() As Selection =
+        {New Selection(sOpenEnd, SelFlags.Basin),
          New Selection(sBlockedEnd, SelFlags.Border)}
     '
     ' Bottom Description
@@ -622,11 +622,11 @@ Public Module Globals
     Public Const sAverageSlopeTable As String = "Average from Slope Table"
     Public Const sAverageElevationTable As String = "Average from Elevation Table"
 
-    Public BottomDescriptionSelections() As Selection = _
-        {New Selection(sSlope, 0), _
-         New Selection(sSlopeTable, SelFlags.PhysicalDesign Or SelFlags.OperationsAnalysis), _
-         New Selection(sElevationTable, SelFlags.PhysicalDesign Or SelFlags.OperationsAnalysis), _
-         New Selection(sAverageSlopeTable, SelFlags.Basin), _
+    Public BottomDescriptionSelections() As Selection =
+        {New Selection(sSlope, 0),
+         New Selection(sSlopeTable, SelFlags.PhysicalDesign Or SelFlags.OperationsAnalysis),
+         New Selection(sElevationTable, SelFlags.PhysicalDesign Or SelFlags.OperationsAnalysis),
+         New Selection(sAverageSlopeTable, SelFlags.Basin),
          New Selection(sAverageElevationTable, SelFlags.Basin)}
 
     Public Const DefaultSlopeVariation As VaryByLocTime.Variations = VaryByLocTime.Variations.VaryWithDistance
@@ -662,14 +662,14 @@ Public Module Globals
     Public Const sTrapezoidFieldData As String = "Trapezoid from Field Data"
     Public Const sPowerLawFieldData As String = "Power Law from Field Data"
 
-    Public FurrowShapeSelections() As Selection = _
-        {New Selection(sTrapezoid, 0), _
-         New Selection(sPowerLaw, 0), _
-         New Selection(sTrapezoidTable, SelFlags.Standard Or SelFlags.AllWorlds), _
-         New Selection(sPowerLawTable, SelFlags.Standard Or SelFlags.AllWorlds), _
-         New Selection(sAverageTrapezoidTable, SelFlags.Standard Or SelFlags.AllWorlds), _
-         New Selection(sAveragePowerLawTable, SelFlags.Standard Or SelFlags.AllWorlds), _
-         New Selection(sTrapezoidFieldData, 0), _
+    Public FurrowShapeSelections() As Selection =
+        {New Selection(sTrapezoid, 0),
+         New Selection(sPowerLaw, 0),
+         New Selection(sTrapezoidTable, SelFlags.Standard Or SelFlags.AllWorlds),
+         New Selection(sPowerLawTable, SelFlags.Standard Or SelFlags.AllWorlds),
+         New Selection(sAverageTrapezoidTable, SelFlags.Standard Or SelFlags.AllWorlds),
+         New Selection(sAveragePowerLawTable, SelFlags.Standard Or SelFlags.AllWorlds),
+         New Selection(sTrapezoidFieldData, 0),
          New Selection(sPowerLawFieldData, 0)}
 
     Public Const DefaultEnableTabulatedFurrowShape As Boolean = False
@@ -689,9 +689,9 @@ Public Module Globals
     Public Const sDepthWidthTable As String = "Depth / Width Table"
     Public Const sProfilometerTable As String = "Profilometer Table"
 
-    Public FurrowFieldDataTypeSelections() As Selection = _
-        {New Selection("Width Table", 0), _
-         New Selection("Depth / Width Table", 0), _
+    Public FurrowFieldDataTypeSelections() As Selection =
+        {New Selection("Width Table", 0),
+         New Selection("Depth / Width Table", 0),
          New Selection("Profilometer Table", 0)}
     '
     ' Field Geometry
@@ -891,15 +891,15 @@ Public Module Globals
     '
     ' Note - flags are set when Infiltration Function CANNOT be used
     '
-    Public InfiltrationFunctionSelections() As Selection = _
-        {New Selection(sCharacteristicInfiltrationTime, 0), _
-         New Selection(sNrcsIntakeFamily, 0), _
-         New Selection(sTimeRatedIntakeFamily, 0), _
-         New Selection(sKostiakovFormula, 0), _
-         New Selection(sModifiedKostiakovFormula, 0), _
-         New Selection(sBranchFunction, 0), _
-         New Selection(sGreenAmpt, SelFlags.Standard Or SelFlags.Furrow), _
-         New Selection(sHydrus1D, SelFlags.Standard Or SelFlags.Furrow), _
+    Public InfiltrationFunctionSelections() As Selection =
+        {New Selection(sCharacteristicInfiltrationTime, 0),
+         New Selection(sNrcsIntakeFamily, 0),
+         New Selection(sTimeRatedIntakeFamily, 0),
+         New Selection(sKostiakovFormula, 0),
+         New Selection(sModifiedKostiakovFormula, 0),
+         New Selection(sBranchFunction, 0),
+         New Selection(sGreenAmpt, SelFlags.Standard Or SelFlags.Furrow),
+         New Selection(sHydrus1D, SelFlags.Standard Or SelFlags.Furrow),
          New Selection(sWarrickGreenAmpt, SelFlags.Standard Or SelFlags.BasinBorder)}
 
     Public Enum GA_EstimationOptions
@@ -919,12 +919,12 @@ Public Module Globals
     Public Const DefaultGA_EstimationOption As GA_EstimationOptions = GA_EstimationOptions.EstimateKs
     Public Const DefaultWGA_EstimationOption As WGA_EstimationOptions = WGA_EstimationOptions.EstimateKs
 
-    Public GreenAmptEstimationSelections() As Selection = _
-        {New Selection("Estimate Ks", 0), _
+    Public GreenAmptEstimationSelections() As Selection =
+        {New Selection("Estimate Ks", 0),
          New Selection("Estimate hf", 0)}
 
-    Public WarrickGreenAmptEstimationSelections() As Selection = _
-        {New Selection("Estimate Ks", 0), _
+    Public WarrickGreenAmptEstimationSelections() As Selection =
+        {New Selection("Estimate Ks", 0),
          New Selection("Estimate hf", 0)}
 
     Public Enum Surge2InfiltrationMethods
@@ -936,8 +936,8 @@ Public Module Globals
 
     Public Const DefaultSurge2InfiltrationMethod As Surge2InfiltrationMethods = Surge2InfiltrationMethods.BlairSmerdon
 
-    Public Surge2InfiltrationMethodSelections() As Selection = _
-        {New Selection("Blair-Smerdon", 0), _
+    Public Surge2InfiltrationMethodSelections() As Selection =
+        {New Selection("Blair-Smerdon", 0),
          New Selection("Izuno-Podmore", 0)}
     '
     ' Wetted Perimeter Methods
@@ -995,12 +995,12 @@ Public Module Globals
     '
     ' Note - flags are set when Infiltration Function CANNOT be used
     '
-    Public WettedPerimeterMethodSelections() As Selection = _
-        {New Selection(sLocalWettedPerimeter, SelFlags.Standard Or SelFlags.DesignOperations), _
-         New Selection(sUpstreamWettedPerimeter, SelFlags.AllWorlds), _
-         New Selection(sUpstreamWpAtNormalDepth, SelFlags.AllWorlds), _
-         New Selection(sFurrowSpacingNoWpEffect, 0), _
-         New Selection(sNrcsEmpiricalWettedPerimeter, 0), _
+    Public WettedPerimeterMethodSelections() As Selection =
+        {New Selection(sLocalWettedPerimeter, SelFlags.Standard Or SelFlags.DesignOperations),
+         New Selection(sUpstreamWettedPerimeter, SelFlags.AllWorlds),
+         New Selection(sUpstreamWpAtNormalDepth, SelFlags.AllWorlds),
+         New Selection(sFurrowSpacingNoWpEffect, 0),
+         New Selection(sNrcsEmpiricalWettedPerimeter, 0),
          New Selection(sRepresentativeUpstreamWP, 0)}
 
     Public Const DefaultEnableTabulatedInfiltration As Boolean = False
@@ -1034,23 +1034,23 @@ Public Module Globals
     '   Kostiakov Formula               X           X           X           X
     '   Modified Kostiakov Formula      X           X           X           X
     '   Branch Function                 X           -           -           X
-    '   Green-Ampt                      X           -           -           X
+    '   Green-Ampt                      X           -           X           X
     '   HYDRUS-1D                       -           -           -           X
-    '   Warrick / Green-Ampt            -           -           -           -
+    '   Warrick / Green-Ampt            -           -           X           -
     '
     '   Note - this table is used for Basins & Borders for one purpose:
     '       1) to indicate which Infiltration Functions are valid for a specific WinSRFR World
     '
-    Public InfiltrationFunctionConstraints()() As Boolean = _
-         {New Boolean() {True, True, True, True}, _
-          New Boolean() {True, True, True, True}, _
-          New Boolean() {True, True, True, True}, _
-          New Boolean() {True, True, True, True}, _
-          New Boolean() {True, True, True, True}, _
-          New Boolean() {True, False, False, True}, _
-          New Boolean() {True, False, False, True}, _
-          New Boolean() {False, False, False, True}, _
-          New Boolean() {False, False, False, False}}
+    Public InfiltrationFunctionConstraints()() As Boolean =
+         {New Boolean() {True, True, True, True},
+          New Boolean() {True, True, True, True},
+          New Boolean() {True, True, True, True},
+          New Boolean() {True, True, True, True},
+          New Boolean() {True, True, True, True},
+          New Boolean() {True, False, False, True},
+          New Boolean() {True, False, True, True},
+          New Boolean() {False, False, False, True},
+          New Boolean() {False, False, True, False}}
 
     '*********************************************************************************************************
     ' Table constraining Infiltration Function / Wetted Perimeter Option selections by WinSRFR World.
@@ -1087,15 +1087,15 @@ Public Module Globals
     '
     '   Note 5 - Time-Rated Intake Family is  no longer available for furrows (2017/04/21)
     '
-    Public InfiltrationWettedPerimeterConstraints()() As SelFlags = _
-        {New SelFlags() {0, 0, 0, SelFlags.AllWorlds, 0, 0}, _
-         New SelFlags() {0, 0, 0, 0, SelFlags.AllWorlds, 0}, _
-         New SelFlags() {0, 0, 0, 0, 0, 0}, _
-         New SelFlags() {0, 0, 0, SelFlags.AllWorlds, 0, SelFlags.AllWorlds}, _
-         New SelFlags() {SelFlags.EventSimulation, 0, 0, SelFlags.AllWorlds, 0, SelFlags.AllWorlds}, _
-         New SelFlags() {0, 0, 0, SelFlags.EventSimulation, 0, SelFlags.EventSimulation}, _
-         New SelFlags() {0, 0, 0, 0, 0, 0}, _
-         New SelFlags() {0, 0, 0, 0, 0, 0}, _
+    Public InfiltrationWettedPerimeterConstraints()() As SelFlags =
+        {New SelFlags() {0, 0, 0, SelFlags.AllWorlds, 0, 0},
+         New SelFlags() {0, 0, 0, 0, SelFlags.AllWorlds, 0},
+         New SelFlags() {0, 0, 0, 0, 0, 0},
+         New SelFlags() {0, 0, 0, SelFlags.AllWorlds, 0, SelFlags.AllWorlds},
+         New SelFlags() {SelFlags.EventSimulation, 0, 0, SelFlags.AllWorlds, 0, SelFlags.AllWorlds},
+         New SelFlags() {0, 0, 0, SelFlags.EventSimulation, 0, SelFlags.EventSimulation},
+         New SelFlags() {0, 0, 0, 0, 0, 0},
+         New SelFlags() {0, 0, 0, 0, 0, 0},
          New SelFlags() {SelFlags.EventSimulation, 0, 0, 0, 0, 0}}
 
     '*********************************************************************************************************
@@ -1147,17 +1147,17 @@ Public Module Globals
 
     Public Const sSoilTextureSelection As String = "Soil Texture Selection"
 
-    Public SoilTextureSelections() As Selection = _
-        {New Selection(sSand, 0), _
-         New Selection(sLoamySand, 0), _
-         New Selection(sSandyLoam, 0), _
-         New Selection(sLoam, 0), _
-         New Selection(sSiltLoam, 0), _
-         New Selection(sSandyClayLoam, 0), _
-         New Selection(sClayLoam, 0), _
-         New Selection(sSiltyClayLoam, 0), _
-         New Selection(sSandyClay, 0), _
-         New Selection(sSiltyClay, 0), _
+    Public SoilTextureSelections() As Selection =
+        {New Selection(sSand, 0),
+         New Selection(sLoamySand, 0),
+         New Selection(sSandyLoam, 0),
+         New Selection(sLoam, 0),
+         New Selection(sSiltLoam, 0),
+         New Selection(sSandyClayLoam, 0),
+         New Selection(sClayLoam, 0),
+         New Selection(sSiltyClayLoam, 0),
+         New Selection(sSandyClay, 0),
+         New Selection(sSiltyClay, 0),
          New Selection(sClay, 0)}
 
     Public Const DefaultPorosityUnits As Units = Units.CentimetersPerCentimeter
@@ -1229,9 +1229,9 @@ Public Module Globals
     Public Const sNrcs300 As String = "3.00"
     Public Const sNrcs400 As String = "4.00"
 
-    Public NrcsSelections As String() = {sNrcs005, sNrcs010, sNrcs015, sNrcs020, sNrcs025, _
-                                         sNrcs030, sNrcs035, sNrcs040, sNrcs045, sNrcs050, _
-                                         sNrcs060, sNrcs070, sNrcs080, sNrcs090, sNrcs100, _
+    Public NrcsSelections As String() = {sNrcs005, sNrcs010, sNrcs015, sNrcs020, sNrcs025,
+                                         sNrcs030, sNrcs035, sNrcs040, sNrcs045, sNrcs050,
+                                         sNrcs060, sNrcs070, sNrcs080, sNrcs090, sNrcs100,
                                          sNrcs150, sNrcs200, sNrcs300, sNrcs400}
 
     Public Const DefaultNrcsSelection As String = sNrcs050
@@ -1295,46 +1295,46 @@ Public Module Globals
     '     New NrcsIntakeValues(NrcsIntakeFamilies.Family300, sNrcs300, 0, 0), _
     '     New NrcsIntakeValues(NrcsIntakeFamilies.Family400, sNrcs400, 0, 0)}
 
-    Public NrcsIntakeValuesTable() As NrcsIntakeValues = _
-        {New NrcsIntakeValues(NrcsIntakeFamilies.Family005, sNrcs005, 0.0000424773, 0.618), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family010, sNrcs010, 0.0000413872, 0.661), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family015, sNrcs015, 0.0000427125, 0.6834), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family020, sNrcs020, 0.0000444615, 0.6988), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family025, sNrcs025, 0.0000464988, 0.7107), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family030, sNrcs030, 0.0000484123, 0.7204), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family035, sNrcs035, 0.0000504356, 0.7285), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family040, sNrcs040, 0.0000523649, 0.7356), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family045, sNrcs045, 0.0000541981, 0.7419), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family050, sNrcs050, 0.0000560644, 0.7475), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family060, sNrcs060, 0.000059487, 0.7572), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family070, sNrcs070, 0.0000627813, 0.7656), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family080, sNrcs080, 0.0000658943, 0.7728), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family090, sNrcs090, 0.0000688945, 0.7792), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family100, sNrcs100, 0.0000717697, 0.785), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family150, sNrcs150, 0.0000866665, 0.799), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family200, sNrcs200, 0.0001007205, 0.808), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family300, sNrcs300, 0.0001292171, 0.816), _
+    Public NrcsIntakeValuesTable() As NrcsIntakeValues =
+        {New NrcsIntakeValues(NrcsIntakeFamilies.Family005, sNrcs005, 0.0000424773, 0.618),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family010, sNrcs010, 0.0000413872, 0.661),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family015, sNrcs015, 0.0000427125, 0.6834),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family020, sNrcs020, 0.0000444615, 0.6988),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family025, sNrcs025, 0.0000464988, 0.7107),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family030, sNrcs030, 0.0000484123, 0.7204),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family035, sNrcs035, 0.0000504356, 0.7285),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family040, sNrcs040, 0.0000523649, 0.7356),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family045, sNrcs045, 0.0000541981, 0.7419),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family050, sNrcs050, 0.0000560644, 0.7475),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family060, sNrcs060, 0.000059487, 0.7572),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family070, sNrcs070, 0.0000627813, 0.7656),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family080, sNrcs080, 0.0000658943, 0.7728),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family090, sNrcs090, 0.0000688945, 0.7792),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family100, sNrcs100, 0.0000717697, 0.785),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family150, sNrcs150, 0.0000866665, 0.799),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family200, sNrcs200, 0.0001007205, 0.808),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family300, sNrcs300, 0.0001292171, 0.816),
          New NrcsIntakeValues(NrcsIntakeFamilies.Family400, sNrcs400, 0.0001529158, 0.823)}
 
-    Public NrcsApproxValuesTable() As NrcsIntakeValues = _
-        {New NrcsIntakeValues(NrcsIntakeFamilies.Family005, sNrcs005, 0.0000987269, 0.556), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family010, sNrcs010, 0.0000962202, 0.595), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family015, sNrcs015, 0.000099116, 0.615), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family020, sNrcs020, 0.0001026487, 0.629), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family025, sNrcs025, 0.0001066236, 0.64), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family030, sNrcs030, 0.0001112269, 0.648), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family035, sNrcs035, 0.000114734, 0.656), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family040, sNrcs040, 0.0001190613, 0.662), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family045, sNrcs045, 0.000122474, 0.668), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family050, sNrcs050, 0.0001263079, 0.673), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family060, sNrcs060, 0.0001329357, 0.682), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family070, sNrcs070, 0.0001401881, 0.689), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family080, sNrcs080, 0.0001458081, 0.696), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family090, sNrcs090, 0.000152718, 0.701), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family100, sNrcs100, 0.0001574363, 0.707), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family150, sNrcs150, 0.00018749, 0.719), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family200, sNrcs200, 0.0002148398, 0.727), _
-         New NrcsIntakeValues(NrcsIntakeFamilies.Family300, sNrcs300, 0.000267087, 0.735), _
+    Public NrcsApproxValuesTable() As NrcsIntakeValues =
+        {New NrcsIntakeValues(NrcsIntakeFamilies.Family005, sNrcs005, 0.0000987269, 0.556),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family010, sNrcs010, 0.0000962202, 0.595),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family015, sNrcs015, 0.000099116, 0.615),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family020, sNrcs020, 0.0001026487, 0.629),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family025, sNrcs025, 0.0001066236, 0.64),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family030, sNrcs030, 0.0001112269, 0.648),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family035, sNrcs035, 0.000114734, 0.656),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family040, sNrcs040, 0.0001190613, 0.662),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family045, sNrcs045, 0.000122474, 0.668),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family050, sNrcs050, 0.0001263079, 0.673),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family060, sNrcs060, 0.0001329357, 0.682),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family070, sNrcs070, 0.0001401881, 0.689),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family080, sNrcs080, 0.0001458081, 0.696),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family090, sNrcs090, 0.000152718, 0.701),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family100, sNrcs100, 0.0001574363, 0.707),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family150, sNrcs150, 0.00018749, 0.719),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family200, sNrcs200, 0.0002148398, 0.727),
+         New NrcsIntakeValues(NrcsIntakeFamilies.Family300, sNrcs300, 0.000267087, 0.735),
          New NrcsIntakeValues(NrcsIntakeFamilies.Family400, sNrcs400, 0.0003115687, 0.741)}
     '
     ' NRCS Intake Family Options
@@ -1348,8 +1348,8 @@ Public Module Globals
 
     Public Const DefaultNrcsToKostiakovMethod As NrcsToKostiakovMethods = NrcsToKostiakovMethods.DescribeByNrcsFormula
 
-    Public NrcsToKostiakovMethodSelections() As Selection = _
-        {New Selection("Approximate By Best Fit", SelFlags.Standard), _
+    Public NrcsToKostiakovMethodSelections() As Selection =
+        {New Selection("Approximate By Best Fit", SelFlags.Standard),
          New Selection("Describe By NRCS Formula", 0)}
 
 #End Region
@@ -1416,14 +1416,14 @@ Public Module Globals
     '
     Public Const DefaultCharacteristicType As CharacteristicTypes = CharacteristicTypes.Continuous
 
-    Public CharacteristicTypeSelections() As Selection = _
-        {New Selection("Continuous", 0), _
+    Public CharacteristicTypeSelections() As Selection =
+        {New Selection("Continuous", 0),
          New Selection("Piece-Wise", 0)}
 
     Public Const DefaultAdvectionInterpolationMethod As AdvectionInterpolationMethods = AdvectionInterpolationMethods.AkimaSpline
 
-    Public AdvectionInterpolationMethodSelections() As Selection = _
-        {New Selection("Akima Spline", 0), _
+    Public AdvectionInterpolationMethodSelections() As Selection =
+        {New Selection("Akima Spline", 0),
          New Selection("Cubic Spline", 0)}
 
     Public Const DefaultIncludeDispersion As Boolean = True
@@ -1475,10 +1475,10 @@ Public Module Globals
 
     Public Const DefaultErosionResolution As ErosionResolutions = ErosionResolutions.CoarseRes
 
-    Public ErosionResolutionSelections() As Selection = _
-        {New Selection("Single", 0), _
-         New Selection("Field", 0), _
-         New Selection("Coarse (5)", 0), _
+    Public ErosionResolutionSelections() As Selection =
+        {New Selection("Single", 0),
+         New Selection("Field", 0),
+         New Selection("Coarse (5)", 0),
          New Selection("Fine (9)", 0)}
 
     Public Enum ErosionFits
@@ -1491,9 +1491,9 @@ Public Module Globals
 
     Public Const DefaultErosionFit As ErosionFits = ErosionFits.PieceWiseLinear
 
-    Public ErosionFitSelections() As Selection = _
-        {New Selection("Piece-Wise Linear", 0), _
-         New Selection("Gauss Normal", SelFlags.AllWorlds), _
+    Public ErosionFitSelections() As Selection =
+        {New Selection("Piece-Wise Linear", 0),
+         New Selection("Gauss Normal", SelFlags.AllWorlds),
          New Selection("Log Normal", SelFlags.AllWorlds)}
 
     Public Const DefaultEnableCriticalShear As Boolean = False
@@ -1520,10 +1520,10 @@ Public Module Globals
     Public Const sCablegation As String = "Cablegation"
     Public Const sTabulatedInflow As String = "Tabulated Inflow"
 
-    Public InflowMethodSelections() As Selection = _
-        {New Selection(sStandardHydrograph, 0), _
-         New Selection(sSurge, SelFlags.Standard Or SelFlags.AllButSimulation), _
-         New Selection(sCablegation, SelFlags.StandardAdvanced Or SelFlags.AllButSimulation), _
+    Public InflowMethodSelections() As Selection =
+        {New Selection(sStandardHydrograph, 0),
+         New Selection(sSurge, SelFlags.Standard Or SelFlags.AllButSimulation),
+         New Selection(sCablegation, SelFlags.StandardAdvanced Or SelFlags.AllButSimulation),
          New Selection(sTabulatedInflow, SelFlags.DesignOperations)}
     '
     ' Cutoff Options
@@ -1551,11 +1551,11 @@ Public Module Globals
     Public Const sDistanceOpportunityTime As String = "Distance and Opportunity Time"
     Public Const sUpstreamInfiltrationDepth As String = "Upstream Infiltration Depth"
 
-    Public CutoffMethodSelections() As Selection = _
-        {New Selection(sTimeBasedCutoff, 0), _
-         New Selection(sDistanceBasedCutoff, SelFlags.AllButSimulation), _
-         New Selection(sDistanceInfiltrationDepth, SelFlags.Standard Or SelFlags.AllButSimulation), _
-         New Selection(sDistanceOpportunityTime, SelFlags.Standard Or SelFlags.AllButSimulation), _
+    Public CutoffMethodSelections() As Selection =
+        {New Selection(sTimeBasedCutoff, 0),
+         New Selection(sDistanceBasedCutoff, SelFlags.AllButSimulation),
+         New Selection(sDistanceInfiltrationDepth, SelFlags.Standard Or SelFlags.AllButSimulation),
+         New Selection(sDistanceOpportunityTime, SelFlags.Standard Or SelFlags.AllButSimulation),
          New Selection(sUpstreamInfiltrationDepth, SelFlags.Standard Or SelFlags.AllButSimulation)}
     '
     ' Cutback Methods
@@ -1580,9 +1580,9 @@ Public Module Globals
     Public Const sTimeBasedCutback As String = "Time-Based Cutback"
     Public Const sDistanceBasedCutback As String = "Distance-Based Cutback"
 
-    Public CutbackMethodSelections() As Selection = _
-        {New Selection(sNoCutback, 0), _
-         New Selection(sTimeBasedCutback, 0), _
+    Public CutbackMethodSelections() As Selection =
+        {New Selection(sNoCutback, 0),
+         New Selection(sTimeBasedCutback, 0),
          New Selection(sDistanceBasedCutback, SelFlags.AllButSimulation)}
     '
     ' Surge Strategies
@@ -1604,10 +1604,10 @@ Public Module Globals
     Public Const sTabulatedTime As String = "Tabulated Time"
     Public Const sTabulatedLocation As String = "Tabulated Location"
 
-    Public SurgeStrategySelections() As Selection = _
-        {New Selection(sUniformTime, 0), _
-         New Selection(sUniformLocation, 0), _
-         New Selection(sTabulatedTime, 0), _
+    Public SurgeStrategySelections() As Selection =
+        {New Selection(sUniformTime, 0),
+         New Selection(sUniformLocation, 0),
+         New Selection(sTabulatedTime, 0),
          New Selection(sTabulatedLocation, 0)}
     '
     ' Cablegation Options
@@ -1621,8 +1621,8 @@ Public Module Globals
 
     Public Const DefaultOrificeOption As OrificeOptions = OrificeOptions.PeakFlow
 
-    Public OrificeOptionSelections() As Selection = _
-        {New Selection("Equivalent Diameter", 0), _
+    Public OrificeOptionSelections() As Selection =
+        {New Selection("Equivalent Diameter", 0),
          New Selection("Peak Flow", 0)}
     '
     ' Required Depth
@@ -1737,10 +1737,10 @@ Public Module Globals
         HighLimit
     End Enum
 
-    Public GridResolutionSelections() As Selection = _
-        {New Selection("Gross (5x5)", SelFlags.AllWorlds), _
-         New Selection("Coarse (10x10)", 0), _
-         New Selection("Medium (20x20)", 0), _
+    Public GridResolutionSelections() As Selection =
+        {New Selection("Gross (5x5)", SelFlags.AllWorlds),
+         New Selection("Coarse (10x10)", 0),
+         New Selection("Medium (20x20)", 0),
          New Selection("Fine (40x40)", 0)}
 
     Public Const DefaultGridResolution As ResolutionSelections = ResolutionSelections.CoarseResolution
@@ -1771,8 +1771,8 @@ Public Module Globals
 
     Public Const DefaultAnimationProfile As AnimationProfiles = AnimationProfiles.PlotElevations
 
-    Public GraphicProfileSelections() As Selection = _
-        {New Selection("Plot Elevations", 0), _
+    Public GraphicProfileSelections() As Selection =
+        {New Selection("Plot Elevations", 0),
          New Selection("Plot Depths", 0)}
     '
     ' Animation Display
@@ -1804,9 +1804,9 @@ Public Module Globals
 
     Public Const DefaultSolutionModel As SolutionModels = SolutionModels.KinematicWave
 
-    Public SolutionModelSelections() As Selection = _
-         {New Selection("Zero-Inertia", 0), _
-          New Selection("Kinematic-Wave", 0), _
+    Public SolutionModelSelections() As Selection =
+         {New Selection("Zero-Inertia", 0),
+          New Selection("Kinematic-Wave", 0),
           New Selection("Saint Venant", SelFlags.AllWorlds)}
 
     Public Const ZeroInertiaSlope As Double = 0.004 ' User Zero-Inertia if less than this slope
@@ -1895,11 +1895,11 @@ Public Module Globals
 
     Public Const DefaultEventAnalysisType As EventAnalysisTypes = EventAnalysisTypes.EvalueAnalysis
 
-    Public EventAnalysisTypeSelections() As Selection = _
-        {New Selection("Infiltrated Profile Analysis", 0), _
-         New Selection("Merriam-Keller Analysis", 0), _
-         New Selection("Two-Point Analysis", 0), _
-         New Selection("Erosion Analysis", 0), _
+    Public EventAnalysisTypeSelections() As Selection =
+        {New Selection("Infiltrated Profile Analysis", 0),
+         New Selection("Merriam-Keller Analysis", 0),
+         New Selection("Two-Point Analysis", 0),
+         New Selection("Erosion Analysis", 0),
          New Selection("EVALUE Analysis", 0)}
     '
     ' Elliott-Walker B Selection
@@ -1935,10 +1935,10 @@ Public Module Globals
 
     Public Const DefaultGoodnessOfFitMethod As GoodnessOfFitMethods = GoodnessOfFitMethods.NashSutcliffeE
 
-    Public GoodnessOfFitMethodSelections() As Selection = _
-        {New Selection("Nash-Sutcliffe E (NSE)", 0), _
-         New Selection("Index of Agreement d", 0), _
-         New Selection("Percent Bias (PBIAS)", 0), _
+    Public GoodnessOfFitMethodSelections() As Selection =
+        {New Selection("Nash-Sutcliffe E (NSE)", 0),
+         New Selection("Index of Agreement d", 0),
+         New Selection("Percent Bias (PBIAS)", 0),
          New Selection("RMSE Standard Ratio (RSR)", 0)}
 
     Public Const UsePowerAdvanceLaw As Boolean = False
@@ -1970,8 +1970,8 @@ Public Module Globals
 
     Public Const DefaultInfiltratedDepthCriterion As InfiltratedDepthCriteria = InfiltratedDepthCriteria.MinimumDepth
 
-    Public InfiltratedDepthCriteriaSelections() As Selection = _
-        {New Selection("Minimum", 0), _
+    Public InfiltratedDepthCriteriaSelections() As Selection =
+        {New Selection("Minimum", 0),
          New Selection("Low Quarter", SelFlags.PhysicalDesign)}
     '
     ' Min / Max contour display ranges
