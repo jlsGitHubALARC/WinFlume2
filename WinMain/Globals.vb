@@ -2024,10 +2024,10 @@ Public Module Globals
 
     Public Enum OperationsMethod
         VolumeBalance
-        SrfrUiThread
-        'SrfrBgThread
-        SrfrBgThreads
+        SrfrSimulations
     End Enum
+
+    Public Const DefaultOperationsMethod As OperationsMethod = OperationsMethod.VolumeBalance
     '
     ' Min / Max contour display ranges
     '

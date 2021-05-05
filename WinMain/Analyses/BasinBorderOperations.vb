@@ -1347,9 +1347,15 @@ Public Class BasinBorderOperations
         If (Method = OperationsMethod.VolumeBalance) Then
             Me.BuildOperationsGridVolBal()
         Else
-            mWorldWindow.RemoveSrfrStatusHandler()
-            Me.RefineOperationsGridSrfrSim(Method)
-            mWorldWindow.AddSrfrStatusHandler()
+            If (mContourGrid IsNot Nothing) Then ' Volume Balance grid has been built; refine it
+                mWorldWindow.RemoveSrfrStatusHandler()
+                Me.RefineOperationsGridSrfrSim()
+                mWorldWindow.AddSrfrStatusHandler()
+            Else ' There is no Contour Grid; build it
+                mWorldWindow.RemoveSrfrStatusHandler()
+                Me.BuildOperationsGridSrfrSim()
+                mWorldWindow.AddSrfrStatusHandler()
+            End If
         End If
         '
         ' Build Dreq = Dmin or Dreq = Dlq curve
@@ -2567,7 +2573,7 @@ Public Class BasinBorderOperations
 
         ' Inflow / Runoff curves
         Dim hydrographs As DataTableParameter = mSurfaceFlow.FlowHydrographs
-        Dim inflowTable As DataTable = mInflowManagement.HydrographInflowTable(mInflowRate, mTco, _
+        Dim inflowTable As DataTable = mInflowManagement.HydrographInflowTable(mInflowRate, mTco,
                                                                                mCutbackRate, mTcb)
         hydrographs.Value = inflowTable
         hydrographs.Source = ValueSources.Calculated

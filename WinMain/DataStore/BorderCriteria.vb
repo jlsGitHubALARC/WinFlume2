@@ -107,6 +107,34 @@ Public Class BorderCriteria
         End Set
     End Property
     '
+    ' Run Operations Method
+    '
+    Public Const sOperationsMethod As String = "Operations Method"
+
+    Public ReadOnly Property OperationsMethodProperty() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sOperationsMethod)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(DefaultOperationsMethod)
+                mMyStore.AddProperty(sOperationsMethod, _integer)
+                _propertyNode = mMyStore.GetProperty(sOperationsMethod)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property OperationsMethod() As IntegerParameter
+        Get
+            Return OperationsMethodProperty.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            OperationsMethodProperty.SetParameter(Value)
+        End Set
+    End Property
+    '
     ' Operations Option
     '
     Public Const sOperationsOption As String = "Operations Option"

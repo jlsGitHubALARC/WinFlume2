@@ -568,9 +568,15 @@ Public Class FurrowOperations
         If (Method = OperationsMethod.VolumeBalance) Then
             Me.BuildOperationsGridVolBal()
         Else
-            mWorldWindow.RemoveSrfrStatusHandler()
-            Me.RefineOperationsGridSrfrSim(Method)
-            mWorldWindow.AddSrfrStatusHandler()
+            If (mContourGrid IsNot Nothing) Then ' Volume Balance grid has been built; refine it
+                mWorldWindow.RemoveSrfrStatusHandler()
+                Me.RefineOperationsGridSrfrSim()
+                mWorldWindow.AddSrfrStatusHandler()
+            Else ' There is no Contour Grid; build it
+                mWorldWindow.RemoveSrfrStatusHandler()
+                Me.BuildOperationsGridSrfrSim()
+                mWorldWindow.AddSrfrStatusHandler()
+            End If
         End If
         '
         ' Build Dreq = Dmin or Dreq = Dlq curve

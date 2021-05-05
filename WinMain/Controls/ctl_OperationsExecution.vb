@@ -103,11 +103,13 @@ Public Class ctl_OperationsExecution
     Friend WithEvents rLabel As System.Windows.Forms.Label
     Friend WithEvents rControl As DataStore.ctl_DoubleParameter
     Friend WithEvents ResetPointButton As DataStore.ctl_Button
-    Friend WithEvents RefinenWithSRFRButton As ctl_Button
+    Friend WithEvents SrfrSimulations As ctl_RadioButton
+    Friend WithEvents VolumeBalanceCalculations As ctl_RadioButton
     Friend WithEvents CutoffDistanceToLabel As DataStore.ctl_Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.RunControlBox = New DataStore.ctl_GroupBox()
-        Me.RefinenWithSRFRButton = New DataStore.ctl_Button()
+        Me.SrfrSimulations = New DataStore.ctl_RadioButton()
+        Me.VolumeBalanceCalculations = New DataStore.ctl_RadioButton()
         Me.SolutionModelBox = New DataStore.ctl_GroupBox()
         Me.EnableDiagnosticsControl = New DataStore.ctl_CheckParameter()
         Me.CellDensityLabel = New DataStore.ctl_Label()
@@ -191,7 +193,8 @@ Public Class ctl_OperationsExecution
         '
         Me.RunControlBox.AccessibleDescription = "Provides the Run Button and Status"
         Me.RunControlBox.AccessibleName = "Run Control"
-        Me.RunControlBox.Controls.Add(Me.RefinenWithSRFRButton)
+        Me.RunControlBox.Controls.Add(Me.SrfrSimulations)
+        Me.RunControlBox.Controls.Add(Me.VolumeBalanceCalculations)
         Me.RunControlBox.Controls.Add(Me.SolutionModelBox)
         Me.RunControlBox.Controls.Add(Me.ExecutionErrorsWarnings)
         Me.RunControlBox.Controls.Add(Me.NoErrorsWarningsLabel)
@@ -205,18 +208,27 @@ Public Class ctl_OperationsExecution
         Me.RunControlBox.TabStop = False
         Me.RunControlBox.Text = "Run Control"
         '
-        'RefinenWithSRFRButton
+        'SrfrSimulations
         '
-        Me.RefinenWithSRFRButton.AccessibleDescription = "Press to refine the analysis using SRFR"
-        Me.RefinenWithSRFRButton.AccessibleName = "Refine with SRFR Button"
-        Me.RefinenWithSRFRButton.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.RefinenWithSRFRButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.RefinenWithSRFRButton.Location = New System.Drawing.Point(19, 378)
-        Me.RefinenWithSRFRButton.Name = "RefinenWithSRFRButton"
-        Me.RefinenWithSRFRButton.Size = New System.Drawing.Size(189, 24)
-        Me.RefinenWithSRFRButton.TabIndex = 4
-        Me.RefinenWithSRFRButton.Text = "Refine &with SRFR"
-        Me.RefinenWithSRFRButton.UseVisualStyleBackColor = False
+        Me.SrfrSimulations.AccessibleDescription = "Selects precision contour computation (runs slower)"
+        Me.SrfrSimulations.AccessibleName = "Precision Contours"
+        Me.SrfrSimulations.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SrfrSimulations.Location = New System.Drawing.Point(20, 180)
+        Me.SrfrSimulations.Name = "SrfrSimulations"
+        Me.SrfrSimulations.Size = New System.Drawing.Size(195, 24)
+        Me.SrfrSimulations.TabIndex = 8
+        Me.SrfrSimulations.Text = "&SRFR Simulations"
+        '
+        'VolumeBalanceCalculations
+        '
+        Me.VolumeBalanceCalculations.AccessibleDescription = "Selects standard contour computation (faster execution)"
+        Me.VolumeBalanceCalculations.AccessibleName = "Standard Contours"
+        Me.VolumeBalanceCalculations.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.VolumeBalanceCalculations.Location = New System.Drawing.Point(20, 158)
+        Me.VolumeBalanceCalculations.Name = "VolumeBalanceCalculations"
+        Me.VolumeBalanceCalculations.Size = New System.Drawing.Size(195, 24)
+        Me.VolumeBalanceCalculations.TabIndex = 7
+        Me.VolumeBalanceCalculations.Text = "&Volume Balance"
         '
         'SolutionModelBox
         '
@@ -227,7 +239,7 @@ Public Class ctl_OperationsExecution
         Me.SolutionModelBox.Controls.Add(Me.CellDensityLabel)
         Me.SolutionModelBox.Controls.Add(Me.CellDensityControl)
         Me.SolutionModelBox.Controls.Add(Me.SolutionModelControl)
-        Me.SolutionModelBox.Location = New System.Drawing.Point(8, 24)
+        Me.SolutionModelBox.Location = New System.Drawing.Point(8, 23)
         Me.SolutionModelBox.Name = "SolutionModelBox"
         Me.SolutionModelBox.Size = New System.Drawing.Size(208, 103)
         Me.SolutionModelBox.TabIndex = 0
@@ -279,23 +291,23 @@ Public Class ctl_OperationsExecution
         Me.SolutionModelControl.Location = New System.Drawing.Point(8, 21)
         Me.SolutionModelControl.Name = "SolutionModelControl"
         Me.SolutionModelControl.SelectedIndexSet = False
-        Me.SolutionModelControl.Size = New System.Drawing.Size(184, 24)
+        Me.SolutionModelControl.Size = New System.Drawing.Size(184, 28)
         Me.SolutionModelControl.TabIndex = 0
         '
         'ExecutionErrorsWarnings
         '
         Me.ExecutionErrorsWarnings.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ExecutionErrorsWarnings.Location = New System.Drawing.Point(8, 184)
+        Me.ExecutionErrorsWarnings.Location = New System.Drawing.Point(8, 231)
         Me.ExecutionErrorsWarnings.Name = "ExecutionErrorsWarnings"
         Me.ExecutionErrorsWarnings.ReadOnly = True
-        Me.ExecutionErrorsWarnings.Size = New System.Drawing.Size(208, 188)
+        Me.ExecutionErrorsWarnings.Size = New System.Drawing.Size(208, 177)
         Me.ExecutionErrorsWarnings.TabIndex = 3
         Me.ExecutionErrorsWarnings.Text = ""
         '
         'NoErrorsWarningsLabel
         '
         Me.NoErrorsWarningsLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.NoErrorsWarningsLabel.Location = New System.Drawing.Point(8, 160)
+        Me.NoErrorsWarningsLabel.Location = New System.Drawing.Point(8, 235)
         Me.NoErrorsWarningsLabel.Name = "NoErrorsWarningsLabel"
         Me.NoErrorsWarningsLabel.Size = New System.Drawing.Size(208, 23)
         Me.NoErrorsWarningsLabel.TabIndex = 3
@@ -304,7 +316,7 @@ Public Class ctl_OperationsExecution
         '
         'ErrorsWarningsLabel
         '
-        Me.ErrorsWarningsLabel.Location = New System.Drawing.Point(8, 160)
+        Me.ErrorsWarningsLabel.Location = New System.Drawing.Point(8, 208)
         Me.ErrorsWarningsLabel.Name = "ErrorsWarningsLabel"
         Me.ErrorsWarningsLabel.Size = New System.Drawing.Size(208, 23)
         Me.ErrorsWarningsLabel.TabIndex = 2
@@ -317,11 +329,11 @@ Public Class ctl_OperationsExecution
         Me.RunOperationsButton.AccessibleName = "Run Button"
         Me.RunOperationsButton.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.RunOperationsButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
-        Me.RunOperationsButton.Location = New System.Drawing.Point(19, 136)
+        Me.RunOperationsButton.Location = New System.Drawing.Point(6, 133)
         Me.RunOperationsButton.Name = "RunOperationsButton"
-        Me.RunOperationsButton.Size = New System.Drawing.Size(189, 24)
+        Me.RunOperationsButton.Size = New System.Drawing.Size(209, 24)
         Me.RunOperationsButton.TabIndex = 1
-        Me.RunOperationsButton.Text = "&Run Operations Analysis"
+        Me.RunOperationsButton.Text = "&Run using:"
         Me.RunOperationsButton.UseVisualStyleBackColor = False
         '
         'ExecutionBox
@@ -711,7 +723,7 @@ Public Class ctl_OperationsExecution
         Me.ContourGridSizeControl.Location = New System.Drawing.Point(178, 96)
         Me.ContourGridSizeControl.Name = "ContourGridSizeControl"
         Me.ContourGridSizeControl.SelectedIndexSet = False
-        Me.ContourGridSizeControl.Size = New System.Drawing.Size(136, 24)
+        Me.ContourGridSizeControl.Size = New System.Drawing.Size(136, 28)
         Me.ContourGridSizeControl.TabIndex = 3
         '
         'ContourGridSizeLabel
@@ -881,7 +893,7 @@ Public Class ctl_OperationsExecution
         Me.FurrowsPerSetToLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FurrowsPerSetToLabel.Location = New System.Drawing.Point(224, 5)
         Me.FurrowsPerSetToLabel.Name = "FurrowsPerSetToLabel"
-        Me.FurrowsPerSetToLabel.Size = New System.Drawing.Size(20, 17)
+        Me.FurrowsPerSetToLabel.Size = New System.Drawing.Size(23, 20)
         Me.FurrowsPerSetToLabel.TabIndex = 2
         Me.FurrowsPerSetToLabel.Text = "to"
         Me.FurrowsPerSetToLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -1072,7 +1084,7 @@ Public Class ctl_OperationsExecution
         Me.DepthCriteriaControl.Location = New System.Drawing.Point(162, 109)
         Me.DepthCriteriaControl.Name = "DepthCriteriaControl"
         Me.DepthCriteriaControl.SelectedIndexSet = False
-        Me.DepthCriteriaControl.Size = New System.Drawing.Size(136, 24)
+        Me.DepthCriteriaControl.Size = New System.Drawing.Size(136, 28)
         Me.DepthCriteriaControl.TabIndex = 7
         '
         'DepthCriteriaExLabel
@@ -1100,7 +1112,7 @@ Public Class ctl_OperationsExecution
         Me.FurrowSetInflowRateOption.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FurrowSetInflowRateOption.Location = New System.Drawing.Point(9, 29)
         Me.FurrowSetInflowRateOption.Name = "FurrowSetInflowRateOption"
-        Me.FurrowSetInflowRateOption.Size = New System.Drawing.Size(221, 21)
+        Me.FurrowSetInflowRateOption.Size = New System.Drawing.Size(264, 24)
         Me.FurrowSetInflowRateOption.TabIndex = 1
         Me.FurrowSetInflowRateOption.TabStop = True
         Me.FurrowSetInflowRateOption.Text = "&Furrows per set and cutoff time"
@@ -1112,7 +1124,7 @@ Public Class ctl_OperationsExecution
         Me.FurrowsPerSetOption.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FurrowsPerSetOption.Location = New System.Drawing.Point(9, 7)
         Me.FurrowsPerSetOption.Name = "FurrowsPerSetOption"
-        Me.FurrowsPerSetOption.Size = New System.Drawing.Size(187, 21)
+        Me.FurrowsPerSetOption.Size = New System.Drawing.Size(223, 24)
         Me.FurrowsPerSetOption.TabIndex = 0
         Me.FurrowsPerSetOption.TabStop = True
         Me.FurrowsPerSetOption.Text = "&Inflow rate and cutoff time"
@@ -1244,6 +1256,9 @@ Public Class ctl_OperationsExecution
             Me.rControl.LinkToModel(mMyStore, mBorderCriteria.PwrAdvRBordersProperty)
         End If
 
+        Me.VolumeBalanceCalculations.LinkToModel(mMyStore, mBorderCriteria.OperationsMethodProperty, OperationsMethod.VolumeBalance)
+        Me.SrfrSimulations.LinkToModel(mMyStore, mBorderCriteria.OperationsMethodProperty, OperationsMethod.SrfrSimulations)
+
         ' Update language translation
         UpdateLanguage()
 
@@ -1290,10 +1305,19 @@ Public Class ctl_OperationsExecution
                 End Select
             End If
 
+            If (mBorderCriteria.OperationsMethod.Value = OperationsMethod.SrfrSimulations) Then
+                Me.StandardContoursOption.Hide()
+                Me.PrecisionContoursOption.Hide()
+                Me.TuningFactorsBox.Hide()
+            Else ' VolumeBalanceCalculations
+                Me.StandardContoursOption.Show()
+                Me.PrecisionContoursOption.Show()
+                Me.TuningFactorsBox.Show()
+            End If
+
             ' Update SRFR Solution Model & Cell Density
             UpdateSolutionModel()
 
-            Me.RefinenWithSRFRButton.Enabled = mUnit.ResultsAreValid
         End If
 
     End Sub
@@ -1716,13 +1740,11 @@ Public Class ctl_OperationsExecution
     Private Sub RunOperationsButton_Click(ByVal sender As System.Object, ByVal e As EventArgs) _
         Handles RunOperationsButton.Click
         Me.Focus()
-        mOperationsWorld.RunOperationsAnalysis(OperationsMethod.VolumeBalance)
-    End Sub
-
-    Private Sub RefinenWithSRFRButton_Click(sender As Object, e As EventArgs) _
-        Handles RefinenWithSRFRButton.Click
-        Me.Focus()
-        mOperationsWorld.RunOperationsAnalysis(OperationsMethod.SrfrBgThreads)
+        If (mBorderCriteria.OperationsMethod.Value = OperationsMethod.VolumeBalance) Then
+            mOperationsWorld.RunOperationsAnalysis(OperationsMethod.VolumeBalance)
+        Else ' SRFR Simulations
+            mOperationsWorld.RunOperationsAnalysis(OperationsMethod.SrfrSimulations)
+        End If
     End Sub
 
     Private Sub AddContourOverlays_Click(ByVal sender As System.Object, ByVal e As EventArgs) _
