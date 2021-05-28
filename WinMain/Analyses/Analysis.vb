@@ -746,6 +746,13 @@ Public MustInherit Class Analysis
         End Get
     End Property
 
+    Protected mFurrowsPerSet As Double
+    Public ReadOnly Property FurrowsPerSet As Double
+        Get
+            Return mFurrowsPerSet
+        End Get
+    End Property
+
     Protected mInflowRate As Double
     Public ReadOnly Property InflowRate() As Double
         Get
@@ -778,21 +785,21 @@ Public MustInherit Class Analysis
         End Get
     End Property
 
-    Protected mAE As Double
+    Protected mAE As Double                             ' Appliation Efficiency
     Public ReadOnly Property AE() As Double
         Get
             Return mAE
         End Get
     End Property
 
-    Protected mRE As Double
+    Protected mRE As Double                             ' Requirement Efficiency
     Public ReadOnly Property RE As Double
         Get
             Return mRE
         End Get
     End Property
 
-    ' DU - Distribution Uniformity
+    ' DU - Distribution Uniformity (Min & LQ)
     Protected mDUmin As Double
     Public ReadOnly Property DUmin() As Double
         Get
@@ -807,7 +814,7 @@ Public MustInherit Class Analysis
         End Get
     End Property
 
-    ' AD - Adequacy
+    ' AD - Adequacy (Min & LQ)
     Protected mADmin As Double
     Public ReadOnly Property ADmin() As Double
         Get
@@ -852,7 +859,7 @@ Public MustInherit Class Analysis
         End Get
     End Property
 
-    ' Infiltration
+    ' Infiltration                                      ' Infiltrated depth
     Protected mDInf As Double
     Public ReadOnly Property DInf() As Double
         Get
@@ -860,43 +867,42 @@ Public MustInherit Class Analysis
         End Get
     End Property
 
-    Protected mDReq As Double
+    Protected mDReq As Double                           ' Required depth
     Public ReadOnly Property DReq() As Double
         Get
             Return mDReq
         End Get
     End Property
 
-    Protected mDApp As Double
+    Protected mDApp As Double                           ' Depth applie
     Public ReadOnly Property DApp() As Double
         Get
             Return mDApp
         End Get
     End Property
 
-    Protected mDMin As Double
+    Protected mDMin As Double                           ' Minimum Depth
     Public ReadOnly Property DMin() As Double
         Get
             Return mDMin
         End Get
     End Property
 
-    Protected mDLf As Double
+    Protected mDLf As Double                            ' Low Quarter Depth
     Public ReadOnly Property DLf() As Double
         Get
             Return mDLf
         End Get
     End Property
 
-    Protected mTReq As Double
+    Protected mTReq As Double                           ' Time to infiltrate to DReq
     Public ReadOnly Property TReq() As Double
         Get
             Return mTReq
         End Get
     End Property
 
-    ' Maxmimum Advance
-    Protected mTxa As Double
+    Protected mTxa As Double                            ' Time to Maxmimum Advance
     Public ReadOnly Property Txa() As Double
         Get
             Return mTxa
@@ -918,14 +924,14 @@ Public MustInherit Class Analysis
         End Get
     End Property
 
-    Protected mTL As Double
+    Protected mTL As Double                             ' Advance time to end of field
     Public ReadOnly Property TL() As Double
         Get
             Return mTL
         End Get
     End Property
 
-    Protected mXR As Double
+    Protected mXR As Double                             ' Relative Advance time (1.0 <= R), distance (R < 1.0)
     Public ReadOnly Property XR() As Double
         Get
             Return mXR
@@ -4326,7 +4332,7 @@ Public MustInherit Class Analysis
                 y = (aY + bY) / 2
 
                 c = GetContourPoint(x, y)
-                If Not (c Is Nothing) Then
+                If (c IsNot Nothing) Then
 
                     If (c.HasError) Then
                         aX = x
@@ -4340,8 +4346,8 @@ Public MustInherit Class Analysis
                     And (ThisClose(aY, bY, YTolerance))) Then
                         Exit For
                     End If
-                Else
-                    Debug.Assert(False, "c is Nothing")
+                Else ' (c Is Nothing)
+                    Return False
                 End If
             Next
 
@@ -4367,7 +4373,7 @@ Public MustInherit Class Analysis
                 y = (aY + bY) / 2
 
                 c = GetContourPoint(x, y)
-                If Not (c Is Nothing) Then
+                If (c IsNot Nothing) Then
 
                     If (c.HasError) Then
                         bX = x
@@ -4381,8 +4387,8 @@ Public MustInherit Class Analysis
                     And (ThisClose(aY, bY, YTolerance))) Then
                         Exit For
                     End If
-                Else
-                    Debug.Assert(False, "c is Nothing")
+                Else ' (c Is Nothing)
+                    Return False
                 End If
             Next
 

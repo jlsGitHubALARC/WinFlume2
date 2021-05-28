@@ -35,7 +35,9 @@ Public Class SrfrContourParameter
         '
         Public Sub New(ByVal contourPoint As SrfrContourPoint, ByVal includeZ As Boolean)
             MyBase.New(contourPoint, includeZ)
-            Me.SrfrResults = contourPoint.SrfrResults.Clone
+            If (contourPoint.SrfrResults IsNot Nothing) Then
+                Me.SrfrResults = contourPoint.SrfrResults.Clone
+            End If
         End Sub
 
         Public Sub New(ByVal contourPoint As ContourPoint, ByVal includeZ As Boolean)

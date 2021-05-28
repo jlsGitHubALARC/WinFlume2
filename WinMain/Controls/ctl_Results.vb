@@ -2961,8 +2961,23 @@ Public Class ctl_Results
 
                     ' Y is either Width or Inflow Rate
                     If (borderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
-                        y = systemGeometry.Width.Value
-                    Else
+                        If (mUnit.CrossSection = CrossSections.Furrow) Then
+                            Dim furrowsPerSetParam As DoubleParameter = systemGeometry.FurrowsPerSet
+                            y = furrowsPerSetParam.Value
+
+                            If (y < borderCriteria.MinContourFurrowsPerSet.Value) Then
+                                y = borderCriteria.MinContourFurrowsPerSet.Value
+                            End If
+
+                            If (y > borderCriteria.MaxContourFurrowsPerSet.Value) Then
+                                y = borderCriteria.MaxContourFurrowsPerSet.Value
+                            End If
+
+                        Else ' Border
+                            y = systemGeometry.Width.Value
+                        End If
+
+                    Else ' Width given
                         y = inflowManagement.InflowRate.Value
                     End If
             End Select

@@ -6,6 +6,7 @@
 '*************************************************************************************************************
 Imports DataStore
 Imports Srfr
+Imports Srfr.Globals
 Imports WinMain.SrfrContourParameter
 
 Public MustInherit Class OperationsAnalysis
@@ -428,8 +429,6 @@ Public MustInherit Class OperationsAnalysis
                     mCutbackRate = mInflowRate * mCutbackRateRatio
                 End If
 
-                Dim blz As SingleParameter = DirectCast(bl.Z(ZIndex), SingleParameter)
-
                 ' Compute center point
                 If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
                     point = Me.OperationsPointVolBal(mInflowRate, mWidth, mTco)
@@ -549,6 +548,500 @@ Public MustInherit Class OperationsAnalysis
                                                           ByVal CutoffTime As Double,
                                                           ByVal CutbackRate As Double,
                                                           ByVal NumDistances As Integer) As ContourPoint
+
+#End Region
+
+#Region " Build Operations Grid - SRFR Simulation "
+
+    '*********************************************************************************************************
+    ' Function BuildOperationsGridSrfrSim() - Build Operations Grid using SRFR Simulations
+    '
+    ' The Contour Grid is used as the guide for calculation the contour graphs; it must be
+    ' built before computing the contours.
+    '*********************************************************************************************************
+    Protected Function BuildOperationsGridSrfrSim() As Boolean
+
+        ' Define variables
+        Dim SrfrSim As Srfr.SrfrSimulation
+
+        Dim point As ContourPoint
+        Dim rdx, cdx As Integer
+
+        If (mLineList IsNot Nothing) Then
+            mLineList.Clear()
+            mLineList = Nothing
+        End If
+
+        Me.StatusMessage &= " - " & mDictionary.tBuildingContourGrid.Translated
+
+        Dim numCellsX As Integer = mNumGridCellsX
+        Dim numCellsY As Integer = mNumGridCellsY
+        Dim numPointsX As Integer = numCellsX + 1
+        Dim numPointsY As Integer = numCellsY + 1
+
+        ' Grid Points = numPointsY * numPointsX; Cell Center Points = numCellsY * numCellsX
+        Dim numPoints As Integer = numPointsY * numPointsX + numCellsY * numCellsX
+        Dim numSimRun As Integer = 0
+        Dim status As String
+
+        RunSRFR(False, True, True)
+
+        ' Display BG thread window
+        mRunContourSimulations.Show()
+        mRunContourSimulations.BringToFront()
+        '
+        ' Build list of SRFR Simulation Results for contour grid
+        '
+        ClearResultsList()
+
+        If ((mUnit.CrossSection = CrossSections.Furrow) _
+        And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
+            '
+            ' Contour is Cutoff Times (X axis; cols) vs. Widths (Y axis; rows)
+            '
+            Debug.Assert(mNumCutoffTimes = numPointsX)
+            Debug.Assert(mNumWidths = numPointsY)
+
+            ' Get Simulation Results for each contour point
+            For rdx = 0 To mNumWidths - 1
+                mWidth = Widths(rdx)                ' Next Y (row) Width
+                mFurrowsPerSet = mWidth / mSystemGeometry.FurrowSpacing.Value
+
+                For cdx = 0 To mNumCutoffTimes - 1
+                    mTco = CutoffTimes(cdx)         ' Next X (col) Cutoff Time
+
+                    numSimRun += 1
+                    status = numSimRun & " / " & numPoints.ToString
+                    mWorldWindow.ProgressMessage = status
+
+                    If (mRunContourSimulations.Visible) Then
+                        mRunContourSimulations.ProgressMessage = status
+                    End If
+
+                    Me.SimulateOperationsPoint(mInflowRate, mWidth, mTco, numSimRun)
+                Next cdx
+            Next rdx
+
+        Else ' Width Given
+            '
+            ' Contour is Cutoff Times (X axis; cols) vs. Inflow Rates (Y axis; rows)
+            '
+            Debug.Assert(mNumCutoffTimes = numPointsX)
+            Debug.Assert(mNumInflowRates = numPointsY)
+
+            ' Get Simulation Results for each contour point
+            For rdx = 0 To mNumInflowRates - 1
+                mInflowRate = InflowRates(rdx)      ' Next Y (row) Inflow Rate
+
+                For cdx = 0 To mNumCutoffTimes - 1
+                    mTco = CutoffTimes(cdx)         ' Next X (col) Cutoff Time
+
+                    numSimRun += 1
+                    status = numSimRun & " / " & numPoints.ToString
+                    mWorldWindow.ProgressMessage = status
+
+                    If (mRunContourSimulations.Visible) Then
+                        mRunContourSimulations.ProgressMessage = status
+                    End If
+
+                    Me.SimulateOperationsPoint(mInflowRate, mWidth, mTco, numSimRun)
+                Next cdx
+            Next rdx
+        End If
+        '
+        ' Retrieve SRFR results for grid points
+        '
+        mRunContourSimulations.WaitforSrfrSimsToComplete()  ' Wait for background threads to finish
+
+        ' Get SRFR Results from just completed background SRFR runs
+        For Each SrfrSim In mRunContourSimulations.SrfrRunMgr.SrfrSims
+            If Not (SrfrSim.ResultsUploaded) Then
+                If (SrfrSim.uiSrfrAPI IsNot Nothing) Then
+                    Dim results As Srfr.Results = SrfrSim.uiSrfrAPI.Irrigation.Results
+                    'Debug.Assert(results.BorderWidth = results.Width * results.FurrowPerSet)
+                    AddToResultsList(results)
+                    SrfrSim.ResultsUploaded = True
+                End If
+            End If
+        Next
+
+        Debug.Assert(Me.SrfrResults.Count = numPointsX * numPointsY)
+
+        SortResultsList()   ' Sort SRFR Results as BG threads may complete out-of-order
+        '
+        ' Generate grid points from Simulation Results
+        '
+        If ((mUnit.CrossSection = CrossSections.Furrow) _
+        And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
+
+            ' Contour is Cutoff Times (X axis; cols) vs. Widths (Y axis; rows)
+            mContourGrid = New ContourGrid(mNumWidths, mNumCutoffTimes) With {
+                .ColName = mDictionary.tCutoffTime.Translated,      ' X-axis (cols) is cutoff time
+                .RowName = mDictionary.tWidth.Translated            ' Y-axis (rows) is width
+            }
+
+            mContourGrid.ValueName(ZIndex) = sInflowRate ' Z(0) is Inflow RAte
+
+        Else ' Width Given
+
+            ' Contour is Cutoff Times (X axis; cols) vs. Inflow Rates (Y axis; rows)
+            mContourGrid = New ContourGrid(mNumInflowRates, mNumCutoffTimes) With {
+                .ColName = mDictionary.tCutoffTime.Translated,      ' X-axis (cols) is cutoff time
+                .RowName = mDictionary.tInflowRate.Translated       ' Y-axis (rows) is inflow rate
+            }
+
+            mContourGrid.ValueName(ZIndex) = sWidth ' Z(0) is Width
+        End If
+
+        ' Define the Z-parameters to be calculated for each contour point
+        mContourGrid.ValueName(AeIndex) = sApplicationEfficiency
+        mContourGrid.ValueName(DuIndex) = sMinimumDistributionUniformity
+        mContourGrid.ValueName(AdIndex) = sMinimumAdequacy
+        mContourGrid.ValueName(RoIndex) = sRunoff
+        mContourGrid.ValueName(DpIndex) = sDeepPercolation
+        mContourGrid.ValueName(DappIndex) = sAppliedDepth
+
+        Select Case (mDepthCriterion)
+            Case InfiltratedDepthCriteria.LowQuarterDepth
+                mContourGrid.ValueName(DLfIndex) = sLowQuarterDepth
+            Case Else ' Assume InfiltratedDepthCriteria.MinimumDepth
+                mContourGrid.ValueName(DLfIndex) = sMinimumDepth
+        End Select
+
+        mContourGrid.ValueName(TxaIndex) = sMaxAdvanceTime
+
+        mContourGrid.ValueName(TcoIndex) = sCutoffRatio
+
+        mContourGrid.ValueName(CostIndex) = sCost
+
+        For rdx = 0 To numPointsY - 1
+            For cdx = 0 To numPointsX - 1
+                Dim results As Srfr.Results = Me.SrfrResults(rdx * numPointsX + cdx)
+                mContourGrid.Point(rdx, cdx) = OperationsPointSrfrSim(results)
+            Next cdx
+        Next rdx
+        '
+        ' Build list of SRFR Simulation Results for center point of contour cells
+        '
+        ClearResultsList()
+
+        For rdx = 0 To numCellsY - 1
+            For cdx = 0 To numCellsX - 1
+                ' Get cell's corner points
+                ' Get corner points
+                Dim bl As ContourPoint = mContourGrid.Point(rdx, cdx)            ' Bottom-left
+                Dim br As ContourPoint = mContourGrid.Point(rdx, cdx + 1)        ' Bottom-right
+                Dim tl As ContourPoint = mContourGrid.Point(rdx + 1, cdx)        ' Top-left
+                Dim tr As ContourPoint = mContourGrid.Point(rdx + 1, cdx + 1)    ' Top-right
+
+                mTco = (bl.X.Value + br.X.Value) / 2                ' Cutoff Time
+
+                If ((mUnit.CrossSection = CrossSections.Furrow) _
+                And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
+                    mWidth = (bl.Y.Value + tl.Y.Value) / 2          ' Furrow Set Width
+                    mFurrowsPerSet = mWidth / mSystemGeometry.FurrowSpacing.Value
+                Else
+                    mInflowRate = (bl.Y.Value + tl.Y.Value) / 2     ' Inflow Rate
+                End If
+
+                numSimRun += 1
+                status = numSimRun & " / " & numPoints.ToString
+                mWorldWindow.ProgressMessage = status
+
+                If (mRunContourSimulations.Visible) Then
+                    mRunContourSimulations.ProgressMessage = status
+                End If
+
+                Me.SimulateOperationsPoint(mInflowRate, mWidth, mTco, numSimRun)
+            Next cdx
+        Next rdx
+        '
+        ' Retrieve SRFR results for cell center points
+        '
+        mRunContourSimulations.WaitforSrfrSimsToComplete()  ' Wait for background threads to finish
+
+        ' Get SRFR Results from just completed background SRFR runs
+        For Each SrfrSim In mRunContourSimulations.SrfrRunMgr.SrfrSims
+            If Not (SrfrSim.ResultsUploaded) Then
+                If (SrfrSim.uiSrfrAPI IsNot Nothing) Then
+                    Dim results As Srfr.Results = SrfrSim.uiSrfrAPI.Irrigation.Results
+                    'Debug.Assert(results.BorderWidth = results.Width * results.FurrowPerSet)
+                    AddToResultsList(results)
+                    SrfrSim.ResultsUploaded = True
+                End If
+            End If
+        Next
+
+        Debug.Assert(Me.SrfrResults.Count = numCellsX * numCellsY)
+
+        SortResultsList()   ' Sort SRFR Results as BG threads may complete out-of-order
+        '
+        ' Build contour cells from contour points
+        '
+        Debug.Assert(numCellsY = mContourGrid.PointArray.GetUpperBound(0))
+        Debug.Assert(numCellsX = mContourGrid.PointArray.GetUpperBound(1))
+
+        For rdx = 0 To numCellsY - 1
+            For cdx = 0 To numCellsX - 1
+                ' Get corner points
+                Dim bl As ContourPoint = mContourGrid.Point(rdx, cdx)            ' Bottom-left
+                Dim br As ContourPoint = mContourGrid.Point(rdx, cdx + 1)        ' Bottom-right
+                Dim tl As ContourPoint = mContourGrid.Point(rdx + 1, cdx)        ' Top-left
+                Dim tr As ContourPoint = mContourGrid.Point(rdx + 1, cdx + 1)    ' Top-right
+
+                mTco = (bl.X.Value + br.X.Value) / 2                ' Cutoff/cutback Times
+
+                ' Create the cell with its center point
+                Dim results As Srfr.Results = Me.SrfrResults(rdx * numCellsX + cdx)
+                point = OperationsPointSrfrSim(results)
+                Dim cell As PrecisionContourCell = New PrecisionContourCell(Me, rdx, cdx, tl, tr, bl, br, point)
+
+                ' Set edge flags for cell
+                Dim edgeFlags As Integer = ContourCell.Edge.NoEdge
+
+                If (rdx = 0) Then
+                    edgeFlags += ContourCell.Edge.Bottom
+                ElseIf (rdx = numCellsY - 1) Then
+                    edgeFlags += ContourCell.Edge.Top
+                End If
+
+                If (cdx = 0) Then
+                    edgeFlags += ContourCell.Edge.Left
+                ElseIf (cdx = numCellsX - 1) Then
+                    edgeFlags += ContourCell.Edge.Right
+                End If
+
+                cell.CellEdge = edgeFlags
+                mContourGrid.Cell(rdx, cdx) = cell
+
+                ' Build the cell's Error Contour as a precise contour
+                cell.Precision = Globals.ContourPrecision.Precise
+                cell.BuildLimitContour()
+                If (WinSRFR.UserPreferences.CalculatePrecisionContours = True) Then
+                    cell.Precision = Globals.ContourPrecision.Precise
+                Else
+                    cell.Precision = Globals.ContourPrecision.Standard
+                End If
+
+            Next cdx
+        Next rdx
+        '
+        ' Scale contour axes based on grid points
+        '
+        Me.ScaleDapp()
+        Me.ScaleDlf()
+        Me.ScaleTco()
+        Me.ScaleTxa()
+        Me.ScaleCost()
+
+    End Function
+
+#End Region
+
+#Region " Simulate Operations Point - SRFR Simulation "
+
+    '*********************************************************************************************************
+    ' Sub SimulateOperationsPoint() - Run a SRFR Simulations at what will become an Operations Point
+    '
+    ' Input(s):     InflowRate      - Qin
+    '               Width           - BW    (BorderWidth | FurrowSetWidth)
+    '               CutoffTime      - Tco
+    '*********************************************************************************************************
+    Public Sub SimulateOperationsPoint(ByVal InflowRate As Double, ByVal Width As Double,
+                                       ByVal CutoffTime As Double, ByVal RunNo As Integer)
+        Dim pointID As String = ""
+
+        ' Contour's X-axis is always Cutoff Time (Tco)
+        SrfrAPI.Inflow.Tco = CutoffTime
+        pointID &= "Tco = " & CutoffTime.ToString
+
+        ' Contour's Y axis for Borders is always Inflow Rate (Q0)
+        '    "      "   "   "  Furrows is either Inflow Rate (Q0) or Width
+        If (mUnit.CrossSection = CrossSections.Furrow) Then
+            If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
+                SrfrAPI.CrossSection.BorderWidth = Width
+                SrfrAPI.CrossSection.FurrowsPerSet = Width / mSystemGeometry.FurrowSpacing.Value
+                pointID &= "; BorderWidth = " & Width.ToString
+            Else ' WidthGiven
+                SrfrAPI.Inflow.Q0 = InflowRate
+                pointID &= "; Q0 = " & InflowRate.ToString
+            End If
+        Else ' Border
+            SrfrAPI.Inflow.Q0 = InflowRate
+            pointID &= "; Q0 = " & InflowRate.ToString
+        End If
+
+        ' Get next available SRFR Simulation
+        Dim SrfrSim As Srfr.SrfrSimulation = mRunContourSimulations.GetAvailableSrfrSimulation
+
+        With SrfrSim
+            If (.uiSrfrAPI Is Nothing) Then ' SrfrAPI needs to be instantiated
+                .uiSrfrAPI = New Srfr.SrfrAPI
+
+            Else ' SrfrAPI may contain results from previous simulation, save them
+                If Not (.ResultsUploaded) Then
+                    Dim results As Srfr.Results = .uiSrfrAPI.Irrigation.Results
+                    Debug.Assert(results IsNot Nothing)
+                    'Debug.Assert(results.BorderWidth = results.Width * results.FurrowPerSet)
+                    AddToResultsList(results)
+                    .ResultsUploaded = True
+                End If
+            End If
+
+            With .uiSrfrAPI
+                ' Copy the UI's SrfrAPI inputs to the BG SrfrAPI
+                .CrossSection = SrfrAPI.CrossSection.Clone
+                .Roughness = SrfrAPI.Roughness.Clone
+                .Infiltration = SrfrAPI.Infiltration.Clone
+                .Inflow = SrfrAPI.Inflow.Clone
+                .SimName = pointID
+                .SimNum = RunNo.ToString
+            End With
+
+            ' Define Solution Model to use for Simulation
+            Dim uiSolMod As SolutionModel
+            If (SrfrAPI.SolMod.GetType Is GetType(KinematicWave)) Then
+                Dim KW = New KinematicWave With {.ZeroInertiaRecession = True}
+                uiSolMod = KW
+            Else
+                Dim ZI = New ZeroInertia()
+                uiSolMod = ZI
+            End If
+
+            uiSolMod.CellDensity = SrfrAPI.SolMod.CellDensity
+            uiSolMod.StatusEventCriteria = Srfr.SolutionModel.StatusEvents.BFLGS
+
+            .uiSolMod = uiSolMod
+
+            .ResultsUploaded = False
+
+            ' Run SRFR simulation using a background thread
+            .Run() ' returns immediately; does not wait for simulation to finish
+
+        End With
+
+    End Sub
+
+#End Region
+
+#Region " Compute Operations Point - SRFR Simulation "
+
+    '*********************************************************************************************************
+    ' Function OperationsPointSrfrSim() - Compute an Operations Point from SRFR Simulations Results
+    '
+    ' Input(s):     Results         - SRFR Simulation Results
+    '
+    ' Returns:      ContourPoint    - the Operations Point
+    '*********************************************************************************************************
+    Public Function OperationsPointSrfrSim(ByVal SrfrResults As Srfr.Results) As ContourPoint
+
+        '**************************************************************************************
+        ' Compute & load performance parameters into Contour Point
+        '**************************************************************************************
+        Dim contourPoint As SrfrContourPoint = New SrfrContourPoint With {
+            .X = New SingleParameter(CSng(SrfrResults.Tco), Units.Seconds),
+            .SrfrResults = SrfrResults
+        }
+
+        If (mUnit.CrossSection = CrossSections.Furrow) Then
+            If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
+                contourPoint.Y = New SingleParameter(CSng(SrfrResults.FurrowPerSet), Units.None)
+            Else ' WidthGiven
+                contourPoint.Y = New SingleParameter(CSng(SrfrResults.Q0avg), Units.Cms)
+            End If
+        Else ' Border
+            contourPoint.Y = New SingleParameter(CSng(SrfrResults.Q0avg), Units.Cms)
+        End If
+
+        ' Move errors & warnings, if any, to Contour Point
+        If (S0 < MaximumLevelSlope) Then
+            ' Limit Line applies only to Level Furrows
+            If (SrfrResults.XR < DesignLimitLine) Then
+                AddExecutionWarning(WarningFlags.LimitLineExceeded,
+                                    mDictionary.tLimitLineExceededID.Translated,
+                                    mDictionary.tLimitLineExceededDetail.Translated)
+                contourPoint.HasError = True
+                contourPoint.ErrMsg = mDictionary.tLimitLineExceededID.Translated
+            End If
+        End If
+
+        If ((Double.IsNaN(SrfrResults.TL)) Or (SrfrResults.TL <= 0.0)) Then
+            AddExecutionWarning(WarningFlags.AdvanceRecessionInadequate,
+                                mDictionary.tAdvanceRecessionInadequateID.Translated,
+                                mDictionary.tAdvanceRecessionInadequateDetail.Translated)
+            contourPoint.HasError = True
+            contourPoint.ErrMsg = mDictionary.tAdvanceRecessionInadequateID.Translated
+        End If
+
+        If (OneWeek <= SrfrResults.Ttl) Then
+            AddExecutionWarning(WarningFlags.TimeTooLong,
+                                mDictionary.tTimeTooLongErrorID.Translated,
+                                mDictionary.tTimeTooLongErrorDetail.Translated)
+            contourPoint.HasWarning = True
+            contourPoint.WarnMsg = mDictionary.tTimeTooLongErrorID.Translated
+        End If
+
+        ' NOTE - order of Z parameters must match calling function's order
+        Dim parameter As SingleParameter
+
+        parameter = New SingleParameter(CSng(SrfrResults.Width), Units.Meters)
+        contourPoint.Z.Add(parameter)   ' Border Width
+
+        parameter = New SingleParameter(CSng(SrfrResults.AE), Units.Percentage)
+        contourPoint.Z.Add(parameter)   ' Application Efficiency
+
+        If (mDepthCriterion = InfiltratedDepthCriteria.MinimumDepth) Then
+            parameter = New SingleParameter(CSng(SrfrResults.DUmin), Units.Fraction)
+            contourPoint.Z.Add(parameter)   ' Distribution Uniformity
+
+            parameter = New SingleParameter(CSng(SrfrResults.ADmin), Units.Fraction)
+            contourPoint.Z.Add(parameter)   ' Adequacy
+        Else ' Low-Quarter
+            parameter = New SingleParameter(CSng(SrfrResults.DUlq), Units.Fraction)
+            contourPoint.Z.Add(parameter)   ' Distribution uniformity
+
+            parameter = New SingleParameter(CSng(SrfrResults.ADlq), Units.Fraction)
+            contourPoint.Z.Add(parameter)   ' Adequacy
+        End If
+
+        parameter = New SingleParameter(CSng(SrfrResults.ROpct), Units.Percentage)
+        contourPoint.Z.Add(parameter)   ' Runoff
+
+        parameter = New SingleParameter(CSng(SrfrResults.DPpct), Units.Percentage)
+        contourPoint.Z.Add(parameter)   ' Deep percolation
+
+        parameter = New SingleParameter(CSng(SrfrResults.Dapp), Units.Millimeters)
+        contourPoint.Z.Add(parameter)   ' Applied Depth
+
+        If (mDepthCriterion = InfiltratedDepthCriteria.MinimumDepth) Then
+            parameter = New SingleParameter(CSng(SrfrResults.Dmin), Units.Millimeters)
+            contourPoint.Z.Add(parameter)   ' Minimum Depth
+        Else
+            parameter = New SingleParameter(CSng(SrfrResults.Dlq), Units.Millimeters)
+            contourPoint.Z.Add(parameter)   ' Low-Quarter Depth
+        End If
+
+        parameter = New SingleParameter(CSng(SrfrResults.Txa), Units.Seconds)
+        contourPoint.Z.Add(parameter)   ' Maximum Advance time
+
+        parameter = New SingleParameter(CSng(SrfrResults.XR), Units.None)
+        contourPoint.Z.Add(parameter)   ' Relative cutoff
+
+        parameter = New SingleParameter(CSng(0), Units.None)
+        contourPoint.Z.Add(parameter)   ' Filler (10)
+
+        parameter = New SingleParameter(CSng(0), Units.None)
+        contourPoint.Z.Add(parameter)   ' Filler (11)
+
+        parameter = New SingleParameter(CSng(SrfrResults.WaterCostPerHectare), Units.DollarsPerHectare)
+        contourPoint.Z.Add(parameter)   ' Cost
+
+        mSoilCropProperties.ClrSrfrInfiltration()
+
+        Return contourPoint
+
+    End Function
+
 #End Region
 
 #Region " Compute Operations Point - Interpolation "
@@ -566,8 +1059,8 @@ Public MustInherit Class OperationsAnalysis
     Protected Function OperationsPointInterpolate() As ContourPoint
         If (mUnit.CrossSection = CrossSections.Furrow) Then
             If (mBorderCriteria.OperationsOption.Value = DesignOptions.InflowRateGiven) Then
-                Return Me.OperationsPointInterpolate(Tco, Width)
-            Else
+                Return Me.OperationsPointInterpolate(Tco, FurrowsPerSet * Width)
+            Else ' Width given
                 Return Me.OperationsPointInterpolate(Tco, InflowRate)
             End If
         Else ' Border
@@ -578,82 +1071,98 @@ Public MustInherit Class OperationsAnalysis
     Protected Function OperationsPointInterpolate(ByVal x As Double, ByVal y As Double) As ContourPoint
         Dim point As ContourPoint = Nothing
 
-        If (mContourGrid IsNot Nothing) Then
+        Dim row, col As Integer
+        Dim cell As ContourCell
+        Dim cells As ContourCell(,)
 
-            Dim cells As ContourCell(,) = mContourGrid.CellArray
+        Try
+            If (mContourGrid IsNot Nothing) Then
 
-            Dim minx As Single = mContourGrid.MinX
-            Dim maxx As Single = mContourGrid.MaxX
-            Dim rngx As Single = maxx - minx
-            Debug.Assert(minx <= x And x <= maxx And 0 < rngx)
+                cells = mContourGrid.CellArray
 
-            Dim miny As Single = mContourGrid.MinY
-            Dim maxy As Single = mContourGrid.MaxY
-            Dim rngy As Single = maxy - miny
-            Debug.Assert(miny <= y And y <= maxy And 0 < rngy)
+                Dim minx As Single = mContourGrid.MinX
+                Dim maxx As Single = mContourGrid.MaxX
+                Dim rngx As Single = maxx - minx
+                Debug.Assert(minx <= x And x <= maxx And 0 < rngx)
 
-            For row As Integer = 0 To cells.GetUpperBound(0)
-                For col As Integer = 0 To cells.GetUpperBound(1)
-                    Dim cell As ContourCell = mContourGrid.Cell(row, col)
+                Dim miny As Single = mContourGrid.MinY
+                Dim maxy As Single = mContourGrid.MaxY
+                Dim rngy As Single = maxy - miny
+                Debug.Assert(miny <= y And y <= maxy And 0 < rngy)
 
-                    ' Find Cell containing selected Operations Point;
-                    If (cell.BL.X.Value <= x And x <= cell.BR.X.Value) Then
-                        If (cell.BL.Y.Value <= y And y <= cell.TL.Y.Value) Then
-                            ' Found Cell; find interior triangle containing point
-
-                            Dim P As PointF = New PointF(x, y)
-
-                            Dim V1, V2, V3 As PointF
-                            Dim W1, W2, W3 As Single
-
-                            ' Check left triangle
-                            V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
-                            V2 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
-                            V3 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
-
-                            Dim inLeft As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
-                            If (inLeft) Then
-                                point = InterpolateContourPoint(cell.C, cell.TL, cell.BL, x, y, W1, W2, W3)
-                            End If
-
-                            ' Check top triangle
-                            V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
-                            V2 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
-                            V3 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
-
-                            Dim inTop As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
-                            If (inTop) Then
-                                point = InterpolateContourPoint(cell.C, cell.TR, cell.TL, x, y, W1, W2, W3)
-                            End If
-
-                            ' Check right triangle
-                            V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
-                            V2 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
-                            V3 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
-
-                            Dim inRight As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
-                            If (inRight) Then
-                                point = InterpolateContourPoint(cell.C, cell.BR, cell.TR, x, y, W1, W2, W3)
-                            End If
-
-                            ' Check bottom triangle
-                            V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
-                            V2 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
-                            V3 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
-
-                            Dim inBottom As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
-                            If (inBottom) Then
-                                point = InterpolateContourPoint(cell.C, cell.BL, cell.BR, x, y, W1, W2, W3)
-                            End If
-
+                For row = 0 To cells.GetUpperBound(0)
+                    For col = 0 To cells.GetUpperBound(1)
+                        cell = cells(row, col)
+                        If (cell Is Nothing) Then
+                            Exit Function
                         End If
-                    End If
-                Next col
-            Next row
 
-        End If
+                        ' Find Cell containing selected Operations Point;
+                        If (cell.BL.X.Value <= x And x <= cell.BR.X.Value) Then
+                            If (cell.BL.Y.Value <= y And y <= cell.TL.Y.Value) Then
+                                ' Found Cell; find interior triangle containing point
 
-        Return point
+                                Dim P As PointF = New PointF(x, y)
+
+                                Dim V1, V2, V3 As PointF
+                                Dim W1, W2, W3 As Single
+
+                                ' Check left triangle
+                                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                                V2 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
+                                V3 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
+
+                                Dim inLeft As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                                If (inLeft) Then
+                                    point = InterpolateContourPoint(cell.C, cell.TL, cell.BL, x, y, W1, W2, W3)
+                                    Exit Function
+                                End If
+
+                                ' Check top triangle
+                                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                                V2 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
+                                V3 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
+
+                                Dim inTop As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                                If (inTop) Then
+                                    point = InterpolateContourPoint(cell.C, cell.TR, cell.TL, x, y, W1, W2, W3)
+                                    Exit Function
+                                End If
+
+                                ' Check right triangle
+                                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                                V2 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
+                                V3 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
+
+                                Dim inRight As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                                If (inRight) Then
+                                    point = InterpolateContourPoint(cell.C, cell.BR, cell.TR, x, y, W1, W2, W3)
+                                    Exit Function
+                                End If
+
+                                ' Check bottom triangle
+                                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                                V2 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
+                                V3 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
+
+                                Dim inBottom As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                                If (inBottom) Then
+                                    point = InterpolateContourPoint(cell.C, cell.BL, cell.BR, x, y, W1, W2, W3)
+                                    Exit Function
+                                End If
+
+                            End If
+                        End If
+                    Next col
+                Next row
+
+            End If
+        Catch ex As Exception
+            Debug.Assert(False, ex.Message)
+        Finally
+            OperationsPointInterpolate = point
+        End Try
+
     End Function
 
     '*********************************************************************************************************
@@ -684,6 +1193,13 @@ Public MustInherit Class OperationsAnalysis
         point.Y.Value = y
 
         Try
+            ' Max Advance distance
+            Dim D1, D2, D3 As Double
+            D1 = P1.SrfrResults.Xa
+            D2 = P2.SrfrResults.Xa
+            D3 = P3.SrfrResults.Xa
+            Dim Xa As Single = D1 * W1 + D2 * W2 + D3 * W3
+
             ' Interpolate contour Z values from enclosing triangular ContourPoints
             For zdx As Integer = 0 To point.Z.Count - 1
                 Dim V1 As Single = DirectCast(P1.Z(zdx), SingleParameter).Value
@@ -764,7 +1280,12 @@ Public MustInherit Class OperationsAnalysis
 
                     Dim row As DataRow = point.SrfrResults.InfiltrationCurve.NewRow()
                     row.Item(0) = P1.SrfrResults.InfiltrationCurve.Rows(idx).Item(0)
-                    row.Item(1) = V1 * W1 + V2 * W2 + V3 * W3
+                    If (Xa < row.Item(0)) Then ' beyond Max Advance
+                        row.Item(1) = 0
+                    Else
+                        row.Item(1) = V1 * W1 + V2 * W2 + V3 * W3
+                    End If
+
                     point.SrfrResults.InfiltrationCurve.Rows.Add(row)
 
                     mInfDepths.Add(row.Item(1))
@@ -774,7 +1295,6 @@ Public MustInherit Class OperationsAnalysis
             End If
 
             ' Interpolate Analysis performance parameters
-            Dim D1, D2, D3 As Double
             D1 = P1.SrfrResults.Length
             D2 = P2.SrfrResults.Length
             D3 = P3.SrfrResults.Length
@@ -794,6 +1314,7 @@ Public MustInherit Class OperationsAnalysis
 
                 point.SrfrResults.Width = D1 * W1 + D2 * W2 + D3 * W3
                 mWidth = point.SrfrResults.Width
+                mFurrowsPerSet = mWidth / mSystemGeometry.FurrowSpacing.Value
             End If
 
             If Not (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
@@ -908,245 +1429,6 @@ Public MustInherit Class OperationsAnalysis
         End Try
 
         Return point
-    End Function
-
-#End Region
-
-#Region " Build Operations Grid - Volume Balance "
-
-    '*********************************************************************************************************
-    ' Function BuildOperationsGridSrfrSim() - Build Operations Grid using SRFR Simulations
-    '
-    ' The Contour Grid is used as the guide for calculation the contour graphs; it must be
-    ' computed before computing the contours.
-    '*********************************************************************************************************
-    Protected Function BuildOperationsGridSrfrSim() As Boolean
-
-        Dim point As ContourPoint
-        Dim rdx, cdx As Integer
-
-        Me.StatusMessage &= " - " & mDictionary.tBuildingContourGrid.Translated
-
-        ' Clear previous Operations Results
-        If (mContourGrid IsNot Nothing) Then
-            mContourGrid.ClearContours()
-            mContourGrid = Nothing
-        End If
-
-        If Not (mLineList Is Nothing) Then
-            mLineList.Clear()
-            mLineList = Nothing
-        End If
-
-        ' Which operations function to call is cutoff dependent
-        Dim cutoffMethod As CutoffMethods = CType(mInflowManagement.CutoffMethod.Value, CutoffMethods)
-
-        If ((mUnit.CrossSection = CrossSections.Furrow) _
-        And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
-            '
-            ' Contour is Cutoff (X) vs. Width (Y)
-            '
-            mContourGrid = New ContourGrid(mNumWidths, mNumCutoffTimes)
-
-            Select Case (cutoffMethod)
-                Case CutoffMethods.DistanceBased
-                    mContourGrid.ColName = mDictionary.tRelativeCutoffDistTime.Translated   ' X-axis (cols) is cutoff distance
-                Case Else ' Assume CutoffMethods.TimeBased
-                    mContourGrid.ColName = mDictionary.tCutoffTime.Translated               ' X-axis (cols) is cutoff time
-            End Select
-
-            mContourGrid.RowName = mDictionary.tWidth.Translated                            ' Y-axis (rows) is width
-            '
-            ' Calculate & load the contour points
-            '
-            For rdx = 0 To mNumWidths - 1
-                mWidth = Widths(rdx)
-                mCutbackRate = mInflowRate * mCutbackRateRatio
-
-                Select Case (cutoffMethod)
-                    Case CutoffMethods.DistanceBased
-                        For cdx = 0 To mNumCutoffRatios - 1
-                            mXR = CutoffRatios(cdx)
-
-                            point = Me.OperationsPointVolBal(mInflowRate, mWidth, mXR)
-
-                            mContourGrid.Point(rdx, cdx) = point
-                        Next
-
-                    Case Else ' Assume CutoffMethods.TimeBased
-                        For cdx = 0 To mNumCutoffTimes - 1
-                            mTco = CutoffTimes(cdx)
-
-                            If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-                                point = Me.OperationsPointVolBal(mInflowRate, mWidth, mTco)
-                            Else
-                                point = Me.OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate)
-                            End If
-
-                            mContourGrid.Point(rdx, cdx) = point
-                        Next
-                End Select
-
-                Me.RunProgress = CInt((100 * (rdx + 1)) / mNumInflowRates)
-            Next
-
-        Else ' Width Given
-            '
-            ' Contour is Cutoff (X) vs. Inflow Rate (Y)
-            '
-            mContourGrid = New ContourGrid(mNumInflowRates, mNumCutoffTimes)
-
-            Select Case (cutoffMethod)
-                Case CutoffMethods.DistanceBased
-                    mContourGrid.ColName = mDictionary.tRelativeCutoffDistTime.Translated   ' X-axis (cols) is cutoff distance
-                Case Else ' Assume CutoffMethods.TimeBased
-                    mContourGrid.ColName = mDictionary.tCutoffTime.Translated               ' X-axis (cols) is cutoff time
-            End Select
-
-            mContourGrid.RowName = mDictionary.tInflowRate.Translated                       ' Y-axis (rows) is inflow rate
-            '
-            ' Calculate & load the contour points
-            '
-            For rdx = 0 To mNumInflowRates - 1
-                mInflowRate = InflowRates(rdx)
-                mCutbackRate = mInflowRate * mCutbackRateRatio
-
-                Select Case (cutoffMethod)
-                    Case CutoffMethods.DistanceBased
-                        For cdx = 0 To mNumCutoffRatios - 1
-                            mXR = CutoffRatios(cdx)
-
-                            point = Me.OperationsPointVolBal(mInflowRate, mWidth, mXR)
-
-                            mContourGrid.Point(rdx, cdx) = point
-                        Next
-
-                    Case Else ' Assume CutoffMethods.TimeBased
-                        For cdx = 0 To mNumCutoffTimes - 1
-                            mTco = CutoffTimes(cdx)
-
-                            If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-                                point = Me.OperationsPointVolBal(mInflowRate, mWidth, mTco)
-                            Else
-                                point = Me.OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate)
-                            End If
-
-                            mContourGrid.Point(rdx, cdx) = point
-                        Next
-                End Select
-
-                Me.RunProgress = CInt((100 * (rdx + 1)) / mNumInflowRates)
-            Next
-
-            mContourGrid.ValueName(ZIndex) = sWidth ' Z(0) is Width
-        End If
-
-        ' Define the Z-parameters to be calculated for each contour point
-        mContourGrid.ValueName(AeIndex) = sApplicationEfficiency
-        mContourGrid.ValueName(DuIndex) = sMinimumDistributionUniformity
-        mContourGrid.ValueName(AdIndex) = sMinimumAdequacy
-        mContourGrid.ValueName(RoIndex) = sRunoff
-        mContourGrid.ValueName(DpIndex) = sDeepPercolation
-        mContourGrid.ValueName(DappIndex) = sAppliedDepth
-
-        Select Case (mDepthCriterion)
-            Case InfiltratedDepthCriteria.LowQuarterDepth
-                mContourGrid.ValueName(DLfIndex) = sLowQuarterDepth
-            Case Else ' Assume InfiltratedDepthCriteria.MinimumDepth
-                mContourGrid.ValueName(DLfIndex) = sMinimumDepth
-        End Select
-
-        mContourGrid.ValueName(TxaIndex) = sMaxAdvanceTime
-
-        Select Case (cutoffMethod)
-            Case CutoffMethods.DistanceBased
-                mContourGrid.ValueName(TcoIndex) = sCutoffTime
-            Case Else ' Assume CutoffMethods.TimeBased
-                mContourGrid.ValueName(TcoIndex) = sCutoffRatio
-        End Select
-
-        If Not (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-            mContourGrid.ValueName(RcoIndex) = sCutbackRatio
-        End If
-
-        mContourGrid.ValueName(CostIndex) = sCost
-        '
-        ' Build contour cells from contour points
-        '
-        Dim rowBound As Integer = mContourGrid.PointArray.GetUpperBound(0)
-        Dim colBound As Integer = mContourGrid.PointArray.GetUpperBound(1)
-
-        For rdx = 0 To rowBound - 1
-            For cdx = 0 To colBound - 1
-                ' Get corner points
-                Dim bl As ContourPoint = mContourGrid.Point(rdx, cdx)            ' Bottom-left
-                Dim br As ContourPoint = mContourGrid.Point(rdx, cdx + 1)        ' Bottom-right
-                Dim tl As ContourPoint = mContourGrid.Point(rdx + 1, cdx)        ' Top-left
-                Dim tr As ContourPoint = mContourGrid.Point(rdx + 1, cdx + 1)    ' Top-right
-
-                mTco = (bl.X.Value + br.X.Value) / 2                ' Cutoff/cutback Times
-
-                If ((mUnit.CrossSection = CrossSections.Furrow) _
-                And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
-                    mWidth = (bl.Y.Value + tl.Y.Value) / 2          ' Furrow Set Width
-                Else
-                    mInflowRate = (bl.Y.Value + tl.Y.Value) / 2     ' Inflow Rate
-                    mCutbackRate = mInflowRate * mCutbackRateRatio
-                End If
-
-                Dim blz As SingleParameter = DirectCast(bl.Z(ZIndex), SingleParameter)
-
-                ' Compute center point
-                If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-                    point = Me.OperationsPointVolBal(mInflowRate, mWidth, mTco)
-                Else
-                    mCutbackRate = mInflowRate * mCutbackRateRatio
-                    point = Me.OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate)
-                End If
-
-                ' Create the cell
-                Dim cell As PrecisionContourCell = New PrecisionContourCell(Me, rdx, cdx, tl, tr, bl, br, point)
-
-                ' Set edge flags for cell
-                Dim edgeFlags As Integer = ContourCell.Edge.NoEdge
-
-                If (rdx = 0) Then
-                    edgeFlags += ContourCell.Edge.Bottom
-                ElseIf (rdx = rowBound - 1) Then
-                    edgeFlags += ContourCell.Edge.Top
-                End If
-
-                If (cdx = 0) Then
-                    edgeFlags += ContourCell.Edge.Left
-                ElseIf (cdx = colBound - 1) Then
-                    edgeFlags += ContourCell.Edge.Right
-                End If
-
-                cell.CellEdge = edgeFlags
-
-                ' Build the cell's Error Contour as a precise contour
-                cell.Precision = Globals.ContourPrecision.Precise
-                cell.BuildLimitContour()
-                If (WinSRFR.UserPreferences.CalculatePrecisionContours = True) Then
-                    cell.Precision = Globals.ContourPrecision.Precise
-                Else
-                    cell.Precision = Globals.ContourPrecision.Standard
-                End If
-
-                mContourGrid.Cell(rdx, cdx) = cell
-            Next
-
-            Me.RunProgress = CInt((100 * (rdx + 1)) / rowBound)
-        Next
-        '
-        ' Scale contour axes based on grid points
-        '
-        Me.ScaleDapp()
-        Me.ScaleDlf()
-        Me.ScaleTco()
-        Me.ScaleTxa()
-        Me.ScaleCost()
-
     End Function
 
 #End Region
@@ -1438,13 +1720,43 @@ Public MustInherit Class OperationsAnalysis
     ' Sub SrfrResultsToContourPoint() - move results from SRFR Simulation into Contour Point
     '
     ' Input(s):     SrfrResults     - Results from SRFR Simulation run
-    '               Point           - Operations Point to refine
+    '               ContourPoint    - Operations Point to refine
     '*********************************************************************************************************
     Public Sub SrfrResultsToContourPoint(ByVal SrfrResults As Srfr.Results,
-                                         ByVal Point As SrfrContourPoint)
+                                         ByVal ContourPoint As SrfrContourPoint)
+
+        ' Move errors & warnings, if any, to Contour Point
+        If (S0 < MaximumLevelSlope) Then
+            ' Limit Line applies only to Level Furrows
+            If (SrfrResults.XR < DesignLimitLine) Then
+                AddExecutionWarning(WarningFlags.LimitLineExceeded,
+                                    mDictionary.tLimitLineExceededID.Translated,
+                                    mDictionary.tLimitLineExceededDetail.Translated)
+                ContourPoint.HasError = True
+                ContourPoint.ErrMsg = mDictionary.tLimitLineExceededID.Translated
+            End If
+        End If
+
+        If ((Double.IsNaN(SrfrResults.TL)) Or (SrfrResults.TL <= 0.0)) Then
+            AddExecutionWarning(WarningFlags.AdvanceRecessionInadequate,
+                                mDictionary.tAdvanceRecessionInadequateID.Translated,
+                                mDictionary.tAdvanceRecessionInadequateDetail.Translated)
+            ContourPoint.HasError = True
+            ContourPoint.ErrMsg = mDictionary.tAdvanceRecessionInadequateID.Translated
+        End If
+
+        If (OneWeek <= SrfrResults.Ttl) Then
+            AddExecutionWarning(WarningFlags.TimeTooLong,
+                                mDictionary.tTimeTooLongErrorID.Translated,
+                                mDictionary.tTimeTooLongErrorDetail.Translated)
+            ContourPoint.HasWarning = True
+            ContourPoint.WarnMsg = mDictionary.tTimeTooLongErrorID.Translated
+        End If
+
+        ' NOTE - order of Z parameters must match calling function's order
 
         ' Z(0) is value not defined by X & Y contour axes
-        Dim sParam As SingleParameter = Point.Z(0)
+        Dim sParam As SingleParameter = ContourPoint.Z(0)
 
         If (mUnit.CrossSection = CrossSections.Furrow) Then
             If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
@@ -1456,52 +1768,52 @@ Public MustInherit Class OperationsAnalysis
             sParam.Value = SrfrResults.Width            ' Border Width
         End If
 
-        sParam = Point.Z(1)
+        sParam = ContourPoint.Z(1)
         sParam.Value = SrfrResults.AE                   ' Application Efficiency
 
         If (mDepthCriterion = InfiltratedDepthCriteria.MinimumDepth) Then
-            sParam = Point.Z(2)
+            sParam = ContourPoint.Z(2)
             sParam.Value = SrfrResults.DUmin            ' Minimum Distribution Uniformity
 
-            sParam = Point.Z(3)
+            sParam = ContourPoint.Z(3)
             sParam.Value = SrfrResults.ADmin            ' Minimum Adequacy
         Else ' Low-Quarter
-            sParam = Point.Z(2)
+            sParam = ContourPoint.Z(2)
             sParam.Value = SrfrResults.DUlq             ' Low-Quarter Distribution Uniformity
 
-            sParam = Point.Z(3)
+            sParam = ContourPoint.Z(3)
             sParam.Value = SrfrResults.ADlq             ' Low-Quarter Adequacy
         End If
 
-        sParam = Point.Z(4)
+        sParam = ContourPoint.Z(4)
         sParam.Value = SrfrResults.ROpct                ' Runoff
 
-        sParam = Point.Z(5)
+        sParam = ContourPoint.Z(5)
         sParam.Value = SrfrResults.DPpct                ' Deep percolation
 
-        sParam = Point.Z(6)
+        sParam = ContourPoint.Z(6)
         sParam.Value = SrfrResults.Dapp                 ' Applied Depth
 
         If (mDepthCriterion = InfiltratedDepthCriteria.MinimumDepth) Then
-            sParam = Point.Z(7)
+            sParam = ContourPoint.Z(7)
             sParam.Value = SrfrResults.Dmin             ' Minimum Depth
         Else
-            sParam = Point.Z(7)
+            sParam = ContourPoint.Z(7)
             sParam.Value = SrfrResults.Dlq              ' Low-Quarter Depth
         End If
 
-        sParam = Point.Z(8)
+        sParam = ContourPoint.Z(8)
         sParam.Value = SrfrResults.Txa                  ' Maximum Advance time
 
-        sParam = Point.Z(9)
+        sParam = ContourPoint.Z(9)
         sParam.Value = SrfrResults.XR                   ' Relative cutoff
 
         ' 10 & 11 are fillers
 
-        sParam = Point.Z(12)
+        sParam = ContourPoint.Z(12)
         sParam.Value = SrfrResults.WaterCostPerHectare  ' Cost
 
-        Point.SrfrResults = SrfrResults.Clone ' structure AND data
+        ContourPoint.SrfrResults = SrfrResults.Clone ' structure AND data
 
     End Sub
 
@@ -1525,6 +1837,7 @@ Public MustInherit Class OperationsAnalysis
         Select Case (mBorderCriteria.OperationsOption.Value)
             Case OperationsOptions.InflowRateGiven
                 mWidth = y
+                mFurrowsPerSet = mWidth / mSystemGeometry.FurrowSpacing.Value
             Case Else ' Assume OperationsOptions.WidthGiven
                 mInflowRate = y
         End Select
@@ -1538,7 +1851,7 @@ Public MustInherit Class OperationsAnalysis
                 If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
                     point = OperationsPointVolBal(mInflowRate, mWidth, mXR, numDistances)
                 Else ' SRFR Simulation
-                    point = OperationsPointInterpolate(x, y)
+                    point = OperationsPointInterpolate()
                 End If
             Case Else ' Assume CutoffMethods.TimeBased
                 mTco = x
@@ -1547,7 +1860,7 @@ Public MustInherit Class OperationsAnalysis
                     If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
                         point = OperationsPointVolBal(mInflowRate, mWidth, mTco, numDistances)
                     Else ' SRFR Simulation
-                        point = OperationsPointInterpolate(x, y)
+                        point = OperationsPointInterpolate()
                     End If
                 Else
                     mCutbackRateRatio = mInflowManagement.CutbackRateRatio.Value
@@ -1555,7 +1868,7 @@ Public MustInherit Class OperationsAnalysis
                     If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
                         point = OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate, numDistances)
                     Else ' SRFR Simulation
-                        point = OperationsPointInterpolate(x, y)
+                        point = OperationsPointInterpolate()
                     End If
                 End If
         End Select

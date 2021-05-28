@@ -36,6 +36,7 @@ Public Module Globals
         DesignOperations = 1536     ' 0110 0000 0000
         AllButSimulation = 1792     ' 0111 0000 0000
         EventSimulation = 2304      ' 1001 0000 0000
+        AllButDesign = 3328         ' 1101 0000 0000
         AllButEvent = 3584          ' 1110 0000 0000
         AllWorlds = 3840            ' 1111 0000 0000
     End Enum
@@ -986,7 +987,7 @@ Public Module Globals
     '                                Standard  Advanced  Research    Event     Design   Operations  Simulation
     '   Wetted Perimeter Method
     '   --------------------------
-    '   Local Wetted Perimeter          -         X         X          X         -          -           X
+    '   Local Wetted Perimeter          -         X         X          X         -          X           X
     '   Upstream Wetted Perimeter       X         X         X          -         -          -           -
     '   Upstream WP at Normal Depth     X         X         X          -         -          -           -
     '   Furrow Spacing (No WP Effect)   X         X         X          X         X          X           X
@@ -996,7 +997,7 @@ Public Module Globals
     ' Note - flags are set when Infiltration Function CANNOT be used
     '
     Public WettedPerimeterMethodSelections() As Selection =
-        {New Selection(sLocalWettedPerimeter, SelFlags.Standard Or SelFlags.DesignOperations),
+        {New Selection(sLocalWettedPerimeter, SelFlags.Standard Or SelFlags.PhysicalDesign),
          New Selection(sUpstreamWettedPerimeter, SelFlags.AllWorlds),
          New Selection(sUpstreamWpAtNormalDepth, SelFlags.AllWorlds),
          New Selection(sFurrowSpacingNoWpEffect, 0),
@@ -1067,11 +1068,11 @@ Public Module Globals
     '   NRCS Intake Family              -           -      -            -         All          -          
     '   Time-Rated Intake Family        -           -      -            -          -           -    
     '   Kostiakov Formula               -           -      -           All         -         All    
-    '   Modified Kostiakov Formula     ES           -      -           All         -         All    
+    '   Modified Kostiakov Formula     EOS          -      -           All         -         All    
     '   Branch Function                 -           -      -           ES          -          ES    
     '   Green-Ampt                      -           -      -            -          -           -    
     '   HYDRUS-1D                       -           -      -            -          -           -    
-    '   Warrick / Green-Ampt           ES           -      -            -          -           -    
+    '   Warrick / Green-Ampt           EOS          -      -            -          -           -    
     '
     '   Valid World Key:    E - Event Analysis, D - Design, O - Operations, S - Simulation
     '
@@ -1092,11 +1093,11 @@ Public Module Globals
          New SelFlags() {0, 0, 0, 0, SelFlags.AllWorlds, 0},
          New SelFlags() {0, 0, 0, 0, 0, 0},
          New SelFlags() {0, 0, 0, SelFlags.AllWorlds, 0, SelFlags.AllWorlds},
-         New SelFlags() {SelFlags.EventSimulation, 0, 0, SelFlags.AllWorlds, 0, SelFlags.AllWorlds},
+         New SelFlags() {SelFlags.AllButDesign, 0, 0, SelFlags.AllWorlds, 0, SelFlags.AllWorlds},
          New SelFlags() {0, 0, 0, SelFlags.EventSimulation, 0, SelFlags.EventSimulation},
          New SelFlags() {0, 0, 0, 0, 0, 0},
          New SelFlags() {0, 0, 0, 0, 0, 0},
-         New SelFlags() {SelFlags.EventSimulation, 0, 0, 0, 0, 0}}
+         New SelFlags() {SelFlags.AllButDesign, 0, 0, 0, 0, 0}}
 
     '*********************************************************************************************************
     ' Minimum / Maximum / Default values in SI units (meters / seconds)

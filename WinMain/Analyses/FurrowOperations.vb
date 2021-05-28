@@ -62,6 +62,7 @@ Public Class FurrowOperations
             '
             SrfrAPI.CrossSection.Length = mLength
             SrfrAPI.CrossSection.BorderWidth = mWidth
+            SrfrAPI.CrossSection.FurrowsPerSet = mFurrowsPerSet
             '
             ' Inflow Management adjustments
             '
@@ -541,6 +542,13 @@ Public Class FurrowOperations
 
         mOperationsMethod = Method
 
+        XTolerance = mCutoffTimeTolerance
+        If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
+            YTolerance = mWidthTolerance
+        Else ' WidthGiven
+            YTolerance = mInflowRateTolerance
+        End If
+
         If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
             '
             ' Width is calculated from the Furrows/Set range
@@ -568,14 +576,21 @@ Public Class FurrowOperations
         If (Method = OperationsMethod.VolumeBalance) Then
             Me.BuildOperationsGridVolBal()
         Else
-            If (mContourGrid IsNot Nothing) Then ' Volume Balance grid has been built; refine it
-                mWorldWindow.RemoveSrfrStatusHandler()
-                Me.RefineOperationsGridSrfrSim()
-                mWorldWindow.AddSrfrStatusHandler()
-            Else ' There is no Contour Grid; build it
+            If (mSoilCropProperties.WettedPerimeterMethod.Value = WettedPerimeterMethods.LocalWettedPerimeter) Then
+                ' Local-Wetted perimeter based infiltration methods must build contours not refine them
                 mWorldWindow.RemoveSrfrStatusHandler()
                 Me.BuildOperationsGridSrfrSim()
                 mWorldWindow.AddSrfrStatusHandler()
+            Else ' Kostiakov derived infiltration
+                If (mContourGrid IsNot Nothing) Then ' Volume Balance grid has been built; refine it
+                    mWorldWindow.RemoveSrfrStatusHandler()
+                    Me.RefineOperationsGridSrfrSim()
+                    mWorldWindow.AddSrfrStatusHandler()
+                Else ' There is no Contour Grid; build it
+                    mWorldWindow.RemoveSrfrStatusHandler()
+                    Me.BuildOperationsGridSrfrSim()
+                    mWorldWindow.AddSrfrStatusHandler()
+                End If
             End If
         End If
         '
@@ -608,13 +623,6 @@ Public Class FurrowOperations
         ' Build contour polygons using contour cells as guides
         '
         mContourGrid.ClearContours()
-
-        XTolerance = mCutoffTimeTolerance
-        If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
-            YTolerance = mWidthTolerance
-        Else ' WidthGiven
-            YTolerance = mInflowRateTolerance
-        End If
 
         Dim minorContours As Boolean = WinSRFR.UserPreferences.DisplayMinorContours
 
@@ -1405,7 +1413,6 @@ Public Class FurrowOperations
         '**************************************************************************************
         ComputePerformanceParameters(furrowLength, furrowSpacing)
 
-        Dim parameter As SingleParameter
         Dim contourPoint As ContourPoint = New ContourPoint
 
         ' Move errors & warnings, if any, to Contour Point
@@ -1446,6 +1453,8 @@ Public Class FurrowOperations
         End If
 
         ' NOTE - order of Z parameters must match calling function's order
+        Dim parameter As SingleParameter
+
         contourPoint.X = New SingleParameter(CSng(mTco), Units.Seconds)
 
         If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
@@ -1522,8 +1531,9 @@ Public Class FurrowOperations
     Public Overrides Sub CalculateSolution()
 
         ' Furrow Operations is per furrow; convert field rates to furrow rates
-        mFurrowFlowRate = mInflowManagement.InflowRate.Value / mSystemGeometry.FurrowsPerSet.Value
-        mFurrowCutbackRate = mFurrowFlowRate * mInflowManagement.CutbackRateRatio.Value
+        mWidth *= mFurrowsPerSet
+        mFurrowFlowRate = mInflowManagement.InflowRate.Value / mFurrowsPerSet
+        mFurrowCutbackRate = mInflowManagement.CutbackRateRatio.Value * mFurrowFlowRate
 
         ' Calculate the Solution's Operations Point
         MyBase.CalculateSolution()
@@ -1586,14 +1596,16 @@ Public Class FurrowOperations
     Public Overrides Sub CheckContourCriteriaErrors()
         MyBase.CheckContourCriteriaErrors()
 
-        ' Tuning Factors must not be default values
-        If ((mBorderCriteria.Phi0Furrows.Source = ValueSources.Defaulted) _
-         Or (mBorderCriteria.Phi1Furrows.Source = ValueSources.Defaulted) _
-         Or (mBorderCriteria.Phi2Furrows.Source = ValueSources.Defaulted) _
-         Or (mBorderCriteria.Phi3Furrows.Source = ValueSources.Defaulted)) Then
-            AddSetupWarning(WarningFlags.DefaultTuningFactors, _
-                       mDictionary.tDefaultTuningFactorsID.Translated, _
+        If (mBorderCriteria.OperationsMethod.Value = OperationsMethod.VolumeBalance) Then
+            ' Tuning Factors must not be default values
+            If ((mBorderCriteria.Phi0Furrows.Source = ValueSources.Defaulted) _
+             Or (mBorderCriteria.Phi1Furrows.Source = ValueSources.Defaulted) _
+             Or (mBorderCriteria.Phi2Furrows.Source = ValueSources.Defaulted) _
+             Or (mBorderCriteria.Phi3Furrows.Source = ValueSources.Defaulted)) Then
+                AddSetupWarning(WarningFlags.DefaultTuningFactors,
+                       mDictionary.tDefaultTuningFactorsID.Translated,
                        mDictionary.tDefaultTuningFactorsDetails.Translated)
+            End If
         End If
 
     End Sub

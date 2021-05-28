@@ -1340,6 +1340,9 @@ Public Class BasinBorderOperations
         Me.StartRun("Basin / Border Operations", True)
 
         mOperationsMethod = Method
+
+        XTolerance = mCutoffTimeTolerance
+        YTolerance = mInflowRateTolerance
         '
         ' Build operations contour grid
         '
@@ -1347,14 +1350,21 @@ Public Class BasinBorderOperations
         If (Method = OperationsMethod.VolumeBalance) Then
             Me.BuildOperationsGridVolBal()
         Else
-            If (mContourGrid IsNot Nothing) Then ' Volume Balance grid has been built; refine it
-                mWorldWindow.RemoveSrfrStatusHandler()
-                Me.RefineOperationsGridSrfrSim()
-                mWorldWindow.AddSrfrStatusHandler()
-            Else ' There is no Contour Grid; build it
+            If (mSoilCropProperties.InfiltrationFunction.Value = InfiltrationFunctions.GreenAmpt) Then
+                ' Green-Ampt must build contours not refine them
                 mWorldWindow.RemoveSrfrStatusHandler()
                 Me.BuildOperationsGridSrfrSim()
                 mWorldWindow.AddSrfrStatusHandler()
+            Else ' Kostiakov derived infiltration
+                If (mContourGrid IsNot Nothing) Then ' Volume Balance grid has been built; refine it
+                    mWorldWindow.RemoveSrfrStatusHandler()
+                    Me.RefineOperationsGridSrfrSim()
+                    mWorldWindow.AddSrfrStatusHandler()
+                Else ' There is no Contour Grid; build it
+                    mWorldWindow.RemoveSrfrStatusHandler()
+                    Me.BuildOperationsGridSrfrSim()
+                    mWorldWindow.AddSrfrStatusHandler()
+                End If
             End If
         End If
         '
@@ -1397,9 +1407,6 @@ Public Class BasinBorderOperations
         ' Build contour polygons using contour cells as guides
         '
         mContourGrid.ClearContours()
-
-        XTolerance = mCutoffTimeTolerance
-        YTolerance = mInflowRateTolerance
 
         Dim minorContours As Boolean = WinSRFR.UserPreferences.DisplayMinorContours
 
@@ -2626,14 +2633,16 @@ Public Class BasinBorderOperations
     Public Overrides Sub CheckContourCriteriaErrors()
         MyBase.CheckContourCriteriaErrors()
 
-        ' Tuning Factors must not be default values
-        If ((mBorderCriteria.Phi0Borders.Source = ValueSources.Defaulted) _
-         Or (mBorderCriteria.Phi1Borders.Source = ValueSources.Defaulted) _
-         Or (mBorderCriteria.Phi2Borders.Source = ValueSources.Defaulted) _
-         Or (mBorderCriteria.Phi3Borders.Source = ValueSources.Defaulted)) Then
-            AddSetupWarning(WarningFlags.DefaultTuningFactors, _
-                       mDictionary.tDefaultTuningFactorsID.Translated, _
+        If (mBorderCriteria.OperationsMethod.Value = OperationsMethod.VolumeBalance) Then
+            ' Tuning Factors must not be default values
+            If ((mBorderCriteria.Phi0Borders.Source = ValueSources.Defaulted) _
+             Or (mBorderCriteria.Phi1Borders.Source = ValueSources.Defaulted) _
+             Or (mBorderCriteria.Phi2Borders.Source = ValueSources.Defaulted) _
+             Or (mBorderCriteria.Phi3Borders.Source = ValueSources.Defaulted)) Then
+                AddSetupWarning(WarningFlags.DefaultTuningFactors,
+                       mDictionary.tDefaultTuningFactorsID.Translated,
                        mDictionary.tDefaultTuningFactorsDetails.Translated)
+            End If
         End If
 
     End Sub

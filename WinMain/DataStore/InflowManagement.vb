@@ -636,7 +636,8 @@ Public Class InflowManagement
                             Return False
                         End If
                     Else ' Furrow
-                        If ((_soilCrop.WettedPerimeterMethod.Value = WettedPerimeterMethods.NrcsEmpiricalFunction) _
+                        If ((_soilCrop.WettedPerimeterMethod.Value = WettedPerimeterMethods.LocalWettedPerimeter) _
+                         Or (_soilCrop.WettedPerimeterMethod.Value = WettedPerimeterMethods.NrcsEmpiricalFunction) _
                          Or (_soilCrop.WettedPerimeterMethod.Value = WettedPerimeterMethods.RepresentativeUpstreamWettedPerimeter)) Then
                             If Not (_sel = "No Cutback") Then
                                 Return False
@@ -5291,10 +5292,12 @@ Public Class InflowManagement
                     Exit Function
                 End If
 
-                Dim Tcb As Double = Me.CutbackTimeRatio.Value
-                If (Tcb <= 0.0) Then
-                    ValidateStandardHydrograph = InflowErrors.CutbackInvalid
-                    Exit Function
+                If (Me.CutbackTimeRatio.Source <> ValueSources.Calculated) Then
+                    Dim Tcb As Double = Me.CutbackTimeRatio.Value
+                    If (Tcb <= 0.0) Then
+                        ValidateStandardHydrograph = InflowErrors.CutbackInvalid
+                        Exit Function
+                    End If
                 End If
             Case CutbackMethods.DistanceBased
                 Dim Rcb As Double = Me.CutbackRateRatio.Value
