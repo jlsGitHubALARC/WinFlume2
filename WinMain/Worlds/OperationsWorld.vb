@@ -592,15 +592,15 @@ Public Class OperationsWorld
     ' Run Operations Analysis for Basin, Border or Furrow
     '
     Public Overrides Sub Run()
-        Me.RunOperationsAnalysis(OperationsMethod.VolumeBalance)
+        Me.RunOperationsAnalysis()
     End Sub
 
-    Public Sub RunOperationsAnalysis(ByVal Method As OperationsMethod)
+    Public Sub RunOperationsAnalysis()
         Me.StartRun() ' Common World code to Start a Run
 
         Try
             ' Run operations function
-            CurrentAnalysis.RunOperations(Method)
+            CurrentAnalysis.RunOperations()
             CurrentAnalysis.CheckOverflow()
         Catch ex As Exception
             Dim title As String = ex.Message
@@ -929,7 +929,7 @@ Public Class OperationsWorld
 
     Private Sub RunOperationsAnalysisItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles RunOperationsItem.Click
-        RunOperationsAnalysis(OperationsMethod.VolumeBalance)
+        RunOperationsAnalysis()
     End Sub
 
     Private Sub ChooseSolutionItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _

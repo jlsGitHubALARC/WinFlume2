@@ -746,7 +746,7 @@ Public MustInherit Class Analysis
         End Get
     End Property
 
-    Protected mFurrowsPerSet As Double
+    Protected mFurrowsPerSet As Double = 1
     Public ReadOnly Property FurrowsPerSet As Double
         Get
             Return mFurrowsPerSet

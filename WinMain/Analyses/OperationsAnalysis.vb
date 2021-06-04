@@ -50,7 +50,7 @@ Public MustInherit Class OperationsAnalysis
 
 #Region " Operations "
 
-    Protected mOperationsMethod As OperationsMethod
+    Protected mOperationsMethod As OperationsMethods
 
     Protected mRunContourSimulations As RunContourSimulations
 
@@ -230,7 +230,7 @@ Public MustInherit Class OperationsAnalysis
     '******************************************************************************************
     ' Run Operations Analysis
     '******************************************************************************************
-    Public MustOverride Sub RunOperations(ByVal Method As OperationsMethod)
+    Public MustOverride Sub RunOperations()
 
     '******************************************************************************************
     ' Set/Clear SRFR.Infiltration reference to optimize calls to SrfrAPI.Infiltration...
@@ -825,6 +825,9 @@ Public MustInherit Class OperationsAnalysis
 
             Next cdx
         Next rdx
+
+        ' Hide BG thread window
+        mRunContourSimulations.Hide()
         '
         ' Scale contour axes based on grid points
         '
@@ -1848,7 +1851,7 @@ Public MustInherit Class OperationsAnalysis
             Case CutoffMethods.DistanceBased
                 mXR = x
 
-                If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
+                If (mOperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
                     point = OperationsPointVolBal(mInflowRate, mWidth, mXR, numDistances)
                 Else ' SRFR Simulation
                     point = OperationsPointInterpolate()
@@ -1857,7 +1860,7 @@ Public MustInherit Class OperationsAnalysis
                 mTco = x
 
                 If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-                    If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
+                    If (mOperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
                         point = OperationsPointVolBal(mInflowRate, mWidth, mTco, numDistances)
                     Else ' SRFR Simulation
                         point = OperationsPointInterpolate()
@@ -1865,7 +1868,7 @@ Public MustInherit Class OperationsAnalysis
                 Else
                     mCutbackRateRatio = mInflowManagement.CutbackRateRatio.Value
                     mCutbackRate = mInflowRate * mCutbackRateRatio
-                    If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
+                    If (mOperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
                         point = OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate, numDistances)
                     Else ' SRFR Simulation
                         point = OperationsPointInterpolate()
@@ -1885,7 +1888,7 @@ Public MustInherit Class OperationsAnalysis
 
         ' Calculate Operations Point
         Try
-            If (mOperationsMethod = OperationsMethod.VolumeBalance) Then ' Volume Balance calculated
+            If (mOperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
                 mSolutionPoint = Me.OperationsPointVolBal()
             Else ' SRFR Simulation
                 mSolutionPoint = Me.OperationsPointInterpolate()
@@ -1928,7 +1931,7 @@ Public MustInherit Class OperationsAnalysis
     ' Sub AutoRun()                 - runs Operation Analysis via automation interface as opposed to the UI
     '*********************************************************************************************************
     Public Overrides Sub AutoRun()
-        RunOperations(OperationsMethod.VolumeBalance)
+        RunOperations()
     End Sub
 
 #End Region

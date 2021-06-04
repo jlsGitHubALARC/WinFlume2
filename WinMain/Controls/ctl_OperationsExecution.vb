@@ -103,13 +103,13 @@ Public Class ctl_OperationsExecution
     Friend WithEvents rLabel As System.Windows.Forms.Label
     Friend WithEvents rControl As DataStore.ctl_DoubleParameter
     Friend WithEvents ResetPointButton As DataStore.ctl_Button
-    Friend WithEvents SrfrSimulations As ctl_RadioButton
-    Friend WithEvents VolumeBalanceCalculations As ctl_RadioButton
+    Friend WithEvents SrfrSimulationsButton As ctl_RadioButton
+    Friend WithEvents VolumeBalanceButton As ctl_RadioButton
     Friend WithEvents CutoffDistanceToLabel As DataStore.ctl_Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.RunControlBox = New DataStore.ctl_GroupBox()
-        Me.SrfrSimulations = New DataStore.ctl_RadioButton()
-        Me.VolumeBalanceCalculations = New DataStore.ctl_RadioButton()
+        Me.SrfrSimulationsButton = New DataStore.ctl_RadioButton()
+        Me.VolumeBalanceButton = New DataStore.ctl_RadioButton()
         Me.SolutionModelBox = New DataStore.ctl_GroupBox()
         Me.EnableDiagnosticsControl = New DataStore.ctl_CheckParameter()
         Me.CellDensityLabel = New DataStore.ctl_Label()
@@ -193,8 +193,8 @@ Public Class ctl_OperationsExecution
         '
         Me.RunControlBox.AccessibleDescription = "Provides the Run Button and Status"
         Me.RunControlBox.AccessibleName = "Run Control"
-        Me.RunControlBox.Controls.Add(Me.SrfrSimulations)
-        Me.RunControlBox.Controls.Add(Me.VolumeBalanceCalculations)
+        Me.RunControlBox.Controls.Add(Me.SrfrSimulationsButton)
+        Me.RunControlBox.Controls.Add(Me.VolumeBalanceButton)
         Me.RunControlBox.Controls.Add(Me.SolutionModelBox)
         Me.RunControlBox.Controls.Add(Me.ExecutionErrorsWarnings)
         Me.RunControlBox.Controls.Add(Me.NoErrorsWarningsLabel)
@@ -208,27 +208,27 @@ Public Class ctl_OperationsExecution
         Me.RunControlBox.TabStop = False
         Me.RunControlBox.Text = "Run Control"
         '
-        'SrfrSimulations
+        'SrfrSimulationsButton
         '
-        Me.SrfrSimulations.AccessibleDescription = "Selects precision contour computation (runs slower)"
-        Me.SrfrSimulations.AccessibleName = "Precision Contours"
-        Me.SrfrSimulations.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SrfrSimulations.Location = New System.Drawing.Point(20, 180)
-        Me.SrfrSimulations.Name = "SrfrSimulations"
-        Me.SrfrSimulations.Size = New System.Drawing.Size(195, 24)
-        Me.SrfrSimulations.TabIndex = 8
-        Me.SrfrSimulations.Text = "&SRFR Simulations"
+        Me.SrfrSimulationsButton.AccessibleDescription = "Selects precision contour computation (runs slower)"
+        Me.SrfrSimulationsButton.AccessibleName = "Precision Contours"
+        Me.SrfrSimulationsButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SrfrSimulationsButton.Location = New System.Drawing.Point(20, 180)
+        Me.SrfrSimulationsButton.Name = "SrfrSimulationsButton"
+        Me.SrfrSimulationsButton.Size = New System.Drawing.Size(195, 24)
+        Me.SrfrSimulationsButton.TabIndex = 8
+        Me.SrfrSimulationsButton.Text = "&SRFR Simulations"
         '
-        'VolumeBalanceCalculations
+        'VolumeBalanceButton
         '
-        Me.VolumeBalanceCalculations.AccessibleDescription = "Selects standard contour computation (faster execution)"
-        Me.VolumeBalanceCalculations.AccessibleName = "Standard Contours"
-        Me.VolumeBalanceCalculations.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.VolumeBalanceCalculations.Location = New System.Drawing.Point(20, 158)
-        Me.VolumeBalanceCalculations.Name = "VolumeBalanceCalculations"
-        Me.VolumeBalanceCalculations.Size = New System.Drawing.Size(195, 24)
-        Me.VolumeBalanceCalculations.TabIndex = 7
-        Me.VolumeBalanceCalculations.Text = "&Volume Balance"
+        Me.VolumeBalanceButton.AccessibleDescription = "Selects standard contour computation (faster execution)"
+        Me.VolumeBalanceButton.AccessibleName = "Standard Contours"
+        Me.VolumeBalanceButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.VolumeBalanceButton.Location = New System.Drawing.Point(20, 158)
+        Me.VolumeBalanceButton.Name = "VolumeBalanceButton"
+        Me.VolumeBalanceButton.Size = New System.Drawing.Size(195, 24)
+        Me.VolumeBalanceButton.TabIndex = 7
+        Me.VolumeBalanceButton.Text = "&Volume Balance"
         '
         'SolutionModelBox
         '
@@ -1175,10 +1175,9 @@ Public Class ctl_OperationsExecution
     Private mDictionary As Dictionary
     Private mMyStore As DataStore.ObjectNode
 
-    Private WithEvents mWinSRFR As WinSRFR
-    Private WithEvents mSystemGeometry As SystemGeometry
-    Private WithEvents mInflowManagement As InflowManagement
-    Private WithEvents mSubsurfaceFlow As SubsurfaceFlow
+    Private mSystemGeometry As SystemGeometry
+    Private mInflowManagement As InflowManagement
+    Private mSoilCropProperties As SoilCropProperties
 
     Private WithEvents mBorderCriteria As BorderCriteria
     Private WithEvents mSrfrCriteria As SrfrCriteria
@@ -1197,11 +1196,10 @@ Public Class ctl_OperationsExecution
         mWorld = mUnit.WorldRef
         mField = mWorld.FieldRef
         mFarm = mField.FarmRef
-        mWinSRFR = mFarm.WinSrfrRef
 
         mSystemGeometry = mUnit.SystemGeometryRef
         mInflowManagement = mUnit.InflowManagementRef
-        mSubsurfaceFlow = mUnit.SubsurfaceFlowRef
+        mSoilCropProperties = mUnit.SoilCropPropertiesRef
 
         mBorderCriteria = mUnit.BorderCriteriaRef
         mSrfrCriteria = mUnit.SrfrCriteriaRef
@@ -1256,8 +1254,8 @@ Public Class ctl_OperationsExecution
             Me.rControl.LinkToModel(mMyStore, mBorderCriteria.PwrAdvRBordersProperty)
         End If
 
-        Me.VolumeBalanceCalculations.LinkToModel(mMyStore, mBorderCriteria.OperationsMethodProperty, OperationsMethod.VolumeBalance)
-        Me.SrfrSimulations.LinkToModel(mMyStore, mBorderCriteria.OperationsMethodProperty, OperationsMethod.SrfrSimulations)
+        Me.VolumeBalanceButton.LinkToModel(mMyStore, mBorderCriteria.OperationsMethodProperty, OperationsMethods.VolumeBalance)
+        Me.SrfrSimulationsButton.LinkToModel(mMyStore, mBorderCriteria.OperationsMethodProperty, OperationsMethods.SrfrSimulations)
 
         ' Update language translation
         UpdateLanguage()
@@ -1305,7 +1303,7 @@ Public Class ctl_OperationsExecution
                 End Select
             End If
 
-            If (mBorderCriteria.OperationsMethod.Value = OperationsMethod.SrfrSimulations) Then
+            If (mBorderCriteria.OperationsMethod.Value = OperationsMethods.SrfrSimulations) Then
                 Me.StandardContoursOption.Hide()
                 Me.PrecisionContoursOption.Hide()
                 Me.TuningFactorsBox.Hide()
@@ -1313,6 +1311,31 @@ Public Class ctl_OperationsExecution
                 Me.StandardContoursOption.Show()
                 Me.PrecisionContoursOption.Show()
                 Me.TuningFactorsBox.Show()
+            End If
+
+            ' Set appropriate label text for Volume Balance & SRFR Simulations radio buttons
+            Me.VolumeBalanceButton.Text = mDictionary.tVolumeBalance.Translated
+            Me.VolumeBalanceButton.Visible = True
+            Me.SrfrSimulationsButton.Text = mDictionary.tSrfrSimulations.Translated
+            Me.SrfrSimulationsButton.Visible = True
+
+            If (mSystemGeometry.CrossSection.Value = CrossSections.Furrow) Then
+                If (mSoilCropProperties.WettedPerimeterMethod.Value = WettedPerimeterMethods.LocalWettedPerimeter) Then
+                    Me.VolumeBalanceButton.Text = mDictionary.tSrfrSimulations.Translated
+                    Me.VolumeBalanceButton.Visible = Me.VolumeBalanceButton.Checked
+                    Me.SrfrSimulationsButton.Text = mDictionary.tSrfrSimulations.Translated
+                    Me.SrfrSimulationsButton.Visible = Me.SrfrSimulationsButton.Checked
+                ElseIf (mInflowManagement.CutbackMethod.Value <> CutbackMethods.NoCutback) Then ' there is Cutback
+                    Me.VolumeBalanceButton.Text = mDictionary.tVolumeBalance.Translated
+                    Me.SrfrSimulationsButton.Text = mDictionary.tVBandSrfrSims.Translated
+                End If
+            Else ' Basin/Border
+                If (mSoilCropProperties.InfiltrationFunction.Value = InfiltrationFunctions.GreenAmpt) Then
+                    Me.VolumeBalanceButton.Text = mDictionary.tSrfrSimulations.Translated
+                    Me.VolumeBalanceButton.Visible = Me.VolumeBalanceButton.Checked
+                    Me.SrfrSimulationsButton.Text = mDictionary.tSrfrSimulations.Translated
+                    Me.SrfrSimulationsButton.Visible = Me.SrfrSimulationsButton.Checked
+                End If
             End If
 
             ' Update SRFR Solution Model & Cell Density
@@ -1740,11 +1763,7 @@ Public Class ctl_OperationsExecution
     Private Sub RunOperationsButton_Click(ByVal sender As System.Object, ByVal e As EventArgs) _
         Handles RunOperationsButton.Click
         Me.Focus()
-        If (mBorderCriteria.OperationsMethod.Value = OperationsMethod.VolumeBalance) Then
-            mOperationsWorld.RunOperationsAnalysis(OperationsMethod.VolumeBalance)
-        Else ' SRFR Simulations
-            mOperationsWorld.RunOperationsAnalysis(OperationsMethod.SrfrSimulations)
-        End If
+        mOperationsWorld.RunOperationsAnalysis()
     End Sub
 
     Private Sub AddContourOverlays_Click(ByVal sender As System.Object, ByVal e As EventArgs) _

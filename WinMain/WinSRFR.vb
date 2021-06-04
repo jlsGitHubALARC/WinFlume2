@@ -4032,6 +4032,8 @@ SellTheFarm:
                             Case InfiltrationFunctions.KostiakovFormula
                             Case InfiltrationFunctions.ModifiedKostiakovFormula
                             Case InfiltrationFunctions.NRCSIntakeFamily
+                            Case InfiltrationFunctions.GreenAmpt
+                            Case InfiltrationFunctions.WarrickGreenAmpt
 
                             Case Else
                                 If ((_world.WorldType.Value = WorldTypes.DesignWorld) _

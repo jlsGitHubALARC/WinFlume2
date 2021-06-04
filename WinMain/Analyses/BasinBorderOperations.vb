@@ -1336,37 +1336,36 @@ Public Class BasinBorderOperations
 
 #Region " Basin / Border Operations "
 
-    Public Overrides Sub RunOperations(ByVal Method As OperationsMethod)
+    Public Overrides Sub RunOperations()
         Me.StartRun("Basin / Border Operations", True)
 
-        mOperationsMethod = Method
+        mOperationsMethod = mBorderCriteria.OperationsMethod.Value
+        mDepthCriterion = mBorderCriteria.InfiltratedDepthCriterion.Value
 
         XTolerance = mCutoffTimeTolerance
         YTolerance = mInflowRateTolerance
         '
         ' Build operations contour grid
         '
-        mDepthCriterion = mBorderCriteria.InfiltratedDepthCriterion.Value
-        If (Method = OperationsMethod.VolumeBalance) Then
-            Me.BuildOperationsGridVolBal()
-        Else
-            If (mSoilCropProperties.InfiltrationFunction.Value = InfiltrationFunctions.GreenAmpt) Then
-                ' Green-Ampt must build contours not refine them
+        Select Case mOperationsMethod
+            Case OperationsMethods.VolumeBalance
+                ' Build contour grid with Volume Balance
+                Me.BuildOperationsGridVolBal()
+            Case OperationsMethods.VBandSrfrSims
+                ' Build contour grid with Volume Balance
+                Me.BuildOperationsGridVolBal()
+                ' Then Refine with SRFR Simulations
+                mWorldWindow.RemoveSrfrStatusHandler()
+                Me.RefineOperationsGridSrfrSim()
+                mWorldWindow.AddSrfrStatusHandler()
+            Case OperationsMethods.SrfrSimulations
+                ' Build contour grid with SRFR Simulations
                 mWorldWindow.RemoveSrfrStatusHandler()
                 Me.BuildOperationsGridSrfrSim()
                 mWorldWindow.AddSrfrStatusHandler()
-            Else ' Kostiakov derived infiltration
-                If (mContourGrid IsNot Nothing) Then ' Volume Balance grid has been built; refine it
-                    mWorldWindow.RemoveSrfrStatusHandler()
-                    Me.RefineOperationsGridSrfrSim()
-                    mWorldWindow.AddSrfrStatusHandler()
-                Else ' There is no Contour Grid; build it
-                    mWorldWindow.RemoveSrfrStatusHandler()
-                    Me.BuildOperationsGridSrfrSim()
-                    mWorldWindow.AddSrfrStatusHandler()
-                End If
-            End If
-        End If
+            Case Else
+                Debug.Assert(False)
+        End Select
         '
         ' Build Dreq = Dmin or Dreq = Dlq curve
         '
@@ -1377,7 +1376,7 @@ Public Class BasinBorderOperations
             label = "Dreq = Dlq = " + mInflowManagement.RequiredDepth.ValueString
         End If
 
-        If (Method = OperationsMethod.VolumeBalance) Then
+        If (mOperationsMethod = OperationsMethods.VolumeBalance) Then
             Me.Precision = Globals.ContourPrecision.Precise
         Else
             Me.Precision = Globals.ContourPrecision.Standard
@@ -2604,8 +2603,8 @@ Public Class BasinBorderOperations
         ' Level Basins must have Blocked Ends
         If (mSystemGeometry.AverageSlope <= MaximumLevelSlope) Then
             If Not (mSystemGeometry.DownstreamCondition.Value = DownstreamConditions.BlockedEnd) Then
-                AddSetupError(ErrorFlags.LevelBasinNotBlocked, _
-                         mDictionary.tLevelBasinNotBlockedID.Translated, _
+                AddSetupError(ErrorFlags.LevelBasinNotBlocked,
+                         mDictionary.tLevelBasinNotBlockedID.Translated,
                          mDictionary.tLevelBasinNotBlockedDetails.Translated)
             End If
         End If
@@ -2617,15 +2616,15 @@ Public Class BasinBorderOperations
 
         ' Only Time-Based Cutoff is supported
         If Not (mInflowManagement.CutoffMethod.Value = CutoffMethods.TimeBased) Then
-            AddSetupError(ErrorFlags.CutoffOptionNotSupported, _
-                     mDictionary.tCutoffOptionNotSupportID.Translated, _
+            AddSetupError(ErrorFlags.CutoffOptionNotSupported,
+                     mDictionary.tCutoffOptionNotSupportID.Translated,
                      mDictionary.tCutoffOptionNotSupportDetails.Translated)
         End If
 
         ' Cutback is not supported
         If Not (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-            AddSetupError(ErrorFlags.CutbackNotSupported, _
-                     mDictionary.tCutbackNotSupportedID.Translated, _
+            AddSetupError(ErrorFlags.CutbackNotSupported,
+                     mDictionary.tCutbackNotSupportedID.Translated,
                      mDictionary.tCutbackBasinBorderNotSupportedDetails.Translated)
         End If
     End Sub
@@ -2633,7 +2632,7 @@ Public Class BasinBorderOperations
     Public Overrides Sub CheckContourCriteriaErrors()
         MyBase.CheckContourCriteriaErrors()
 
-        If (mBorderCriteria.OperationsMethod.Value = OperationsMethod.VolumeBalance) Then
+        If (mBorderCriteria.OperationsMethod.Value <> OperationsMethods.SrfrSimulations) Then
             ' Tuning Factors must not be default values
             If ((mBorderCriteria.Phi0Borders.Source = ValueSources.Defaulted) _
              Or (mBorderCriteria.Phi1Borders.Source = ValueSources.Defaulted) _

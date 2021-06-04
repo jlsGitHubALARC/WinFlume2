@@ -474,6 +474,9 @@ Public Class Dictionary
     Public tBasinBorderDesign As TString = New TString("Basin / Border Design")
     Public tBasinBorderOperations As TString = New TString("Basin / Border Operations")
 
+    Public tSrfrSimulations As TString = New TString("SRFR Simulations")
+    Public tVBandSrfrSims As TString = New TString("VB and SRFR Sims")
+
     Public tEstimationSucceeded As TString = New TString("Estimation of Tuning Factors succeeded")
     Public tEstimationFailed As TString = New TString("Estimation of Tuning Factors failed")
 

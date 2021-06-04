@@ -2023,12 +2023,13 @@ Public Module Globals
 
     Public Const DefaultOperationsOption As OperationsOptions = OperationsOptions.WidthGiven
 
-    Public Enum OperationsMethod
+    Public Enum OperationsMethods
         VolumeBalance
         SrfrSimulations
+        VBandSrfrSims
     End Enum
 
-    Public Const DefaultOperationsMethod As OperationsMethod = OperationsMethod.VolumeBalance
+    Public Const DefaultOperationsMethod As OperationsMethods = OperationsMethods.VolumeBalance
     '
     ' Min / Max contour display ranges
     '

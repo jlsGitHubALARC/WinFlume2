@@ -537,10 +537,11 @@ Public Class FurrowOperations
 
 #Region " Furrow Operations "
 
-    Public Overrides Sub RunOperations(ByVal Method As OperationsMethod)
+    Public Overrides Sub RunOperations()
         Me.StartRun("Furrow Operations", True)
 
-        mOperationsMethod = Method
+        mOperationsMethod = mBorderCriteria.OperationsMethod.Value
+        mDepthCriterion = mBorderCriteria.InfiltratedDepthCriterion.Value
 
         XTolerance = mCutoffTimeTolerance
         If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
@@ -572,27 +573,29 @@ Public Class FurrowOperations
         '
         ' Build operations contour grid
         '
-        mDepthCriterion = mBorderCriteria.InfiltratedDepthCriterion.Value
-        If (Method = OperationsMethod.VolumeBalance) Then
-            Me.BuildOperationsGridVolBal()
-        Else
-            If (mSoilCropProperties.WettedPerimeterMethod.Value = WettedPerimeterMethods.LocalWettedPerimeter) Then
-                ' Local-Wetted perimeter based infiltration methods must build contours not refine them
+        Select Case mOperationsMethod
+            Case OperationsMethods.VolumeBalance
+                ' Build contour grid with Volume Balance
+                Me.BuildOperationsGridVolBal()
+            Case OperationsMethods.VBandSrfrSims
+                ' Build contour grid with Volume Balance
+                mOperationsMethod = OperationsMethods.VolumeBalance
+                Me.BuildOperationsGridVolBal()
+                RunSRFR(False, True, True)
+                ' Then Refine with SRFR Simulations
+                mWorldWindow.RemoveSrfrStatusHandler()
+                mOperationsMethod = OperationsMethods.SrfrSimulations
+                Me.RefineOperationsGridSrfrSim()
+                mWorldWindow.AddSrfrStatusHandler()
+                mOperationsMethod = OperationsMethods.VBandSrfrSims
+            Case OperationsMethods.SrfrSimulations
+                ' Build contour grid with SRFR Simulations
                 mWorldWindow.RemoveSrfrStatusHandler()
                 Me.BuildOperationsGridSrfrSim()
                 mWorldWindow.AddSrfrStatusHandler()
-            Else ' Kostiakov derived infiltration
-                If (mContourGrid IsNot Nothing) Then ' Volume Balance grid has been built; refine it
-                    mWorldWindow.RemoveSrfrStatusHandler()
-                    Me.RefineOperationsGridSrfrSim()
-                    mWorldWindow.AddSrfrStatusHandler()
-                Else ' There is no Contour Grid; build it
-                    mWorldWindow.RemoveSrfrStatusHandler()
-                    Me.BuildOperationsGridSrfrSim()
-                    mWorldWindow.AddSrfrStatusHandler()
-                End If
-            End If
-        End If
+            Case Else
+                Debug.Assert(False)
+        End Select
         '
         ' Build Dreq = Dmin or Dreq = Dlq curve
         '
@@ -603,7 +606,7 @@ Public Class FurrowOperations
             label = "Dreq = Dlq = " + mInflowManagement.RequiredDepth.ValueString
         End If
 
-        If (Method = OperationsMethod.VolumeBalance) Then
+        If (mOperationsMethod = OperationsMethods.VolumeBalance) Then
             Me.Precision = Globals.ContourPrecision.Precise
         Else
             Me.Precision = Globals.ContourPrecision.Standard
@@ -1556,7 +1559,7 @@ Public Class FurrowOperations
 
         ' Inflow / Runoff curves
         Dim hydrographs As DataTableParameter = mSurfaceFlow.FlowHydrographs
-        Dim inflowTable As DataTable = mInflowManagement.HydrographInflowTable(mFurrowFlowRate, mTco, _
+        Dim inflowTable As DataTable = mInflowManagement.HydrographInflowTable(mFurrowFlowRate, mTco,
                                                                                mFurrowCutbackRate, mTcb)
         hydrographs.Value = inflowTable
         hydrographs.Source = ValueSources.Calculated
@@ -1579,15 +1582,15 @@ Public Class FurrowOperations
 
         ' Only Time-Based Cutoff is supported
         If Not (mInflowManagement.CutoffMethod.Value = CutoffMethods.TimeBased) Then
-            AddSetupError(ErrorFlags.CutoffOptionNotSupported, _
-                     mDictionary.tCutoffOptionNotSupportID.Translated, _
+            AddSetupError(ErrorFlags.CutoffOptionNotSupported,
+                     mDictionary.tCutoffOptionNotSupportID.Translated,
                      mDictionary.tCutoffOptionNotSupportDetails.Translated)
         End If
 
         If Not (mSoilCropProperties.WettedPerimeterMethod.Value = WettedPerimeterMethods.FurrowSpacing) Then
             If Not (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-                AddSetupError(ErrorFlags.CutbackNotSupported, _
-                         mDictionary.tCutbackNotSupportedID.Translated, _
+                AddSetupError(ErrorFlags.CutbackNotSupported,
+                         mDictionary.tCutbackNotSupportedID.Translated,
                          mDictionary.tCutbackFurrowNotSupportedDetails.Translated)
             End If
         End If
@@ -1596,7 +1599,7 @@ Public Class FurrowOperations
     Public Overrides Sub CheckContourCriteriaErrors()
         MyBase.CheckContourCriteriaErrors()
 
-        If (mBorderCriteria.OperationsMethod.Value = OperationsMethod.VolumeBalance) Then
+        If (mBorderCriteria.OperationsMethod.Value <> OperationsMethods.SrfrSimulations) Then
             ' Tuning Factors must not be default values
             If ((mBorderCriteria.Phi0Furrows.Source = ValueSources.Defaulted) _
              Or (mBorderCriteria.Phi1Furrows.Source = ValueSources.Defaulted) _

@@ -128,7 +128,29 @@ Public Class BorderCriteria
 
     Public Property OperationsMethod() As IntegerParameter
         Get
-            Return OperationsMethodProperty.GetIntegerParameter()
+            Dim intParam As IntegerParameter = OperationsMethodProperty.GetIntegerParameter()
+
+            Dim systemGeometry As SystemGeometry = mUnit.SystemGeometryRef
+            Dim inflowManagement As InflowManagement = mUnit.InflowManagementRef
+            Dim soilCropProperties As SoilCropProperties = mUnit.SoilCropPropertiesRef
+
+            If (systemGeometry.CrossSection.Value = CrossSections.Furrow) Then
+                If (soilCropProperties.WettedPerimeterMethod.Value = WettedPerimeterMethods.LocalWettedPerimeter) Then
+                    intParam.Value = Globals.OperationsMethods.SrfrSimulations
+                ElseIf (inflowManagement.CutbackMethod.Value <> CutbackMethods.NoCutback) Then
+                    If (intParam.Value = Globals.OperationsMethods.SrfrSimulations) Then
+                        intParam.Value = Globals.OperationsMethods.VBandSrfrSims
+                    Else
+                        intParam.Value = Globals.OperationsMethods.VolumeBalance
+                    End If
+                End If
+            Else ' Basin/Border
+                If (soilCropProperties.InfiltrationFunction.Value = InfiltrationFunctions.GreenAmpt) Then
+                    intParam.Value = Globals.OperationsMethods.SrfrSimulations
+                End If
+            End If
+
+            Return intParam
         End Get
         Set(ByVal Value As IntegerParameter)
             OperationsMethodProperty.SetParameter(Value)
