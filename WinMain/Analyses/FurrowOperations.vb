@@ -540,7 +540,7 @@ Public Class FurrowOperations
     Public Overrides Sub RunOperations()
         Me.StartRun("Furrow Operations", True)
 
-        mOperationsMethod = mBorderCriteria.OperationsMethod.Value
+        Dim OperationsMethod As OperationsMethods = mBorderCriteria.OperationsMethod.Value
         mDepthCriterion = mBorderCriteria.InfiltratedDepthCriterion.Value
 
         XTolerance = mCutoffTimeTolerance
@@ -573,21 +573,21 @@ Public Class FurrowOperations
         '
         ' Build operations contour grid
         '
-        Select Case mOperationsMethod
+        Select Case OperationsMethod
             Case OperationsMethods.VolumeBalance
                 ' Build contour grid with Volume Balance
                 Me.BuildOperationsGridVolBal()
             Case OperationsMethods.VBandSrfrSims
                 ' Build contour grid with Volume Balance
-                mOperationsMethod = OperationsMethods.VolumeBalance
+                OperationsMethod = OperationsMethods.VolumeBalance
                 Me.BuildOperationsGridVolBal()
                 RunSRFR(False, True, True)
                 ' Then Refine with SRFR Simulations
                 mWorldWindow.RemoveSrfrStatusHandler()
-                mOperationsMethod = OperationsMethods.SrfrSimulations
+                OperationsMethod = OperationsMethods.SrfrSimulations
                 Me.RefineOperationsGridSrfrSim()
                 mWorldWindow.AddSrfrStatusHandler()
-                mOperationsMethod = OperationsMethods.VBandSrfrSims
+                OperationsMethod = OperationsMethods.VBandSrfrSims
             Case OperationsMethods.SrfrSimulations
                 ' Build contour grid with SRFR Simulations
                 mWorldWindow.RemoveSrfrStatusHandler()
@@ -606,7 +606,7 @@ Public Class FurrowOperations
             label = "Dreq = Dlq = " + mInflowManagement.RequiredDepth.ValueString
         End If
 
-        If (mOperationsMethod = OperationsMethods.VolumeBalance) Then
+        If (OperationsMethod = OperationsMethods.VolumeBalance) Then
             Me.Precision = Globals.ContourPrecision.Precise
         Else
             Me.Precision = Globals.ContourPrecision.Standard

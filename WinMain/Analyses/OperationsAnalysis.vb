@@ -50,8 +50,6 @@ Public MustInherit Class OperationsAnalysis
 
 #Region " Operations "
 
-    Protected mOperationsMethod As OperationsMethods
-
     Protected mRunContourSimulations As RunContourSimulations
 
 #End Region
@@ -127,6 +125,7 @@ Public MustInherit Class OperationsAnalysis
     Public Sub New(ByVal unit As Unit, ByVal worldWindow As WorldWindow)
         MyBase.New(unit, worldWindow)
         mRunContourSimulations = New RunContourSimulations
+        mContourGrid = unit.PerformanceResultsRef.DesignContour.Value
     End Sub
 
 #End Region
@@ -1836,6 +1835,8 @@ Public MustInherit Class OperationsAnalysis
                                               ByVal numDistances As Integer) As ContourPoint
         Dim point As ContourPoint
 
+        Dim OperationsMethod As OperationsMethods = mBorderCriteria.OperationsMethod.Value
+
         ' Y is Inflow Rate or Width
         Select Case (mBorderCriteria.OperationsOption.Value)
             Case OperationsOptions.InflowRateGiven
@@ -1851,7 +1852,7 @@ Public MustInherit Class OperationsAnalysis
             Case CutoffMethods.DistanceBased
                 mXR = x
 
-                If (mOperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
+                If (OperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
                     point = OperationsPointVolBal(mInflowRate, mWidth, mXR, numDistances)
                 Else ' SRFR Simulation
                     point = OperationsPointInterpolate()
@@ -1860,7 +1861,7 @@ Public MustInherit Class OperationsAnalysis
                 mTco = x
 
                 If (mInflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-                    If (mOperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
+                    If (OperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
                         point = OperationsPointVolBal(mInflowRate, mWidth, mTco, numDistances)
                     Else ' SRFR Simulation
                         point = OperationsPointInterpolate()
@@ -1868,7 +1869,7 @@ Public MustInherit Class OperationsAnalysis
                 Else
                     mCutbackRateRatio = mInflowManagement.CutbackRateRatio.Value
                     mCutbackRate = mInflowRate * mCutbackRateRatio
-                    If (mOperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
+                    If (OperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
                         point = OperationsPointVolBal(mInflowRate, mWidth, mTco, mCutbackRate, numDistances)
                     Else ' SRFR Simulation
                         point = OperationsPointInterpolate()
@@ -1886,9 +1887,11 @@ Public MustInherit Class OperationsAnalysis
     Public Overrides Sub CalculateSolution()
         MyBase.CalculateSolution() ' Initialize calculation
 
+        Dim OperationsMethod As OperationsMethods = mBorderCriteria.OperationsMethod.Value
+
         ' Calculate Operations Point
         Try
-            If (mOperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
+            If (OperationsMethod = OperationsMethods.VolumeBalance) Then ' Volume Balance calculated
                 mSolutionPoint = Me.OperationsPointVolBal()
             Else ' SRFR Simulation
                 mSolutionPoint = Me.OperationsPointInterpolate()

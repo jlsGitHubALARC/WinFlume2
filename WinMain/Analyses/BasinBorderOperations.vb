@@ -1339,7 +1339,7 @@ Public Class BasinBorderOperations
     Public Overrides Sub RunOperations()
         Me.StartRun("Basin / Border Operations", True)
 
-        mOperationsMethod = mBorderCriteria.OperationsMethod.Value
+        Dim OperationsMethod As OperationsMethods = mBorderCriteria.OperationsMethod.Value
         mDepthCriterion = mBorderCriteria.InfiltratedDepthCriterion.Value
 
         XTolerance = mCutoffTimeTolerance
@@ -1347,7 +1347,7 @@ Public Class BasinBorderOperations
         '
         ' Build operations contour grid
         '
-        Select Case mOperationsMethod
+        Select Case OperationsMethod
             Case OperationsMethods.VolumeBalance
                 ' Build contour grid with Volume Balance
                 Me.BuildOperationsGridVolBal()
@@ -1376,7 +1376,7 @@ Public Class BasinBorderOperations
             label = "Dreq = Dlq = " + mInflowManagement.RequiredDepth.ValueString
         End If
 
-        If (mOperationsMethod = OperationsMethods.VolumeBalance) Then
+        If (OperationsMethod = OperationsMethods.VolumeBalance) Then
             Me.Precision = Globals.ContourPrecision.Precise
         Else
             Me.Precision = Globals.ContourPrecision.Standard
