@@ -2,9 +2,14 @@
 '*************************************************************************************************************
 ' Class:    FurrowDesign
 '
-' Desc:     Design functions for a Furrow Set
+' This class provides data and methods specific to Furrow Design:
+'
+'   * Setup/execution warnings & errors
+'   * Contour Tuning Point & Factors
+'   * Design Execution
+'   * Design Point Computation
+'   * Contour Point Access
 '*************************************************************************************************************
-Imports Srfr.SrfrAPI
 Imports DataStore
 
 Public Class FurrowDesign
@@ -577,7 +582,7 @@ Public Class FurrowDesign
 
 #End Region
 
-#Region " Furrow Design "
+#Region " Furrow Design Contours "
 
     Public Overrides Sub RunDesign()
         Me.StartRun("Furrow Design", True)

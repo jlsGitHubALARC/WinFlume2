@@ -2,9 +2,15 @@
 '*************************************************************************************************************
 ' Class:    DesignAnalysis
 '
-' Desc: Base class for all WinSRFR Design Analyses; derived from Analysis
+' This must inherit baseclass provides data and methods common across all Design World analyses.
+' It provides layered support for:
+'
+'   * Setup/execution warnings & errors
+'   * Contour Tuning Point & Factors
+'   * Design Execution
+'   * Design Point Computation
+'   * Contour Point Access
 '*************************************************************************************************************
-Imports Srfr.SrfrAPI
 Imports DataStore
 
 Public MustInherit Class DesignAnalysis
@@ -151,7 +157,7 @@ Public MustInherit Class DesignAnalysis
 
 #End Region
 
-#Region " Design Execution "
+#Region " Design Grid "
 
     '******************************************************************************************
     ' Run Design Analysis

@@ -2,8 +2,8 @@
 '*************************************************************************************************************
 ' Class:    Analysis - abstract baseclass for all WinSRFR Analyses
 '
-' This baseclass provides the underlying data and methods that are common across all derived analyses. This
-' includes support for:
+' This must inherit baseclass provides data and methods common across all WinSRFR analyses.
+' It provides basic support for:
 '
 '   * Access to Analysis' Unit of data and its sub-elements
 '   * Setup/execution warnings & errors

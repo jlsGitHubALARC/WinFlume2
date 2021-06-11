@@ -2,7 +2,13 @@
 '*************************************************************************************************************
 ' Class:    BasinBorderDesign
 '
-' Desc:     Performs Design functions for a Basin / Border field.
+' This class provides data and methods specific to Basin / Border Design:
+'
+'   * Setup/execution warnings & errors
+'   * Contour Tuning Point & Factors
+'   * Design Execution
+'   * Design Point Computation
+'   * Contour Point Access
 '*************************************************************************************************************
 Imports DataStore
 
@@ -1542,7 +1548,7 @@ Public Class BasinBorderDesign
 
 #End Region
 
-#Region " Basin / Border Design "
+#Region " Basin / Border Design Contours "
 
     Public Overrides Sub RunDesign()
         Me.StartRun("Basin / Border Design", True)

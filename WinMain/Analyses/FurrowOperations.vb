@@ -2,7 +2,13 @@
 '*************************************************************************************************************
 ' Class:    FurrowOperations
 '
-' Desc:     Performs Operations functions for a Furrow Set.
+' This class provides data and methods specific to Furrow Operations:
+'
+'   * Setup/execution warnings & errors
+'   * Contour Tuning Point & Factors
+'   * Design Execution
+'   * Design Point Computation
+'   * Contour Point Access
 '*************************************************************************************************************
 Imports DataStore
 
@@ -535,7 +541,7 @@ Public Class FurrowOperations
 
 #End Region
 
-#Region " Furrow Operations "
+#Region " Furrow Operations Contours "
 
     Public Overrides Sub RunOperations()
         Me.StartRun("Furrow Operations", True)

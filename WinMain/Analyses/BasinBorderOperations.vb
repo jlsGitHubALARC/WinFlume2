@@ -2,7 +2,13 @@
 '*************************************************************************************************************
 ' Class:    BasinBorderOperations
 '
-' Desc:     Performs Operations functions for a Basin / Border field.
+' This class provides data and methods specific to Basin / Border Operations:
+'
+'   * Setup/execution warnings & errors
+'   * Contour Tuning Point & Factors
+'   * Design Execution
+'   * Design Point Computation
+'   * Contour Point Access
 '*************************************************************************************************************
 Imports DataStore
 
@@ -1334,7 +1340,7 @@ Public Class BasinBorderOperations
 
 #End Region
 
-#Region " Basin / Border Operations "
+#Region " Basin / Border Operations Contours "
 
     Public Overrides Sub RunOperations()
         Me.StartRun("Basin / Border Operations", True)
