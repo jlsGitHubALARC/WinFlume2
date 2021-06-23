@@ -4,7 +4,6 @@
 '
 ' Desc:     Elliott-Walker Two-Point Analysis 
 '*************************************************************************************************************
-Imports Srfr.SrfrAPI
 Imports DataStore
 
 Public Class ElliotWalkerTwoPoint
