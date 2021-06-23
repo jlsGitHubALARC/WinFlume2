@@ -71,24 +71,16 @@ Public Class SoilCropProperties
     ' If SrfrInfiltration is set, be sure to clear it when finished.  SoilCropProperties will continue to
     ' use it until otherwise instructed!
     '*********************************************************************************************************
-    Private mSrfrInfiltration As Srfr.Infiltration = Nothing
-    Public Property SrfrInfiltration() As Srfr.Infiltration
-        Get
-            Return mSrfrInfiltration
-        End Get
-        Set(ByVal value As Srfr.Infiltration)
-            mSrfrInfiltration = value
-        End Set
-    End Property
+    Public Property SrfrInfiltration() As Srfr.Infiltration = Nothing
 
     ' Instantiate a SRFR Infiltration object based on the infiltration parameters in SoilCropProperties
     Public Sub SetSrfrInfiltration()
-        mSrfrInfiltration = SrfrAPI.SrfrInfiltration(Me)
+        SrfrInfiltration = SrfrAPI.SrfrInfiltration(Me)
     End Sub
 
     ' Clear the previously set SRFR Infiltration object
     Public Sub ClrSrfrInfiltration()
-        mSrfrInfiltration = Nothing
+        SrfrInfiltration = Nothing
     End Sub
 
 #End Region
@@ -812,7 +804,7 @@ Public Class SoilCropProperties
 
             ' If it was not found; create it
             If (_propertyNode Is Nothing) Then
-                Dim _kostiakovK As KostiakovKParameter = New KostiakovKParameter(DefaultKostiakovK, _
+                Dim _kostiakovK As KostiakovKParameter = New KostiakovKParameter(DefaultKostiakovK,
                                     KostiakovKParameter.K_Units.MetersPerSecond_A, KostiakovA_KFProperty)
                 mMyStore.AddProperty(sKostiakovK_KF, sk, _kostiakovK)
                 _propertyNode = mMyStore.GetProperty(sKostiakovK_KF)
@@ -970,7 +962,7 @@ Public Class SoilCropProperties
 
             ' If it was not found; create it
             If (_propertyNode Is Nothing) Then
-                Dim _kostiakovK As KostiakovKParameter = New KostiakovKParameter(DefaultKostiakovK, _
+                Dim _kostiakovK As KostiakovKParameter = New KostiakovKParameter(DefaultKostiakovK,
                                     KostiakovKParameter.K_Units.MetersPerSecond_A, KostiakovA_MKProperty)
                 mMyStore.AddProperty(sKostiakovK_MK, sk, _kostiakovK)
                 _propertyNode = mMyStore.GetProperty(sKostiakovK_MK)
@@ -1185,7 +1177,7 @@ Public Class SoilCropProperties
 
             ' If it was not found; create it
             If (_propertyNode Is Nothing) Then
-                Dim _kostiakovK As KostiakovKParameter = New KostiakovKParameter(DefaultKostiakovK, _
+                Dim _kostiakovK As KostiakovKParameter = New KostiakovKParameter(DefaultKostiakovK,
                                 KostiakovKParameter.K_Units.MetersPerSecond_A, KostiakovA_BFProperty)
                 mMyStore.AddProperty(sKostiakovK_BF, sk, _kostiakovK)
                 _propertyNode = mMyStore.GetProperty(sKostiakovK_BF)
@@ -4093,7 +4085,7 @@ Public Class SoilCropProperties
 
             ' If it was not found; create it
             If (_propertyNode Is Nothing) Then
-                Dim _double As DoubleParameter = New DoubleParameter(DefaultMassDensity, _
+                Dim _double As DoubleParameter = New DoubleParameter(DefaultMassDensity,
                                                                      Units.GramsPerLiter)
                 mMyStore.AddProperty(sMassDensity, _double)
                 _propertyNode = mMyStore.GetProperty(sMassDensity)
@@ -4121,7 +4113,7 @@ Public Class SoilCropProperties
 
             ' If it was not found; create it
             If (_propertyNode Is Nothing) Then
-                Dim _double As DoubleParameter = New DoubleParameter(DefaultErodibilityA, _
+                Dim _double As DoubleParameter = New DoubleParameter(DefaultErodibilityA,
                                                                      Units.SecondsPerMeter)
                 mMyStore.AddProperty(sErodibilityA, _double)
                 _propertyNode = mMyStore.GetProperty(sErodibilityA)
@@ -4152,7 +4144,7 @@ Public Class SoilCropProperties
 
             ' If it was not found; create it
             If (_propertyNode Is Nothing) Then
-                Dim _double As DoubleParameter = New DoubleParameter(DefaultErodibilityB, _
+                Dim _double As DoubleParameter = New DoubleParameter(DefaultErodibilityB,
                                                                      Units.None)
                 _double.MinValue = Double.MinValue
                 mMyStore.AddProperty(sErodibilityB, _double)
@@ -4181,7 +4173,7 @@ Public Class SoilCropProperties
 
             ' If it was not found; create it
             If (_propertyNode Is Nothing) Then
-                Dim _double As DoubleParameter = New DoubleParameter(DefaultErodibilityTauc, _
+                Dim _double As DoubleParameter = New DoubleParameter(DefaultErodibilityTauc,
                                                                      Units.NewtonsPerSquareMeter)
                 mMyStore.AddProperty(sErodibilityTauc, _double)
                 _propertyNode = mMyStore.GetProperty(sErodibilityTauc)
@@ -4209,7 +4201,7 @@ Public Class SoilCropProperties
 
             ' If it was not found; create it
             If (_propertyNode Is Nothing) Then
-                Dim _double As DoubleParameter = New DoubleParameter(DefaultErodibilityBeta, _
+                Dim _double As DoubleParameter = New DoubleParameter(DefaultErodibilityBeta,
                                                                      Units.None)
                 mMyStore.AddProperty(sErodibilityBeta, _double)
                 _propertyNode = mMyStore.GetProperty(sErodibilityBeta)
@@ -4237,7 +4229,7 @@ Public Class SoilCropProperties
 
             ' If it was not found; create it
             If (_propertyNode Is Nothing) Then
-                Dim _double As DoubleParameter = New DoubleParameter(DefaultFullScaleG, _
+                Dim _double As DoubleParameter = New DoubleParameter(DefaultFullScaleG,
                                                                      Units.KilogramsPerSecond)
                 mMyStore.AddProperty(sFullScaleG, _double)
                 _propertyNode = mMyStore.GetProperty(sFullScaleG)
@@ -4512,8 +4504,8 @@ Public Class SoilCropProperties
 
                 Dim h0 As Double = mUnit.UpstreamDepth()    ' Use Upstream Depth for h0
 
-                If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-                    Tau = SrfrAPI.InfiltrationTime(Zn, h0, mSrfrInfiltration)
+                If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+                    Tau = SrfrAPI.InfiltrationTime(Zn, h0, SrfrInfiltration)
                 Else
                     Tau = SrfrAPI.InfiltrationTime(Zn, h0, Me)
                 End If
@@ -4529,8 +4521,8 @@ Public Class SoilCropProperties
 
             Case Else ' Kostiakov Formula based
 
-                If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-                    Tau = SrfrAPI.InfiltrationTime(Zn, Y, mSrfrInfiltration)
+                If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+                    Tau = SrfrAPI.InfiltrationTime(Zn, Y, SrfrInfiltration)
                 Else
                     Tau = SrfrAPI.InfiltrationTime(Zn, Y, Me)
                 End If
@@ -4543,8 +4535,8 @@ Public Class SoilCropProperties
     Public Function InfiltrationTime(ByVal Zn As Double, ByVal WP As Double, ByVal FS As Double) As Double
         Dim Tau As Double = 0.0
 
-        If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-            Tau = SrfrAPI.InfiltrationTime(Zn, WP, FS, mSrfrInfiltration)
+        If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+            Tau = SrfrAPI.InfiltrationTime(Zn, WP, FS, SrfrInfiltration)
         Else
             Tau = SrfrAPI.InfiltrationTime(Zn, WP, FS, Me)
         End If
@@ -4561,8 +4553,8 @@ Public Class SoilCropProperties
 
                 Dim h0 As Double = mUnit.UpstreamDepth()    ' Use Upstream Depth for h0
 
-                If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-                    Tau = SrfrAPI.InfiltrationTime(Zn, RowIdx, h0, mSrfrInfiltration)
+                If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+                    Tau = SrfrAPI.InfiltrationTime(Zn, RowIdx, h0, SrfrInfiltration)
                 Else
                     Tau = SrfrAPI.InfiltrationTime(Zn, RowIdx, h0, Me)
                 End If
@@ -4578,8 +4570,8 @@ Public Class SoilCropProperties
 
             Case Else ' Kostiakov Formula based
 
-                If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-                    Tau = SrfrAPI.InfiltrationTime(Zn, RowIdx, Y, mSrfrInfiltration)
+                If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+                    Tau = SrfrAPI.InfiltrationTime(Zn, RowIdx, Y, SrfrInfiltration)
                 Else
                     Tau = SrfrAPI.InfiltrationTime(Zn, RowIdx, Y, Me)
                 End If
@@ -4610,8 +4602,8 @@ Public Class SoilCropProperties
 
                 Dim h0 As Double = mUnit.UpstreamDepth()    ' Use Upstream Depth for h0
 
-                If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-                    Zn = SrfrAPI.InfiltrationDepth(Tau, h0, mSrfrInfiltration)
+                If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+                    Zn = SrfrAPI.InfiltrationDepth(Tau, h0, SrfrInfiltration)
                 Else
                     Zn = SrfrAPI.InfiltrationDepth(Tau, h0, Me)
                 End If
@@ -4622,8 +4614,8 @@ Public Class SoilCropProperties
 
             Case Else ' Empirical infiltration methods (e.g. Kostiakov Formula based)
 
-                If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-                    Zn = SrfrAPI.InfiltrationDepth(Tau, Y, mSrfrInfiltration)
+                If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+                    Zn = SrfrAPI.InfiltrationDepth(Tau, Y, SrfrInfiltration)
                 Else
                     Zn = SrfrAPI.InfiltrationDepth(Tau, Y, Me)
                 End If
@@ -4633,7 +4625,7 @@ Public Class SoilCropProperties
         Return Zn
     End Function
 
-    Public Function InfiltrationDepth(ByVal Tau As Double, _
+    Public Function InfiltrationDepth(ByVal Tau As Double,
                                       ByVal FlowDepthHydrograph As DataTable) As Double
         Dim Zn As Double = 0.0
 
@@ -4648,8 +4640,8 @@ Public Class SoilCropProperties
 
                 Case Else
 
-                    If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-                        Zn = SrfrAPI.InfiltrationDepth(Tau, FlowDepthHydrograph, mSrfrInfiltration)
+                    If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+                        Zn = SrfrAPI.InfiltrationDepth(Tau, FlowDepthHydrograph, SrfrInfiltration)
                     Else
                         Zn = SrfrAPI.InfiltrationDepth(Tau, FlowDepthHydrograph, Me)
                     End If
@@ -4660,7 +4652,7 @@ Public Class SoilCropProperties
         Return Zn
     End Function
 
-    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal Dist As Double, _
+    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal Dist As Double,
                                       ByVal RefSrfrAPI As Srfr.SrfrAPI) As Double
         Dim Zn As Double = 0.0
 
@@ -4694,8 +4686,8 @@ Public Class SoilCropProperties
 
                 Dim h0 As Double = mUnit.UpstreamDepth()    ' Use Upstream Depth for h0
 
-                If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-                    dZdT = SrfrAPI.InfiltrationRate(Tau, h0, mSrfrInfiltration)
+                If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+                    dZdT = SrfrAPI.InfiltrationRate(Tau, h0, SrfrInfiltration)
                 Else
                     dZdT = SrfrAPI.InfiltrationRate(Tau, h0, Me)
                 End If
@@ -4706,8 +4698,8 @@ Public Class SoilCropProperties
 
             Case Else ' Kostiakov Formula based
 
-                If (mSrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
-                    dZdT = SrfrAPI.InfiltrationRate(Tau, Y, mSrfrInfiltration)
+                If (SrfrInfiltration IsNot Nothing) Then ' use alternate source for infiltration parameters
+                    dZdT = SrfrAPI.InfiltrationRate(Tau, Y, SrfrInfiltration)
                 Else
                     dZdT = SrfrAPI.InfiltrationRate(Tau, Y, Me)
                 End If
@@ -4837,7 +4829,7 @@ Public Class SoilCropProperties
 
     End Function
 
-    Public Function InfiltrationFunctionArrayList(ByVal Tend As Double, ByVal RowIdx As Integer, _
+    Public Function InfiltrationFunctionArrayList(ByVal Tend As Double, ByVal RowIdx As Integer,
                                                   ByVal NumPoints As Integer) As ArrayList
         InfiltrationFunctionArrayList = Nothing
 
@@ -4868,7 +4860,7 @@ Public Class SoilCropProperties
 
     End Function
 
-    Public Function InfiltrationFunctionArrayList(ByVal Q0 As Double, ByVal Tend As Double, ByVal RowIdx As Integer, _
+    Public Function InfiltrationFunctionArrayList(ByVal Q0 As Double, ByVal Tend As Double, ByVal RowIdx As Integer,
                                                   ByVal NumPoints As Integer) As ArrayList
         InfiltrationFunctionArrayList = Nothing
 
@@ -4915,7 +4907,7 @@ Public Class SoilCropProperties
     ' Returns:      DataTable   - Time vs. Infiltration
     '           or  ArrayList   - Infiltration only
     '*********************************************************************************************************
-    Public Shared Function BranchDataTable(ByVal k As Double, ByVal a As Double, ByVal b As Double, ByVal c As Double, _
+    Public Shared Function BranchDataTable(ByVal k As Double, ByVal a As Double, ByVal b As Double, ByVal c As Double,
             ByVal Tend As Double, ByVal Tb As Double, ByVal NumPoints As Integer, ByVal TimeOffsetC As Boolean) As DataTable
 
         BranchDataTable = Nothing
@@ -4986,7 +4978,7 @@ Public Class SoilCropProperties
 
     End Function
 
-    Public Shared Function BranchArrayList(ByVal k As Double, ByVal a As Double, ByVal b As Double, ByVal c As Double, _
+    Public Shared Function BranchArrayList(ByVal k As Double, ByVal a As Double, ByVal b As Double, ByVal c As Double,
             ByVal Tend As Double, ByVal Tb As Double, ByVal NumPoints As Integer, ByVal TimeOffsetC As Boolean) As ArrayList
 
         BranchArrayList = Nothing
@@ -5020,7 +5012,7 @@ Public Class SoilCropProperties
     ' Returns:      DataTable   - Time vs. Infiltration
     '           or  ArrayList   - Infiltration only
     '*********************************************************************************************************
-    Public Shared Function KostiakovDataTable(ByVal k As Double, ByVal a As Double, ByVal b As Double, ByVal c As Double, _
+    Public Shared Function KostiakovDataTable(ByVal k As Double, ByVal a As Double, ByVal b As Double, ByVal c As Double,
                         ByVal Tend As Double, ByVal NumPoints As Integer, ByVal TimeOffsetC As Boolean) As DataTable
 
         KostiakovDataTable = Nothing
@@ -5069,7 +5061,7 @@ Public Class SoilCropProperties
 
     End Function
 
-    Public Shared Function KostiakovArrayList(ByVal k As Double, ByVal a As Double, ByVal b As Double, ByVal c As Double, _
+    Public Shared Function KostiakovArrayList(ByVal k As Double, ByVal a As Double, ByVal b As Double, ByVal c As Double,
                         ByVal Tend As Double, ByVal NumPoints As Integer, ByVal TimeOffsetC As Boolean) As ArrayList
 
         KostiakovArrayList = Nothing
@@ -5110,8 +5102,8 @@ Public Class SoilCropProperties
     ' Note - If Flow Depth Hydrographs are included in the input parameter list, they are used in lieu of h0
     '        to specifiy the flow depths at each Tau.
     '*********************************************************************************************************
-    Public Shared Function GreenAmptDataTable(ByVal SWD As Double, ByVal h0 As Double, ByVal hf As Double, _
-            ByVal Ks As Double, ByVal c As Double, ByVal Tend As Double, ByVal NumPoints As Integer, _
+    Public Shared Function GreenAmptDataTable(ByVal SWD As Double, ByVal h0 As Double, ByVal hf As Double,
+            ByVal Ks As Double, ByVal c As Double, ByVal Tend As Double, ByVal NumPoints As Integer,
             Optional ByVal Hydrographs As DataSet = Nothing) As DataTable
 
         GreenAmptDataTable = Nothing
@@ -5151,8 +5143,8 @@ Public Class SoilCropProperties
 
     End Function
 
-    Public Shared Function GreenAmptArrayList(ByVal SWD As Double, ByVal h0 As Double, ByVal hf As Double, _
-            ByVal Ks As Double, ByVal c As Double, ByVal Tend As Double, ByVal NumPoints As Integer, _
+    Public Shared Function GreenAmptArrayList(ByVal SWD As Double, ByVal h0 As Double, ByVal hf As Double,
+            ByVal Ks As Double, ByVal c As Double, ByVal Tend As Double, ByVal NumPoints As Integer,
             Optional ByVal Hydrographs As DataSet = Nothing) As ArrayList
 
         GreenAmptArrayList = Nothing
@@ -5227,8 +5219,8 @@ Public Class SoilCropProperties
     ' Returns:      DataTable   - Time vs. Infiltration
     '           or  ArrayList   - Infiltration only
     '*********************************************************************************************************
-    Public Shared Function WarrickGreenAmptDataTable(ByVal SWD As Double, ByVal hf As Double, ByVal Ks As Double, _
-            ByVal h0 As Double, ByVal Wa As Double, ByVal Wr As Double, ByVal c As Double, ByVal FS As Double, _
+    Public Shared Function WarrickGreenAmptDataTable(ByVal SWD As Double, ByVal hf As Double, ByVal Ks As Double,
+            ByVal h0 As Double, ByVal Wa As Double, ByVal Wr As Double, ByVal c As Double, ByVal FS As Double,
             ByVal Tend As Double, ByVal NumPoints As Integer) As DataTable
 
         WarrickGreenAmptDataTable = Nothing
@@ -5279,8 +5271,8 @@ Public Class SoilCropProperties
 
     End Function
 
-    Public Shared Function WarrickGreenAmptArrayList(ByVal SWD As Double, ByVal hf As Double, ByVal Ks As Double, _
-            ByVal h0 As Double, ByVal Wa As Double, ByVal Wr As Double, ByVal c As Double, ByVal FS As Double, _
+    Public Shared Function WarrickGreenAmptArrayList(ByVal SWD As Double, ByVal hf As Double, ByVal Ks As Double,
+            ByVal h0 As Double, ByVal Wa As Double, ByVal Wr As Double, ByVal c As Double, ByVal FS As Double,
             ByVal Tend As Double, ByVal NumPoints As Integer) As ArrayList
 
         WarrickGreenAmptArrayList = Nothing
@@ -5704,7 +5696,7 @@ Public Class SoilCropProperties
         Return length
     End Function
 
-    Public Shared Function LengthUnderIrrigated(ByVal infiltrationTable As DataTable, _
+    Public Shared Function LengthUnderIrrigated(ByVal infiltrationTable As DataTable,
                                                 ByVal Dreq As Double) As Double
         ' Length Under-irrigated
         Dim length As Double = 0.0
@@ -5755,7 +5747,7 @@ Public Class SoilCropProperties
     '
     ' Returns:          Double              - Infiltrated volume per unit width
     '*********************************************************************************************************
-    Public Function InfiltratedVolume(ByVal InfiltrationTable As DataTable, _
+    Public Function InfiltratedVolume(ByVal InfiltrationTable As DataTable,
                                       Optional ByVal SigmaZ As Double = 0.5) As Double
         InfiltratedVolume = 0.0
 
@@ -5771,8 +5763,8 @@ Public Class SoilCropProperties
 
                 ' Integrate area curve to determine infiltrated volume
                 Dim c As Double = Me.KostiakovC
-                If (mSrfrInfiltration IsNot Nothing) Then
-                    c = mSrfrInfiltration.c
+                If (SrfrInfiltration IsNot Nothing) Then
+                    c = SrfrInfiltration.c
                 End If
 
                 For rdx As Integer = 1 To upperBound

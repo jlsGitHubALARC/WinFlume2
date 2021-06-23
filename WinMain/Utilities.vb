@@ -492,6 +492,7 @@ Module Utilities
         Dim Tcb As Double = analysis.Tcb
         Dim TL As Double = analysis.TL
         Dim XR As Double = analysis.XR
+        Dim Ymax As Double = analysis.Ymax
 
         Dim AE As Double = analysis.AE
         Dim PAElq As Double = analysis.PAElq
@@ -599,7 +600,7 @@ Module Utilities
         parameters(5) += "  Dapp =" + DepthString(Dapp, 9)
 
         If (inflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-            parameters(6) += "                 "
+            parameters(6) += "  Ymax =" + DepthString(Ymax, 9)
         Else
             parameters(6) += "  Qcb  =" + FlowRateString(Qcb, 9)
         End If

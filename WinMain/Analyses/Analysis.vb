@@ -938,6 +938,13 @@ Public MustInherit Class Analysis
         End Get
     End Property
 
+    Protected mYmax As Double                           ' Maximum Flow Depth
+    Public ReadOnly Property Ymax As Double
+        Get
+            Return mYmax
+        End Get
+    End Property
+
     ' Cost
     Protected mCost As Double
     Public ReadOnly Property Cost() As Double
@@ -1031,37 +1038,25 @@ Public MustInherit Class Analysis
         Return mSrfrControl
     End Function
 
-    Public ReadOnly Property SimResultsAreValid() As Boolean
-        Get
-            SimResultsAreValid = False
-            If (mUnit IsNot Nothing) Then
-                SimResultsAreValid = mUnit.ResultsAreValid
-            End If
-        End Get
-    End Property
+    Public Function SimResultsAreValid() As Boolean
+        SimResultsAreValid = False
+        If (mUnit IsNot Nothing) Then
+            SimResultsAreValid = mUnit.ResultsAreValid
+        End If
+    End Function
 
     Protected WithEvents mSolutionModel As Srfr.SolutionModel
     Public Function SolutionModel() As Srfr.SolutionModel
         Return mSolutionModel
     End Function
 
-    Private WithEvents mSrfrIrrigation As Srfr.Irrigation
-    Public Function SrfrIrrigation() As Srfr.Irrigation
-        Return mSrfrIrrigation
-    End Function
-
-    Private WithEvents mSrfrTransport As Srfr.ConstituentTransport
-    Public Function SrfrTransport() As Srfr.ConstituentTransport
-        Return mSrfrTransport
-    End Function
+    Public Property SrfrIrrigation() As Srfr.Irrigation
+    Public Property SrfrTransport() As Srfr.ConstituentTransport
 
     Public Property EnableTimeLimitEvents() As Boolean = False
     Public Property EnableTimestepLimitEvents() As Boolean = False
 
-    Protected mSrfrDepthTableForHydrus As DataTable = Nothing
-    Public Function SrfrDepthTableForHydrus() As DataTable
-        Return mSrfrDepthTableForHydrus
-    End Function
+    Public Property SrfrDepthTableForHydrus() As DataTable
 
 #End Region
 
@@ -1536,7 +1531,7 @@ Public MustInherit Class Analysis
         End If
         AdjustSrfrInputs(mUnit)
 
-        mSrfrTransport = SrfrAPI.ConstituentTransport
+        SrfrTransport = SrfrAPI.ConstituentTransport
         '
         ' Initialize Simulation Animation
         '
@@ -1555,7 +1550,7 @@ Public MustInherit Class Analysis
 
         Try
             ' Clear any previous results
-            mSrfrIrrigation = Nothing
+            SrfrIrrigation = Nothing
             mSrfrControl = Nothing
 
             Dim SrfrDB As SrfrThreadingControl = Nothing
@@ -1596,7 +1591,7 @@ Public MustInherit Class Analysis
 
             If ((SrfrErrorCode = SrfrErrorCodes.NoError) _
              Or (SrfrErrorCode = SrfrErrorCodes.SimulationStopped)) Then
-                mSrfrIrrigation = Me.UnloadSrfrResults(SrfrAPI, mUnit, compareRun, skipProfiles, skipHydroGraphs)
+                SrfrIrrigation = Me.UnloadSrfrResults(SrfrAPI, mUnit, compareRun, skipProfiles, skipHydroGraphs)
             End If
         Catch ex As Exception
             SrfrErrorCode = SrfrErrorCodes.OperationFailed
@@ -2593,16 +2588,16 @@ Public MustInherit Class Analysis
             Dim row As DataRow
 
             ' Generate HYDRUS' hydrograph from SRFR's depth/fertigation hydrographs
-            mSrfrDepthTableForHydrus = SrfrIrrigation.Hydrographs("Y", Dist)
-            If (mSrfrDepthTableForHydrus IsNot Nothing) Then
+            SrfrDepthTableForHydrus = SrfrIrrigation.Hydrographs("Y", Dist)
+            If (SrfrDepthTableForHydrus IsNot Nothing) Then
 
                 ' Remove rows prior to Advance Time or with no flow depth
-                While (0 < mSrfrDepthTableForHydrus.Rows.Count)
-                    row = mSrfrDepthTableForHydrus.Rows(0)
+                While (0 < SrfrDepthTableForHydrus.Rows.Count)
+                    row = SrfrDepthTableForHydrus.Rows(0)
                     If (row.Item(0) < Tmin) Then ' time prior to Advance Time
-                        mSrfrDepthTableForHydrus.Rows.RemoveAt(0)
+                        SrfrDepthTableForHydrus.Rows.RemoveAt(0)
                     ElseIf (row.Item(1) <= 0.0) Then ' no flow depth (Y)
-                        mSrfrDepthTableForHydrus.Rows.RemoveAt(0)
+                        SrfrDepthTableForHydrus.Rows.RemoveAt(0)
                     Else
                         Exit While
                     End If
@@ -2610,32 +2605,32 @@ Public MustInherit Class Analysis
 
                 ' Remove rows after Recession Time
                 Dim Trec As Double = 0.0
-                While (0 < mSrfrDepthTableForHydrus.Rows.Count)
-                    row = mSrfrDepthTableForHydrus.Rows(mSrfrDepthTableForHydrus.Rows.Count - 1)
+                While (0 < SrfrDepthTableForHydrus.Rows.Count)
+                    row = SrfrDepthTableForHydrus.Rows(SrfrDepthTableForHydrus.Rows.Count - 1)
                     If (Tmax < row.Item(0)) Then ' time after Recession Time
                         Trec = row.Item(0)
-                        mSrfrDepthTableForHydrus.Rows.RemoveAt(mSrfrDepthTableForHydrus.Rows.Count - 1)
+                        SrfrDepthTableForHydrus.Rows.RemoveAt(SrfrDepthTableForHydrus.Rows.Count - 1)
                     Else
                         Exit While
                     End If
                 End While
 
                 ' Remove rows with miniscule DTs; leave first & last rows
-                If (0 < mSrfrDepthTableForHydrus.Rows.Count) Then
-                    row = mSrfrDepthTableForHydrus.Rows(0)
+                If (0 < SrfrDepthTableForHydrus.Rows.Count) Then
+                    row = SrfrDepthTableForHydrus.Rows(0)
                     Dim T0 As Double = row.Item(0)
                     Dim Y0 As Double = row.Item(1)
 
                     Dim rdx As Integer = 1
-                    While (rdx < mSrfrDepthTableForHydrus.Rows.Count - 1)
-                        row = mSrfrDepthTableForHydrus.Rows(rdx)
+                    While (rdx < SrfrDepthTableForHydrus.Rows.Count - 1)
+                        row = SrfrDepthTableForHydrus.Rows(rdx)
                         Dim T1 As Double = row.Item(0)
                         Dim Y1 As Double = row.Item(1)
                         Dim DT As Double = Math.Abs(T1 - T0)
                         Dim DY As Double = Math.Abs(Y1 - Y0)
 
                         If (DT < OneSecond) Then
-                            mSrfrDepthTableForHydrus.Rows.RemoveAt(rdx)
+                            SrfrDepthTableForHydrus.Rows.RemoveAt(rdx)
                         Else
                             T0 = T1
                             Y0 = Y1
@@ -2645,11 +2640,11 @@ Public MustInherit Class Analysis
                 End If
 
                 ' Is there anything left?
-                If (0 < mSrfrDepthTableForHydrus.Rows.Count) Then ' Yes, go with it
+                If (0 < SrfrDepthTableForHydrus.Rows.Count) Then ' Yes, go with it
 
                     Dim hydrusHydrograph As DataTable = New DataTable("HYDRUS Water Hydrograph")
-                    hydrusHydrograph.Columns.Add(mSrfrDepthTableForHydrus.Columns(0).ColumnName, GetType(Double))
-                    hydrusHydrograph.Columns.Add(mSrfrDepthTableForHydrus.Columns(1).ColumnName, GetType(Double))
+                    hydrusHydrograph.Columns.Add(SrfrDepthTableForHydrus.Columns(0).ColumnName, GetType(Double))
+                    hydrusHydrograph.Columns.Add(SrfrDepthTableForHydrus.Columns(1).ColumnName, GetType(Double))
 
                     If (lChem) Then
                         hydrusHydrograph.Columns.Add("C (g/l)", GetType(Double))
@@ -2661,7 +2656,7 @@ Public MustInherit Class Analysis
                     Dim Y As Double = 0.0
                     Dim newHydrusRow As DataRow = Nothing
 
-                    For Each row In mSrfrDepthTableForHydrus.Rows
+                    For Each row In SrfrDepthTableForHydrus.Rows
 
                         ' Get time & flow depth data from SRFR table
                         T = row.Item(0)
@@ -3228,7 +3223,10 @@ Public MustInherit Class Analysis
     End Sub
 
     '*********************************************************************************************************
-    ' Get parameters required to generate contours
+    ' Sub GetContourParameters()    - Get parameters required to generate contours
+    '
+    ' Get Unit parameters used to generate the Design & Operations contours.  Includes Solution Point values
+    ' as well as contour values (min, max range) for X & Y axes
     '*********************************************************************************************************
     Protected Sub GetContourParameters()
 
@@ -3298,8 +3296,13 @@ Public MustInherit Class Analysis
 
         ' Get contour parameters, if necessary
         If (contourRun) Then
+            '
+            ' Get Unit parameters used to generate the Design & Operations contours
+            '
             GetContourParameters()
-
+            '
+            ' Generate values for contour grid
+            '
             Select Case (mBorderCriteria.GridResolution.Value)
                 Case ResolutionSelections.FineResolution
                     mNumGridCellsX = 40
@@ -3312,7 +3315,6 @@ Public MustInherit Class Analysis
                     mNumGridCellsY = 10
             End Select
 
-            ' Generate values for contour grid
             ReDim mLengths(mNumGridCellsX)
             ReDim mWidths(mNumGridCellsY)
             ReDim mCutoffTimes(mNumGridCellsX)
@@ -5723,6 +5725,8 @@ Public MustInherit Class Analysis
         Dim Vml As Double = mInflowVolume / CubicMetersPerMegaLiter                     ' Megaliters applied
         Dim unitVolumeCost As Double = mUnit.InflowManagementRef.UnitWaterCost.Value    ' $ / ML
         mCost = Vml * unitVolumeCost / hectares                                         ' $ / hectare
+
+        mYmax = mUnit.SurfaceFlowRef.Ymax.Value
 
         '*****************************************************************************************************
         ' Some Performance Parameters are dependent on Advance

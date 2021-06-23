@@ -590,7 +590,7 @@ Public MustInherit Class OperationsAnalysis
         Dim numSimRun As Integer = 0
         Dim status As String
 
-        RunSRFR(False, True, True)
+        'RunSRFR(False, True, True)
 
         ' Display BG thread window
         mRunContourSimulations.Show()

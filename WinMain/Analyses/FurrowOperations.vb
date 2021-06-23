@@ -543,6 +543,54 @@ Public Class FurrowOperations
 
 #Region " Furrow Operations Contours "
 
+    Private Function ValidateContourRange() As OperationsOptions
+        ValidateContourRange = True
+
+        ' Save current Solution Point values
+        Dim sWidth As Double = mWidth
+        Dim sInflowRate As Double = mInflowRate
+        Dim sTco As Double = mTco
+        '
+        ' Run SRFR Simulation at conditions most likely to cause Overflow
+        '
+        If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
+            ' Validate at minimum field width & maximum Tco
+            mWidth = mMinWidth
+            mTco = mMaxCutoffTime
+        Else ' WidthGiven
+            ' Validate at maximum Q0 & maximum Tco
+            mInflowRate = mMaxInflowRate
+            mTco = mMaxCutoffTime
+        End If
+
+        RunSRFR(False, True, True)
+
+        ' Check for Overflow
+        Dim SrfrResults As Srfr.Results = SrfrAPI.Irrigation.Results
+        Dim Ymax As Double = SrfrResults.Ymax
+        Dim Y As Double = mSystemGeometry.MaximumDepth.Value
+        If (Y < Ymax) Then ' Overflow
+            Dim title As String = mDictionary.tContourOverflow.Translated
+
+            Dim msg As String = ""
+            msg &= mDictionary.tContourOverflowPart1.Translated & " "
+            msg &= mDictionary.tContourOverflowPart2.Translated & " "
+            msg &= mDictionary.tContourOverflowPart3.Translated & " "
+            msg &= mDictionary.tContourOverflowPart4.Translated & vbCrLf & vbCrLf
+            msg &= "Ymax = " & DepthString(Ymax)
+
+            AddExecutionError(Analysis.ErrorFlags.ExecutionError, title, msg)
+
+            ValidateContourRange = False
+        End If
+
+        ' Restore saved Solultion Point values
+        mWidth = sWidth
+        mInflowRate = sInflowRate
+        mTco = sTco
+
+    End Function
+
     Public Overrides Sub RunOperations()
         Me.StartRun("Furrow Operations", True)
 
@@ -576,6 +624,13 @@ Public Class FurrowOperations
         Dim width As DoubleParameter = mSystemGeometry.Width
         mSystemGeometry.Width = width
         mWidth = width.Value
+        '
+        ' Validate contour range
+        '
+        If Not (ValidateContourRange()) Then
+            MyBase.EndRun()
+            Exit Sub
+        End If
         '
         ' Build operations contour grid
         '

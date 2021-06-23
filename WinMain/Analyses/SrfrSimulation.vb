@@ -1,15 +1,13 @@
 
-'**********************************************************************************************
+'*************************************************************************************************************
 ' Class:    SrfrSimulation
 '
 ' Desc:     Run a simulation on a Basin, Border or Furrow.
-'
+'*************************************************************************************************************
 Imports System.Collections.Generic
 Imports System.Collections.ObjectModel
 
 Imports DataStore
-
-Imports Srfr.Characteristic
 
 Public Class SrfrSimulation
     Inherits Analysis
