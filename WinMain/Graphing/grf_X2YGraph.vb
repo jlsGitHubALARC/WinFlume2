@@ -1,14 +1,36 @@
 
-'**********************************************************************************************
-' grf_X2YGraph provides enhanced graphics support for drawing XY Graphs w/ 2 Y axes.
-'
-' The graph is drawn as a Bitmap.
-'
+'*************************************************************************************************************
+' Class grf_X2YGraph    - provides enhanced graphics support for drawing XY Graphs w/ 2 Y axes.
+'*************************************************************************************************************
+Imports System.Runtime.InteropServices
+
 Imports DataStore
 Imports GraphingUI
 
 Public Class grf_X2YGraph
     Inherits ctl_Graph2D2Y
+
+#Region " Member Data "
+
+    ' Vertical line control
+    Protected mVertLine As Boolean = False
+    Protected mLine1Pt1, mLine1Pt2 As Point
+    Protected mLine2Pt1, mLine2Pt2 As Point
+    Protected mLastX, mLastY As Integer
+
+    ' Cursor values
+    Protected mX, mY1, mY2 As Double
+    '
+    ' Access to GetDeviceCaps() in Win32 DLL 
+    '
+    <DllImport("gdi32.dll")>
+    Public Shared Function GetDeviceCaps(ByVal hDC As IntPtr, ByVal nIndex As Integer) As Integer
+    End Function
+
+    Private Const DESKTOPVERTRES As Integer = 117
+    Private Const DESKTOPHORZRES As Integer = 118
+
+#End Region
 
 #Region " Contructor(s) "
 
@@ -27,19 +49,6 @@ Public Class grf_X2YGraph
     Public Overrides Sub DisposeGraph2D()
         MyBase.DisposeGraph2D2Y()
     End Sub
-
-#End Region
-
-#Region " Member Data "
-
-    ' Vertical line control
-    Protected mVertLine As Boolean = False
-    Protected mLine1Pt1, mLine1Pt2 As Point
-    Protected mLine2Pt1, mLine2Pt2 As Point
-    Protected mLastX, mLastY As Integer
-
-    ' Cursor values
-    Protected mX, mY1, mY2 As Double
 
 #End Region
 
@@ -88,20 +97,47 @@ Public Class grf_X2YGraph
                     Else
                         yCursor = e.Y - rect.Y
                     End If
-
-                    ' Erase previously drawn vertical line
-                    If (mVertLine) Then
+                    '
+                    ' Display vertical line cursor
+                    '
+                    If (mVertLine) Then ' erase previously drawn vertical line
                         mVertLine = False
                         _x2yGraph.Refresh()
                     End If
 
+                    ' Get Display resolution (from Display Settings) (i.e physical size)
+                    Dim grf As Graphics = _x2yGraph.mGraphics
+                    Dim hdc As IntPtr = grf.GetHdc
+                    Dim siz As New Size(GetDeviceCaps(hdc, DESKTOPHORZRES), GetDeviceCaps(hdc, DESKTOPVERTRES))
+                    grf.ReleaseHdc(hdc)
+
+                    ' Get Display resolution (after scaling) (i.e. logical size)
+                    Dim scr As Screen = Screen.FromControl(_x2yGraph)
+                    Dim bnd As Rectangle = scr.Bounds
+
+                    ' Compute ratio of resolution change
+                    Dim scaleX As Double = siz.Width / bnd.Width
+                    Dim scaleY As Double = siz.Height / bnd.Height
+
                     ' Draw a vertical line at the cursor's X position
                     mLine1Pt1 = _x2yGraph.PointToScreen(New Point(e.X, rect.Y))
+                    mLine1Pt1.X *= scaleX
+                    mLine1Pt1.Y *= scaleY
+
                     mLine1Pt2 = _x2yGraph.PointToScreen(New Point(e.X, e.Y - 7))
+                    mLine1Pt2.X *= scaleX
+                    mLine1Pt2.Y *= scaleY
+
                     ControlPaint.DrawReversibleLine(mLine1Pt1, mLine1Pt2, Drawing.Color.Black)
 
                     mLine2Pt1 = _x2yGraph.PointToScreen(New Point(e.X, Math.Min(e.Y + 57, rect.Y + rect.Height)))
+                    mLine2Pt1.X *= scaleX
+                    mLine2Pt1.Y *= scaleY
+
                     mLine2Pt2 = _x2yGraph.PointToScreen(New Point(e.X, rect.Y + rect.Height))
+                    mLine2Pt2.X *= scaleX
+                    mLine2Pt2.Y *= scaleY
+
                     ControlPaint.DrawReversibleLine(mLine2Pt1, mLine2Pt2, Drawing.Color.Black)
 
                     mVertLine = True

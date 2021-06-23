@@ -1,13 +1,39 @@
 
-'**********************************************************************************************
-' grf_DreqDmin displays the Dreq = Dmin graph for Operations World.
-'
+'*************************************************************************************************************
+' Class grf_DreqDmin    - displays the Dreq = Dmin graph for Operations World
+'*************************************************************************************************************
+Imports System.Runtime.InteropServices
+
 Imports DataStore
 Imports DataStore.DataStore
 Imports GraphingUI
 
 Public Class grf_DreqDmin
     Inherits grf_X2YGraph
+
+#Region " Member Data "
+    '
+    ' Reference to World Window presenting the contours
+    '
+    Protected mWorldWindow As WorldWindow
+
+    Private mDictionary As Dictionary = Dictionary.Instance
+    '
+    ' Extra tooltip data
+    '
+    Protected mXRtable As DataTable     ' XR curve
+    Protected mXR As Double             ' XR cursor value
+    '
+    ' Access to GetDeviceCaps() in Win32 DLL 
+    '
+    <DllImport("gdi32.dll")>
+    Public Shared Function GetDeviceCaps(ByVal hDC As IntPtr, ByVal nIndex As Integer) As Integer
+    End Function
+
+    Private Const DESKTOPVERTRES As Integer = 117
+    Private Const DESKTOPHORZRES As Integer = 118
+
+#End Region
 
 #Region " Contructor(s) "
 
@@ -26,21 +52,6 @@ Public Class grf_DreqDmin
         ' Save reference to World Window
         mWorldWindow = worldWindow
     End Sub
-
-#End Region
-
-#Region " Member Data "
-    '
-    ' Reference to World Window presenting the contours
-    '
-    Protected mWorldWindow As WorldWindow
-
-    Private mDictionary As Dictionary = Dictionary.Instance
-    '
-    ' Extra tooltip data
-    '
-    Protected mXRtable As DataTable     ' XR curve
-    Protected mXR As Double             ' XR cursor value
 
 #End Region
 
@@ -86,13 +97,39 @@ Public Class grf_DreqDmin
                         _x2yGraph.Refresh()
                     End If
 
+                    ' Get Display resolution (from Display Settings) (i.e physical size)
+                    Dim grf As Graphics = _x2yGraph.mGraphics
+                    Dim hdc As IntPtr = grf.GetHdc
+                    Dim siz As New Size(GetDeviceCaps(hdc, DESKTOPHORZRES), GetDeviceCaps(hdc, DESKTOPVERTRES))
+                    grf.ReleaseHdc(hdc)
+
+                    ' Get Display resolution (after scaling) (i.e. logical size)
+                    Dim scr As Screen = Screen.FromControl(_x2yGraph)
+                    Dim bnd As Rectangle = scr.Bounds
+
+                    ' Compute ratio of resolution change
+                    Dim scaleX As Double = siz.Width / bnd.Width
+                    Dim scaleY As Double = siz.Height / bnd.Height
+
                     ' Draw a vertical line at the cursor's X position
                     mLine1Pt1 = _x2yGraph.PointToScreen(New Point(e.X, rect.Y))
+                    mLine1Pt1.X *= scaleX
+                    mLine1Pt1.Y *= scaleY
+
                     mLine1Pt2 = _x2yGraph.PointToScreen(New Point(e.X, e.Y - 7))
+                    mLine1Pt2.X *= scaleX
+                    mLine1Pt2.Y *= scaleY
+
                     ControlPaint.DrawReversibleLine(mLine1Pt1, mLine1Pt2, Drawing.Color.Black)
 
                     mLine2Pt1 = _x2yGraph.PointToScreen(New Point(e.X, Math.Min(e.Y + 7, rect.Y + rect.Height)))
+                    mLine2Pt1.X *= scaleX
+                    mLine2Pt1.Y *= scaleY
+
                     mLine2Pt2 = _x2yGraph.PointToScreen(New Point(e.X, rect.Y + rect.Height))
+                    mLine2Pt2.X *= scaleX
+                    mLine2Pt2.Y *= scaleY
+
                     ControlPaint.DrawReversibleLine(mLine2Pt1, mLine2Pt2, Drawing.Color.Black)
 
                     mVertLine = True
