@@ -4,9 +4,7 @@
 '
 ' Desc: Perform EVALUE Analysis 
 '*************************************************************************************************************
-Imports Srfr.SrfrAPI
 Imports DataStore
-Imports System.Collections.Generic
 
 Public Class EVALUE
     Inherits EventAnalysis
