@@ -24,11 +24,11 @@ Public Class grf_X2YGraph
     ' Access to GetDeviceCaps() in Win32 DLL 
     '
     <DllImport("gdi32.dll")>
-    Public Shared Function GetDeviceCaps(ByVal hDC As IntPtr, ByVal nIndex As Integer) As Integer
+    Protected Shared Function GetDeviceCaps(ByVal hDC As IntPtr, ByVal nIndex As Integer) As Integer
     End Function
 
-    Private Const DESKTOPVERTRES As Integer = 117
-    Private Const DESKTOPHORZRES As Integer = 118
+    Protected Const DESKTOPVERTRES As Integer = 117
+    Protected Const DESKTOPHORZRES As Integer = 118
 
 #End Region
 
