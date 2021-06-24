@@ -1658,17 +1658,17 @@ Public Class WorldWindow
         mAnimationFrame.Columns.Add(column)
 
         ' 2nd column is Flow Depth (Y)
-        Dim Ymin As Double = 0.0
-        Dim Ymax As Double = UnitDepth(mSystemGeometry.Depth.Value, depthUnits)
+        Dim MinDepth As Double = 0.0
+        Dim MaxDepth As Double = UnitDepth(mSystemGeometry.Depth.Value, depthUnits)
         If (mSystemGeometry.CrossSection.Value = CrossSections.Furrow) Then
-            Ymax = UnitDepth(mSystemGeometry.MaximumDepth.Value, depthUnits)
+            MaxDepth = UnitDepth(mSystemGeometry.MaximumDepth.Value, depthUnits)
         End If
         Dim YcolTitle As String = mDictionary.tFlowDepth.Translated & " " & depthUnitsText
         column = New DataColumn(YcolTitle, GetType(Double))
-        AddExtendedProperty(column, "Min", Ymin)
-        AddExtendedProperty(column, "Max", Ymax * 1.1)
-        AddExtendedProperty(column, "HorzLine", Ymax)
-        AddExtendedProperty(column, "HorzLineLabel", "Ymax")
+        AddExtendedProperty(column, "Min", MinDepth)
+        AddExtendedProperty(column, "Max", MaxDepth * 1.1)
+        AddExtendedProperty(column, "HorzLine", MaxDepth)
+        AddExtendedProperty(column, "HorzLineLabel", "Maximum Depth")
         AddExtendedProperty(column, "Fill", Drawing.Color.SkyBlue)
         mAnimationFrame.Columns.Add(column)
 
@@ -1689,7 +1689,7 @@ Public Class WorldWindow
 
         ' Flow Elevation (H)
         Dim Hmin As Double = UnitLength(mSystemGeometry.MinimumElevation, lengthUnits)
-        Dim Hmax As Double = Hmin + Ymax * 0.0011
+        Dim Hmax As Double = Hmin + MaxDepth * 0.0011
         Dim HcolTitle As String = mDictionary.tWaterSurfaceElevation.Translated & " " & lengthUnitsText
         column = New DataColumn(HcolTitle, GetType(Double))
         AddExtendedProperty(column, "Min", Hmin)
@@ -1727,7 +1727,7 @@ Public Class WorldWindow
         AnimationViewer.XMin = Xmin
         AnimationViewer.XMax = Xmax
 
-        Dim graph1 As Srfr.AnimationViewer.Graph = New Srfr.AnimationViewer.Graph(YcolTitle, Ymin, Ymax * 1.1)
+        Dim graph1 As Srfr.AnimationViewer.Graph = New Srfr.AnimationViewer.Graph(YcolTitle, MinDepth, MaxDepth * 1.1)
         AnimationViewer.Graph1 = graph1
 
         Dim graph2 As Srfr.AnimationViewer.Graph = New Srfr.AnimationViewer.Graph(ZcolTitle, Zmin, Zmax * 1.1)
