@@ -581,6 +581,9 @@ Public Class Dictionary
 
     Public tAndOtherParameters As TString = New TString("and other parameters")
 
+    Public tOverflowYaxGtDmax As TString = New TString("Overflow: Ymax > Maximum Depth")
+    Public tOverflowYaxNearDmax As TString = New TString("Ymax near Maximum Depth")
+
     Public tContourOverflow As TString = New TString("Contour Range produces overflow conditions")
     Public tContourOverflowPart1 As TString = New TString("Contour computations have stopped due to overflow conditions under the specified range of operational variables.")
     Public tContourOverflowPart2 As TString = New TString("Performance results are invalid in the overflow region.")

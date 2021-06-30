@@ -261,7 +261,7 @@ Public MustInherit Class OperationsAnalysis
     ' The Contour Grid is used as the guide for calculation the contour graphs; it must be
     ' computed before computing the contours.
     '*********************************************************************************************************
-    Protected Function BuildOperationsGridVolBal() As Boolean
+    Protected Function BuildOperationsGridVolBal(ByVal BuildLimitContour As Boolean) As Boolean
 
         Dim point As ContourPoint
         Dim rdx, cdx As Integer
@@ -463,13 +463,15 @@ Public MustInherit Class OperationsAnalysis
 
                 cell.CellEdge = edgeFlags
 
-                ' Build the cell's Error Contour as a precise contour
-                cell.Precision = Globals.ContourPrecision.Precise
-                cell.BuildLimitContour()
-                If (WinSRFR.UserPreferences.CalculatePrecisionContours = True) Then
+                If (BuildLimitContour) Then
+                    ' Build the cell's Error Contour as a precise contour
                     cell.Precision = Globals.ContourPrecision.Precise
-                Else
-                    cell.Precision = Globals.ContourPrecision.Standard
+                    cell.BuildLimitContour()
+                    If (WinSRFR.UserPreferences.CalculatePrecisionContours = True) Then
+                        cell.Precision = Globals.ContourPrecision.Precise
+                    Else
+                        cell.Precision = Globals.ContourPrecision.Standard
+                    End If
                 End If
 
                 mContourGrid.Cell(rdx, cdx) = cell
@@ -1083,6 +1085,10 @@ Public MustInherit Class OperationsAnalysis
         Dim cells As ContourCell(,)
 
         Try
+            ' Input parameters are type Double but all Contour data is type Single
+            Dim sx As Single = CSng(x)
+            Dim sy As Single = CSng(y)
+
             If (mContourGrid IsNot Nothing) Then
 
                 cells = mContourGrid.CellArray
@@ -1090,12 +1096,12 @@ Public MustInherit Class OperationsAnalysis
                 Dim minx As Single = mContourGrid.MinX
                 Dim maxx As Single = mContourGrid.MaxX
                 Dim rngx As Single = maxx - minx
-                Debug.Assert(minx <= x And x <= maxx And 0 < rngx)
+                Debug.Assert(minx <= sx And sx <= maxx And 0 < rngx)
 
                 Dim miny As Single = mContourGrid.MinY
                 Dim maxy As Single = mContourGrid.MaxY
                 Dim rngy As Single = maxy - miny
-                Debug.Assert(miny <= y And y <= maxy And 0 < rngy)
+                Debug.Assert(miny <= sy And sy <= maxy And 0 < rngy)
 
                 For row = 0 To cells.GetUpperBound(0)
                     For col = 0 To cells.GetUpperBound(1)
@@ -1105,11 +1111,11 @@ Public MustInherit Class OperationsAnalysis
                         End If
 
                         ' Find Cell containing selected Operations Point;
-                        If (cell.BL.X.Value <= x And x <= cell.BR.X.Value) Then
-                            If (cell.BL.Y.Value <= y And y <= cell.TL.Y.Value) Then
+                        If (cell.BL.X.Value <= sx And sx <= cell.BR.X.Value) Then
+                            If (cell.BL.Y.Value <= sy And sy <= cell.TL.Y.Value) Then
                                 ' Found Cell; find interior triangle containing point
 
-                                Dim P As PointF = New PointF(x, y)
+                                Dim P As PointF = New PointF(sx, sy)
 
                                 Dim V1, V2, V3 As PointF
                                 Dim W1, W2, W3 As Single
@@ -1121,7 +1127,7 @@ Public MustInherit Class OperationsAnalysis
 
                                 Dim inLeft As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
                                 If (inLeft) Then
-                                    point = InterpolateContourPoint(cell.C, cell.TL, cell.BL, x, y, W1, W2, W3)
+                                    point = InterpolateContourPoint(cell.C, cell.TL, cell.BL, sx, sy, W1, W2, W3)
                                     Exit Function
                                 End If
 
@@ -1132,7 +1138,7 @@ Public MustInherit Class OperationsAnalysis
 
                                 Dim inTop As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
                                 If (inTop) Then
-                                    point = InterpolateContourPoint(cell.C, cell.TR, cell.TL, x, y, W1, W2, W3)
+                                    point = InterpolateContourPoint(cell.C, cell.TR, cell.TL, sx, sy, W1, W2, W3)
                                     Exit Function
                                 End If
 
@@ -1143,7 +1149,7 @@ Public MustInherit Class OperationsAnalysis
 
                                 Dim inRight As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
                                 If (inRight) Then
-                                    point = InterpolateContourPoint(cell.C, cell.BR, cell.TR, x, y, W1, W2, W3)
+                                    point = InterpolateContourPoint(cell.C, cell.BR, cell.TR, sx, sy, W1, W2, W3)
                                     Exit Function
                                 End If
 
@@ -1154,7 +1160,7 @@ Public MustInherit Class OperationsAnalysis
 
                                 Dim inBottom As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
                                 If (inBottom) Then
-                                    point = InterpolateContourPoint(cell.C, cell.BL, cell.BR, x, y, W1, W2, W3)
+                                    point = InterpolateContourPoint(cell.C, cell.BL, cell.BR, sx, sy, W1, W2, W3)
                                     Exit Function
                                 End If
 
@@ -1189,7 +1195,7 @@ Public MustInherit Class OperationsAnalysis
     ' Returns:      SrfrContourPoint    - new interpolated SrfrContourPoint
     '*********************************************************************************************************
     Private Function InterpolateContourPoint(ByVal P1 As SrfrContourPoint, ByVal P2 As SrfrContourPoint, ByVal P3 As SrfrContourPoint,
-                                             ByVal x As Double, ByVal y As Double, ByVal W1 As Single, ByVal W2 As Single, ByVal W3 As Single) As SrfrContourPoint
+                                             ByVal x As Single, ByVal y As Single, ByVal W1 As Single, ByVal W2 As Single, ByVal W3 As Single) As SrfrContourPoint
 
         ' Start with clone (i.e structure but no data) of point 1
         Dim point As SrfrContourPoint = New SrfrContourPoint(P1, True)
@@ -1228,9 +1234,9 @@ Public MustInherit Class OperationsAnalysis
                 mAdvTimes.Clear()
 
                 For idx As Integer = 0 To L1 - 1
-                    Dim V1 As Double = CDbl(P1.SrfrResults.AdvanceCurve.Rows(idx).Item(1))
-                    Dim V2 As Double = CDbl(P2.SrfrResults.AdvanceCurve.Rows(idx).Item(1))
-                    Dim V3 As Double = CDbl(P3.SrfrResults.AdvanceCurve.Rows(idx).Item(1))
+                    Dim V1 As Single = CSng(P1.SrfrResults.AdvanceCurve.Rows(idx).Item(1))
+                    Dim V2 As Single = CSng(P2.SrfrResults.AdvanceCurve.Rows(idx).Item(1))
+                    Dim V3 As Single = CSng(P3.SrfrResults.AdvanceCurve.Rows(idx).Item(1))
 
                     Dim row As DataRow = point.SrfrResults.AdvanceCurve.NewRow()
                     row.Item(0) = P1.SrfrResults.AdvanceCurve.Rows(idx).Item(0)
@@ -1255,9 +1261,9 @@ Public MustInherit Class OperationsAnalysis
                 mRecTimes.Clear()
 
                 For idx As Integer = 0 To L1 - 1
-                    Dim V1 As Double = CDbl(P1.SrfrResults.RecessionCurve.Rows(idx).Item(1))
-                    Dim V2 As Double = CDbl(P2.SrfrResults.RecessionCurve.Rows(idx).Item(1))
-                    Dim V3 As Double = CDbl(P3.SrfrResults.RecessionCurve.Rows(idx).Item(1))
+                    Dim V1 As Single = CSng(P1.SrfrResults.RecessionCurve.Rows(idx).Item(1))
+                    Dim V2 As Single = CSng(P2.SrfrResults.RecessionCurve.Rows(idx).Item(1))
+                    Dim V3 As Single = CSng(P3.SrfrResults.RecessionCurve.Rows(idx).Item(1))
 
                     Dim row As DataRow = point.SrfrResults.RecessionCurve.NewRow()
                     row.Item(0) = P1.SrfrResults.RecessionCurve.Rows(idx).Item(0)
@@ -1281,9 +1287,9 @@ Public MustInherit Class OperationsAnalysis
                 mInfDepths.Clear()
 
                 For idx As Integer = 0 To L1 - 1
-                    Dim V1 As Double = CDbl(P1.SrfrResults.InfiltrationCurve.Rows(idx).Item(1))
-                    Dim V2 As Double = CDbl(P2.SrfrResults.InfiltrationCurve.Rows(idx).Item(1))
-                    Dim V3 As Double = CDbl(P3.SrfrResults.InfiltrationCurve.Rows(idx).Item(1))
+                    Dim V1 As Single = CSng(P1.SrfrResults.InfiltrationCurve.Rows(idx).Item(1))
+                    Dim V2 As Single = CSng(P2.SrfrResults.InfiltrationCurve.Rows(idx).Item(1))
+                    Dim V3 As Single = CSng(P3.SrfrResults.InfiltrationCurve.Rows(idx).Item(1))
 
                     Dim row As DataRow = point.SrfrResults.InfiltrationCurve.NewRow()
                     row.Item(0) = P1.SrfrResults.InfiltrationCurve.Rows(idx).Item(0)
@@ -1358,6 +1364,12 @@ Public MustInherit Class OperationsAnalysis
             D3 = P3.SrfrResults.XR
             point.SrfrResults.XR = D1 * W1 + D2 * W2 + D3 * W3
             mXR = point.SrfrResults.XR
+
+            D1 = P1.SrfrResults.Ymax
+            D2 = P2.SrfrResults.Ymax
+            D3 = P3.SrfrResults.Ymax
+            point.SrfrResults.Ymax = D1 * W1 + D2 * W2 + D3 * W3
+            Ymax = point.SrfrResults.Ymax
 
             ' Performance indicators
 
@@ -1667,6 +1679,18 @@ Public MustInherit Class OperationsAnalysis
                 SrfrAPI.Inflow.Q0 = Point.Y.Value
                 pointID &= "; Q0 = " & Point.Y.Value.ToString
             End If
+
+            If (mInflowManagement.CutbackMethod.Value = CutbackMethods.TimeBased) Then
+                Dim RTcb As Single = DirectCast(Point.Z(10), SingleParameter).Value
+                If (SrfrAPI.Inflow.GetType Is GetType(StandardHydrograph)) Then
+                    Dim stdHydro As StandardHydrograph = DirectCast(SrfrAPI.Inflow, StandardHydrograph)
+                    stdHydro.RTcb = RTcb
+                    stdHydro.Tcb = stdHydro.Tco * RTcb
+                Else
+                    Debug.Assert(False) ' Surge & Tabulated Inflow not supported
+                End If
+            End If
+
         Else ' Border
             SrfrAPI.Inflow.Q0 = Point.Y.Value
             pointID &= "; Q0 = " & Point.Y.Value.ToString
@@ -1815,7 +1839,10 @@ Public MustInherit Class OperationsAnalysis
         sParam = ContourPoint.Z(9)
         sParam.Value = SrfrResults.XR                   ' Relative cutoff
 
-        ' 10 & 11 are fillers
+        sParam = ContourPoint.Z(10)
+        sParam.Value = SrfrResults.Tcb / SrfrResults.Tco    ' Cutoff Time Ratio
+
+        ' 11 is filler
 
         sParam = ContourPoint.Z(12)
         sParam.Value = SrfrResults.WaterCostPerHectare  ' Cost

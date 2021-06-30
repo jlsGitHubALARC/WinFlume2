@@ -1012,13 +1012,13 @@ Public Class FurrowDesign
         If (Dmax < Ymax) Then
             AddExecutionWarning(WarningFlags.DesignIsInvalid, mDictionary.tDesignNotValidID.Translated, mDictionary.tDesignNotValidDetail.Translated)
             contourPoint.HasError = True
-            contourPoint.ErrMsg = mDictionary.tDesignNotValidID.Translated & " - Overflow; Ymax = " & DepthString(Ymax)
+            contourPoint.ErrMsg = mDictionary.tDesignNotValidID.Translated & " - " & mDictionary.tOverflowYaxGtDmax.Translated
         End If
 
         If (Dmax * 0.9 < Ymax) Then
             AddExecutionWarning(WarningFlags.DesignNotRecommended, mDictionary.tDesignNotRecommendedID.Translated, mDictionary.tDesignNotRecommendedDetail.Translated)
             contourPoint.HasWarning = True
-            contourPoint.WarnMsg = mDictionary.tDesignNotRecommendedID.Translated & "; Ymax = " & DepthString(Ymax)
+            contourPoint.WarnMsg = mDictionary.tDesignNotRecommendedID.Translated & " - " & mDictionary.tOverflowYaxNearDmax.Translated
         End If
 
         ' NOTE - order of Z parameters must match calling function's order
@@ -1419,7 +1419,7 @@ Public Class FurrowDesign
         If (Dmax * 0.9 < Ymax) Then
             AddExecutionWarning(WarningFlags.DesignNotRecommended, mDictionary.tDesignNotRecommendedID.Translated, mDictionary.tDesignNotRecommendedDetail.Translated)
             contourPoint.HasWarning = True
-            contourPoint.WarnMsg = mDictionary.tDesignNotRecommendedID.Translated & "; Ymax = " & DepthString(Ymax)
+            contourPoint.WarnMsg = mDictionary.tDesignNotRecommendedID.Translated & " - " & mDictionary.tOverflowYaxNearDmax.Translated
         End If
 
         ' NOTE - order of Z parameters must match calling function's order

@@ -1,12 +1,17 @@
 
-'**********************************************************************************************
+'*************************************************************************************************************
 ' ctl_Results - Control for displaying the WinSRFR computation results
 '
+' History of this class:
+'   In the beginning, this was the only class for displaying the Results Tab in all Worlds
+'   Then, the Simulation World results became complex enough that ctl_SimulationResults was split off
+'   Then, this also occurred for the Evaluation World so ctl_EvaluationResults was split off
+'   Now, ctl_Results is used only by the Design & Operations Worlds
+'*************************************************************************************************************
 Imports System.Drawing.Printing
 Imports DataStore
 Imports GraphingUI
 Imports PrintingUI
-Imports Srfr
 
 Public Class ctl_Results
     Inherits System.Windows.Forms.TabControl
@@ -2214,7 +2219,7 @@ Public Class ctl_Results
     '
     ' Add individual Contour results pages
     '
-    Private Sub AddContourPages(ByVal designContour As ContourParameter, _
+    Private Sub AddContourPages(ByVal designContour As ContourParameter,
                                 ByVal contourGrid As ContourGrid)
 
         ' Add tab for each contour plot
@@ -2246,7 +2251,7 @@ Public Class ctl_Results
     '
     ' Add Contour Overlay
     '
-    Private Sub AddContourOverlay(ByVal designContour As ContourParameter, _
+    Private Sub AddContourOverlay(ByVal designContour As ContourParameter,
                                   ByVal contourGrid As ContourGrid)
 
         Dim overlaysSelected As BorderContourOverlay = mWorldWindow.ContourOverlay
@@ -2670,7 +2675,7 @@ Public Class ctl_Results
     '
     ' Get Parameter Name from Parameter Index
     '
-    Private Function ParameterNameFromIndex(ByVal idx As Integer, _
+    Private Function ParameterNameFromIndex(ByVal idx As Integer,
                                             ByVal contourGrid As ContourGrid) As String
         Dim paramName As String = " "
 
@@ -2929,6 +2934,7 @@ Public Class ctl_Results
             ' Get model references
             Dim systemGeometry As SystemGeometry = mUnit.SystemGeometryRef
             Dim inflowManagement As InflowManagement = mUnit.InflowManagementRef
+            Dim surfaceFlow As SurfaceFlow = mUnit.SurfaceFlowRef
             Dim borderCriteria As BorderCriteria = mUnit.BorderCriteriaRef
             Dim analysis As Analysis = mWorldWindow.CurrentAnalysis
 
@@ -2983,7 +2989,8 @@ Public Class ctl_Results
             End Select
 
             ' Build the DataSet for the WDD graph
-            Dim dataSet As DataSet = WddDataSet(mUnit, analysis, x, y)
+            analysis.Ymax = surfaceFlow.Ymax.Value
+            Dim DataSet As DataSet = WddDataSet(mUnit, analysis, x, y)
 
             Dim _2dGraph As grf_XYGraph
 

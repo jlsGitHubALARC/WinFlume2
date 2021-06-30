@@ -563,7 +563,7 @@ Public Class FurrowOperations
             mTco = mMaxCutoffTime
         End If
 
-        RunSRFR(False, True, True)
+        RunSRFR(False, False, False)
 
         ' Check for Overflow
         Dim SrfrResults As Srfr.Results = SrfrAPI.Irrigation.Results
@@ -637,12 +637,12 @@ Public Class FurrowOperations
         Select Case OperationsMethod
             Case OperationsMethods.VolumeBalance
                 ' Build contour grid with Volume Balance
-                Me.BuildOperationsGridVolBal()
+                Me.BuildOperationsGridVolBal(True)
             Case OperationsMethods.VBandSrfrSims
                 ' Build contour grid with Volume Balance
                 OperationsMethod = OperationsMethods.VolumeBalance
-                Me.BuildOperationsGridVolBal()
-                RunSRFR(False, True, True)
+                Me.BuildOperationsGridVolBal(False)
+                RunSRFR(False, False, False)
                 ' Then Refine with SRFR Simulations
                 mWorldWindow.RemoveSrfrStatusHandler()
                 OperationsMethod = OperationsMethods.SrfrSimulations
@@ -1106,13 +1106,13 @@ Public Class FurrowOperations
         If (Dmax < Ymax) Then
             AddExecutionWarning(WarningFlags.OperationIsInvalid, mDictionary.tOperationNotValidID.Translated, mDictionary.tOperationNotValidDetail.Translated)
             contourPoint.HasError = True
-            contourPoint.ErrMsg = mDictionary.tOperationNotValidID.Translated & " - Overflow; Ymax = " & DepthString(Ymax)
+            contourPoint.ErrMsg = mDictionary.tOperationNotValidID.Translated & " - " & mDictionary.tOverflowYaxGtDmax.Translated
         End If
 
         If (Dmax * 0.9 < Ymax) Then
             AddExecutionWarning(WarningFlags.OperationIsInvalid, mDictionary.tOperationNotRecommendedID.Translated, mDictionary.tOperationNotRecommendedDetail.Translated)
             contourPoint.HasWarning = True
-            contourPoint.WarnMsg = mDictionary.tOperationNotRecommendedID.Translated & "; Ymax = " & DepthString(Ymax)
+            contourPoint.WarnMsg = mDictionary.tOperationNotRecommendedID.Translated & " - " & mDictionary.tOverflowYaxNearDmax.Translated
         End If
 
         ' NOTE - order of Z parameters must match calling function's order

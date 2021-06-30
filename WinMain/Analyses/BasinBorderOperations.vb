@@ -1342,6 +1342,46 @@ Public Class BasinBorderOperations
 
 #Region " Basin / Border Operations Contours "
 
+    Private Function ValidateContourRange() As OperationsOptions
+        ValidateContourRange = True
+
+        ' Save current Solution Point values
+        Dim sInflowRate As Double = mInflowRate
+        Dim sTco As Double = mTco
+        '
+        ' Run SRFR Simulation at conditions most likely to cause Overflow
+        '
+        ' Validate at maximum Q0 & maximum Tco
+        mInflowRate = mMaxInflowRate
+        mTco = mMaxCutoffTime
+
+        RunSRFR(False, False, False)
+
+        ' Check for Overflow
+        Dim SrfrResults As Srfr.Results = SrfrAPI.Irrigation.Results
+        Dim Ymax As Double = SrfrResults.Ymax
+        Dim Y As Double = mSystemGeometry.Depth.Value
+        If (Y < Ymax) Then ' Overflow
+            Dim title As String = mDictionary.tContourOverflow.Translated
+
+            Dim msg As String = ""
+            msg &= mDictionary.tContourOverflowPart1.Translated & " "
+            msg &= mDictionary.tContourOverflowPart2.Translated & " "
+            msg &= mDictionary.tContourOverflowPart3.Translated & " "
+            msg &= mDictionary.tContourOverflowPart4.Translated & vbCrLf & vbCrLf
+            msg &= "Ymax = " & DepthString(Ymax)
+
+            AddExecutionError(Analysis.ErrorFlags.ExecutionError, title, msg)
+
+            ValidateContourRange = False
+        End If
+
+        ' Restore saved Solultion Point values
+        mInflowRate = sInflowRate
+        mTco = sTco
+
+    End Function
+
     Public Overrides Sub RunOperations()
         Me.StartRun("Basin / Border Operations", True)
 
@@ -1351,15 +1391,22 @@ Public Class BasinBorderOperations
         XTolerance = mCutoffTimeTolerance
         YTolerance = mInflowRateTolerance
         '
+        ' Validate contour range
+        '
+        If Not (ValidateContourRange()) Then
+            MyBase.EndRun()
+            Exit Sub
+        End If
+        '
         ' Build operations contour grid
         '
         Select Case OperationsMethod
             Case OperationsMethods.VolumeBalance
                 ' Build contour grid with Volume Balance
-                Me.BuildOperationsGridVolBal()
+                Me.BuildOperationsGridVolBal(True)
             Case OperationsMethods.VBandSrfrSims
                 ' Build contour grid with Volume Balance
-                Me.BuildOperationsGridVolBal()
+                Me.BuildOperationsGridVolBal(False)
                 ' Then Refine with SRFR Simulations
                 mWorldWindow.RemoveSrfrStatusHandler()
                 Me.RefineOperationsGridSrfrSim()
@@ -2094,13 +2141,13 @@ Public Class BasinBorderOperations
         If (Dmax < Ymax) Then
             AddExecutionWarning(WarningFlags.OperationIsInvalid, mDictionary.tOperationNotValidID.Translated, mDictionary.tOperationNotValidDetail.Translated)
             contourPoint.HasError = True
-            contourPoint.ErrMsg = mDictionary.tOperationNotValidID.Translated & " - Overflow; Ymax = " & DepthString(Ymax)
+            contourPoint.ErrMsg = mDictionary.tOperationNotValidID.Translated & " - " & mDictionary.tOverflowYaxGtDmax.Translated
         End If
 
         If (Dmax * 0.9 < Ymax) Then
             AddExecutionWarning(WarningFlags.OperationIsInvalid, mDictionary.tOperationNotRecommendedID.Translated, mDictionary.tOperationNotRecommendedDetail.Translated)
             contourPoint.HasWarning = True
-            contourPoint.WarnMsg = mDictionary.tOperationNotRecommendedID.Translated & "; Ymax = " & DepthString(Ymax)
+            contourPoint.WarnMsg = mDictionary.tOperationNotRecommendedID.Translated & " - " & mDictionary.tOverflowYaxNearDmax.Translated
         End If
 
         ' NOTE - order of Z parameters must match calling function's order
@@ -2484,13 +2531,13 @@ Public Class BasinBorderOperations
         If (Dmax < Ymax) Then
             AddExecutionWarning(WarningFlags.OperationIsInvalid, mDictionary.tOperationNotValidID.Translated, mDictionary.tOperationNotValidDetail.Translated)
             contourPoint.HasError = True
-            contourPoint.ErrMsg = mDictionary.tOperationNotValidID.Translated & " - Overflow; Ymax = " & DepthString(Ymax)
+            contourPoint.ErrMsg = mDictionary.tOperationNotValidID.Translated & " - " & mDictionary.tOverflowYaxGtDmax.Translated
         End If
 
         If (Dmax * 0.9 < Ymax) Then
             AddExecutionWarning(WarningFlags.OperationIsInvalid, mDictionary.tOperationNotRecommendedID.Translated, mDictionary.tOperationNotRecommendedDetail.Translated)
             contourPoint.HasWarning = True
-            contourPoint.WarnMsg = mDictionary.tOperationNotRecommendedID.Translated & "; Ymax = " & DepthString(Ymax)
+            contourPoint.WarnMsg = mDictionary.tOperationNotRecommendedID.Translated & " - " & mDictionary.tOverflowYaxNearDmax.Translated
         End If
 
         ' NOTE - order of Z parameters must match calling function's order

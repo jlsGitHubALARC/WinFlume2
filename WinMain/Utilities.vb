@@ -481,8 +481,6 @@ Module Utilities
         analysis.ClearExecutionErrors()
         analysis.ClearExecutionWarnings()
 
-        Dim contourPoint As ContourPoint = analysis.GetContourPoint(x, y, NumWddPoints)
-
         ' Get performance parameter for selected contour point
         Dim L As Double = analysis.Length
         Dim W As Double = analysis.Width
@@ -560,15 +558,19 @@ Module Utilities
         ' Performance parameters go in Inset
         Dim insetLines As Integer = 7
         Dim asterisk As String = ""
-        If (contourPoint.HasError) Then
-            insetLines += 1
-            asterisk = "**"
-        ElseIf (contourPoint.HasWarning) Then
-            insetLines += 1
-            asterisk = "*"
+
+        Dim contourPoint As ContourPoint = analysis.GetContourPoint(x, y, NumWddPoints)
+        If (contourPoint IsNot Nothing) Then
+            If (contourPoint.HasError) Then
+                insetLines += 1
+                asterisk = "**"
+            ElseIf (contourPoint.HasWarning) Then
+                insetLines += 1
+                asterisk = "*"
+            End If
         End If
 
-        If Not (Double.IsNaN(TL)) Then
+        If Not (Double.IsNaN(TL)) Then ' TL is valid number
             insetLines += 1
         End If
 
@@ -600,7 +602,11 @@ Module Utilities
         parameters(5) += "  Dapp =" + DepthString(Dapp, 9)
 
         If (inflowManagement.CutbackMethod.Value = CutbackMethods.NoCutback) Then
-            parameters(6) += "  Ymax =" + DepthString(Ymax, 9)
+            If (0.0 < Ymax) Then
+                parameters(6) += "  Ymax =" + DepthString(Ymax, 9)
+            Else
+                parameters(6) += "                 "
+            End If
         Else
             parameters(6) += "  Qcb  =" + FlowRateString(Qcb, 9)
         End If
@@ -628,10 +634,12 @@ Module Utilities
 
         parameters(7) = mDictionary.tCosts.Translated & " = " & AreaCostString(Cost) & ", " & mDictionary.tTotal.Translated & " =" + CostString(Cost * hectares, 9)
 
-        If (contourPoint.HasError) Then
-            parameters(8) = asterisk + mDictionary.tError.Translated & ": " + contourPoint.ErrMsg
-        ElseIf (contourPoint.HasWarning) Then
-            parameters(8) = asterisk + mDictionary.tWarning.Translated & ": " + contourPoint.WarnMsg
+        If (contourPoint IsNot Nothing) Then
+            If (contourPoint.HasError) Then
+                parameters(8) = asterisk + mDictionary.tError.Translated & ": " + contourPoint.ErrMsg
+            ElseIf (contourPoint.HasWarning) Then
+                parameters(8) = asterisk + mDictionary.tWarning.Translated & ": " + contourPoint.WarnMsg
+            End If
         End If
 
         dataSet.ExtendedProperties.Add("Inset", parameters)

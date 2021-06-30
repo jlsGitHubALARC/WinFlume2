@@ -382,6 +382,7 @@ Public Class WaterDistributionDiagram
                     End If
 
                     ' Build the DataSet for the WDD graph
+                    mAnalysis.Ymax = 0 ' jls
                     Dim dataSet As DataSet = WddDataSet(mUnit, mAnalysis, x, y)
 
                     LoadUserColors(WDD)

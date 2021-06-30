@@ -1805,6 +1805,14 @@ Module SrfrAPI
         ' Comparison runs return only a subset of the full SRFR results
         '
         If (compareRun) Then ' SRFR being run for comparison results only
+
+            Dim winSrfrSurfaceFlow As SurfaceFlow = unit.SurfaceFlowRef
+
+            dValue = srfrIrrigation.Ymax                            ' Maximum Flow Depth (Ymax)
+            dParam = winSrfrSurfaceFlow.Ymax
+            dParam.Value = dValue
+            dParam.Source = ValueSources.Calculated
+            winSrfrSurfaceFlow.Ymax = dParam
             '
             ' Comparison results are stored in SrfrResults object
             '
