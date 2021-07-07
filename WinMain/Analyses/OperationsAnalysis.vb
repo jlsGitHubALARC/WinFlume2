@@ -2009,6 +2009,69 @@ Public MustInherit Class OperationsAnalysis
 
 #End Region
 
+#Region " Misc. "
+
+    Public Function MinAppliedVolume() As Double
+        Me.GetContourParameters()
+
+        If ((mUnit.CrossSection = CrossSections.Furrow) _
+        And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
+            ' Contour is Cutoff (X) vs. Width (Y)
+            MinAppliedVolume = mMinCutoffTime * mInflowManagement.InflowRate.Value
+        Else ' Width Given
+            ' Contour is Cutoff (X) vs. Inflow Rate (Y)
+            MinAppliedVolume = mMinCutoffTime * mMinInflowRate
+        End If
+
+    End Function
+
+    Public Function MaxAppliedVolume() As Double
+        Me.GetContourParameters()
+
+        If ((mUnit.CrossSection = CrossSections.Furrow) _
+        And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
+            ' Contour is Cutoff (X) vs. Width (Y)
+            MaxAppliedVolume = mMaxCutoffTime * mInflowManagement.InflowRate.Value
+        Else ' Width Given
+            ' Contour is Cutoff (X) vs. Inflow Rate (Y)
+            MaxAppliedVolume = mMaxCutoffTime * mMaxInflowRate
+        End If
+    End Function
+
+    Public Function MinAppliedDepth() As Double
+        Me.GetContourParameters()
+
+        If ((mUnit.CrossSection = CrossSections.Furrow) _
+        And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
+            ' Contour is Cutoff (X) vs. Width (Y)
+            Dim width As Double = mBorderCriteria.MaxContourFurrowsPerSet.Value * mSystemGeometry.FurrowSpacing.Value
+            Dim area As Double = mSystemGeometry.Length.Value * width
+            MinAppliedDepth = MinAppliedVolume() / area
+        Else ' Width Given
+            ' Contour is Cutoff (X) vs. Inflow Rate (Y)
+            Dim area As Double = mSystemGeometry.FieldArea
+            MinAppliedDepth = MinAppliedVolume() / area
+        End If
+    End Function
+
+    Public Function MaxAppliedDepth() As Double
+        Me.GetContourParameters()
+
+        If ((mUnit.CrossSection = CrossSections.Furrow) _
+        And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
+            ' Contour is Cutoff (X) vs. Width (Y)
+            Dim width As Double = mBorderCriteria.MinContourFurrowsPerSet.Value * mSystemGeometry.FurrowSpacing.Value
+            Dim area As Double = mSystemGeometry.Length.Value * width
+            MaxAppliedDepth = MaxAppliedVolume() / area
+        Else ' Width Given
+            ' Contour is Cutoff (X) vs. Inflow Rate (Y)
+            Dim area As Double = mSystemGeometry.FieldArea
+            MaxAppliedDepth = MaxAppliedVolume() / area
+        End If
+    End Function
+
+#End Region
+
 #End Region
 
 End Class

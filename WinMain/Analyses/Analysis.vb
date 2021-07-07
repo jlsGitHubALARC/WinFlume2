@@ -195,7 +195,7 @@ Public MustInherit Class Analysis
     '
     ' Operations Contours:
     '   X is cutoff time or cutoff ratio
-    '   Y is always flow rate
+    '   Y is is width or flow rate
     '
     Protected Const mNumMajor10Levels As Integer = 10
     Protected Const mNumMinor10Levels As Integer = 12
@@ -411,7 +411,8 @@ Public MustInherit Class Analysis
 #Region " Properties "
 
 #Region " Contours "
-    '
+
+    '*********************************************************************************************************
     ' Contour grid points
     '
     ' Design Contours:
@@ -420,7 +421,10 @@ Public MustInherit Class Analysis
     '
     ' Operations Contours:
     '   X is cutoff time or cutoff ratio
-    '   Y is always flow rate
+    '   Y is is width or flow rate
+    '*********************************************************************************************************
+    '
+    ' Lengths (L)
     '
     Protected mLengths() As Double = {100, 150.0, 200.0, 240.0, 300.0, 400.0, 600.0} ' m
     Protected mNumLengths As Integer = mLengths.Length
@@ -434,7 +438,9 @@ Public MustInherit Class Analysis
     End Property
 
     Protected mLengthTolerance As Single = OneCentimeter
-
+    '
+    ' Widths (W)
+    '
     Protected mWidths() As Double = {50, 100.0, 120.0, 150.0, 200.0, 300.0, 600.0} ' m
     Protected mNumWidths As Integer = mWidths.Length
     Public Property Widths() As Double()
@@ -447,7 +453,9 @@ Public MustInherit Class Analysis
     End Property
 
     Protected mWidthTolerance As Single = OneCentimeter
-
+    '
+    ' Inflow Rates (Q)
+    '
     Protected mInflowRates() As Double = {0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35} ' cms
     Protected mNumInflowRates As Integer = mInflowRates.Length
     Public Property InflowRates() As Double()
@@ -460,8 +468,10 @@ Public MustInherit Class Analysis
     End Property
 
     Protected mInflowRateTolerance As Single = 0.005 * LiterPerSecond
-
-    Protected mCutoffTimes() As Double = {1 * OneHour, 2 * OneHour, 3 * OneHour, 4 * OneHour, _
+    '
+    ' Cutoff Times (Tco)
+    '
+    Protected mCutoffTimes() As Double = {1 * OneHour, 2 * OneHour, 3 * OneHour, 4 * OneHour,
                                           5 * OneHour, 6 * OneHour, 7 * OneHour, 8 * OneHour} ' sec
     Protected mNumCutoffTimes As Integer = mCutoffTimes.Length
     Public Property CutoffTimes() As Double()
@@ -474,7 +484,9 @@ Public MustInherit Class Analysis
     End Property
 
     Protected mCutoffTimeTolerance As Single = OneSecond
-
+    '
+    ' Cutoff Ratios (XR)
+    '
     Protected mCutoffRatios() As Double = {0.6, 0.8, 1.0, 1.2, 1.4, 1.6, 1.8, 2.0}
     Protected mNumCutoffRatios As Integer = mCutoffRatios.Length
     Public Property CutoffRatios() As Double()

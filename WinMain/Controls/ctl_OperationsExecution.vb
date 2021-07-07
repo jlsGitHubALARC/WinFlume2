@@ -105,6 +105,11 @@ Public Class ctl_OperationsExecution
     Friend WithEvents ResetPointButton As DataStore.ctl_Button
     Friend WithEvents SrfrSimulationsButton As ctl_RadioButton
     Friend WithEvents VolumeBalanceButton As ctl_RadioButton
+    Friend WithEvents AppliedDepthRangePanel As ctl_Panel
+    Friend WithEvents MaxDapp As ctl_Label
+    Friend WithEvents AppliedDepthToLabel As ctl_Label
+    Friend WithEvents MinDapp As ctl_Label
+    Friend WithEvents AppliedDepthLabel As ctl_Label
     Friend WithEvents CutoffDistanceToLabel As DataStore.ctl_Label
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.RunControlBox = New DataStore.ctl_GroupBox()
@@ -115,7 +120,6 @@ Public Class ctl_OperationsExecution
         Me.CellDensityLabel = New DataStore.ctl_Label()
         Me.CellDensityControl = New DataStore.ctl_IntegerParameter()
         Me.SolutionModelControl = New DataStore.ctl_SelectParameter()
-        Me.ExecutionErrorsWarnings = New WinMain.ErrorRichTextBox()
         Me.NoErrorsWarningsLabel = New DataStore.ctl_Label()
         Me.ErrorsWarningsLabel = New DataStore.ctl_Label()
         Me.RunOperationsButton = New DataStore.ctl_Button()
@@ -176,6 +180,12 @@ Public Class ctl_OperationsExecution
         Me.FurrowSetInflowRateOption = New DataStore.ctl_RadioButton()
         Me.FurrowsPerSetOption = New DataStore.ctl_RadioButton()
         Me.BorderOperationsPanel = New DataStore.ctl_Panel()
+        Me.AppliedDepthRangePanel = New DataStore.ctl_Panel()
+        Me.AppliedDepthLabel = New DataStore.ctl_Label()
+        Me.MinDapp = New DataStore.ctl_Label()
+        Me.AppliedDepthToLabel = New DataStore.ctl_Label()
+        Me.MaxDapp = New DataStore.ctl_Label()
+        Me.ExecutionErrorsWarnings = New WinMain.ErrorRichTextBox()
         Me.RunControlBox.SuspendLayout()
         Me.SolutionModelBox.SuspendLayout()
         Me.ExecutionBox.SuspendLayout()
@@ -187,6 +197,7 @@ Public Class ctl_OperationsExecution
         Me.InflowRateRangePanel.SuspendLayout()
         Me.OperationsParametersBox.SuspendLayout()
         Me.FurrowOperationsPanel.SuspendLayout()
+        Me.AppliedDepthRangePanel.SuspendLayout()
         Me.SuspendLayout()
         '
         'RunControlBox
@@ -293,16 +304,6 @@ Public Class ctl_OperationsExecution
         Me.SolutionModelControl.SelectedIndexSet = False
         Me.SolutionModelControl.Size = New System.Drawing.Size(184, 28)
         Me.SolutionModelControl.TabIndex = 0
-        '
-        'ExecutionErrorsWarnings
-        '
-        Me.ExecutionErrorsWarnings.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ExecutionErrorsWarnings.Location = New System.Drawing.Point(8, 231)
-        Me.ExecutionErrorsWarnings.Name = "ExecutionErrorsWarnings"
-        Me.ExecutionErrorsWarnings.ReadOnly = True
-        Me.ExecutionErrorsWarnings.Size = New System.Drawing.Size(208, 177)
-        Me.ExecutionErrorsWarnings.TabIndex = 3
-        Me.ExecutionErrorsWarnings.Text = ""
         '
         'NoErrorsWarningsLabel
         '
@@ -648,6 +649,7 @@ Public Class ctl_OperationsExecution
         '
         Me.ContourRangesBox.AccessibleDescription = "The configuration for the Result's contour graphs"
         Me.ContourRangesBox.AccessibleName = "Contour Definition"
+        Me.ContourRangesBox.Controls.Add(Me.AppliedDepthRangePanel)
         Me.ContourRangesBox.Controls.Add(Me.AddContourOverlays)
         Me.ContourRangesBox.Controls.Add(Me.ShowMinorContours)
         Me.ContourRangesBox.Controls.Add(Me.PrecisionContoursOption)
@@ -658,9 +660,9 @@ Public Class ctl_OperationsExecution
         Me.ContourRangesBox.Controls.Add(Me.CutoffDistanceRangePanel)
         Me.ContourRangesBox.Controls.Add(Me.FurrowsPerSetRangePanel)
         Me.ContourRangesBox.Controls.Add(Me.InflowRateRangePanel)
-        Me.ContourRangesBox.Location = New System.Drawing.Point(8, 203)
+        Me.ContourRangesBox.Location = New System.Drawing.Point(8, 198)
         Me.ContourRangesBox.Name = "ContourRangesBox"
-        Me.ContourRangesBox.Size = New System.Drawing.Size(352, 199)
+        Me.ContourRangesBox.Size = New System.Drawing.Size(352, 204)
         Me.ContourRangesBox.TabIndex = 1
         Me.ContourRangesBox.TabStop = False
         Me.ContourRangesBox.Text = "Contour Configuration"
@@ -669,7 +671,7 @@ Public Class ctl_OperationsExecution
         '
         Me.AddContourOverlays.AccessibleDescription = "Press to add a tab page of overlaying contours"
         Me.AddContourOverlays.AccessibleName = "Contour Overlay"
-        Me.AddContourOverlays.Location = New System.Drawing.Point(176, 168)
+        Me.AddContourOverlays.Location = New System.Drawing.Point(176, 173)
         Me.AddContourOverlays.Name = "AddContourOverlays"
         Me.AddContourOverlays.Size = New System.Drawing.Size(168, 24)
         Me.AddContourOverlays.TabIndex = 7
@@ -682,7 +684,7 @@ Public Class ctl_OperationsExecution
         Me.ShowMinorContours.AlwaysChecked = False
         Me.ShowMinorContours.ErrorMessage = Nothing
         Me.ShowMinorContours.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ShowMinorContours.Location = New System.Drawing.Point(176, 136)
+        Me.ShowMinorContours.Location = New System.Drawing.Point(176, 147)
         Me.ShowMinorContours.Name = "ShowMinorContours"
         Me.ShowMinorContours.Size = New System.Drawing.Size(168, 24)
         Me.ShowMinorContours.TabIndex = 5
@@ -694,7 +696,7 @@ Public Class ctl_OperationsExecution
         Me.PrecisionContoursOption.AccessibleDescription = "Selects precision contour computation (runs slower)"
         Me.PrecisionContoursOption.AccessibleName = "Precision Contours"
         Me.PrecisionContoursOption.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.PrecisionContoursOption.Location = New System.Drawing.Point(10, 160)
+        Me.PrecisionContoursOption.Location = New System.Drawing.Point(10, 171)
         Me.PrecisionContoursOption.Name = "PrecisionContoursOption"
         Me.PrecisionContoursOption.Size = New System.Drawing.Size(160, 24)
         Me.PrecisionContoursOption.TabIndex = 6
@@ -705,7 +707,7 @@ Public Class ctl_OperationsExecution
         Me.StandardContoursOption.AccessibleDescription = "Selects standard contour computation (faster execution)"
         Me.StandardContoursOption.AccessibleName = "Standard Contours"
         Me.StandardContoursOption.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.StandardContoursOption.Location = New System.Drawing.Point(10, 136)
+        Me.StandardContoursOption.Location = New System.Drawing.Point(10, 147)
         Me.StandardContoursOption.Name = "StandardContoursOption"
         Me.StandardContoursOption.Size = New System.Drawing.Size(160, 24)
         Me.StandardContoursOption.TabIndex = 4
@@ -720,7 +722,7 @@ Public Class ctl_OperationsExecution
         Me.ContourGridSizeControl.EnableSaveActions = False
         Me.ContourGridSizeControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ContourGridSizeControl.IsCalculated = False
-        Me.ContourGridSizeControl.Location = New System.Drawing.Point(178, 96)
+        Me.ContourGridSizeControl.Location = New System.Drawing.Point(178, 117)
         Me.ContourGridSizeControl.Name = "ContourGridSizeControl"
         Me.ContourGridSizeControl.SelectedIndexSet = False
         Me.ContourGridSizeControl.Size = New System.Drawing.Size(136, 28)
@@ -729,7 +731,7 @@ Public Class ctl_OperationsExecution
         'ContourGridSizeLabel
         '
         Me.ContourGridSizeLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ContourGridSizeLabel.Location = New System.Drawing.Point(10, 96)
+        Me.ContourGridSizeLabel.Location = New System.Drawing.Point(10, 117)
         Me.ContourGridSizeLabel.Name = "ContourGridSizeLabel"
         Me.ContourGridSizeLabel.Size = New System.Drawing.Size(162, 23)
         Me.ContourGridSizeLabel.TabIndex = 2
@@ -745,7 +747,7 @@ Public Class ctl_OperationsExecution
         Me.CutoffTimeRangePanel.Controls.Add(Me.MinCutoffTimeControl)
         Me.CutoffTimeRangePanel.Controls.Add(Me.CutoffTimeLabel)
         Me.CutoffTimeRangePanel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CutoffTimeRangePanel.Location = New System.Drawing.Point(4, 56)
+        Me.CutoffTimeRangePanel.Location = New System.Drawing.Point(4, 52)
         Me.CutoffTimeRangePanel.Name = "CutoffTimeRangePanel"
         Me.CutoffTimeRangePanel.Size = New System.Drawing.Size(340, 32)
         Me.CutoffTimeRangePanel.TabIndex = 1
@@ -813,7 +815,7 @@ Public Class ctl_OperationsExecution
         Me.CutoffDistanceRangePanel.Controls.Add(Me.MinCutoffDistanceControl)
         Me.CutoffDistanceRangePanel.Controls.Add(Me.CutoffDistanceLabel)
         Me.CutoffDistanceRangePanel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CutoffDistanceRangePanel.Location = New System.Drawing.Point(8, 56)
+        Me.CutoffDistanceRangePanel.Location = New System.Drawing.Point(8, 52)
         Me.CutoffDistanceRangePanel.Name = "CutoffDistanceRangePanel"
         Me.CutoffDistanceRangePanel.Size = New System.Drawing.Size(336, 32)
         Me.CutoffDistanceRangePanel.TabIndex = 1
@@ -882,7 +884,7 @@ Public Class ctl_OperationsExecution
         Me.FurrowsPerSetRangePanel.Controls.Add(Me.MinFurrowsPerSetControl)
         Me.FurrowsPerSetRangePanel.Controls.Add(Me.FurrowsPerSetLabel)
         Me.FurrowsPerSetRangePanel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FurrowsPerSetRangePanel.Location = New System.Drawing.Point(4, 24)
+        Me.FurrowsPerSetRangePanel.Location = New System.Drawing.Point(4, 20)
         Me.FurrowsPerSetRangePanel.Name = "FurrowsPerSetRangePanel"
         Me.FurrowsPerSetRangePanel.Size = New System.Drawing.Size(340, 32)
         Me.FurrowsPerSetRangePanel.TabIndex = 8
@@ -953,7 +955,7 @@ Public Class ctl_OperationsExecution
         Me.InflowRateRangePanel.Controls.Add(Me.MaxInflowRateControl)
         Me.InflowRateRangePanel.Controls.Add(Me.MinInflowRateControl)
         Me.InflowRateRangePanel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.InflowRateRangePanel.Location = New System.Drawing.Point(4, 24)
+        Me.InflowRateRangePanel.Location = New System.Drawing.Point(4, 20)
         Me.InflowRateRangePanel.Name = "InflowRateRangePanel"
         Me.InflowRateRangePanel.Size = New System.Drawing.Size(340, 32)
         Me.InflowRateRangePanel.TabIndex = 0
@@ -1137,6 +1139,69 @@ Public Class ctl_OperationsExecution
         Me.BorderOperationsPanel.Size = New System.Drawing.Size(342, 58)
         Me.BorderOperationsPanel.TabIndex = 1
         '
+        'AppliedDepthRangePanel
+        '
+        Me.AppliedDepthRangePanel.AccessibleDescription = "Shows the min and max Applied Depths for the specified contour range"
+        Me.AppliedDepthRangePanel.AccessibleName = "Applied Depth"
+        Me.AppliedDepthRangePanel.Controls.Add(Me.MaxDapp)
+        Me.AppliedDepthRangePanel.Controls.Add(Me.AppliedDepthToLabel)
+        Me.AppliedDepthRangePanel.Controls.Add(Me.MinDapp)
+        Me.AppliedDepthRangePanel.Controls.Add(Me.AppliedDepthLabel)
+        Me.AppliedDepthRangePanel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AppliedDepthRangePanel.Location = New System.Drawing.Point(4, 84)
+        Me.AppliedDepthRangePanel.Name = "AppliedDepthRangePanel"
+        Me.AppliedDepthRangePanel.Size = New System.Drawing.Size(340, 32)
+        Me.AppliedDepthRangePanel.TabIndex = 9
+        '
+        'AppliedDepthLabel
+        '
+        Me.AppliedDepthLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AppliedDepthLabel.Location = New System.Drawing.Point(2, 4)
+        Me.AppliedDepthLabel.Name = "AppliedDepthLabel"
+        Me.AppliedDepthLabel.Size = New System.Drawing.Size(150, 23)
+        Me.AppliedDepthLabel.TabIndex = 0
+        Me.AppliedDepthLabel.Text = "Applied Depth"
+        Me.AppliedDepthLabel.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'MinDapp
+        '
+        Me.MinDapp.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MinDapp.Location = New System.Drawing.Point(156, 4)
+        Me.MinDapp.Name = "MinDapp"
+        Me.MinDapp.Size = New System.Drawing.Size(64, 23)
+        Me.MinDapp.TabIndex = 3
+        Me.MinDapp.Text = "100"
+        Me.MinDapp.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'AppliedDepthToLabel
+        '
+        Me.AppliedDepthToLabel.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.AppliedDepthToLabel.Location = New System.Drawing.Point(224, 5)
+        Me.AppliedDepthToLabel.Name = "AppliedDepthToLabel"
+        Me.AppliedDepthToLabel.Size = New System.Drawing.Size(23, 23)
+        Me.AppliedDepthToLabel.TabIndex = 4
+        Me.AppliedDepthToLabel.Text = "to"
+        '
+        'MaxDapp
+        '
+        Me.MaxDapp.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MaxDapp.Location = New System.Drawing.Point(244, 4)
+        Me.MaxDapp.Name = "MaxDapp"
+        Me.MaxDapp.Size = New System.Drawing.Size(92, 23)
+        Me.MaxDapp.TabIndex = 5
+        Me.MaxDapp.Text = "999 mm"
+        Me.MaxDapp.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'ExecutionErrorsWarnings
+        '
+        Me.ExecutionErrorsWarnings.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ExecutionErrorsWarnings.Location = New System.Drawing.Point(8, 231)
+        Me.ExecutionErrorsWarnings.Name = "ExecutionErrorsWarnings"
+        Me.ExecutionErrorsWarnings.ReadOnly = True
+        Me.ExecutionErrorsWarnings.Size = New System.Drawing.Size(208, 177)
+        Me.ExecutionErrorsWarnings.TabIndex = 3
+        Me.ExecutionErrorsWarnings.Text = ""
+        '
         'ctl_OperationsExecution
         '
         Me.Controls.Add(Me.RunControlBox)
@@ -1157,6 +1222,7 @@ Public Class ctl_OperationsExecution
         Me.OperationsParametersBox.ResumeLayout(False)
         Me.FurrowOperationsPanel.ResumeLayout(False)
         Me.FurrowOperationsPanel.PerformLayout()
+        Me.AppliedDepthRangePanel.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1303,6 +1369,13 @@ Public Class ctl_OperationsExecution
                 End Select
             End If
 
+            ' Update Min/Max Applied Depths
+            Dim minApp As Double = mOperationsWorld.CurrentAnalysis.MinAppliedDepth
+            Me.MinDapp.Text = DepthString(minApp)
+            Dim maxApp As Double = mOperationsWorld.CurrentAnalysis.MaxAppliedDepth
+            Me.MaxDapp.Text = DepthString(maxApp)
+
+            ' Some controls are only for Volume Balance generated contours
             If (mBorderCriteria.OperationsMethod.Value = OperationsMethods.SrfrSimulations) Then
                 Me.StandardContoursOption.Hide()
                 Me.PrecisionContoursOption.Hide()
