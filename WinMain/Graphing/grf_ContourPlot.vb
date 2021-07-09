@@ -114,16 +114,7 @@ Public Class grf_ContourPlot
                                 Dim _borderCriteria As BorderCriteria = _unit.BorderCriteriaRef
 
                                 ' Get the Contour Point at the mouse position
-                                Dim _contourPoint As ContourPoint = Nothing
-
-                                If ((_unit.CrossSection = CrossSections.Furrow) _
-                                And (_borderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
-                                    Dim furrowSpacing As Double = _systemGeometry.FurrowSpacing.Value
-                                    _contourPoint = _analysis.GetContourPoint(x, y * furrowSpacing, NumWddPoints)
-                                Else
-                                    _contourPoint = _analysis.GetContourPoint(x, y, NumWddPoints)
-                                End If
-
+                                Dim _contourPoint As ContourPoint = _analysis.GetContourPoint(x, y, NumWddPoints)
                                 If (_contourPoint IsNot Nothing) Then
                                     ' Display the Contour's value if it exists
                                     If (idx < _contourPoint.Z.Count) Then
