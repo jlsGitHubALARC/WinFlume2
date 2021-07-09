@@ -744,8 +744,8 @@ Public MustInherit Class OperationsAnalysis
 
                 If ((mUnit.CrossSection = CrossSections.Furrow) _
                 And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
-                    mWidth = (bl.Y.Value + tl.Y.Value) / 2          ' Furrow Set Width
-                    mFurrowsPerSet = mWidth / mSystemGeometry.FurrowSpacing.Value
+                    mFurrowsPerSet = (bl.Y.Value + tl.Y.Value) / 2
+                    mWidth = mFurrowsPerSet * mSystemGeometry.FurrowSpacing.Value   ' Furrow Set Width
                 Else
                     mInflowRate = (bl.Y.Value + tl.Y.Value) / 2     ' Inflow Rate
                 End If
@@ -1068,7 +1068,7 @@ Public MustInherit Class OperationsAnalysis
     Protected Function OperationsPointInterpolate() As ContourPoint
         If (mUnit.CrossSection = CrossSections.Furrow) Then
             If (mBorderCriteria.OperationsOption.Value = DesignOptions.InflowRateGiven) Then
-                Return Me.OperationsPointInterpolate(Tco, FurrowsPerSet * Width)
+                Return Me.OperationsPointInterpolate(Tco, FurrowsPerSet)
             Else ' Width given
                 Return Me.OperationsPointInterpolate(Tco, InflowRate)
             End If
@@ -1870,13 +1870,13 @@ Public MustInherit Class OperationsAnalysis
         Dim OperationsMethod As OperationsMethods = mBorderCriteria.OperationsMethod.Value
 
         ' Y is Inflow Rate or Width
-        Select Case (mBorderCriteria.OperationsOption.Value)
-            Case OperationsOptions.InflowRateGiven
-                mWidth = y
-                mFurrowsPerSet = mWidth / mSystemGeometry.FurrowSpacing.Value
-            Case Else ' Assume OperationsOptions.WidthGiven
-                mInflowRate = y
-        End Select
+        If ((mUnit.CrossSection = CrossSections.Furrow) _
+        And (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven)) Then
+            mFurrowsPerSet = y
+            mWidth = mFurrowsPerSet * mSystemGeometry.FurrowSpacing.Value
+        Else ' WidthGiven
+            mInflowRate = y
+        End If
 
         ' X is Cutoff Time or Distance
         Dim cutoffMethod As CutoffMethods = CType(mInflowManagement.CutoffMethod.Value, CutoffMethods)

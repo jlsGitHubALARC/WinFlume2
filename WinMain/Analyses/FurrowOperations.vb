@@ -548,6 +548,7 @@ Public Class FurrowOperations
 
         ' Save current Solution Point values
         Dim sWidth As Double = mWidth
+        Dim sFurrowsPerSet As Double = mFurrowsPerSet
         Dim sInflowRate As Double = mInflowRate
         Dim sTco As Double = mTco
         '
@@ -556,6 +557,7 @@ Public Class FurrowOperations
         If (mBorderCriteria.OperationsOption.Value = OperationsOptions.InflowRateGiven) Then
             ' Validate at minimum field width & maximum Tco
             mWidth = mMinWidth
+            mFurrowsPerSet = mWidth / mSystemGeometry.FurrowSpacing.Value
             mTco = mMaxCutoffTime
         Else ' WidthGiven
             ' Validate at maximum Q0 & maximum Tco
@@ -586,6 +588,7 @@ Public Class FurrowOperations
 
         ' Restore saved Solultion Point values
         mWidth = sWidth
+        mFurrowsPerSet = sFurrowsPerSet
         mInflowRate = sInflowRate
         mTco = sTco
 
@@ -624,6 +627,7 @@ Public Class FurrowOperations
         Dim width As DoubleParameter = mSystemGeometry.Width
         mSystemGeometry.Width = width
         mWidth = width.Value
+        mFurrowsPerSet = mWidth / mSystemGeometry.FurrowSpacing.Value
         '
         ' Validate contour range
         '
