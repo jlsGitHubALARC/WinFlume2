@@ -767,8 +767,10 @@ Public Class ctl_Results
                                 For cdx As Integer = contourGrid.PointArray.GetLowerBound(1) To contourGrid.PointArray.GetUpperBound(1)
                                     point = contourGrid.PointArray(rdx, cdx)
                                     oldY = point.Y
-                                    newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
-                                    point.Y = newY
+                                    If Not (oldY.Units = Units.None) Then
+                                        newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
+                                        point.Y = newY
+                                    End If
                                 Next
                             Next
                         End If
@@ -780,8 +782,10 @@ Public Class ctl_Results
                                 For Each polygon As ArrayList In contour.Polygons
                                     For Each point In polygon
                                         oldY = point.Y
-                                        newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
-                                        point.Y = newY
+                                        If Not (oldY.Units = Units.None) Then
+                                            newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
+                                            point.Y = newY
+                                        End If
                                     Next
                                 Next
                             Next
@@ -794,8 +798,10 @@ Public Class ctl_Results
                                 For Each polygon As ArrayList In contour.Polygons
                                     For Each point In polygon
                                         oldY = point.Y
-                                        newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
-                                        point.Y = newY
+                                        If Not (oldY.Units = Units.None) Then
+                                            newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
+                                            point.Y = newY
+                                        End If
                                     Next
                                 Next
                             Next
@@ -808,8 +814,10 @@ Public Class ctl_Results
                                 For Each polygon As ArrayList In contour.Polygons
                                     For Each point In polygon
                                         oldY = point.Y
-                                        newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
-                                        point.Y = newY
+                                        If Not (oldY.Units = Units.None) Then
+                                            newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
+                                            point.Y = newY
+                                        End If
                                     Next
                                 Next
                             Next
@@ -820,8 +828,10 @@ Public Class ctl_Results
                             For Each polygon As ArrayList In contourGrid.ContourCurve.Polygons
                                 For Each point In polygon
                                     oldY = point.Y
-                                    newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
-                                    point.Y = newY
+                                    If Not (oldY.Units = Units.None) Then
+                                        newY = New SingleParameter(CSng(oldY.Value / furrowSpacing), Units.None)
+                                        point.Y = newY
+                                    End If
                                 Next
                             Next
                         End If
