@@ -373,14 +373,6 @@ Public Class WaterDistributionDiagram
                     Dim x As Double = SiValue(Me.mX, mXUnits)    ' X is in Display Units
                     Dim y As Double = SiValue(Me.mY, mYUnits)    ' Y is in Display Units
 
-                    If (mUnit.CrossSection = CrossSections.Furrow) Then
-                        If (mYUnits = Units.None) Then
-                            ' y is Furrows Per Set; convert to Width
-                            Me.mY = Math.Max(CInt(Me.mY), 1.0)
-                            y = Me.mY * mSystemGeometry.FurrowSpacing.Value
-                        End If
-                    End If
-
                     ' Build the DataSet for the WDD graph
                     mAnalysis.Ymax = 0 ' jls
                     Dim dataSet As DataSet = WddDataSet(mUnit, mAnalysis, x, y)
