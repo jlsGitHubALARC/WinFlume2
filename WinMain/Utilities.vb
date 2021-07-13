@@ -472,16 +472,16 @@ Module Utilities
         End If
 
         ' Get DataStore references
-        Dim systemGeometry As SystemGeometry = unit.SystemGeometryRef
         Dim inflowManagement As InflowManagement = unit.InflowManagementRef
         Dim criteria As BorderCriteria = unit.BorderCriteriaRef
-        Dim unitSystem As UnitsSystem = UnitsSystem.Instance
 
-        ' Compute data for Water Distribution Diagram
+        ' Compute Contour Point for specifed x/y location for specified Analysis
         analysis.ClearExecutionErrors()
         analysis.ClearExecutionWarnings()
 
-        ' Get performance parameter for selected contour point
+        Dim contourPoint As ContourPoint = analysis.GetContourPoint(x, y, NumWddPoints)
+
+        ' Get performance parameters for selected contour point
         Dim L As Double = analysis.Length
         Dim W As Double = analysis.Width
         Dim Q As Double = analysis.InflowRate
@@ -509,6 +509,20 @@ Module Utilities
 
         Dim hectares As Double = L * W / SquareMetersPerHectare
         Dim Cost As Double = analysis.Cost
+
+        ' Asterisk flags for possible Errors or Warnings
+        Dim insetLines As Integer = 7
+        Dim asterisk As String = ""
+
+        If (contourPoint IsNot Nothing) Then
+            If (contourPoint.HasError) Then
+                insetLines += 1
+                asterisk = "**"
+            ElseIf (contourPoint.HasWarning) Then
+                insetLines += 1
+                asterisk = "*"
+            End If
+        End If
 
         ' Build DataSet to hold graph lines
         Dim title As String = mDictionary.tDistributionOfInfiltratedDepths.Translated
@@ -554,21 +568,6 @@ Module Utilities
         AddExtendedProperty(dreq, "Line", True)
         AddExtendedProperty(dreq, "Color", Drawing.Color.Blue)
         dataSet.Tables.Add(dreq.Copy)
-
-        ' Performance parameters go in Inset
-        Dim insetLines As Integer = 7
-        Dim asterisk As String = ""
-
-        Dim contourPoint As ContourPoint = analysis.GetContourPoint(x, y, NumWddPoints)
-        If (contourPoint IsNot Nothing) Then
-            If (contourPoint.HasError) Then
-                insetLines += 1
-                asterisk = "**"
-            ElseIf (contourPoint.HasWarning) Then
-                insetLines += 1
-                asterisk = "*"
-            End If
-        End If
 
         If Not (Double.IsNaN(TL)) Then ' TL is valid number
             insetLines += 1
