@@ -1091,17 +1091,23 @@ Public MustInherit Class OperationsAnalysis
 
             If (mContourGrid IsNot Nothing) Then
 
-                cells = mContourGrid.CellArray
-
+                ' Validate specified x,y point is within contour
                 Dim minx As Single = mContourGrid.MinX
                 Dim maxx As Single = mContourGrid.MaxX
-                Dim rngx As Single = maxx - minx
-                Debug.Assert(minx <= sx And sx <= maxx And 0 < rngx)
+                If ((sx < minx) Or (maxx < sx)) Then
+                    Debug.Assert(False)
+                    Exit Try
+                End If
 
                 Dim miny As Single = mContourGrid.MinY
                 Dim maxy As Single = mContourGrid.MaxY
-                Dim rngy As Single = maxy - miny
-                Debug.Assert(miny <= sy And sy <= maxy And 0 < rngy)
+                If ((sy < miny) Or (maxy < sy)) Then
+                    Debug.Assert(False)
+                    Exit Try
+                End If
+
+                ' Find Cell containing selected Operations Point
+                cells = mContourGrid.CellArray
 
                 For row = 0 To cells.GetUpperBound(0)
                     For col = 0 To cells.GetUpperBound(1)
@@ -1110,7 +1116,6 @@ Public MustInherit Class OperationsAnalysis
                             Exit Function
                         End If
 
-                        ' Find Cell containing selected Operations Point;
                         If (cell.BL.X.Value <= sx And sx <= cell.BR.X.Value) Then
                             If (cell.BL.Y.Value <= sy And sy <= cell.TL.Y.Value) Then
                                 ' Found Cell; find interior triangle containing point
@@ -1206,12 +1211,12 @@ Public MustInherit Class OperationsAnalysis
         point.Y.Value = y
 
         Try
-            ' Max Advance distance
+            ' Max Advance distance (as DOUBLE rounded to 4 decimals so comparison works!)
             Dim D1, D2, D3 As Double
             D1 = P1.SrfrResults.Xa
             D2 = P2.SrfrResults.Xa
             D3 = P3.SrfrResults.Xa
-            Dim Xa As Single = D1 * W1 + D2 * W2 + D3 * W3
+            Dim Xa As Double = Math.Round(D1 * W1 + D2 * W2 + D3 * W3, 4)
 
             ' Interpolate contour Z values from enclosing triangular ContourPoints
             For zdx As Integer = 0 To point.Z.Count - 1
