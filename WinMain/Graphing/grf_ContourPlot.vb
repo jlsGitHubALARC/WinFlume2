@@ -66,6 +66,17 @@ Public Class grf_ContourPlot
                     Dim x As Double = mMinX + ((mMaxX - mMinX) * xCursor) / rect.Width
                     Dim y As Double = mMinY + ((mMaxY - mMinY) * yCursor) / rect.Height
 
+                    ' Make sure calculated values are still within contour rectangle
+                    If ((x < mMinX) Or (mMaxX < x)) Then
+                        Debug.Assert(False)
+                        Exit Try
+                    End If
+
+                    If ((y < mMinY) Or (mMaxY < y)) Then
+                        Debug.Assert(False)
+                        Exit Try
+                    End If
+
                     If ((Control.ModifierKeys And Keys.Shift) = Keys.Shift) Then
                         '
                         ' Shift-mouse selects convas objects in baseclass
