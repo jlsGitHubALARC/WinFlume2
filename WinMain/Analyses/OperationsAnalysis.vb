@@ -685,8 +685,9 @@ Public MustInherit Class OperationsAnalysis
                 .ColName = mDictionary.tCutoffTime.Translated,      ' X-axis (cols) is cutoff time
                 .RowName = mDictionary.tWidth.Translated            ' Y-axis (rows) is width
             }
-
             mContourGrid.ValueName(ZIndex) = sInflowRate ' Z(0) is Inflow RAte
+
+            mCenterGrid = New CenterGrid(mNumWidths - 1, mNumCutoffTimes - 1)
 
         Else ' Width Given
 
@@ -695,8 +696,9 @@ Public MustInherit Class OperationsAnalysis
                 .ColName = mDictionary.tCutoffTime.Translated,      ' X-axis (cols) is cutoff time
                 .RowName = mDictionary.tInflowRate.Translated       ' Y-axis (rows) is inflow rate
             }
-
             mContourGrid.ValueName(ZIndex) = sWidth ' Z(0) is Width
+
+            mCenterGrid = New CenterGrid(mNumInflowRates - 1, mNumCutoffTimes - 1)
         End If
 
         ' Define the Z-parameters to be calculated for each contour point
@@ -819,6 +821,7 @@ Public MustInherit Class OperationsAnalysis
 
                 cell.CellEdge = edgeFlags
                 mContourGrid.Cell(rdx, cdx) = cell
+                mCenterGrid.Point(rdx, cdx) = cell.C
 
                 ' Build the cell's Error Contour as a precise contour
                 cell.Precision = Globals.ContourPrecision.Precise

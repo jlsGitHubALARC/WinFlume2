@@ -177,6 +177,7 @@ Public MustInherit Class Analysis
     ' Grid definitions
     '
     Protected mContourGrid As ContourGrid
+    Protected mCenterGrid As CenterGrid
     Protected mLineList As ArrayList
 
     Protected mNumGridCellsX As Integer

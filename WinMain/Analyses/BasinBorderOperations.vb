@@ -1606,6 +1606,7 @@ Public Class BasinBorderOperations
         ' Save the contour in the DataStore
         Dim eventContour As ContourParameter = mPerformanceResults.DesignContour
         eventContour.Value = mContourGrid
+        eventContour.CenterGrid = mCenterGrid
         eventContour.Source = ValueSources.Calculated
         mPerformanceResults.DesignContour = eventContour
         '
