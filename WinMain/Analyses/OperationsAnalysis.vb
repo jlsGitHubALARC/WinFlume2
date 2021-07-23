@@ -1097,6 +1097,7 @@ Public MustInherit Class OperationsAnalysis
                 ' Validate specified x,y point is within contour
                 Dim minx As Single = mContourGrid.MinX
                 Dim maxx As Single = mContourGrid.MaxX
+                Dim rngx As Single = maxx - minx
                 If ((sx < minx) Or (maxx < sx)) Then
                     Debug.Assert(False)
                     Exit Try
@@ -1104,78 +1105,78 @@ Public MustInherit Class OperationsAnalysis
 
                 Dim miny As Single = mContourGrid.MinY
                 Dim maxy As Single = mContourGrid.MaxY
+                Dim rngy As Single = maxy - miny
                 If ((sy < miny) Or (maxy < sy)) Then
                     Debug.Assert(False)
                     Exit Try
                 End If
-
+                '
                 ' Find Cell containing selected Operations Point
+                '
                 cells = mContourGrid.CellArray
 
-                For row = 0 To cells.GetUpperBound(0)
-                    For col = 0 To cells.GetUpperBound(1)
-                        cell = cells(row, col)
-                        If (cell Is Nothing) Then
-                            Exit Function
-                        End If
+                row = Math.Floor((cells.GetUpperBound(0) + 1) * ((sy - miny) / rngy)) ' Cell row
+                col = Math.Floor((cells.GetUpperBound(1) + 1) * ((sx - minx) / rngx)) ' Cell column
 
-                        If (cell.BL.X.Value <= sx And sx <= cell.BR.X.Value) Then
-                            If (cell.BL.Y.Value <= sy And sy <= cell.TL.Y.Value) Then
-                                ' Found Cell; find interior triangle containing point
+                row = Math.Min(cells.GetUpperBound(0), row) ' Value at top edge of contour uses top row
+                col = Math.Min(cells.GetUpperBound(1), col) ' Value at right edge of contour used right column
 
-                                Dim P As PointF = New PointF(sx, sy)
+                cell = cells(row, col)
+                If (cell Is Nothing) Then
+                    Debug.Assert(False)
+                    Exit Try
+                End If
+                '
+                ' Find interior triangle containing point
+                '
+                Dim P As PointF = New PointF(sx, sy)
 
-                                Dim V1, V2, V3 As PointF
-                                Dim W1, W2, W3 As Single
+                Dim V1, V2, V3 As PointF
+                Dim W1, W2, W3 As Single
 
-                                ' Check left triangle
-                                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
-                                V2 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
-                                V3 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
+                ' Check left triangle
+                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                V2 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
+                V3 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
 
-                                Dim inLeft As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
-                                If (inLeft) Then
-                                    point = InterpolateContourPoint(cell.C, cell.TL, cell.BL, sx, sy, W1, W2, W3)
-                                    Exit Function
-                                End If
+                Dim inLeft As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                If (inLeft) Then
+                    point = InterpolateContourPoint(cell.C, cell.TL, cell.BL, sx, sy, W1, W2, W3)
+                    Exit Function
+                End If
 
-                                ' Check top triangle
-                                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
-                                V2 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
-                                V3 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
+                ' Check top triangle
+                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                V2 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
+                V3 = New PointF(cell.TL.X.Value, cell.TL.Y.Value)
 
-                                Dim inTop As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
-                                If (inTop) Then
-                                    point = InterpolateContourPoint(cell.C, cell.TR, cell.TL, sx, sy, W1, W2, W3)
-                                    Exit Function
-                                End If
+                Dim inTop As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                If (inTop) Then
+                    point = InterpolateContourPoint(cell.C, cell.TR, cell.TL, sx, sy, W1, W2, W3)
+                    Exit Function
+                End If
 
-                                ' Check right triangle
-                                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
-                                V2 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
-                                V3 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
+                ' Check right triangle
+                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                V2 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
+                V3 = New PointF(cell.TR.X.Value, cell.TR.Y.Value)
 
-                                Dim inRight As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
-                                If (inRight) Then
-                                    point = InterpolateContourPoint(cell.C, cell.BR, cell.TR, sx, sy, W1, W2, W3)
-                                    Exit Function
-                                End If
+                Dim inRight As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                If (inRight) Then
+                    point = InterpolateContourPoint(cell.C, cell.BR, cell.TR, sx, sy, W1, W2, W3)
+                    Exit Function
+                End If
 
-                                ' Check bottom triangle
-                                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
-                                V2 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
-                                V3 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
+                ' Check bottom triangle
+                V1 = New PointF(cell.C.X.Value, cell.C.Y.Value)
+                V2 = New PointF(cell.BL.X.Value, cell.BL.Y.Value)
+                V3 = New PointF(cell.BR.X.Value, cell.BR.Y.Value)
 
-                                Dim inBottom As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
-                                If (inBottom) Then
-                                    point = InterpolateContourPoint(cell.C, cell.BL, cell.BR, sx, sy, W1, W2, W3)
-                                    Exit Function
-                                End If
-
-                            End If
-                        End If
-                    Next col
-                Next row
+                Dim inBottom As Boolean = TriangularInterpolation(V1, V2, V3, P, W1, W2, W3)
+                If (inBottom) Then
+                    point = InterpolateContourPoint(cell.C, cell.BL, cell.BR, sx, sy, W1, W2, W3)
+                    Exit Function
+                End If
 
             End If
         Catch ex As Exception
