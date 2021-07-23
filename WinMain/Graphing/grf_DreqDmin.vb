@@ -181,15 +181,17 @@ Public Class grf_DreqDmin
                         '
                         ' Ctrl-mouse redraws Water Distribution Diagram if it is being displayed
                         '
-                        If ((Control.ModifierKeys And Keys.Control) = Keys.Control) Then ' Ctrl key is down
-                            If (mWorldWindow.WDD IsNot Nothing) Then
-                                ' Turn off tooltip
-                                _x2yGraph.ToolTip.Active = False
-                                ' Graph Water Distribution Diagram
-                                mWorldWindow.WDD.SetXY(mY2, mX)
-                            End If
+                        If (mWorldWindow.WDD IsNot Nothing) Then ' Water Distribution Diagram exists
+                            If (mWorldWindow.WDD.Visible) Then   '  and is Visible
+                                If ((Control.ModifierKeys And Keys.Control) = Keys.Control) Then ' Ctrl key is down
+                                    ' Turn off tooltip
+                                    _x2yGraph.ToolTip.Active = False
+                                    ' Graph Water Distribution Diagram
+                                    mWorldWindow.WDD.SetXY(mY2, mX)
 
-                            Return ' Mouse event handled here; don't pass it on
+                                    Return ' Mouse event handled here; don't pass it on
+                                End If
+                            End If
                         End If
 
                         ' Show tooltip
