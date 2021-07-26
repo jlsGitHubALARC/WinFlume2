@@ -1119,15 +1119,57 @@ Public MustInherit Class OperationsAnalysis
                 col = Math.Floor((cells.GetUpperBound(1) + 1) * ((sx - minx) / rngx)) ' Cell column
 
                 row = Math.Min(cells.GetUpperBound(0), row) ' Value at top edge of contour uses top row
-                col = Math.Min(cells.GetUpperBound(1), col) ' Value at right edge of contour used right column
+                col = Math.Min(cells.GetUpperBound(1), col) ' Value at right edge of contour uses right column
 
+                ' Make sure Cell actually exists; this method is called during the ContourGrid's construction
                 cell = cells(row, col)
+                If (cell Is Nothing) Then
+                    If (0 < col) Then
+                        cell = cells(row, col - 1)
+
+                        If (cell Is Nothing) Then
+                            If (0 < row) Then
+                                cell = cells(row - 1, col)
+                            End If
+                        End If
+                    Else ' col = 0
+                        If (0 < row) Then
+                            cell = cells(row - 1, col)
+                        End If
+                    End If
+                End If
+
+                If (cell Is Nothing) Then
+                    Debug.Assert(False)
+                    Exit Try
+                End If
+
+                ' Make sure this is the correct Cell; not just a close neighbor
+                Dim newCell As Boolean = False
+                Dim BL As ContourPoint = cell.BL
+                If (BL.X.Value = sx) Then ' X is on left border; use Cell to its left
+                    If (0 < col) Then
+                        col -= 1
+                        newCell = True
+                    End If
+                End If
+                If (BL.Y.Value = sy) Then ' Y is on bottom border; use Cell below
+                    If (0 < row) Then
+                        row -= 1
+                        newCell = True
+                    End If
+                End If
+
+                If (newCell) Then
+                    cell = cells(row, col)
+                End If
+
                 If (cell Is Nothing) Then
                     Debug.Assert(False)
                     Exit Try
                 End If
                 '
-                ' Find interior triangle containing point
+                ' Find interior triangle containing point then interpolate within triangle
                 '
                 Dim P As PointF = New PointF(sx, sy)
 
