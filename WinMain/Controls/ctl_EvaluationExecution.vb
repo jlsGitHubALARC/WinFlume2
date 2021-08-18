@@ -551,7 +551,7 @@ Public Class ctl_EvaluationExecution
     Private Sub RunAnalysisButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles RunAnalysisButton.Click
         Me.Focus()
-        mEvaluationWorld.Run()
+        mEvaluationWorld.RunEventAnalysis()
     End Sub
 
     Private Sub MyBase_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) _

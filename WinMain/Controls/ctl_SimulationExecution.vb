@@ -703,7 +703,7 @@ Public Class ctl_SimulationExecution
 
     Private Sub RunSimulation()
         Me.Focus()
-        mSimulationWorld.Run()
+        mSimulationWorld.RunSrfrSimulation()
     End Sub
 
     Public Sub CurrentAnalysis_AnalysisEvent(ByVal Reason As Reasons, ByVal Msg As String) _

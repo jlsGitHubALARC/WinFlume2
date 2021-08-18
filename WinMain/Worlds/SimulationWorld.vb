@@ -765,11 +765,7 @@ Public Class SimulationWorld
     '
     ' Run the SRFR simulation engine
     '
-    Public Overrides Sub Run()
-        Me.RunSrfrSimulation()
-    End Sub
-
-    Private Sub RunSrfrSimulation()
+    Public Sub RunSrfrSimulation()
 
         ' Run SRFR in-sync with HYDRUS if selected
         Try

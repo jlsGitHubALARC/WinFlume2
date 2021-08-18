@@ -591,10 +591,6 @@ Public Class OperationsWorld
     '
     ' Run Operations Analysis for Basin, Border or Furrow
     '
-    Public Overrides Sub Run()
-        Me.RunOperationsAnalysis()
-    End Sub
-
     Public Sub RunOperationsAnalysis()
         Me.StartRun() ' Common World code to Start a Run
 

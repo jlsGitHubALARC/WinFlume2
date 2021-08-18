@@ -1603,7 +1603,7 @@ Public Class ctl_DesignExecution
     Private Sub RunDesignButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles RunDesignButton.Click
         Me.Focus()
-        mDesignWorld.Run()
+        mDesignWorld.RunDesignAnalysis()
     End Sub
 
     Private Sub AddContourOverlays_Click(ByVal sender As System.Object, ByVal e As EventArgs) _

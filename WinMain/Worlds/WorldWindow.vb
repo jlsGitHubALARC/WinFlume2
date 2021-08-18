@@ -1200,11 +1200,6 @@ Public Class WorldWindow
 
 #Region " Execution "
     '
-    ' Generic method to run an analysis / simulation
-    '
-    Public Overridable Sub Run()
-    End Sub
-    '
     ' Code that should be run at the start/end of a Run
     '
     ' Note - No changes to DataStore should be made in StartRun().

@@ -582,11 +582,7 @@ Public Class DesignWorld
     '
     ' Run Design Analysis for Basin, Border or Furrow
     '
-    Public Overrides Sub Run()
-        Me.RunDesignAnalysis()
-    End Sub
-
-    Private Sub RunDesignAnalysis()
+    Public Sub RunDesignAnalysis()
         Me.StartRun() ' Common World code to Start a Run
 
         Try

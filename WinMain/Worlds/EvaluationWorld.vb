@@ -711,10 +711,6 @@ Public Class EvaluationWorld
     '
     ' Run Event Analysis
     '
-    Public Overrides Sub Run()
-        Me.RunEventAnalysis()
-    End Sub
-
     Public Sub RunEventAnalysis()
         Me.StartRun() ' Common World code to Start a Run
 

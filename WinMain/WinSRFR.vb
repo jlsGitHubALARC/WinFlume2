@@ -5200,13 +5200,13 @@ SellTheFarm:
     ' Run specified Analysis / Simulation
     Public Sub Run(ByVal analysis As Unit)
         If (mEvaluationWorld.DisplayedUnit Is analysis) Then
-            mEvaluationWorld.Run()
+            mEvaluationWorld.RunEventAnalysis()
         ElseIf (mDesignWorld.DisplayedUnit Is analysis) Then
-            mDesignWorld.Run()
+            mDesignWorld.RunDesignAnalysis()
         ElseIf (mOperationsWorld.DisplayedUnit Is analysis) Then
-            mOperationsWorld.Run()
+            mOperationsWorld.RunOperationsAnalysis()
         ElseIf (mSimulationWorld.DisplayedUnit Is analysis) Then
-            mSimulationWorld.Run()
+            mSimulationWorld.RunSrfrSimulation()
         End If
     End Sub
 
