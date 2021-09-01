@@ -64,7 +64,7 @@ Public Class MerriamKeller
 
 #Region " Run Simulation "
 
-    Public Overrides Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit, _
+    Protected Overrides Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit,
         ByVal compareRun As Boolean, ByVal skipProfiles As Boolean, ByVal skipHydroGraphs As Boolean) As Srfr.Irrigation
         ' Unload the SRFR results common to all/most Event Analyses
         Dim srfrResults As Srfr.Irrigation = Nothing
@@ -115,10 +115,6 @@ Public Class MerriamKeller
 #Region " Evaluation Execution "
 
     Public Overrides Sub RunEvaluation()
-        ' Get the selected Merriam-Keller Option
-        Dim _infiltrationFunction As InfiltrationFunctions = _
-            CType(mSoilCropProperties.InfiltrationFunction.Value, InfiltrationFunctions)
-
         ' Execute standard start analysis code
         Me.StartRun("Merriam-Keller", False)
 
@@ -138,11 +134,6 @@ Public Class MerriamKeller
     Public Overrides Sub CalculateSolution()
         MyBase.CalculateSolution()
         Me.RunSimulation(CellDensities.Medium)
-    End Sub
-
-    Protected Overrides Sub SaveSolution()
-        ' Save parameters common to all design analyses
-        MyBase.SaveSolution()
     End Sub
 
 #End Region

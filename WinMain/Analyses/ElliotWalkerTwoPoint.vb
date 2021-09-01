@@ -295,7 +295,7 @@ Public Class ElliotWalkerTwoPoint
 
 #Region " Run Simulation "
 
-    Public Overrides Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit, _
+    Protected Overrides Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit,
         ByVal compareRun As Boolean, ByVal skipProfiles As Boolean, ByVal skipHydroGraphs As Boolean) As Srfr.Irrigation
         ' Unload the SRFR results common to all/most Event Analyses
         Dim srfrResults As Srfr.Irrigation = Nothing

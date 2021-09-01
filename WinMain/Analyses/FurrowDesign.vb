@@ -1484,16 +1484,13 @@ Public Class FurrowDesign
     ' CalculateSolution() - calculate the solution for the current user values
     '
     Public Overrides Sub CalculateSolution()
+        MyBase.CalculateSolution() ' Initialize calculation
 
         ' Furrow Design is per furrow; convert field rates to furrow rates
         mFurrowFlowRate = mInflowManagement.InflowRate.Value / mSystemGeometry.FurrowsPerSet.Value
         mFurrowCutbackRate = mFurrowFlowRate * mInflowManagement.CutbackRateRatio.Value
 
-        ' Calculate the Solution's Design Point
-        MyBase.CalculateSolution()
-
         ' Run a SRFR comparison
-        VerifySrfrParameters(CellDensities.Medium)
         RunSRFR(True, False, False)
 
         ' Display then Clear any SRFR Execution Errors

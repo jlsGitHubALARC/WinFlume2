@@ -99,7 +99,7 @@ Public MustInherit Class EventAnalysis
         End If
     End Sub
 
-    Public Overrides Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit, _
+    Protected Overrides Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit,
     ByVal compareRun As Boolean, ByVal skipProfiles As Boolean, ByVal skipHydroGraphs As Boolean) As Srfr.Irrigation
         ' Unload the SRFR results common to all/most Analyses
         Dim srfrIrrigation As Srfr.Irrigation = Nothing
@@ -120,44 +120,6 @@ Public MustInherit Class EventAnalysis
         Dim point As ContourPoint = Nothing
         Return point
     End Function
-
-#End Region
-
-#Region " Solution "
-
-    Public Overrides Sub CalculateSolution()
-        ' Initialize calculation
-        MyBase.CalculateSolution()
-
-        ' Verify SRFR Parameters are set correctly
-        VerifySrfrParameters(CellDensities.Medium)
-
-    End Sub
-
-    Protected Overrides Sub SaveSolution()
-        ' Save parameters common to all analyses
-        MyBase.SaveSolution()
-    End Sub
-
-    Protected Overrides Sub VerifySrfrParameters(ByVal minCellDensity As Integer)
-        ' Verify SRFR parameters match current conditions
-        If (mWinSRFR.UserLevel = UserLevels.Standard) Then
-            ' Solution Model is always set for Standard Users
-            mSrfrCriteria.CheckSolutionModel()
-        Else ' Advanced or Research
-            ' If WinSRFR has been setting Solution Model; continue to do so
-            If (mSrfrCriteria.SolutionModel.Source = ValueSources.Calculated) Then
-                mSrfrCriteria.CheckSolutionModel()
-            End If
-        End If
-
-        ' Verify Cell Density for all users
-        mSrfrCriteria.CheckCellDensity(minCellDensity)
-
-        If Not (mWorldWindow Is Nothing) Then
-            mWorldWindow.Refresh()
-        End If
-    End Sub
 
 #End Region
 

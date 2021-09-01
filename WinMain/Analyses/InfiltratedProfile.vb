@@ -149,14 +149,9 @@ Public Class InfiltratedProfile
         ' Minimum parameters
         mDmin = mSoilCropProperties.MinimumInfiltratedDepth
         mADmin = mDmin / mDreq
-        mDUmin = mDmin / mDinf
+        mDUmin = mDmin / mDInf
 
         ' Save results
-        SaveSolution()
-    End Sub
-
-    Protected Overrides Sub SaveSolution()
-        ' Save parameters common to all design analyses
         MyBase.SaveSolution()
     End Sub
 

@@ -1107,7 +1107,7 @@ Module SrfrAPI
     '*********************************************************************************************************
     ' Load WinSRFR's Inflow data into the appropriate SRFR Inflow object
     '*********************************************************************************************************
-    Public Function SrfrInflow(ByVal winSrfrInflow As InflowManagement, _
+    Public Function SrfrInflow(ByVal winSrfrInflow As InflowManagement,
               Optional ByVal InflowMethod As InflowMethods = InflowMethods.LowLimit) As Srfr.Inflow
 
         SrfrInflow = Nothing
@@ -1320,312 +1320,15 @@ Module SrfrAPI
 
 #End Region
 
-#End Region
-
-#Region " SRFR Irrigation Calculations "
-
-#Region " Infiltration "
-
-    '*************************************************************************************************************
-    ' Calculate Infiltration Function for non-depth dependent infiltration methods (e.g. Kostiakov, Branch, etc.)
-    '*************************************************************************************************************
-    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal NumPoints As Integer, _
-                                         ByVal WinSrfrInfiltration As SoilCropProperties) As DataTable
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, NumPoints)
-        InfiltrationFunction.TableName = sInfiltrationFunction
-        InfiltrationFunction.Columns(0).ColumnName = sTimeX
-        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
-    End Function
-
-    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal NumPoints As Integer, _
-                                         ByVal SrfrInfiltration As Srfr.Infiltration) As DataTable
-        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, NumPoints)
-        InfiltrationFunction.TableName = sInfiltrationFunction
-        InfiltrationFunction.Columns(0).ColumnName = sTimeX
-        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
-    End Function
-
-    Public Function InfiltrationFunctionTimes(ByVal Tend As Double, ByVal NumPoints As Integer, _
-                                              ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
-        InfiltrationFunctionTimes = New ArrayList
-
-        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, NumPoints, WinSrfrInfiltration)
-
-        For Each row As DataRow In SrfrInfiltration.Rows
-            Dim Tau As Double = CDbl(row.Item(0))
-            InfiltrationFunctionTimes.Add(Tau)
-        Next row
-    End Function
-
-    Public Function InfiltrationFunctionDepths(ByVal Tend As Double, ByVal NumPoints As Integer, _
-                                               ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
-        InfiltrationFunctionDepths = New ArrayList
-
-        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, NumPoints, WinSrfrInfiltration)
-
-        For Each row As DataRow In SrfrInfiltration.Rows
-            Dim Z As Double = CDbl(row.Item(1))
-            InfiltrationFunctionDepths.Add(Z)
-        Next row
-    End Function
-
-    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal RowIdx As Integer, ByVal NumPoints As Integer, _
-                                         ByVal WinSrfrInfiltration As SoilCropProperties) As DataTable
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, RowIdx, NumPoints)
-        InfiltrationFunction.TableName = sInfiltrationFunction
-        InfiltrationFunction.Columns(0).ColumnName = sTimeX
-        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
-    End Function
-
-    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal RowIdx As Integer, ByVal NumPoints As Integer, _
-                                         ByVal SrfrInfiltration As Srfr.Infiltration) As DataTable
-        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, RowIdx, NumPoints)
-        InfiltrationFunction.TableName = sInfiltrationFunction
-        InfiltrationFunction.Columns(0).ColumnName = sTimeX
-        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
-    End Function
-
-    Public Function InfiltrationFunctionTimes(ByVal Tend As Double, ByVal RowIdx As Integer, ByVal NumPoints As Integer, _
-                                              ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
-        InfiltrationFunctionTimes = New ArrayList
-
-        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, RowIdx, NumPoints, WinSrfrInfiltration)
-
-        For Each row As DataRow In SrfrInfiltration.Rows
-            Dim Tau As Double = CDbl(row.Item(0))
-            InfiltrationFunctionTimes.Add(Tau)
-        Next row
-    End Function
-
-    Public Function InfiltrationFunctionDepths(ByVal Tend As Double, ByVal RowIdx As Integer, ByVal NumPoints As Integer, _
-                                               ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
-        InfiltrationFunctionDepths = New ArrayList
-
-        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, RowIdx, NumPoints, WinSrfrInfiltration)
-
-        For Each row As DataRow In SrfrInfiltration.Rows
-            Dim Z As Double = CDbl(row.Item(1))
-            InfiltrationFunctionDepths.Add(Z)
-        Next row
-    End Function
-
-    '*********************************************************************************************************
-    ' Calculate Infiltration Function for depth dependent, tabulated infiltration methods
-    '*********************************************************************************************************
-    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal Y As Double,
-                                         ByVal RowIdx As Integer, ByVal NumPoints As Integer,
-                                         ByVal WinSrfrInfiltration As SoilCropProperties) As DataTable
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, Y, RowIdx, NumPoints)
-        InfiltrationFunction.TableName = sInfiltrationFunction
-        InfiltrationFunction.Columns(0).ColumnName = sTimeX
-        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
-    End Function
-
-    '*********************************************************************************************************
-    ' Calculate Z, dZdT & Tau for depth dependent infiltration methods (e.g. Green-Ampt, Warrick / Green-Ampt)
-    '*********************************************************************************************************
-    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal Y As Double, _
-                                      ByVal WinSrfrInfiltration As SoilCropProperties) As Double
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationDepth = SrfrInfiltration.InfiltrationDepth(Tau, Y)
-    End Function
-
-    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal Y As Double, _
-                                      ByVal SrfrInfiltration As Srfr.Infiltration) As Double
-        InfiltrationDepth = SrfrInfiltration.InfiltrationDepth(Tau, Y)
-    End Function
-
-    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal FlowDepthHydrograph As DataTable, _
-                                      ByVal WinSrfrInfiltration As SoilCropProperties) As Double
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationDepth = SrfrInfiltration.InfiltrationDepth(Tau, FlowDepthHydrograph)
-    End Function
-
-    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal FlowDepthHydrograph As DataTable, _
-                                      ByVal SrfrInfiltration As Srfr.Infiltration) As Double
-        InfiltrationDepth = SrfrInfiltration.InfiltrationDepth(Tau, FlowDepthHydrograph)
-    End Function
-
-    Public Function InfiltrationRate(ByVal Tau As Double, ByVal Y As Double, _
-                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationRate = SrfrInfiltration.InfiltrationRate(Tau, Y)
-    End Function
-
-    Public Function InfiltrationRate(ByVal Tau As Double, ByVal Y As Double, _
-                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
-        InfiltrationRate = SrfrInfiltration.InfiltrationRate(Tau, Y)
-    End Function
-
-    Public Function InfiltrationRate(ByVal Tau As Double, ByVal FlowDepthHydrograph As DataTable, _
-                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationRate = SrfrInfiltration.InfiltrationRate(Tau, FlowDepthHydrograph)
-    End Function
-
-    Public Function InfiltrationRate(ByVal Tau As Double, ByVal FlowDepthHydrograph As DataTable, _
-                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
-        InfiltrationRate = SrfrInfiltration.InfiltrationRate(Tau, FlowDepthHydrograph)
-    End Function
-
-    Public Function InfiltrationTime(ByVal Zn As Double, ByVal WP As Double, ByVal FS As Double, _
-                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, WP, FS)
-    End Function
-
-    Public Function InfiltrationTime(ByVal Zn As Double, ByVal WP As Double, ByVal FS As Double, _
-                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
-        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, WP, FS)
-    End Function
-
-    Public Function InfiltrationTime(ByVal Zn As Double, ByVal Y As Double, _
-                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, Y)
-    End Function
-
-    Public Function InfiltrationTime(ByVal Zn As Double, ByVal Y As Double, _
-                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
-        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, Y)
-    End Function
-
-    Public Function InfiltrationTime(ByVal Zn As Double, ByVal FlowDepthHydrograph As DataTable, _
-                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, FlowDepthHydrograph)
-    End Function
-
-    Public Function InfiltrationTime(ByVal Zn As Double, ByVal FlowDepthHydrograph As DataTable, _
-                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
-        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, FlowDepthHydrograph)
-    End Function
-
-
-    Public Function InfiltrationTime(ByVal Zn As Double, ByVal RowIdx As Integer, ByVal Y As Double, _
-                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, RowIdx, Y)
-    End Function
-
-    Public Function InfiltrationTime(ByVal Zn As Double, ByVal RowIdx As Integer, ByVal Y As Double, _
-                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
-        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, RowIdx, Y)
-    End Function
-
-    '*********************************************************************************************************************************
-    ' Calculate Infiltration Function for depth dependent infiltration methods (e.g. Green-Ampt, Warrick / Green-Ampt)
-    '*********************************************************************************************************************************
-    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal Y As Double, ByVal NumPoints As Integer, _
-                                         ByVal WinSrfrInfiltration As SoilCropProperties) As DataTable
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, Y, NumPoints)
-        InfiltrationFunction.TableName = sInfiltrationFunction
-        InfiltrationFunction.Columns(0).ColumnName = sTimeX
-        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
-    End Function
-
-    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal Y As Double, ByVal NumPoints As Integer, _
-                                         ByVal SrfrInfiltration As Srfr.Infiltration) As DataTable
-        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, Y, NumPoints)
-        InfiltrationFunction.TableName = sInfiltrationFunction
-        InfiltrationFunction.Columns(0).ColumnName = sTimeX
-        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
-    End Function
-
-    Public Function InfiltrationFunctionTimes(ByVal Tend As Double, ByVal Y As Double, ByVal NumPoints As Integer, _
-                                              ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
-        InfiltrationFunctionTimes = New ArrayList
-
-        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, Y, NumPoints, WinSrfrInfiltration)
-
-        For Each row As DataRow In SrfrInfiltration.Rows
-            Dim Tau As Double = CDbl(row.Item(0))
-            InfiltrationFunctionTimes.Add(Tau)
-        Next row
-    End Function
-
-    Public Function InfiltrationFunctionDepths(ByVal Tend As Double, ByVal Y As Double, ByVal NumPoints As Integer, _
-                                               ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
-        InfiltrationFunctionDepths = New ArrayList
-
-        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, Y, NumPoints, WinSrfrInfiltration)
-
-        For Each row As DataRow In SrfrInfiltration.Rows
-            Dim Z As Double = CDbl(row.Item(1))
-            InfiltrationFunctionDepths.Add(Z)
-        Next row
-    End Function
-
-    '*********************************************************************************************************************************
-    ' Integrate Infiltration Profile for all infiltration methods (e.g. Kostiakov, Branch, etc.)
-    '*********************************************************************************************************************************
-    Public Function InfiltrationProfile_GQ(ByVal Xa As Double, ByVal Txa As Double, ByVal T As Double, ByVal r As Double, _
-                                           ByVal NS As Integer, ByVal WinSrfrInfiltration As SoilCropProperties, _
-                                           Optional ByVal RefSrfrAPI As Srfr.SrfrAPI = Nothing) As Double
-
-        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
-
-        SrfrInfiltration.RefSrfrAPI = RefSrfrAPI
-
-        InfiltrationProfile_GQ = SrfrInfiltration.InfiltrationProfile_GQ(Xa, Txa, T, r, NS)
-    End Function
-
-    Public Function InfiltrationProfile_GQ(ByVal Xa As Double, ByVal Txa As Double, ByVal T As Double, ByVal r As Double, _
-                                           ByVal NS As Integer, ByVal SrfrInfiltration As Srfr.Infiltration, _
-                                           Optional ByVal RefSrfrAPI As Srfr.SrfrAPI = Nothing) As Double
-
-        SrfrInfiltration.RefSrfrAPI = RefSrfrAPI
-
-        InfiltrationProfile_GQ = SrfrInfiltration.InfiltrationProfile_GQ(Xa, Txa, T, r, NS)
-    End Function
-
-#End Region
-
-#End Region
-
-#Region " SRFR Simulation Execution "
-
-#Region " Load SRFR Inputs "
-
-    '*********************************************************************************************************
-    ' LoadSrfrInputs() - load SRFR's Inputs objects with WinSRFR values
-    '*********************************************************************************************************
-    Public Function LoadSrfrInputs(ByVal srfr As Srfr.SrfrAPI, ByVal unit As Unit) As Boolean
-
-        Try
-            '
-            ' Instantiate and fill each SRFR Input object with WinSRFR values
-            '
-            Dim SrfrCrossSection As Srfr.CrossSection = SrfrAPI.SrfrCrossSection(unit.SystemGeometryRef)
-            Dim SrfrRoughness As Srfr.Roughness = SrfrAPI.SrfrRoughness(unit.SoilCropPropertiesRef)
-            Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(unit.SoilCropPropertiesRef)
-            Dim SrfrInflow As Srfr.Inflow = SrfrAPI.SrfrInflow(unit.InflowManagementRef)
-            Dim SrfrConstituentTransport As Srfr.ConstituentTransport = SrfrAPI.SrfrConstituentTransport(srfr, unit)
-            '
-            ' Load SRFR with the Input objects
-            '
-            srfr.CrossSection = SrfrCrossSection
-            srfr.Roughness = SrfrRoughness
-            srfr.Infiltration = SrfrInfiltration
-            srfr.Inflow = SrfrInflow
-            srfr.ConstituentTransport = SrfrConstituentTransport
-
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Exclamation Or MsgBoxStyle.OkOnly, "SRFR Inputs Invalid")
-            Return False
-        End Try
-
-        Return True
-    End Function
-
 #Region " Constituent Transport "
+
+    '*********************************************************************************************************
+    ' Function SrfrConstituentTransport() - load WinSRFR's Constituent Transport data into the appropriate
+    '                                       SRFR Constituent Transport Object
     '
-    ' Load WinSRFR's Constituent Transport data into the appropriate SRFR Constituent Transport object
-    '
+    ' Input(s):     SrfrApi     - reference to SRFR's Application Programming Interface (API)
+    '               Unit        - reference to Unit being analysed
+    '*********************************************************************************************************
     Public Function SrfrConstituentTransport(ByVal srfr As Srfr.SrfrAPI, ByVal unit As Unit) As Srfr.ConstituentTransport
         SrfrConstituentTransport = Nothing
 
@@ -1695,22 +1398,332 @@ Module SrfrAPI
 
 #End Region
 
+#Region " SRFR Irrigation Calculations "
+
+#Region " Infiltration "
+
+    '*************************************************************************************************************
+    ' Calculate Infiltration Function for non-depth dependent infiltration methods (e.g. Kostiakov, Branch, etc.)
+    '*************************************************************************************************************
+    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal NumPoints As Integer,
+                                         ByVal WinSrfrInfiltration As SoilCropProperties) As DataTable
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, NumPoints)
+        InfiltrationFunction.TableName = sInfiltrationFunction
+        InfiltrationFunction.Columns(0).ColumnName = sTimeX
+        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
+    End Function
+
+    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal NumPoints As Integer,
+                                         ByVal SrfrInfiltration As Srfr.Infiltration) As DataTable
+        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, NumPoints)
+        InfiltrationFunction.TableName = sInfiltrationFunction
+        InfiltrationFunction.Columns(0).ColumnName = sTimeX
+        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
+    End Function
+
+    Public Function InfiltrationFunctionTimes(ByVal Tend As Double, ByVal NumPoints As Integer,
+                                              ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
+        InfiltrationFunctionTimes = New ArrayList
+
+        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, NumPoints, WinSrfrInfiltration)
+
+        For Each row As DataRow In SrfrInfiltration.Rows
+            Dim Tau As Double = CDbl(row.Item(0))
+            InfiltrationFunctionTimes.Add(Tau)
+        Next row
+    End Function
+
+    Public Function InfiltrationFunctionDepths(ByVal Tend As Double, ByVal NumPoints As Integer,
+                                               ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
+        InfiltrationFunctionDepths = New ArrayList
+
+        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, NumPoints, WinSrfrInfiltration)
+
+        For Each row As DataRow In SrfrInfiltration.Rows
+            Dim Z As Double = CDbl(row.Item(1))
+            InfiltrationFunctionDepths.Add(Z)
+        Next row
+    End Function
+
+    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal RowIdx As Integer, ByVal NumPoints As Integer,
+                                         ByVal WinSrfrInfiltration As SoilCropProperties) As DataTable
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, RowIdx, NumPoints)
+        InfiltrationFunction.TableName = sInfiltrationFunction
+        InfiltrationFunction.Columns(0).ColumnName = sTimeX
+        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
+    End Function
+
+    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal RowIdx As Integer, ByVal NumPoints As Integer,
+                                         ByVal SrfrInfiltration As Srfr.Infiltration) As DataTable
+        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, RowIdx, NumPoints)
+        InfiltrationFunction.TableName = sInfiltrationFunction
+        InfiltrationFunction.Columns(0).ColumnName = sTimeX
+        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
+    End Function
+
+    Public Function InfiltrationFunctionTimes(ByVal Tend As Double, ByVal RowIdx As Integer, ByVal NumPoints As Integer,
+                                              ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
+        InfiltrationFunctionTimes = New ArrayList
+
+        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, RowIdx, NumPoints, WinSrfrInfiltration)
+
+        For Each row As DataRow In SrfrInfiltration.Rows
+            Dim Tau As Double = CDbl(row.Item(0))
+            InfiltrationFunctionTimes.Add(Tau)
+        Next row
+    End Function
+
+    Public Function InfiltrationFunctionDepths(ByVal Tend As Double, ByVal RowIdx As Integer, ByVal NumPoints As Integer,
+                                               ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
+        InfiltrationFunctionDepths = New ArrayList
+
+        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, RowIdx, NumPoints, WinSrfrInfiltration)
+
+        For Each row As DataRow In SrfrInfiltration.Rows
+            Dim Z As Double = CDbl(row.Item(1))
+            InfiltrationFunctionDepths.Add(Z)
+        Next row
+    End Function
+
+    '*********************************************************************************************************
+    ' Calculate Infiltration Function for depth dependent, tabulated infiltration methods
+    '*********************************************************************************************************
+    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal Y As Double,
+                                         ByVal RowIdx As Integer, ByVal NumPoints As Integer,
+                                         ByVal WinSrfrInfiltration As SoilCropProperties) As DataTable
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, Y, RowIdx, NumPoints)
+        InfiltrationFunction.TableName = sInfiltrationFunction
+        InfiltrationFunction.Columns(0).ColumnName = sTimeX
+        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
+    End Function
+
+    '*********************************************************************************************************
+    ' Calculate Z, dZdT & Tau for depth dependent infiltration methods (e.g. Green-Ampt, Warrick / Green-Ampt)
+    '*********************************************************************************************************
+    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal Y As Double,
+                                      ByVal WinSrfrInfiltration As SoilCropProperties) As Double
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationDepth = SrfrInfiltration.InfiltrationDepth(Tau, Y)
+    End Function
+
+    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal Y As Double,
+                                      ByVal SrfrInfiltration As Srfr.Infiltration) As Double
+        InfiltrationDepth = SrfrInfiltration.InfiltrationDepth(Tau, Y)
+    End Function
+
+    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal FlowDepthHydrograph As DataTable,
+                                      ByVal WinSrfrInfiltration As SoilCropProperties) As Double
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationDepth = SrfrInfiltration.InfiltrationDepth(Tau, FlowDepthHydrograph)
+    End Function
+
+    Public Function InfiltrationDepth(ByVal Tau As Double, ByVal FlowDepthHydrograph As DataTable,
+                                      ByVal SrfrInfiltration As Srfr.Infiltration) As Double
+        InfiltrationDepth = SrfrInfiltration.InfiltrationDepth(Tau, FlowDepthHydrograph)
+    End Function
+
+    Public Function InfiltrationRate(ByVal Tau As Double, ByVal Y As Double,
+                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationRate = SrfrInfiltration.InfiltrationRate(Tau, Y)
+    End Function
+
+    Public Function InfiltrationRate(ByVal Tau As Double, ByVal Y As Double,
+                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
+        InfiltrationRate = SrfrInfiltration.InfiltrationRate(Tau, Y)
+    End Function
+
+    Public Function InfiltrationRate(ByVal Tau As Double, ByVal FlowDepthHydrograph As DataTable,
+                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationRate = SrfrInfiltration.InfiltrationRate(Tau, FlowDepthHydrograph)
+    End Function
+
+    Public Function InfiltrationRate(ByVal Tau As Double, ByVal FlowDepthHydrograph As DataTable,
+                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
+        InfiltrationRate = SrfrInfiltration.InfiltrationRate(Tau, FlowDepthHydrograph)
+    End Function
+
+    Public Function InfiltrationTime(ByVal Zn As Double, ByVal WP As Double, ByVal FS As Double,
+                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, WP, FS)
+    End Function
+
+    Public Function InfiltrationTime(ByVal Zn As Double, ByVal WP As Double, ByVal FS As Double,
+                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
+        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, WP, FS)
+    End Function
+
+    Public Function InfiltrationTime(ByVal Zn As Double, ByVal Y As Double,
+                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, Y)
+    End Function
+
+    Public Function InfiltrationTime(ByVal Zn As Double, ByVal Y As Double,
+                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
+        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, Y)
+    End Function
+
+    Public Function InfiltrationTime(ByVal Zn As Double, ByVal FlowDepthHydrograph As DataTable,
+                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, FlowDepthHydrograph)
+    End Function
+
+    Public Function InfiltrationTime(ByVal Zn As Double, ByVal FlowDepthHydrograph As DataTable,
+                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
+        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, FlowDepthHydrograph)
+    End Function
+
+
+    Public Function InfiltrationTime(ByVal Zn As Double, ByVal RowIdx As Integer, ByVal Y As Double,
+                                     ByVal WinSrfrInfiltration As SoilCropProperties) As Double
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, RowIdx, Y)
+    End Function
+
+    Public Function InfiltrationTime(ByVal Zn As Double, ByVal RowIdx As Integer, ByVal Y As Double,
+                                     ByVal SrfrInfiltration As Srfr.Infiltration) As Double
+        InfiltrationTime = SrfrInfiltration.InfiltrationTime(Zn, RowIdx, Y)
+    End Function
+
+    '*********************************************************************************************************************************
+    ' Calculate Infiltration Function for depth dependent infiltration methods (e.g. Green-Ampt, Warrick / Green-Ampt)
+    '*********************************************************************************************************************************
+    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal Y As Double, ByVal NumPoints As Integer,
+                                         ByVal WinSrfrInfiltration As SoilCropProperties) As DataTable
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, Y, NumPoints)
+        InfiltrationFunction.TableName = sInfiltrationFunction
+        InfiltrationFunction.Columns(0).ColumnName = sTimeX
+        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
+    End Function
+
+    Public Function InfiltrationFunction(ByVal Tend As Double, ByVal Y As Double, ByVal NumPoints As Integer,
+                                         ByVal SrfrInfiltration As Srfr.Infiltration) As DataTable
+        InfiltrationFunction = SrfrInfiltration.InfiltrationFunction(Tend, Y, NumPoints)
+        InfiltrationFunction.TableName = sInfiltrationFunction
+        InfiltrationFunction.Columns(0).ColumnName = sTimeX
+        InfiltrationFunction.Columns(1).ColumnName = sInfiltrationX
+    End Function
+
+    Public Function InfiltrationFunctionTimes(ByVal Tend As Double, ByVal Y As Double, ByVal NumPoints As Integer,
+                                              ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
+        InfiltrationFunctionTimes = New ArrayList
+
+        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, Y, NumPoints, WinSrfrInfiltration)
+
+        For Each row As DataRow In SrfrInfiltration.Rows
+            Dim Tau As Double = CDbl(row.Item(0))
+            InfiltrationFunctionTimes.Add(Tau)
+        Next row
+    End Function
+
+    Public Function InfiltrationFunctionDepths(ByVal Tend As Double, ByVal Y As Double, ByVal NumPoints As Integer,
+                                               ByVal WinSrfrInfiltration As SoilCropProperties) As ArrayList
+        InfiltrationFunctionDepths = New ArrayList
+
+        Dim SrfrInfiltration As DataTable = InfiltrationFunction(Tend, Y, NumPoints, WinSrfrInfiltration)
+
+        For Each row As DataRow In SrfrInfiltration.Rows
+            Dim Z As Double = CDbl(row.Item(1))
+            InfiltrationFunctionDepths.Add(Z)
+        Next row
+    End Function
+
+    '*********************************************************************************************************************************
+    ' Integrate Infiltration Profile for all infiltration methods (e.g. Kostiakov, Branch, etc.)
+    '*********************************************************************************************************************************
+    Public Function InfiltrationProfile_GQ(ByVal Xa As Double, ByVal Txa As Double, ByVal T As Double, ByVal r As Double,
+                                           ByVal NS As Integer, ByVal WinSrfrInfiltration As SoilCropProperties,
+                                           Optional ByVal RefSrfrAPI As Srfr.SrfrAPI = Nothing) As Double
+
+        Dim SrfrInfiltration As Srfr.Infiltration = SrfrAPI.SrfrInfiltration(WinSrfrInfiltration)
+
+        SrfrInfiltration.RefSrfrAPI = RefSrfrAPI
+
+        InfiltrationProfile_GQ = SrfrInfiltration.InfiltrationProfile_GQ(Xa, Txa, T, r, NS)
+    End Function
+
+    Public Function InfiltrationProfile_GQ(ByVal Xa As Double, ByVal Txa As Double, ByVal T As Double, ByVal r As Double,
+                                           ByVal NS As Integer, ByVal SrfrInfiltration As Srfr.Infiltration,
+                                           Optional ByVal RefSrfrAPI As Srfr.SrfrAPI = Nothing) As Double
+
+        SrfrInfiltration.RefSrfrAPI = RefSrfrAPI
+
+        InfiltrationProfile_GQ = SrfrInfiltration.InfiltrationProfile_GQ(Xa, Txa, T, r, NS)
+    End Function
+
+#End Region
+
+#End Region
+
+#Region " SRFR Simulation Execution "
+
+#Region " Load SRFR Inputs "
+
+    '*********************************************************************************************************
+    ' Function LoadSrfrInputs() - load SRFR's Inputs objects with WinSRFR values
+    '
+    ' Input(s):     SrfrApi     - reference to SRFR's Application Programming Interface (API)
+    '               Unit        - reference to Unit being analysed
+    '
+    ' Returns:      Boolean     - True is load successful
+    '*********************************************************************************************************
+    Public Function LoadSrfrInputs(ByVal SrfrApi As Srfr.SrfrAPI, ByVal Unit As Unit) As Boolean
+
+        Try
+            '
+            ' Instantiate and fill each SRFR Input object with WinSRFR values
+            '
+            Dim SrfrCrossSection As Srfr.CrossSection = WinMain.SrfrCrossSection(Unit.SystemGeometryRef)
+            Dim SrfrRoughness As Srfr.Roughness = WinMain.SrfrRoughness(Unit.SoilCropPropertiesRef)
+            Dim SrfrInfiltration As Srfr.Infiltration = WinMain.SrfrInfiltration(Unit.SoilCropPropertiesRef)
+            Dim SrfrInflow As Srfr.Inflow = WinMain.SrfrInflow(Unit.InflowManagementRef)
+            Dim SrfrConstituentTransport As Srfr.ConstituentTransport = WinMain.SrfrConstituentTransport(SrfrApi, Unit)
+            '
+            ' Load SRFR with the Input objects
+            '
+            SrfrApi.CrossSection = SrfrCrossSection
+            SrfrApi.Roughness = SrfrRoughness
+            SrfrApi.Infiltration = SrfrInfiltration
+            SrfrApi.Inflow = SrfrInflow
+            SrfrApi.ConstituentTransport = SrfrConstituentTransport
+
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation Or MsgBoxStyle.OkOnly, "SRFR Inputs Invalid")
+            Return False
+        End Try
+
+        Return True
+    End Function
+
+#End Region
+
 #Region " Load SRFR Criteria "
 
     '*********************************************************************************************************
-    ' LoadSrfrCriteria() - load WinSRFR UI values for Srfr Criteria into SRFR.
+    ' Sub LoadSrfrCriteria() - load WinSRFR UI values for Srfr Criteria into SRFR.
+    '
+    ' Input(s):     Unit     - reference to Unit being analysed
+    '               SolMod   - reference to Solution Model
     '*********************************************************************************************************
-    Public Sub LoadSrfrCriteria(ByVal unit As Unit, ByVal solmod As SolutionModel)
+    Public Sub LoadSrfrCriteria(ByVal Unit As Unit, ByVal SolMod As SolutionModel)
 
-        Dim criteria As SrfrCriteria = unit.SrfrCriteriaRef
+        Dim criteria As SrfrCriteria = Unit.SrfrCriteriaRef
 
-        solmod.CellDensity = criteria.CellDensity.Value
+        SolMod.CellDensity = criteria.CellDensity.Value
 
         ' Diagnostics available to Researcher & Programmer
         If (WinSRFR.IsResearchLevel Or WinSRFR.DebuggerIsAttached) Then
-            solmod.EnableDiagnostics = criteria.EnableDiagnostics.Value
+            SolMod.EnableDiagnostics = criteria.EnableDiagnostics.Value
         Else
-            solmod.EnableDiagnostics = False
+            SolMod.EnableDiagnostics = False
         End If
 
         ' SRFR controls available to Researcher
@@ -1718,21 +1731,21 @@ Module SrfrAPI
             ' Shape factors
             Dim phiAYL As DoubleParameter = criteria.PhiAYL_KW
             If Not (phiAYL.Source = ValueSources.Defaulted) Then
-                solmod.PhiAYL = phiAYL.Value
+                SolMod.PhiAYL = phiAYL.Value
             End If
 
             Dim phiAZL As DoubleParameter = criteria.PhiAZL
             If Not (phiAZL.Source = ValueSources.Defaulted) Then
-                solmod.PhiAZL = phiAZL.Value
+                SolMod.PhiAZL = phiAZL.Value
             End If
 
             Dim theta As DoubleParameter = criteria.Theta
             If Not (theta.Source = ValueSources.Defaulted) Then
-                solmod.Theta = theta.Value
+                SolMod.Theta = theta.Value
             End If
         End If
 
-        solmod.StopCriteria = SolutionModel.StopCriterion.None
+        SolMod.StopCriteria = SolutionModel.StopCriterion.None
 
     End Sub
 
@@ -1741,20 +1754,30 @@ Module SrfrAPI
 #Region " Unload SRFR Results "
 
     '*********************************************************************************************************
-    ' UnloadSrfrResults() - transfers SRFR Results data into WinSRFR DataStore Results
+    ' Function UnloadSrfrResults() - unloads SRFR results after running a simulation
+    '
+    ' Input(s):     SrfrAPI             - reference to SRFR's Application Programming Interface (API)
+    '               Unit                - reference to Uint being analysed
+    '               CompareRun          - selects wether or not this is a comparison run of SRFR.  Comparison
+    '                                     runs store the results in the Unit's SrfrResults objects while
+    '                                     normal runs store the results throughout the Unit as approppraite
+    '               SkipProfiles        - if True, skips uploading the SRFR profiles
+    '               SkipHydroGraphs     -  "   "     "       "      "    "  hydrographs
+    '
+    ' Returns:      Irrigation          - reference to SRFR's Irrigation object
     '*********************************************************************************************************
-    Public Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit, ByVal compareRun As Boolean, _
-                                ByVal skipProfiles As Boolean, ByVal skipHydroGraphs As Boolean) As Irrigation
+    Public Function UnloadSrfrResults(ByVal SrfrAPI As Srfr.SrfrAPI, ByVal Unit As Unit,
+         ByVal CompareRun As Boolean, ByVal SkipProfiles As Boolean, ByVal SkipHydroGraphs As Boolean) As Irrigation
 
         ' SRFR Results
-        Dim srfrIrrigation As Irrigation = srfrAPI.Irrigation
-        Dim srfrTransport As ConstituentTransport = srfrAPI.ConstituentTransport
+        Dim srfrIrrigation As Irrigation = SrfrAPI.Irrigation
+        Dim srfrTransport As ConstituentTransport = SrfrAPI.ConstituentTransport
         Dim lastTimestep As Timestep = srfrIrrigation.LastTimestep
 
         ' WinSRFR Results
-        Dim winSrfrSysGeo As SystemGeometry = unit.SystemGeometryRef
-        Dim winSrfrInflow As InflowManagement = unit.InflowManagementRef
-        Dim winSrfrCriteria As SrfrCriteria = unit.SrfrCriteriaRef
+        Dim winSrfrSysGeo As SystemGeometry = Unit.SystemGeometryRef
+        Dim winSrfrInflow As InflowManagement = Unit.InflowManagementRef
+        Dim winSrfrCriteria As SrfrCriteria = Unit.SrfrCriteriaRef
         '
         ' Load WinSRFR Results with SRFR Results
         '
@@ -1804,9 +1827,9 @@ Module SrfrAPI
         '
         ' Comparison runs return only a subset of the full SRFR results
         '
-        If (compareRun) Then ' SRFR being run for comparison results only
+        If (CompareRun) Then ' SRFR being run for comparison results only
 
-            Dim winSrfrSurfaceFlow As SurfaceFlow = unit.SurfaceFlowRef
+            Dim winSrfrSurfaceFlow As SurfaceFlow = Unit.SurfaceFlowRef
 
             dValue = srfrIrrigation.Ymax                            ' Maximum Flow Depth (Ymax)
             dParam = winSrfrSurfaceFlow.Ymax
@@ -1816,7 +1839,7 @@ Module SrfrAPI
             '
             ' Comparison results are stored in SrfrResults object
             '
-            Dim winSrfrResults As SrfrResults = unit.SrfrResultsRef
+            Dim winSrfrResults As SrfrResults = Unit.SrfrResultsRef
 
             '*************************************************************************************************
             ' Advance, Recession & Infiltration Curves
@@ -1880,11 +1903,11 @@ Module SrfrAPI
             '
             ' Full results are stored throughtout I/O objects
             '
-            Dim winSrfrErosion As Erosion = unit.ErosionRef
-            Dim winSrfrFertigation As Fertigation = unit.FertigationRef
-            Dim winSrfrSurfaceFlow As SurfaceFlow = unit.SurfaceFlowRef
-            Dim winSrfrSubsurfaceFlow As SubsurfaceFlow = unit.SubsurfaceFlowRef
-            Dim winSrfrPerformanceResults As PerformanceResults = unit.PerformanceResultsRef
+            Dim winSrfrErosion As Erosion = Unit.ErosionRef
+            Dim winSrfrFertigation As Fertigation = Unit.FertigationRef
+            Dim winSrfrSurfaceFlow As SurfaceFlow = Unit.SurfaceFlowRef
+            Dim winSrfrSubsurfaceFlow As SubsurfaceFlow = Unit.SubsurfaceFlowRef
+            Dim winSrfrPerformanceResults As PerformanceResults = Unit.PerformanceResultsRef
 
             '*************************************************************************************************
             ' Performance Indicators
@@ -2169,7 +2192,7 @@ Module SrfrAPI
             ' Profiles
             '*************************************************************************************************
 
-            If Not (skipProfiles) Then
+            If Not (SkipProfiles) Then
                 table = srfrIrrigation.TopDepthProfile()                    ' Flow Depth (Y) Profile
                 table.Columns(0).ColumnName = sDistanceX
 
@@ -2235,7 +2258,7 @@ Module SrfrAPI
             ' Hydrographs
             '*************************************************************************************************
 
-            If Not (skipHydroGraphs) Then
+            If Not (SkipHydroGraphs) Then
                 table = srfrIrrigation.Hydrographs("Q", dists)              ' Flow Rate (Q) Hydrographs
                 table.Columns(0).ColumnName = sTimeX
                 table.Columns(1).ColumnName = sQinX

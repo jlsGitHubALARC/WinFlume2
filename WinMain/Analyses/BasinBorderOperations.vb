@@ -2611,12 +2611,9 @@ Public Class BasinBorderOperations
     ' CalculateSolution() - calculate the solution for the current user values
     '
     Public Overrides Sub CalculateSolution()
-
-        ' Calculate the Solution's Operations Point
-        MyBase.CalculateSolution()
+        MyBase.CalculateSolution() ' Initialize calculation
 
         ' Run a SRFR comparison
-        VerifySrfrParameters(CellDensities.Medium)
         RunSRFR(True, False, False)
 
         ' Display then Clear any SRFR Execution Errors

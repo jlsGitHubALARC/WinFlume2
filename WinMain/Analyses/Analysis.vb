@@ -286,16 +286,16 @@ Public MustInherit Class Analysis
     Public Const DLfIndex As Integer = 7
 
     ' Parameters expressed as Time:
-    Protected mMajor10TxaValues() As Single = {0 * OneHour, 2 * OneHour, 4 * OneHour, 6 * OneHour, 8 * OneHour, _
+    Protected mMajor10TxaValues() As Single = {0 * OneHour, 2 * OneHour, 4 * OneHour, 6 * OneHour, 8 * OneHour,
                                                10 * OneHour, 12 * OneHour, 14 * OneHour, 16 * OneHour, 18 * OneHour}
-    Protected mMinor10TxaValues() As Single = {1 * OneHour, 3 * OneHour, 5 * OneHour, 7 * OneHour, 9 * OneHour, _
-                                               11 * OneHour, 13 * OneHour, 15 * OneHour, 17 * OneHour, 19 * OneHour, _
+    Protected mMinor10TxaValues() As Single = {1 * OneHour, 3 * OneHour, 5 * OneHour, 7 * OneHour, 9 * OneHour,
+                                               11 * OneHour, 13 * OneHour, 15 * OneHour, 17 * OneHour, 19 * OneHour,
                                                20 * OneHour}
 
-    Protected mMajor10TcoValues() As Single = {0 * OneHour, 1 * OneHour, 2 * OneHour, 3 * OneHour, 4 * OneHour, _
+    Protected mMajor10TcoValues() As Single = {0 * OneHour, 1 * OneHour, 2 * OneHour, 3 * OneHour, 4 * OneHour,
                                                5 * OneHour, 6 * OneHour, 7 * OneHour, 8 * OneHour, 9 * OneHour}
-    Protected mMinor10TcoValues() As Single = {0.5 * OneHour, 1.5 * OneHour, 2.5 * OneHour, 3.5 * OneHour, 4.5 * OneHour, _
-                                               5.5 * OneHour, 6.5 * OneHour, 7.5 * OneHour, 8.5 * OneHour, 9.5 * OneHour, _
+    Protected mMinor10TcoValues() As Single = {0.5 * OneHour, 1.5 * OneHour, 2.5 * OneHour, 3.5 * OneHour, 4.5 * OneHour,
+                                               5.5 * OneHour, 6.5 * OneHour, 7.5 * OneHour, 8.5 * OneHour, 9.5 * OneHour,
                                                10.5 * OneHour, 11.0 * OneHour, 11.5 * OneHour, 12.0 * OneHour, 12.5 * OneHour}
 
     Protected Const sMaxAdvanceTime As String = "Max Advance Time"
@@ -1394,9 +1394,11 @@ Public MustInherit Class Analysis
     '*********************************************************************************************************
 
     '*********************************************************************************************************
-    ' Verify SRFR parameters match current conditions.
+    ' Sub VerifySrfrParameters() - Verify SRFR parameters match current conditions.
+    '
+    ' Input(s):     MinCellDensity  - minimum Cell Density for SRFR Simulation run
     '*********************************************************************************************************
-    Protected Overridable Sub VerifySrfrParameters(ByVal minCellDensity As Integer)
+    Protected Sub VerifySrfrParameters(ByVal MinCellDensity As Integer)
 
         ' Verify SRFR's Solution Model
         If Not ((mSrfrCriteria.SolutionModel.Source = ValueSources.UserEntered) _
@@ -1405,7 +1407,7 @@ Public MustInherit Class Analysis
         End If
 
         ' Verify SRFR's Cell Denstiry
-        mSrfrCriteria.CheckCellDensity(minCellDensity)
+        mSrfrCriteria.CheckCellDensity(MinCellDensity)
 
         ' Let the SRFR changes get reflected by the UI, if there is one
         If (mWorldWindow IsNot Nothing) Then
@@ -1416,26 +1418,41 @@ Public MustInherit Class Analysis
 
     '*********************************************************************************************************
     ' Mechanism for Analyses to adjust SRFR criteria & field data prior to running a simulation
+    '
+    ' Input(s):     Unit        - reference to Unit being analysed
+    '               SolMod      - reference to SRFR's Solution Model
     '*********************************************************************************************************
-    Public Overridable Sub AdjustSrfrCriteria(ByVal unit As Unit, ByVal solmod As Srfr.SolutionModel)
+    Public Overridable Sub AdjustSrfrCriteria(ByVal Unit As Unit, ByVal Solmod As Srfr.SolutionModel)
     End Sub
 
-    Public Overridable Sub AdjustSrfrInputs(ByVal unit As Unit)
+    Public Overridable Sub AdjustSrfrInputs(ByVal Unit As Unit)
     End Sub
 
     '*********************************************************************************************************
-    ' Mechanism for Analyses to unload additional SRFR results after running a simulation
+    ' Function UnloadSrfrResults() - unloads SRFR results after running a simulation
+    '
+    ' Input(s):     SrfrAPI             - reference to SRFR's Application Programming Interface (API)
+    '               Unit                - reference to Uint being analysed
+    '               CompareRun          - selects whether or not this is a comparison run of SRFR.  Comparison
+    '                                     runs store the results in the Unit's SrfrResults objects while
+    '                                     normal runs store the results throughout the Unit as approppraite
+    '               SkipProfiles        - if True, skips uploading the SRFR profiles
+    '               SkipHydroGraphs     -  "   "     "       "      "    "  hydrographs
+    '
+    ' Returns:      Irrigation          - reference to SRFR's Irrigation object
     '*********************************************************************************************************
-    Public Overridable Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit,
-        ByVal compareRun As Boolean, ByVal skipProfiles As Boolean, ByVal skipHydroGraphs As Boolean) As Srfr.Irrigation
+    Protected Overridable Function UnloadSrfrResults(ByVal SrfrAPI As Srfr.SrfrAPI, ByVal Unit As Unit,
+        ByVal CompareRun As Boolean, ByVal SkipProfiles As Boolean, ByVal SkipHydroGraphs As Boolean) As Srfr.Irrigation
         ' Unload the 'standard' SRFR results
         Dim srfrResults As Srfr.Irrigation = Nothing
-        srfrResults = WinMain.SrfrAPI.UnloadSrfrResults(srfrAPI, unit, compareRun, skipProfiles, skipHydroGraphs)
+        srfrResults = WinMain.UnloadSrfrResults(SrfrAPI, Unit, CompareRun, SkipProfiles, SkipHydroGraphs)
         Return srfrResults
     End Function
 
     '*********************************************************************************************************
-    ' Run a Simulation
+    ' Sub RunSimulation() - Run a Simulation
+    '
+    ' Input(s):     MinCellDensity  - minimum Cell Density for SRFR Simulation run
     '*********************************************************************************************************
     Public Overridable Sub RunSimulation(Optional ByVal MinCellDensity As Integer = CellDensities.Medium)
         If (mUnit IsNot Nothing) Then
@@ -1451,10 +1468,17 @@ Public MustInherit Class Analysis
             Me.EndRun()
         End If
     End Sub
+
+    '*********************************************************************************************************
+    ' Sub RunSRFR() - Run a complete SRFR simulation
     '
-    ' Run a complete SRFR simulation
-    '
-    Protected Sub RunSRFR(ByVal compareRun As Boolean, ByVal skipProfiles As Boolean, ByVal skipHydroGraphs As Boolean)
+    ' Input(s):     CompareRun          - selects whether or not this is a comparison run of SRFR.  Comparison
+    '                                     runs store the results in the Unit's SrfrResults objects while
+    '                                     normal runs store the results throughout the Unit as approppraite
+    '               SkipProfiles        - if True, skips uploading the SRFR profiles
+    '               SkipHydroGraphs     -  "   "     "       "      "    "  hydrographs
+    '*********************************************************************************************************
+    Protected Sub RunSRFR(ByVal CompareRun As Boolean, ByVal SkipProfiles As Boolean, ByVal SkipHydroGraphs As Boolean)
         '
         ' Reset conditions that may occur during the SRFR Run
         '
@@ -1599,7 +1623,7 @@ Public MustInherit Class Analysis
 
             If ((SrfrErrorCode = SrfrErrorCodes.NoError) _
              Or (SrfrErrorCode = SrfrErrorCodes.SimulationStopped)) Then
-                SrfrIrrigation = Me.UnloadSrfrResults(SrfrAPI, mUnit, compareRun, skipProfiles, skipHydroGraphs)
+                SrfrIrrigation = Me.UnloadSrfrResults(SrfrAPI, mUnit, CompareRun, SkipProfiles, SkipHydroGraphs)
             End If
         Catch ex As Exception
             SrfrErrorCode = SrfrErrorCodes.OperationFailed
@@ -1642,25 +1666,30 @@ Public MustInherit Class Analysis
 #Region " SRFR Simulation Events "
 
     '*********************************************************************************************************
-    ' Sub Srfr_SrfrStatus() - handler for SRFR SrfrStatus event
+    ' Sub Srfr_SrfrStatus() - handler for SRFR SrfrStatus event.  This event is generated after each
+    '                         Timestep's calculations have completed
     '
-    ' This event collects SRFR simulation data to be displayed is WinSRFR's status bar.
+    ' Input(s):     Timestep    - reference to the SRFR Timestep that just completed
     '
-    ' The SrfrStatus event is generated after each Timestep's calculations have completed
+    ' The SrfrStatus event is generated in one of two ways:
+    '       1) by SRFR's Solution Model object when running a single simulation using the UI thread
+    '       2) by SRFR's Control object when running simultaneous simulations using backgroun threads
+    '
+    ' This handler collects SRFR simulation data to be displayed is WinSRFR's status bar.
     '*********************************************************************************************************
-    Protected Overridable Sub Srfr_SrfrStatus(ByVal timestep As Srfr.Timestep) _
+    Protected Overridable Sub Srfr_SrfrStatus(ByVal Timestep As Srfr.Timestep) _
     Handles mSolutionModel.SrfrStatus, mSrfrControl.SrfrStatus
 
-        Dim time As Double = timestep.T                         ' Time for this Timestep
-        Dim tsNo As Integer = timestep.TimestepNumber           ' Timestep's sequential number
-        Dim LBFLG As LBFLGS = timestep.LBFLG                    ' Left boundary flag
-        Dim RBFLG As RBFLGS = timestep.RBFLG                    ' Right    "      "
-        Dim Qin As Double = timestep.Qin                        ' Inflow
-        Dim XA As Double = timestep.XA                          ' Advance distance for Timestep
-        Dim XU As Double = timestep.XU                          ' Upstream    "     "      "
+        Dim time As Double = Timestep.T                         ' Time for this Timestep
+        Dim tsNo As Integer = Timestep.TimestepNumber           ' Timestep's sequential number
+        Dim LBFLG As LBFLGS = Timestep.LBFLG                    ' Left boundary flag
+        Dim RBFLG As RBFLGS = Timestep.RBFLG                    ' Right    "      "
+        Dim Qin As Double = Timestep.Qin                        ' Inflow
+        Dim XA As Double = Timestep.XA                          ' Advance distance for Timestep
+        Dim XU As Double = Timestep.XU                          ' Upstream    "     "      "
 
-        Dim surgeNum As Integer = timestep.Inflow.SurgeNumber(time)
-        Dim numSurges As Integer = timestep.Inflow.NumberOfSurges
+        Dim surgeNum As Integer = Timestep.Inflow.SurgeNumber(time)
+        Dim numSurges As Integer = Timestep.Inflow.NumberOfSurges
 
         Dim msg As String = String.Empty
 
@@ -1683,7 +1712,7 @@ Public MustInherit Class Analysis
         Me.StatusMessage = msg
 
         Dim overTime, overDist As Double
-        If (timestep.Overflow(overDist, overTime)) Then
+        If (Timestep.Overflow(overDist, overTime)) Then
             Me.ProgressMessage = mDictionary.tOverflow.Translated
         Else
             If (Me.ProgressMessage = mDictionary.tOverflow.Translated) Then
@@ -1699,7 +1728,7 @@ Public MustInherit Class Analysis
 #Region " Sync SRFR w/HYDRUS "
 
     '*********************************************************************************************************
-    ' Sync SRFR with HYDRUS project(s)
+    ' Function SyncWithHydrus() - Sync SRFR with HYDRUS project(s)
     '*********************************************************************************************************
     Public Function SyncWithHydrus() As Boolean
         SyncWithHydrus = False
@@ -1731,7 +1760,7 @@ Public MustInherit Class Analysis
     ' run.  The first sync distance is the upstream end (dist = 0).  At the upstream end, the flow depth can
     ' be estimated using the UpstreamParameters() method since the inflow rate is known.
     '*********************************************************************************************************
-    Public Function InitHydrusForSync(ByVal HydrusProject As String) As Boolean
+    Private Function InitHydrusForSync(ByVal HydrusProject As String) As Boolean
         InitHydrusForSync = True
 
         ' Get upstream depth (Y0), Tco & solute values used to generate ATMOSPM.IN
@@ -1771,7 +1800,7 @@ Public MustInherit Class Analysis
     '
     ' Returns:  Boolean         - whether or not the initialization succeeded
     '*********************************************************************************************************
-    Public Function SyncParallelHydrusWithSRFR() As Boolean
+    Private Function SyncParallelHydrusWithSRFR() As Boolean
         SyncParallelHydrusWithSRFR = False
         Dim syncOK As Boolean = False
 
@@ -1845,7 +1874,7 @@ Public MustInherit Class Analysis
             End If
 
             ' Get initial infiltration rate/depth data from HYDRUS
-            syncOK = AppendHydrusSurfaceFluxes(hydrusProject, dist, True)
+            syncOK = AppendHydrusInfiltrationData(hydrusProject, dist, True)
             If Not (syncOK) Then
                 Exit Try
             End If
@@ -1924,7 +1953,7 @@ Public MustInherit Class Analysis
                     End If
 
                     ' Append infiltration data from HYDRUS to WinSRFR's infiltration DataSet
-                    syncOK = AppendHydrusSurfaceFluxes(hydrusProject, dist, preclear)
+                    syncOK = AppendHydrusInfiltrationData(hydrusProject, dist, preclear)
                     If Not (syncOK) Then
                         Exit Try
                     End If
@@ -1944,7 +1973,7 @@ Public MustInherit Class Analysis
                     'End If
 
                     ' Append concentration data from HYDRUS to WinSRFR's concentration DataSet
-                    syncOK = AppendHydrusSubsurfaceProfiles(hydrusProject, dist, preclear)
+                    syncOK = AppendHydrusConcentrationData(hydrusProject, dist, preclear)
                     If Not (syncOK) Then
                         Exit Try
                     End If
@@ -2090,9 +2119,9 @@ Public MustInherit Class Analysis
     ' Returns:  Boolean                 - True, if HYDRUS Project is deemed compatible with WinSRFR / SRFR
     '                                     False, if not
     '*********************************************************************************************************
-    Public Function ReadValidateHydrus(ByVal ProjectFolder As String,
-                                       Optional ByVal SoluteTransport As Boolean = False,
-                                       Optional ByVal ReportIncompatibilies As Boolean = True) As Boolean
+    Protected Function ReadValidateHydrus(ByVal ProjectFolder As String,
+                                          Optional ByVal SoluteTransport As Boolean = False,
+                                          Optional ByVal ReportIncompatibilies As Boolean = True) As Boolean
         ReadValidateHydrus = False
 
         ' Clear then initialize list of HYDRUS error messages
@@ -2445,8 +2474,8 @@ Public MustInherit Class Analysis
     '
     ' Note - tInit & tMax are the initial & final times set in ATMOSPH.IN
     '*********************************************************************************************************
-    Public Function RunHydrus1D(ByVal HydrusProject As String, ByVal Dist As Double,
-                                ByVal tInit As Double, ByVal tMax As Double) As Boolean
+    Protected Function RunHydrus1D(ByVal HydrusProject As String, ByVal Dist As Double,
+                                   ByVal tInit As Double, ByVal tMax As Double) As Boolean
         RunHydrus1D = False
 
         Debug.Assert((0.0 <= Dist) And (0.0 <= tInit) And (tInit < tMax))
@@ -2748,41 +2777,12 @@ Public MustInherit Class Analysis
 
     End Sub
 
-    Public Sub ReadHydrusResults()
-
-        Dim hydrus1D As HydrusAPI.Hydrus1D = New HydrusAPI.Hydrus1D
-
-        ' Get HYDRUS project(s) specified by the user
-        Dim hydrusProject As String = mSoilCropProperties.HydrusProject.Value
-        Dim hydrusProjects As DataTable = Nothing
-        If (mSoilCropProperties.EnableTabulatedInfiltration.Value) Then
-            hydrusProjects = mSoilCropProperties.HydrusProjectTable.Value
-            If (hydrusProjects IsNot Nothing) Then
-                If (0 < hydrusProjects.Rows.Count) Then
-                    hydrusProject = hydrusProjects.Rows(0).Item(Srfr.Hydrus.sHydrusProject)
-                End If
-            End If
-        End If
-
-        hydrus1D.Read_NOD_INF_OUT(hydrusProject)
-
-        Dim hydrusNodInfTables As DataSet = hydrus1D.NodInfTables
-
-        Dim hydrusSyndDists As DataTable = mSoilCropProperties.HydrusSyncDistances.Value
-        For Each row As DataRow In hydrusSyndDists.Rows
-            Dim dist As Double = row.Item(sDistanceX)
-
-            Dim hydrusInfiltration As Double = mSoilCropProperties.HydrusInfiltration(dist)
-        Next
-
-    End Sub
-
 #End Region
 
 #Region " Get HYDRUS Results "
 
     '*********************************************************************************************************
-    ' Function AppendHydrusSurfaceFluxes() - appends HYDRUS' surface infiltration rate/depth data to WinSRFR's
+    ' Function AppendHydrusInfiltrationData() - appends HYDRUS' infiltration rate/depth data to WinSRFR's
     '
     ' Inputs:   HydrusProject   - path to HYDRUS' project's I/O text files
     '           Dist            - distance down field HYDRUS simulation was run
@@ -2793,9 +2793,9 @@ Public MustInherit Class Analysis
     ' NOTE - imports infiltration rate/depth data from HYDRUS' T_LEVEL.OUT file as DataTables that are
     '        appended to HydrusInfiltrationRate/Depth DataSets used by SRFR as its infiltration input.
     '*********************************************************************************************************
-    Protected Function AppendHydrusSurfaceFluxes(ByVal HydrusProject As String, ByVal Dist As Double,
-                                                 Optional ByVal Preclear As Boolean = False) As Boolean
-        AppendHydrusSurfaceFluxes = False
+    Protected Function AppendHydrusInfiltrationData(ByVal HydrusProject As String, ByVal Dist As Double,
+                                                    Optional ByVal Preclear As Boolean = False) As Boolean
+        AppendHydrusInfiltrationData = False
 
         Dim title As String = mDictionary.tHydrusExecutionError.Translated
         Dim file As String = Hydrus1D.T_LEVEL_OUT
@@ -2865,7 +2865,7 @@ Public MustInherit Class Analysis
                     winSrfrDepthSet.Tables.Add(fromHydrusDepthTable)
                     mSoilCropProperties.HydrusInfiltrationDepth = winSrfrInfiltrationDepth
 
-                    AppendHydrusSurfaceFluxes = True
+                    AppendHydrusInfiltrationData = True
 
                 Else ' No infiltration data in T_LEVEL.OUT
                     msg &= mDictionary.tHydrusFileError.Translated & Chr(10) & Chr(10)
@@ -2887,20 +2887,20 @@ Public MustInherit Class Analysis
     End Function
 
     '*********************************************************************************************************
-    ' Function AppendHydrusSubsurfaceProfiles() - append HYDRUS' subsurface infiltration data to WinSRFR's
+    ' Function AppendHydrusSubsurfaceProfiles() - append HYDRUS' concentration data to WinSRFR's
     '
     ' Inputs:   HydrusProject   - path to HYDRUS' project's I/O text files
     '           Dist            - distance down field HYDRUS simulation was run
-    '           Preclear        - whether or not WinSRFR's subsurface DataSet should be pre-cleared
+    '           Preclear        - whether or not WinSRFR's concentration DataSet should be pre-cleared
     '
     ' Returns:  Boolean         - whether or not the subsurface data was successfully transferred
     '
-    ' NOTE - imports the subsurface data from HYDRUS' NOD_INF.OUT file as a DataTable that is appended to
+    ' NOTE - imports the concentration data from HYDRUS' NOD_INF.OUT file as a DataTable that is appended to
     '        WinSRFR's HydrusConcentration DataSet.
     '*********************************************************************************************************
-    Protected Function AppendHydrusSubsurfaceProfiles(ByVal HydrusProject As String, ByVal Dist As Double,
-                                                      Optional ByVal Preclear As Boolean = False) As Boolean
-        AppendHydrusSubsurfaceProfiles = False
+    Protected Function AppendHydrusConcentrationData(ByVal HydrusProject As String, ByVal Dist As Double,
+                                                     Optional ByVal Preclear As Boolean = False) As Boolean
+        AppendHydrusConcentrationData = False
 
         Dim title As String = mDictionary.tHydrusExecutionError.Translated
         Dim file As String = Hydrus1D.NOD_INF_OUT
@@ -2917,7 +2917,7 @@ Public MustInherit Class Analysis
             If (hydrusNodInfTables IsNot Nothing) Then ' file successfully imported
 
                 ' Extract the concentration data from the NOD_INF.OUT data
-                Dim fromHydrusSubsurfaceProfiles As DataTable = ExtractSubsurfaceProfiles(hydrusNodInfTables)
+                Dim fromHydrusSubsurfaceProfiles As DataTable = ExtractConcentrationTable(hydrusNodInfTables)
                 If (fromHydrusSubsurfaceProfiles IsNot Nothing) Then ' file contained concentration data
                     fromHydrusSubsurfaceProfiles.TableName = "Profiles [X = " & LengthString(Dist) & "]"
                     fromHydrusSubsurfaceProfiles.ExtendedProperties.Add("Dist", Dist)
@@ -2940,7 +2940,7 @@ Public MustInherit Class Analysis
                     winSrfrProfilesSet.Tables.Add(fromHydrusSubsurfaceProfiles)
                     mSoilCropProperties.HydrusProfiles = winSrfrProfiles
 
-                    AppendHydrusSubsurfaceProfiles = True
+                    AppendHydrusConcentrationData = True
 
                 Else ' No profiles data in NOD_INF.OUT
                     msg &= mDictionary.tHydrusFileError.Translated & Chr(10) & Chr(10)
@@ -2961,6 +2961,13 @@ Public MustInherit Class Analysis
 
     End Function
 
+    '*********************************************************************************************************
+    ' Function CheckHydrusErrorMessages() - check for error messages from HYDRUS run
+    '
+    ' Inputs:   HydrusProject   - path to HYDRUS' project's I/O text files
+    '
+    ' Returns:  Boolean         - whether or not to continue using HYDRUS as setup
+    '*********************************************************************************************************
     Protected Function CheckHydrusErrorMessages(ByVal HydrusProject As String) As Boolean
         CheckHydrusErrorMessages = True
 
@@ -2997,6 +3004,13 @@ Public MustInherit Class Analysis
 
     End Function
 
+    '*********************************************************************************************************
+    ' Function CheckHydrusMassBalances() - check mass balances from HYDRUS run
+    '
+    ' Inputs:   HydrusProject   - path to HYDRUS' project's I/O text files
+    '
+    ' Returns:  Boolean         - whether or not to continue using HYDRUS as setup
+    '*********************************************************************************************************
     Protected Function CheckHydrusMassBalances(ByVal HydrusProject As String) As Boolean
         CheckHydrusMassBalances = True
 
@@ -3049,7 +3063,7 @@ Public MustInherit Class Analysis
     '
     ' Note - HYDRUS' Time is WinSRFR's Tau
     '*********************************************************************************************************
-    Public Function ExtractInfiltrationRateTable(ByVal HydrusTable As DataTable) As DataTable
+    Protected Function ExtractInfiltrationRateTable(ByVal HydrusTable As DataTable) As DataTable
         ExtractInfiltrationRateTable = Nothing
 
         ' Verify input HYDRUS Table contains the correct data to generate a WinSRFR Infiltration Table
@@ -3084,7 +3098,7 @@ Public MustInherit Class Analysis
 
     End Function
 
-    Public Function ExtractInfiltrationDepthTable(ByVal HydrusTable As DataTable) As DataTable
+    Protected Function ExtractInfiltrationDepthTable(ByVal HydrusTable As DataTable) As DataTable
         ExtractInfiltrationDepthTable = Nothing
 
         ' Verify input HYDRUS Table contains the correct data to generate a WinSRFR Infiltration Table
@@ -3138,8 +3152,8 @@ Public MustInherit Class Analysis
     '
     ' Returns:  DataTable   - WinSRFR table of just the final concentration data
     '*********************************************************************************************************
-    Public Function ExtractSubsurfaceProfiles(ByVal HydrusTables As DataSet) As DataTable
-        ExtractSubsurfaceProfiles = Nothing
+    Protected Function ExtractConcentrationTable(ByVal HydrusTables As DataSet) As DataTable
+        ExtractConcentrationTable = Nothing
 
         ' Verify input HYDRUS Table contains the correct data to generate a WinSRFR Profiles Table
         If (HydrusTables IsNot Nothing) Then
@@ -3197,7 +3211,7 @@ Public MustInherit Class Analysis
 
                             Next
 
-                            ExtractSubsurfaceProfiles = WinSrfrTable
+                            ExtractConcentrationTable = WinSrfrTable
 
                         End If ' # rows match
                     End If ' Table 1 OK
@@ -3460,9 +3474,15 @@ Public MustInherit Class Analysis
 
 #Region " Major / Minor Contours "
 
-    '******************************************************************************************
+    '*********************************************************************************************************
     ' Scale contour ranges based on contour grid data
     '
+    ' Sub ScaleDapp()   - Application Depth
+    ' Sub ScaleDlf()    - Low-Quarter / Minimum Depth
+    ' Sub ScaleTco()    - Cutoff Time
+    ' Sub ScaleTxa()    - Maximum Advance Time
+    ' Sub ScaleCost()   - Application Cost
+    '*********************************************************************************************************
     Protected Sub ScaleDapp()
         Dim depthUnits As Units = mUnitsSystem.DepthUnits
 
@@ -3718,9 +3738,18 @@ Public MustInherit Class Analysis
 
     End Sub
 
-    '******************************************************************************************
-    ' Build Major & Minor Contours based on Contour Grid
+    '*********************************************************************************************************
+    ' Sub BuildMajorContours()  - Build Major Contours based on Contour Grid
+    ' Sub BuildMinorContours()  -   "   Minor     "      "    "    "      "
     '
+    ' Input(s):     name        - contour name
+    '               symbol      - symbol for name
+    '               idx         - contour index
+    '               values()    - contour values
+    '               zTolerance  - tolerence for making real number comparisons
+    '               units       - units for contour
+    '               biggerIsBetter  - are bigger values better (e.g. PAE - yes, runoff - no)
+    '*********************************************************************************************************
     Protected Sub BuildMajorContours(ByVal name As String, ByVal symbol As String,
             ByVal idx As Integer, ByVal values() As Single, ByVal zTolerance As Single,
             ByVal units As DataStore.Units, ByVal biggerIsBetter As Boolean)
@@ -3809,9 +3838,16 @@ Public MustInherit Class Analysis
 
     End Sub
 
-    '******************************************************************************************
-    ' Build Value Curve based on Contour Grid
+    '*********************************************************************************************************
+    ' Sub BuildValueCurve()     - Build Value Curve based on Contour Grid
     '
+    ' Input(s):     name        - contour name
+    '               symbol      - symbol for name
+    '               idx         - contour index
+    '               value       - curve value
+    '               zTolerance  - tolerence for making real number comparisons
+    '               units       - units for contour
+    '*********************************************************************************************************
     Protected Sub BuildValueCurve(ByVal name As String, ByVal symbol As String,
             ByVal idx As Integer, ByVal value As Single, ByVal zTolerance As Single,
             ByVal units As DataStore.Units)
@@ -3833,7 +3869,7 @@ Public MustInherit Class Analysis
 
 #Region " Value Contour Point "
 
-    '******************************************************************************************
+    '*********************************************************************************************************
     ' Determine if the 'value' of parameter 'idx' has already been calculated
     '        OR if the 'value' lies between two already calculated points.
     '
@@ -3844,7 +3880,7 @@ Public MustInherit Class Analysis
     '   bX, bY, bZ  - XYZ values for the ending point of a line
     '   idx         - index of the Z parameter value
     '   zValue      - Z parameter value to be recalled
-    '
+    '*********************************************************************************************************
     Private Function RecallValuePoint(
                 ByRef aX As Single, ByRef aY As Single, ByRef aZ As Single,
                 ByRef bX As Single, ByRef bY As Single, ByRef bZ As Single,
@@ -3989,11 +4025,11 @@ Public MustInherit Class Analysis
         Return False
     End Function
 
-    '******************************************************************************************
+    '*********************************************************************************************************
     ' Store a point in a line in the Line List
     '
     ' Store point c on line with end points a & b
-    '
+    '*********************************************************************************************************
     Private Sub StoreValuePoint(ByVal a As ContourPoint, ByVal b As ContourPoint,
                                 ByVal c As ContourPoint, ByVal overwrite As Boolean)
 
@@ -4164,11 +4200,20 @@ Public MustInherit Class Analysis
 
     End Sub
 
-    '******************************************************************************************
-    ' Determine if 'value' of parameter 'idx' lies on the line between contour points 'a' & 'b'
-    '   If true, returns 'value' point & point's error state
-    '   If false, returns Nothing & false
+    '*********************************************************************************************************
+    ' Function ValuePoint()     - Determine if 'value' of parameter 'idx' lies on the line between contour
+    '                             points 'a' & 'b'
     '
+    ' Input(s):     a, b        - contour points defining line
+    '               idx         - parameter index
+    '               value       - contour value to search for
+    '               zTolerance  - tolerence for making real number comparisons
+    '
+    ' Output(s):    c           - ContourPoint for value, if found, Nothing if not
+    '
+    ' Returns:      Boolean     - true: ContourPoint c found on line between a & b
+    '                             false: c not found
+    '*********************************************************************************************************
     Public Overridable Function ValuePoint(ByVal a As ContourPoint, ByVal b As ContourPoint,
                 ByVal idx As Integer, ByVal loValue As Single, ByVal zTolerance As Single,
                 ByRef c As ContourPoint) As Boolean
@@ -4315,11 +4360,16 @@ Public MustInherit Class Analysis
 
 #Region " Limit Contour Point "
 
-    '******************************************************************************************
-    ' Determine if 'error' point lies on the line between contour points 'a' & 'b'
-    '   If true, returns 'error' point & point's error/value state
-    '   If false, returns Nothing & false
+    '*********************************************************************************************************
+    ' Function LimitPoint()     - Determine if 'error' point lies on the line between contour points 'a' & 'b'
     '
+    ' Input(s):     a, b        - contour points defining line
+    '
+    ' Output(s):    c           - ContourPoint for value, if found, Nothing if not
+    '
+    ' Returns:      Boolean     - true: ContourPoint c found on line between a & b
+    '                             false: c not found
+    '*********************************************************************************************************
     Public Overridable Function LimitPoint(ByVal a As ContourPoint, ByVal b As ContourPoint,
                                            ByRef c As ContourPoint) As Boolean
 
@@ -4478,13 +4528,17 @@ Public MustInherit Class Analysis
 #End Region
 
 #Region " Solution "
-    '
-    ' Initialize the calculation of a Solution
+
+    '*********************************************************************************************************
+    ' Overridable Sub CalculateSolution() - Calculation the Solution for the Analysis.
     '
     ' Analyses should override this method to calculate a solution based on user input.
     ' This base method should be called first to initialize common solution parameters.
-    '
+    '*********************************************************************************************************
     Public Overridable Sub CalculateSolution()
+
+        ' Verify SRFR Parameters are set correctly
+        VerifySrfrParameters(CellDensities.Medium)
 
         ' Get System Geometry parameters
         mLength = mSystemGeometry.Length.Value
@@ -4539,9 +4593,13 @@ Public MustInherit Class Analysis
         Ymax = Double.NaN
 
     End Sub
+
+    '*********************************************************************************************************
+    ' Overridable Sub SaveSolution() - save the Solution calculated for the Analysis.
     '
-    ' Save common results generated by a Solution calculation
-    '
+    ' Analyses should override this method to save their specific solution results.
+    ' This base method should be called first to save common solution results.
+    '*********************************************************************************************************
     Protected Overridable Sub SaveSolution()
 
         '

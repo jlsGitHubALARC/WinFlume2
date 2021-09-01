@@ -165,7 +165,7 @@ Public Class EVALUE
     '*********************************************************************************************************
     ' Mechanism for Analyses to unload additional SRFR results after running a simulation
     '*********************************************************************************************************
-    Public Overrides Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit, _
+    Protected Overrides Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit,
           ByVal compareRun As Boolean, ByVal skipProfiles As Boolean, ByVal skipHydroGraphs As Boolean) As Srfr.Irrigation
         ' Unload the SRFR results common to all/most Event Analyses
         Dim srfrIrrigation As Srfr.Irrigation = Nothing

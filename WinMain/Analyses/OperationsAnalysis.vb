@@ -183,27 +183,6 @@ Public MustInherit Class OperationsAnalysis
         End If ' (unit IsNot Nothing)
     End Sub
 
-    '*********************************************************************************************************
-    ' Verify SRFR parameters match current conditions.
-    '*********************************************************************************************************
-    Protected Overrides Sub VerifySrfrParameters(ByVal minCellDensity As Integer)
-
-        ' Set Cell Density to attempt to avoid simulation problems
-        Dim cellDensity As Double = minCellDensity
-
-        mDownstreamValue = mSystemGeometry.DownstreamCondition.Value
-        If (mDownstreamValue = DownstreamConditions.BlockedEnd) Then
-            cellDensity = Math.Max(cellDensity, 80)
-        End If ' Blocked / Open End
-
-        ' Save SRFR Criteria so copy/paste to Simulation World has matching criteria
-        Dim density As IntegerParameter = mSrfrCriteria.CellDensity
-        density.Value = cellDensity
-        density.Source = ValueSources.Calculated
-        mSrfrCriteria.CellDensity = density
-
-    End Sub
-
 #End Region
 
 #Region " Tuning Factors "

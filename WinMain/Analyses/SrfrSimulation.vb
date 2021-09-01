@@ -85,14 +85,8 @@ Public Class SrfrSimulation
     ' Methods to calculate and save a Solution (not used)
     '
     Public Overrides Sub CalculateSolution()
+        MyBase.CalculateSolution() ' Initialize calculation
         Me.RunSimulation()
-        ' Initialize calculation
-        MyBase.CalculateSolution()
-    End Sub
-
-    Protected Overrides Sub SaveSolution()
-        ' Save parameters common to all analyses
-        MyBase.SaveSolution()
     End Sub
 
     Public Overrides Sub AdjustSrfrCriteria(ByVal unit As Unit, ByVal solmod As Srfr.SolutionModel)
@@ -448,13 +442,13 @@ Public Class SrfrSimulation
                 End If
 
                 ' Append infiltration data from HYDRUS to WinSRFR's infiltration DataSet
-                runOK = AppendHydrusSurfaceFluxes(hydrusProject, dist, preclear)
+                runOK = AppendHydrusInfiltrationData(hydrusProject, dist, preclear)
                 If Not (runOK) Then
                     Exit Try
                 End If
 
                 ' Append concentration data from HYDRUS to WinSRFR's concentration DataSet
-                runOK = AppendHydrusSubsurfaceProfiles(hydrusProject, dist, preclear)
+                runOK = AppendHydrusConcentrationData(hydrusProject, dist, preclear)
                 If Not (runOK) Then
                     Exit Try
                 End If

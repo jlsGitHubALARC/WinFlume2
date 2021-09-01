@@ -37,9 +37,23 @@ Public Class PrecisionContourCell
 
 #Region " Methods "
 
-    Protected Overrides Function ValuePoint( _
-                ByVal a As ContourPoint, ByVal b As ContourPoint, _
-                ByVal idx As Integer, ByVal value As Single, ByVal zTolerance As Single, _
+    '*********************************************************************************************************
+    ' Function ValuePoint()     - Determine if 'value' of parameter 'idx' lies on the line between contour
+    '                             points 'a' & 'b'
+    '
+    ' Input(s):     a, b        - contour points defining line
+    '               idx         - parameter index
+    '               value       - contour value to search for
+    '               zTolerance  - tolerence for making real number comparisons
+    '
+    ' Output(s):    c           - ContourPoint for value, if found, Nothing if not
+    '
+    ' Returns:      Boolean     - true: ContourPoint c found on line between a & b
+    '                             false: c not found
+    '*********************************************************************************************************
+    Protected Overrides Function ValuePoint(
+                ByVal a As ContourPoint, ByVal b As ContourPoint,
+                ByVal idx As Integer, ByVal value As Single, ByVal zTolerance As Single,
                 ByRef c As ContourPoint) As Boolean
 
         ' If Precision Contours are selected; call the Analysis function, if possible

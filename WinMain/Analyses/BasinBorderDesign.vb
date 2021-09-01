@@ -2647,16 +2647,13 @@ Public Class BasinBorderDesign
     ' CalculateSolution() - calculate the solution for the current user values
     '
     Public Overrides Sub CalculateSolution()
+        MyBase.CalculateSolution() ' Initialize calculation
 
         ' Basin / Border Design is for entire field
         mInflowRate = mInflowManagement.InflowRate.Value
         mCutbackRate = mInflowRate * mInflowManagement.CutbackRateRatio.Value
 
-        ' Calculate the Solution's Design Point
-        MyBase.CalculateSolution()
-
         ' Run a SRFR comparison
-        VerifySrfrParameters(CellDensities.Medium)
         RunSRFR(True, False, False)
 
         ' Display then Clear any SRFR Execution Errors

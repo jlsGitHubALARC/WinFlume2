@@ -1598,17 +1598,14 @@ Public Class FurrowOperations
     ' CalculateSolution() - calculate the solution for the current user values
     '
     Public Overrides Sub CalculateSolution()
+        MyBase.CalculateSolution() ' Initialize calculation
 
         ' Furrow Operations is per furrow; convert field rates to furrow rates
         mWidth *= mFurrowsPerSet
         mFurrowFlowRate = mInflowManagement.InflowRate.Value / mFurrowsPerSet
         mFurrowCutbackRate = mInflowManagement.CutbackRateRatio.Value * mFurrowFlowRate
 
-        ' Calculate the Solution's Operations Point
-        MyBase.CalculateSolution()
-
         ' Run a SRFR comparison
-        VerifySrfrParameters(CellDensities.Medium)
         RunSRFR(True, False, False)
 
         ' Display then Clear any SRFR Execution Errors
