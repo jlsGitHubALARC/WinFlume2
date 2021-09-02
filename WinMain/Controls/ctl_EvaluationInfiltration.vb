@@ -546,7 +546,7 @@ Public Class ctl_EvaluationInfiltration
                     Return
                 End If
 
-                eventAnalysis.RunSimulationWithSlope(True)
+                eventAnalysis.RunSimulationWithSlope()
                 Dim srfrIrrigation As Srfr.Irrigation = mEvaluationWorld.SrfrAPI.Irrigation
                 If (srfrIrrigation IsNot Nothing) Then
 

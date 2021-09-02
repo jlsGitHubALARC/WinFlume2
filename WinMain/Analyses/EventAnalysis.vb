@@ -13,7 +13,7 @@ Public MustInherit Class EventAnalysis
 
 #Region " Member Data "
 
-    Protected mRunSimWithSlope As Boolean = False
+    Private mRunSimWithSlope As Boolean = False
 
 #End Region
 
@@ -73,9 +73,8 @@ Public MustInherit Class EventAnalysis
         End If
     End Sub
 
-    Public Sub RunSimulationWithSlope(ByVal WithSlope As Boolean, _
-                             Optional ByVal MinCellDensity As Integer = CellDensities.Medium)
-        mRunSimWithSlope = WithSlope
+    Public Sub RunSimulationWithSlope(Optional ByVal MinCellDensity As Integer = CellDensities.Medium)
+        mRunSimWithSlope = True
         MyBase.RunSimulation(MinCellDensity)
 
         ' Check for Simulation error
