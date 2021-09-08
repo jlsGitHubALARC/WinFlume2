@@ -162,7 +162,7 @@ Public MustInherit Class DesignAnalysis
     ' The Contour Grid is used as the guide for calculation the contour graphs; it must be
     ' computed before computing the contours.
     '******************************************************************************************
-    Protected Function BuildDesignGrid(ByVal xLabel As String, _
+    Protected Function BuildDesignGrid(ByVal xLabel As String,
                                        ByVal yLabel As String) As Boolean
 
         Dim point As ContourPoint
@@ -349,42 +349,46 @@ Public MustInherit Class DesignAnalysis
 
 #Region " Design Point "
 
-    '******************************************************************************************
-    ' Compute Design Point
+    '*********************************************************************************************************
+    ' Function DesignPoint() - Compute Design Point
     '
+    ' Input(s):     Length          - Field length
+    '               Width           - Field width
+    '               FlowRate        - Flow rate onto field
+    '               CutbackRate     - Flow rate cutback
+    '               NumDistances    - Number of distances for curve generation
+    '*********************************************************************************************************
     Protected MustOverride Function DesignPoint() As ContourPoint
-
-    '******************************************************************************************
+    '
     ' Compute Design Point wo/ Cutback
     '
-    Public Function DesignPoint(ByVal length As Double, _
-                                ByVal width As Double, _
-                                ByVal flowRate As Double) As ContourPoint
+    Public Function DesignPoint(ByVal Length As Double,
+                                ByVal Width As Double,
+                                ByVal FlowRate As Double) As ContourPoint
         ' Use number of distances from Analysis class
-        Return DesignPoint(length, width, flowRate, NumDistances)
+        Return DesignPoint(Length, Width, FlowRate, NumDistances)
     End Function
 
-    Protected MustOverride Function DesignPoint(ByVal length As Double, _
-                                                ByVal width As Double, _
-                                                ByVal flowRate As Double, _
-                                                ByVal numDistances As Integer) As ContourPoint
-
-    '******************************************************************************************
+    Protected MustOverride Function DesignPoint(ByVal Length As Double,
+                                                ByVal Width As Double,
+                                                ByVal FlowRate As Double,
+                                                ByVal NumDistances As Integer) As ContourPoint
+    '
     ' Compute Design Point w/ Cutback
     '
-    Public Function DesignPoint(ByVal length As Double, _
-                                ByVal width As Double, _
-                                ByVal flowRate As Double, _
-                                ByVal cutbackRate As Double) As ContourPoint
+    Public Function DesignPoint(ByVal Length As Double,
+                                ByVal Width As Double,
+                                ByVal FlowRate As Double,
+                                ByVal CutbackRate As Double) As ContourPoint
         ' Use number of distances from Furrow Analysis class
-        Return DesignPoint(length, width, flowRate, cutbackRate, NumDistances)
+        Return DesignPoint(Length, Width, FlowRate, CutbackRate, NumDistances)
     End Function
 
-    Protected MustOverride Function DesignPoint(ByVal length As Double, _
-                                                ByVal width As Double, _
-                                                ByVal flowRate As Double, _
-                                                ByVal cutbackRate As Double, _
-                                                ByVal numDistances As Integer) As ContourPoint
+    Protected MustOverride Function DesignPoint(ByVal Length As Double,
+                                                ByVal Width As Double,
+                                                ByVal FlowRate As Double,
+                                                ByVal CutbackRate As Double,
+                                                ByVal NumDistances As Integer) As ContourPoint
 
 #End Region
 
@@ -393,7 +397,7 @@ Public MustInherit Class DesignAnalysis
     '******************************************************************************************
     ' Method to get a specified Design Contour Point
     '
-    Public Overrides Function GetContourPoint(ByVal x As Double, ByVal y As Double, _
+    Public Overrides Function GetContourPoint(ByVal x As Double, ByVal y As Double,
                                               ByVal numDistances As Integer) As ContourPoint
         Dim point As ContourPoint = Nothing
 
@@ -452,8 +456,8 @@ Public MustInherit Class DesignAnalysis
 
 #Region " Upstream Parameters "
 
-    Public Overrides Sub UpstreamParameters(ByVal Q0 As Double, ByVal L As Double, ByVal W As Double, ByVal S0 As Double, _
-                    ByRef Y0 As Double, ByRef AY0 As Double, ByRef R0 As Double, ByRef WP0 As Double, ByRef Sf0 As Double, _
+    Public Overrides Sub UpstreamParameters(ByVal Q0 As Double, ByVal L As Double, ByVal W As Double, ByVal S0 As Double,
+                    ByRef Y0 As Double, ByRef AY0 As Double, ByRef R0 As Double, ByRef WP0 As Double, ByRef Sf0 As Double,
                     Optional ByVal Beta As Double = 0.0)
 
         If (Beta <= 0.0) Then
