@@ -136,7 +136,7 @@ Public MustInherit Class DesignAnalysis
 
 #End Region
 
-#Region " Design Grid "
+#Region " Design Execution "
 
     '******************************************************************************************
     ' Run Design Analysis
@@ -155,6 +155,10 @@ Public MustInherit Class DesignAnalysis
         MyBase.EndRun()
         mSoilCropProperties.ClrSrfrInfiltration()
     End Sub
+
+#End Region
+
+#Region " Design Grid "
 
     '******************************************************************************************
     ' Build Design Contour Grid
