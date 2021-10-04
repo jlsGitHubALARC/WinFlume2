@@ -1444,9 +1444,9 @@ Public MustInherit Class Analysis
     Protected Overridable Function UnloadSrfrResults(ByVal SrfrAPI As Srfr.SrfrAPI, ByVal Unit As Unit,
         ByVal CompareRun As Boolean, ByVal SkipProfiles As Boolean, ByVal SkipHydroGraphs As Boolean) As Srfr.Irrigation
         ' Unload the 'standard' SRFR results
-        Dim srfrResults As Srfr.Irrigation = Nothing
-        srfrResults = WinMain.UnloadSrfrResults(SrfrAPI, Unit, CompareRun, SkipProfiles, SkipHydroGraphs)
-        Return srfrResults
+        Dim srfrIrrigation As Srfr.Irrigation = Nothing
+        srfrIrrigation = WinMain.UnloadSrfrResults(SrfrAPI, Unit, CompareRun, SkipProfiles, SkipHydroGraphs)
+        Return srfrIrrigation
     End Function
 
     '*********************************************************************************************************
@@ -4530,7 +4530,7 @@ Public MustInherit Class Analysis
 #Region " Solution "
 
     '*********************************************************************************************************
-    ' Overridable Sub CalculateSolution() - Calculation the Solution for the Analysis.
+    ' Overridable Sub CalculateSolution() - Calculate the Solution for the Analysis.
     '
     ' Analyses should override this method to calculate a solution based on user input.
     ' This base method should be called first to initialize common solution parameters.

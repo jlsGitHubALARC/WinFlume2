@@ -98,15 +98,6 @@ Public MustInherit Class EventAnalysis
         End If
     End Sub
 
-    Protected Overrides Function UnloadSrfrResults(ByVal srfrAPI As Srfr.SrfrAPI, ByVal unit As Unit,
-    ByVal compareRun As Boolean, ByVal skipProfiles As Boolean, ByVal skipHydroGraphs As Boolean) As Srfr.Irrigation
-        ' Unload the SRFR results common to all/most Analyses
-        Dim srfrIrrigation As Srfr.Irrigation = Nothing
-        srfrIrrigation = MyBase.UnloadSrfrResults(srfrAPI, unit, compareRun, skipProfiles, skipHydroGraphs)
-
-        Return srfrIrrigation
-    End Function
-
 #End Region
 
 #Region " Contour Point "
