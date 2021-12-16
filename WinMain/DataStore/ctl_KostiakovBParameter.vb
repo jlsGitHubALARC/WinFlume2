@@ -38,16 +38,17 @@ Public Class ctl_KostiakovBParameter
     '
     ' Units
     '
-    Public Overrides ReadOnly Property DisplayUnits() As Units
-        Get
-            If Not (mAltUnits = UnitsDefinition.Units.None) Then
-                Return mAltUnits
-            Else
-                Dim _kostiakovB As KostiakovBParameter = Me.DataParameter()
-                Return _kostiakovB.DisplayUnits
-            End If
-        End Get
-    End Property
+    Public Shadows Function DisplayUnits() As Units
+
+        ' Have alternate units been selected?
+        If (mAltUnits <> UnitsDefinition.Units.None) Then ' yes, use them
+            DisplayUnits = mAltUnits
+        Else ' no, use units defined in parameter
+            Dim KostiakovB As KostiakovBParameter = Me.DataParameter()
+            DisplayUnits = KostiakovB.DisplayUnits
+        End If
+
+    End Function
 
 #End Region
 
