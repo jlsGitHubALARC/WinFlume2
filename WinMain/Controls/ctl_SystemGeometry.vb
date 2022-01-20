@@ -1413,7 +1413,7 @@ Public Class ctl_SystemGeometry
     ' Update the current language translation
     '
     Private Sub UpdateLanguage()
-        UpdateTranslation(Me, WinSRFR.Language)
+        UpdateTranslation(Me)
         UpdateUI()
     End Sub
 
@@ -2203,7 +2203,7 @@ Public Class ctl_SystemGeometry
                 While Not (result = DialogResult.OK)
 
                     db = New VaryWithDialogBox(slopeTableSet, variation)
-                    UpdateTranslation(db, mWinSRFR.Language)
+                    UpdateTranslation(db)
                     db.Text = mDictionary.tSlopeTableEditor.Translated
                     db.FieldLength = mSystemGeometry.Length.Value
                     db.MinDistances = 1
@@ -2287,7 +2287,7 @@ Public Class ctl_SystemGeometry
                 While Not (result = DialogResult.OK)
 
                     db = New VaryWithDialogBox(elevationTableSet, variation)
-                    UpdateTranslation(db, mWinSRFR.Language)
+                    UpdateTranslation(db)
                     db.Text = mDictionary.tElevationTableEditor.Translated
                     db.FieldLength = mSystemGeometry.Length.Value
                     db.MinDistances = 2
@@ -2419,7 +2419,7 @@ Public Class ctl_SystemGeometry
                     End If
                 End If
 
-                UpdateTranslation(fieldData, mWinSRFR.Language)
+                UpdateTranslation(fieldData)
 
                 ' Display dialog box to user
                 Dim result As DialogResult = fieldData.ShowDialog

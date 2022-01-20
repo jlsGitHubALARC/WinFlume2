@@ -1185,7 +1185,7 @@ Public Class ctl_Erosion
     Handles EditSandSiltClayTable.Click
         Dim db As SandSiltClayTable = New SandSiltClayTable(mUnit)
 
-        UpdateTranslation(db, mWinSRFR.Language)
+        UpdateTranslation(db)
 
         Dim result As DialogResult = DialogResult.None
         result = db.ShowDialog

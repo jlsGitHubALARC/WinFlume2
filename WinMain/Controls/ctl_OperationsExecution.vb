@@ -1663,7 +1663,7 @@ Public Class ctl_OperationsExecution
     ' Update the current language translation
     '
     Private Sub UpdateLanguage()
-        UpdateTranslation(Me, WinSRFR.Language)
+        UpdateTranslation(Me)
         UpdateUI()
     End Sub
 

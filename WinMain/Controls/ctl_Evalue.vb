@@ -382,7 +382,7 @@ Public Class ctl_Evalue
     ' Update the current language translation
     '
     Private Sub UpdateLanguage()
-        UpdateTranslation(Me, WinSRFR.Language)
+        UpdateTranslation(Me)
         UpdateUI()
     End Sub
 
@@ -542,7 +542,7 @@ Public Class ctl_Evalue
 
         Dim db As NrcsIntakeFamilyOptions = New NrcsIntakeFamilyOptions(mSoilCropProperties)
 
-        UpdateTranslation(db, mWinSRFR.Language)
+        UpdateTranslation(db)
 
         Dim _result As DialogResult = DialogResult.OK
         _result = db.ShowDialog

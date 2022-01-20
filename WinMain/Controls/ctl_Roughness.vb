@@ -910,7 +910,7 @@ Public Class ctl_Roughness
     ' Update the current language translation
     '
     Private Sub UpdateLanguage()
-        UpdateTranslation(Me, WinSRFR.Language)
+        UpdateTranslation(Me)
         UpdateUI()
     End Sub
 

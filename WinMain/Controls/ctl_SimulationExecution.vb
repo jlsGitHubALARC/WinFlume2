@@ -626,7 +626,7 @@ Public Class ctl_SimulationExecution
     ' Update the current language translation
     '
     Private Sub UpdateLanguage()
-        UpdateTranslation(Me, WinSRFR.Language)
+        UpdateTranslation(Me)
         UpdateUI()
     End Sub
 
@@ -643,14 +643,14 @@ Public Class ctl_SimulationExecution
     Private Sub GraphicsButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles GraphicsButton.Click
         Dim db As SimGraphicsDialogBox = New SimGraphicsDialogBox(mUnit, Globals.UserLevels.Standard)
-        UpdateTranslation(db, mWinSRFR.Language)
+        UpdateTranslation(db)
         db.ShowDialog()
     End Sub
 
     Private Sub CellDensityButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles CellDensityButton.Click
         Dim db As SimCellDensityDialogBox = New SimCellDensityDialogBox(mUnit)
-        UpdateTranslation(db, mWinSRFR.Language)
+        UpdateTranslation(db)
         db.ShowDialog()
     End Sub
 

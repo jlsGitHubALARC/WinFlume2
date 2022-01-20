@@ -64,7 +64,7 @@ Public Class ctl_PowerLawTable
             _furrowFieldData.FurrowFieldDataType = CType(mSystemGeometry.FurrowFieldDataType.Value, FurrowFieldDataTypes)
             _furrowFieldData.FurrowShape = FurrowShapes.PowerLaw
 
-            UpdateTranslation(_furrowFieldData, mWinSRFR.Language)
+            UpdateTranslation(_furrowFieldData)
 
             ' Display dialog box to user
             Dim _dialogResult As DialogResult = _furrowFieldData.ShowDialog

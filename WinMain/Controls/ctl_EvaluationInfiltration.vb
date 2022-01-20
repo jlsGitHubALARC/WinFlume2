@@ -496,7 +496,7 @@ Public Class ctl_EvaluationInfiltration
     ' Update the current language translation
     '
     Private Sub UpdateLanguage()
-        UpdateTranslation(Me, WinSRFR.Language)
+        UpdateTranslation(Me)
     End Sub
     '
     ' Resize/relocate UI controls to match available space

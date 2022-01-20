@@ -86,7 +86,7 @@ Public Class ctl_EvalueRoughness
 
     ' Update the current language translation
     Private Sub UpdateLanguage()
-        UpdateTranslation(Me, WinSRFR.Language)
+        UpdateTranslation(Me)
     End Sub
 
     ' Resize contained controls to follow Size changes

@@ -587,7 +587,7 @@ Public Class ctl_EvaluationWorld
         UseFlowDepthsCheck.LinkToModel(mMyStore, mInflowManagement.FlowDepthsUsedProperty)
 
         ' Update language translation
-        UpdateTranslation(Me, WinSRFR.Language)
+        UpdateTranslation(Me)
 
         ' Update the control's User Interface
         UpdateUI()
