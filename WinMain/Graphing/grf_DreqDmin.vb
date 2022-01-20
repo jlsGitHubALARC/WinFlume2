@@ -232,7 +232,7 @@ Public Class grf_DreqDmin
                 End If
 
                 mWorldWindow.WDD = New WaterDistributionDiagram(mWorldWindow, mY2, mX)
-                UpdateTranslation(mWorldWindow.WDD, mWorldWindow.WinSrfr.Language)
+                UpdateTranslation(mWorldWindow.WDD)
                 mWorldWindow.WDD.Show()
             End If
 

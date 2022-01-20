@@ -1215,7 +1215,7 @@ Public Class WinSRFR
         End If
 
         ' Update to the current language translation
-        UpdateTranslation(Me, Me.Language)
+        UpdateTranslation(Me)
 
         RaiseEvent WinSrfrUpdated(Reasons.Language)
 
@@ -1930,7 +1930,7 @@ Public Class WinSRFR
         ' Enable MyStore events
         mMyStore.EventsEnabled = True
 
-        UpdateTranslation(mUnitsDialogBox, Me.Language)
+        UpdateTranslation(mUnitsDialogBox)
 
         '*****************************************************************************************************
         ' Initialize Units from User Preferences
@@ -6137,7 +6137,7 @@ SellTheFarm:
         ' Verify explorer form has been created; then hide/show it
         Debug.Assert((mUserPreferences IsNot Nothing)) ' User Preferences form does not exist
 
-        UpdateTranslation(mUserPreferences, Me.Language)
+        UpdateTranslation(mUserPreferences)
 
         If (mUserPreferences.Visible) Then
             mUserPreferences.BringToFront()
@@ -6315,14 +6315,14 @@ SellTheFarm:
     Private Sub DataComparisonItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles DataComparisonItem.Click
         mDataComparer.ResetDataComparer()
-        UpdateTranslation(mDataComparer, Me.Language)
+        UpdateTranslation(mDataComparer)
         mDataComparer.ShowDialog()
     End Sub
 
     Private Sub ConversionChartItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles ConversionChartItem.Click
         Dim db As ConversionChart = New ConversionChart
-        UpdateTranslation(db, Me.Language)
+        UpdateTranslation(db)
         db.Show()
     End Sub
 

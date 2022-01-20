@@ -3199,7 +3199,7 @@ Public Class FurrowFieldData
     Private Sub FurrowFieldData_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles MyBase.Shown
         mInitializing = False
-        UpdateTranslation(Me, WinSRFR.Language)
+        UpdateTranslation(Me)
 
         Select Case (Me.FurrowFieldDataTypeControl.SelectedIndex)
             Case Globals.FurrowFieldDataTypes.ProfilometerTable

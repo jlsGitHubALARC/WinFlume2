@@ -199,7 +199,7 @@ Public Class grf_ContourPlot
         End If
 
         mWorldWindow.WDD = New WaterDistributionDiagram(mWorldWindow, xVal, yVal)
-        UpdateTranslation(mWorldWindow.WDD, mWorldWindow.WinSrfr.Language)
+        UpdateTranslation(mWorldWindow.WDD)
         mWorldWindow.WDD.Show()
 
     End Sub

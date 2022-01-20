@@ -820,7 +820,7 @@ Public Class EvaluationWorld
                 UpdateUI()
 
             Case WinMain.WinSRFR.Reasons.Language
-                UpdateTranslation(Me, WinSrfr.Language, "WorldWindow")
+                UpdateTranslation(Me)
                 RefreshUI()
 
             Case Else

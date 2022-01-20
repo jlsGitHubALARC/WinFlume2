@@ -639,7 +639,7 @@ Public Class DesignWorld
 
         ' Create new one
         Me.WDD = New WaterDistributionDiagram(Me, x, y)
-        UpdateTranslation(Me.WDD, mWinSRFR.Language)
+        UpdateTranslation(Me.WDD)
         Me.WDD.Show()
 
     End Sub
@@ -657,7 +657,7 @@ Public Class DesignWorld
         End If
 
         ' Update dialog box's translation
-        UpdateTranslation(mContourOverlay, mWinSRFR.Language)
+        UpdateTranslation(mContourOverlay)
 
         ' Display the contour Overlay dialog box
         Dim _results As DialogResult = mContourOverlay.ShowDialog
@@ -846,7 +846,7 @@ Public Class DesignWorld
                 UpdateUI()
 
             Case WinMain.WinSRFR.Reasons.Language
-                UpdateTranslation(Me, WinSrfr.Language, "WorldWindow")
+                UpdateTranslation(Me)
                 RefreshUI()
 
             Case Else

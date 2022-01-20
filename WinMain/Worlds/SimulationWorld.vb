@@ -895,7 +895,7 @@ Public Class SimulationWorld
                 UpdateUI()
 
             Case WinMain.WinSRFR.Reasons.Language
-                UpdateTranslation(Me, WinSrfr.Language, "WorldWindow")
+                UpdateTranslation(Me)
                 RefreshUI()
 
             Case Else
@@ -997,7 +997,7 @@ Public Class SimulationWorld
             mRunMultiple = New RunMultiSimulations
             mRunMultiple.WinSRFR = mWinSRFR
 
-            UpdateTranslation(mRunMultiple, mWinSRFR.Language)
+            UpdateTranslation(mRunMultiple)
 
             mRunMultiple.SimulationWorld = Me
             mRunMultiple.Show()
@@ -1020,14 +1020,14 @@ Public Class SimulationWorld
     Private Sub StandardCriteriaItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles StandardCriteriaItem.Click
         Dim db As SimGraphicsDialogBox = New SimGraphicsDialogBox(mUnit, Globals.UserLevels.Standard)
-        UpdateTranslation(db, mWinSRFR.Language)
+        UpdateTranslation(db)
         db.ShowDialog()
     End Sub
 
     Private Sub AdvancedCriteriaItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles AdvancedCriteriaItem.Click
         Dim db As SimCellDensityDialogBox = New SimCellDensityDialogBox(mUnit)
-        UpdateTranslation(db, mWinSRFR.Language)
+        UpdateTranslation(db)
         db.ShowDialog()
     End Sub
 
