@@ -16,15 +16,16 @@ Public Class Dictionary
 
     ' Allow access to singleton Translator via Instance() method
     Public Shared Shadows Function Instance() As Dictionary
-        If Not (mTranslator Is Nothing) Then
-            If Not (mTranslator.GetType Is GetType(Dictionary)) Then
+        ' If Dictionary has already been instantiated, just return it
+        If (mTranslator IsNot Nothing) Then
+            If (mTranslator.GetType IsNot GetType(Dictionary)) Then
                 mTranslator = Nothing
             End If
         End If
 
+        ' If Dictionary has not been instantiated, do so
         If (mTranslator Is Nothing) Then
             mTranslator = New Dictionary
-            DefineNativePhraseTable(mTranslator)  ' There is always a Native Phrase Translation DataTable
         End If
         Return mTranslator
     End Function

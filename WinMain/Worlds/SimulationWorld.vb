@@ -91,6 +91,7 @@ Public Class SimulationWorld
     Friend WithEvents HelpInflowRunoffItem As MenuItem
     Friend WithEvents HelpExecutionItem As MenuItem
     Friend WithEvents HelpResultsItem As MenuItem
+    Friend WithEvents RunMultipleSimulationsNewItem As MenuItem
     Friend WithEvents SimulationExecutionControl As WinMain.ctl_SimulationExecution
     <System.Diagnostics.DebuggerStepThrough()> Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
@@ -132,6 +133,7 @@ Public Class SimulationWorld
         Me.HelpInflowRunoffItem = New System.Windows.Forms.MenuItem()
         Me.HelpExecutionItem = New System.Windows.Forms.MenuItem()
         Me.HelpResultsItem = New System.Windows.Forms.MenuItem()
+        Me.RunMultipleSimulationsNewItem = New System.Windows.Forms.MenuItem()
         Me.WorldPanel.SuspendLayout()
         Me.SimulationTabControl.SuspendLayout()
         Me.SimulationTabPage.SuspendLayout()
@@ -143,19 +145,28 @@ Public Class SimulationWorld
         Me.ResultsTabPage.SuspendLayout()
         Me.SuspendLayout()
         '
+        'WorldStatusBar
+        '
+        Me.WorldStatusBar.Location = New System.Drawing.Point(0, 591)
+        Me.WorldStatusBar.Size = New System.Drawing.Size(990, 22)
+        '
         'TitleBox
         '
         Me.TitleBox.Location = New System.Drawing.Point(0, 28)
+        Me.TitleBox.Margin = New System.Windows.Forms.Padding(4)
+        Me.TitleBox.Size = New System.Drawing.Size(990, 49)
         '
         'WorldPanel
         '
         Me.WorldPanel.Controls.Add(Me.SimulationTabControl)
-        Me.WorldPanel.Location = New System.Drawing.Point(0, 68)
-        Me.WorldPanel.Size = New System.Drawing.Size(792, 463)
+        Me.WorldPanel.Location = New System.Drawing.Point(0, 77)
+        Me.WorldPanel.Margin = New System.Windows.Forms.Padding(4)
+        Me.WorldPanel.Size = New System.Drawing.Size(990, 514)
         '
         'WorldToolbar
         '
-        Me.WorldToolbar.Size = New System.Drawing.Size(792, 28)
+        Me.WorldToolbar.Margin = New System.Windows.Forms.Padding(4)
+        Me.WorldToolbar.Size = New System.Drawing.Size(990, 28)
         '
         'FileMenu
         '
@@ -165,7 +176,7 @@ Public Class SimulationWorld
         '
         'mProgressBar
         '
-        Me.mProgressBar.Location = New System.Drawing.Point(550, 3)
+        Me.mProgressBar.Location = New System.Drawing.Point(744, 3)
         Me.mProgressBar.Size = New System.Drawing.Size(69, 18)
         '
         'SimulationTabControl
@@ -182,9 +193,10 @@ Public Class SimulationWorld
         Me.SimulationTabControl.Controls.Add(Me.ResultsTabPage)
         Me.SimulationTabControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SimulationTabControl.Location = New System.Drawing.Point(0, 0)
+        Me.SimulationTabControl.Margin = New System.Windows.Forms.Padding(4)
         Me.SimulationTabControl.Name = "SimulationTabControl"
         Me.SimulationTabControl.SelectedIndex = 0
-        Me.SimulationTabControl.Size = New System.Drawing.Size(792, 463)
+        Me.SimulationTabControl.Size = New System.Drawing.Size(990, 514)
         Me.SimulationTabControl.TabIndex = 0
         '
         'SimulationTabPage
@@ -193,8 +205,9 @@ Public Class SimulationWorld
         Me.SimulationTabPage.AccessibleName = "Simulation World Tab"
         Me.SimulationTabPage.Controls.Add(Me.SimulationWorldControl)
         Me.SimulationTabPage.Location = New System.Drawing.Point(4, 4)
+        Me.SimulationTabPage.Margin = New System.Windows.Forms.Padding(4)
         Me.SimulationTabPage.Name = "SimulationTabPage"
-        Me.SimulationTabPage.Size = New System.Drawing.Size(784, 434)
+        Me.SimulationTabPage.Size = New System.Drawing.Size(982, 481)
         Me.SimulationTabPage.TabIndex = 7
         Me.SimulationTabPage.Text = "Start Simulation"
         '
@@ -203,8 +216,9 @@ Public Class SimulationWorld
         Me.SimulationWorldControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SimulationWorldControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SimulationWorldControl.Location = New System.Drawing.Point(0, 0)
+        Me.SimulationWorldControl.Margin = New System.Windows.Forms.Padding(4)
         Me.SimulationWorldControl.Name = "SimulationWorldControl"
-        Me.SimulationWorldControl.Size = New System.Drawing.Size(784, 434)
+        Me.SimulationWorldControl.Size = New System.Drawing.Size(982, 481)
         Me.SimulationWorldControl.TabIndex = 0
         '
         'SystemGeometryTabPage
@@ -213,8 +227,9 @@ Public Class SimulationWorld
         Me.SystemGeometryTabPage.AccessibleName = "System Geometry Tab"
         Me.SystemGeometryTabPage.Controls.Add(Me.SystemGeometryControl)
         Me.SystemGeometryTabPage.Location = New System.Drawing.Point(4, 4)
+        Me.SystemGeometryTabPage.Margin = New System.Windows.Forms.Padding(4)
         Me.SystemGeometryTabPage.Name = "SystemGeometryTabPage"
-        Me.SystemGeometryTabPage.Size = New System.Drawing.Size(784, 433)
+        Me.SystemGeometryTabPage.Size = New System.Drawing.Size(784, 420)
         Me.SystemGeometryTabPage.TabIndex = 1
         Me.SystemGeometryTabPage.Text = "System Geometry"
         '
@@ -223,8 +238,9 @@ Public Class SimulationWorld
         Me.SystemGeometryControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SystemGeometryControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SystemGeometryControl.Location = New System.Drawing.Point(0, 0)
+        Me.SystemGeometryControl.Margin = New System.Windows.Forms.Padding(4)
         Me.SystemGeometryControl.Name = "SystemGeometryControl"
-        Me.SystemGeometryControl.Size = New System.Drawing.Size(784, 433)
+        Me.SystemGeometryControl.Size = New System.Drawing.Size(784, 420)
         Me.SystemGeometryControl.TabIndex = 0
         '
         'SoilCropPropertiesTabPage
@@ -233,8 +249,9 @@ Public Class SimulationWorld
         Me.SoilCropPropertiesTabPage.AccessibleName = "Soil / Crop Properties Tab"
         Me.SoilCropPropertiesTabPage.Controls.Add(Me.SoilCropPropertiesControl)
         Me.SoilCropPropertiesTabPage.Location = New System.Drawing.Point(4, 4)
+        Me.SoilCropPropertiesTabPage.Margin = New System.Windows.Forms.Padding(4)
         Me.SoilCropPropertiesTabPage.Name = "SoilCropPropertiesTabPage"
-        Me.SoilCropPropertiesTabPage.Size = New System.Drawing.Size(784, 433)
+        Me.SoilCropPropertiesTabPage.Size = New System.Drawing.Size(784, 420)
         Me.SoilCropPropertiesTabPage.TabIndex = 2
         Me.SoilCropPropertiesTabPage.Text = "Soil / Crop Properties"
         '
@@ -245,8 +262,9 @@ Public Class SimulationWorld
         Me.SoilCropPropertiesControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SoilCropPropertiesControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SoilCropPropertiesControl.Location = New System.Drawing.Point(0, 0)
+        Me.SoilCropPropertiesControl.Margin = New System.Windows.Forms.Padding(4)
         Me.SoilCropPropertiesControl.Name = "SoilCropPropertiesControl"
-        Me.SoilCropPropertiesControl.Size = New System.Drawing.Size(784, 433)
+        Me.SoilCropPropertiesControl.Size = New System.Drawing.Size(784, 420)
         Me.SoilCropPropertiesControl.TabIndex = 0
         '
         'InflowManagementTabPage
@@ -255,8 +273,9 @@ Public Class SimulationWorld
         Me.InflowManagementTabPage.AccessibleName = "Inflow / Runoff Tab"
         Me.InflowManagementTabPage.Controls.Add(Me.InflowManagementControl)
         Me.InflowManagementTabPage.Location = New System.Drawing.Point(4, 4)
+        Me.InflowManagementTabPage.Margin = New System.Windows.Forms.Padding(4)
         Me.InflowManagementTabPage.Name = "InflowManagementTabPage"
-        Me.InflowManagementTabPage.Size = New System.Drawing.Size(784, 433)
+        Me.InflowManagementTabPage.Size = New System.Drawing.Size(784, 420)
         Me.InflowManagementTabPage.TabIndex = 3
         Me.InflowManagementTabPage.Text = "Inflow / Runoff"
         '
@@ -265,8 +284,9 @@ Public Class SimulationWorld
         Me.InflowManagementControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.InflowManagementControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.InflowManagementControl.Location = New System.Drawing.Point(0, 0)
+        Me.InflowManagementControl.Margin = New System.Windows.Forms.Padding(4)
         Me.InflowManagementControl.Name = "InflowManagementControl"
-        Me.InflowManagementControl.Size = New System.Drawing.Size(784, 433)
+        Me.InflowManagementControl.Size = New System.Drawing.Size(784, 420)
         Me.InflowManagementControl.TabIndex = 0
         Me.InflowManagementControl.Title = "Inflow / Runoff"
         '
@@ -278,8 +298,9 @@ Public Class SimulationWorld
         Me.DataTabPage.Controls.Add(Me.FertigationControl)
         Me.DataTabPage.Controls.Add(Me.DataSummaryControl)
         Me.DataTabPage.Location = New System.Drawing.Point(4, 4)
+        Me.DataTabPage.Margin = New System.Windows.Forms.Padding(4)
         Me.DataTabPage.Name = "DataTabPage"
-        Me.DataTabPage.Size = New System.Drawing.Size(784, 433)
+        Me.DataTabPage.Size = New System.Drawing.Size(784, 420)
         Me.DataTabPage.TabIndex = 4
         Me.DataTabPage.Text = "Data"
         '
@@ -289,8 +310,9 @@ Public Class SimulationWorld
         Me.ErosionControl.AccessibleName = "Erosion"
         Me.ErosionControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ErosionControl.Location = New System.Drawing.Point(0, 0)
+        Me.ErosionControl.Margin = New System.Windows.Forms.Padding(4)
         Me.ErosionControl.Name = "ErosionControl"
-        Me.ErosionControl.Size = New System.Drawing.Size(780, 430)
+        Me.ErosionControl.Size = New System.Drawing.Size(975, 538)
         Me.ErosionControl.TabIndex = 1
         '
         'FertigationControl
@@ -300,9 +322,9 @@ Public Class SimulationWorld
         Me.FertigationControl.AutoScroll = True
         Me.FertigationControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FertigationControl.Location = New System.Drawing.Point(0, 0)
-        Me.FertigationControl.Margin = New System.Windows.Forms.Padding(4)
+        Me.FertigationControl.Margin = New System.Windows.Forms.Padding(5)
         Me.FertigationControl.Name = "FertigationControl"
-        Me.FertigationControl.Size = New System.Drawing.Size(780, 430)
+        Me.FertigationControl.Size = New System.Drawing.Size(975, 538)
         Me.FertigationControl.TabIndex = 1
         '
         'DataSummaryControl
@@ -312,8 +334,9 @@ Public Class SimulationWorld
         Me.DataSummaryControl.AutoScroll = True
         Me.DataSummaryControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DataSummaryControl.Location = New System.Drawing.Point(0, 0)
+        Me.DataSummaryControl.Margin = New System.Windows.Forms.Padding(4)
         Me.DataSummaryControl.Name = "DataSummaryControl"
-        Me.DataSummaryControl.Size = New System.Drawing.Size(780, 430)
+        Me.DataSummaryControl.Size = New System.Drawing.Size(975, 538)
         Me.DataSummaryControl.TabIndex = 0
         '
         'ExecutionTabPage
@@ -322,8 +345,9 @@ Public Class SimulationWorld
         Me.ExecutionTabPage.AccessibleName = "Simulation Execution Tab"
         Me.ExecutionTabPage.Controls.Add(Me.SimulationExecutionControl)
         Me.ExecutionTabPage.Location = New System.Drawing.Point(4, 4)
+        Me.ExecutionTabPage.Margin = New System.Windows.Forms.Padding(4)
         Me.ExecutionTabPage.Name = "ExecutionTabPage"
-        Me.ExecutionTabPage.Size = New System.Drawing.Size(784, 433)
+        Me.ExecutionTabPage.Size = New System.Drawing.Size(784, 420)
         Me.ExecutionTabPage.TabIndex = 5
         Me.ExecutionTabPage.Text = "Execution"
         '
@@ -331,8 +355,9 @@ Public Class SimulationWorld
         '
         Me.SimulationExecutionControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SimulationExecutionControl.Location = New System.Drawing.Point(0, 0)
+        Me.SimulationExecutionControl.Margin = New System.Windows.Forms.Padding(4)
         Me.SimulationExecutionControl.Name = "SimulationExecutionControl"
-        Me.SimulationExecutionControl.Size = New System.Drawing.Size(780, 430)
+        Me.SimulationExecutionControl.Size = New System.Drawing.Size(975, 538)
         Me.SimulationExecutionControl.TabIndex = 0
         '
         'ResultsTabPage
@@ -341,8 +366,9 @@ Public Class SimulationWorld
         Me.ResultsTabPage.AccessibleName = "Simulation Results Tab"
         Me.ResultsTabPage.Controls.Add(Me.SimulationResultsControl)
         Me.ResultsTabPage.Location = New System.Drawing.Point(4, 4)
+        Me.ResultsTabPage.Margin = New System.Windows.Forms.Padding(4)
         Me.ResultsTabPage.Name = "ResultsTabPage"
-        Me.ResultsTabPage.Size = New System.Drawing.Size(784, 433)
+        Me.ResultsTabPage.Size = New System.Drawing.Size(784, 420)
         Me.ResultsTabPage.TabIndex = 6
         Me.ResultsTabPage.Text = "Results"
         '
@@ -352,11 +378,12 @@ Public Class SimulationWorld
         Me.SimulationResultsControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed
         Me.SimulationResultsControl.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SimulationResultsControl.Location = New System.Drawing.Point(0, 0)
+        Me.SimulationResultsControl.Margin = New System.Windows.Forms.Padding(4)
         Me.SimulationResultsControl.Multiline = True
         Me.SimulationResultsControl.Name = "SimulationResultsControl"
         Me.SimulationResultsControl.ResultsView = WinMain.Globals.ResultsViews.PortraitPage
         Me.SimulationResultsControl.SelectedIndex = 0
-        Me.SimulationResultsControl.Size = New System.Drawing.Size(784, 433)
+        Me.SimulationResultsControl.Size = New System.Drawing.Size(784, 420)
         Me.SimulationResultsControl.TabIndex = 0
         '
         'SimulationMainMenu
@@ -371,7 +398,7 @@ Public Class SimulationWorld
         'ExWorldMenu
         '
         Me.ExWorldMenu.Index = 1
-        Me.ExWorldMenu.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.RunSimulationItem, Me.RunMultipleSimulationsItem, Me.SimSeparator1, Me.ViewSimulationAnimationItem, Me.SimSeparator2, Me.StandardCriteriaItem, Me.AdvancedCriteriaItem})
+        Me.ExWorldMenu.MenuItems.AddRange(New System.Windows.Forms.MenuItem() {Me.RunSimulationItem, Me.RunMultipleSimulationsItem, Me.RunMultipleSimulationsNewItem, Me.SimSeparator1, Me.ViewSimulationAnimationItem, Me.SimSeparator2, Me.StandardCriteriaItem, Me.AdvancedCriteriaItem})
         Me.ExWorldMenu.Text = "&World"
         '
         'RunSimulationItem
@@ -387,27 +414,27 @@ Public Class SimulationWorld
         '
         'SimSeparator1
         '
-        Me.SimSeparator1.Index = 2
+        Me.SimSeparator1.Index = 3
         Me.SimSeparator1.Text = "-"
         '
         'ViewSimulationAnimationItem
         '
-        Me.ViewSimulationAnimationItem.Index = 3
+        Me.ViewSimulationAnimationItem.Index = 4
         Me.ViewSimulationAnimationItem.Text = "View Simulation &Animation Window"
         '
         'SimSeparator2
         '
-        Me.SimSeparator2.Index = 4
+        Me.SimSeparator2.Index = 5
         Me.SimSeparator2.Text = "-"
         '
         'StandardCriteriaItem
         '
-        Me.StandardCriteriaItem.Index = 5
+        Me.StandardCriteriaItem.Index = 6
         Me.StandardCriteriaItem.Text = "&Graphics ..."
         '
         'AdvancedCriteriaItem
         '
-        Me.AdvancedCriteriaItem.Index = 6
+        Me.AdvancedCriteriaItem.Index = 7
         Me.AdvancedCriteriaItem.Text = "&Cell Density ..."
         '
         'ExHelpMenu
@@ -461,12 +488,19 @@ Public Class SimulationWorld
         Me.HelpResultsItem.Index = 8
         Me.HelpResultsItem.Text = "Resu&lts"
         '
+        'RunMultipleSimulationsNewItem
+        '
+        Me.RunMultipleSimulationsNewItem.Index = 2
+        Me.RunMultipleSimulationsNewItem.Text = "Run Multiple Simulations &New ..."
+        '
         'SimulationWorld
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
-        Me.ClientSize = New System.Drawing.Size(792, 553)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
+        Me.ClientSize = New System.Drawing.Size(990, 613)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Menu = Me.SimulationMainMenu
+        Me.MinimumSize = New System.Drawing.Size(620, 488)
         Me.Name = "SimulationWorld"
         Me.WorldPanel.ResumeLayout(False)
         Me.SimulationTabControl.ResumeLayout(False)
@@ -497,6 +531,7 @@ Public Class SimulationWorld
 
     ' UI Forms
     Private mRunMultiple As RunMultiSimulations
+    Private mRunMultipleNew As RunMultiSimulationsNew
 
 #End Region
 
@@ -1000,11 +1035,31 @@ Public Class SimulationWorld
             UpdateTranslation(mRunMultiple)
 
             mRunMultiple.SimulationWorld = Me
-            mRunMultiple.Show()
-        Else
-            mRunMultiple.Show()
-            mRunMultiple.BringToFront()
         End If
+
+        mRunMultiple.Show()
+        mRunMultiple.BringToFront()
+
+    End Sub
+
+    Private Sub RunMultipleSimulationsNewItem_Click(sender As Object, e As EventArgs) _
+        Handles RunMultipleSimulationsNewItem.Click
+        If (mRunMultipleNew Is Nothing) Then
+            mRunMultipleNew = New RunMultiSimulationsNew()
+
+            UpdateTranslation(mRunMultipleNew)
+        End If
+
+        If (mRunMultipleNew.IsDisposed) Then
+            mRunMultipleNew = New RunMultiSimulationsNew()
+
+            UpdateTranslation(mRunMultipleNew)
+        End If
+
+        mRunMultipleNew.SetUnit(mUnit)
+        mRunMultipleNew.Show()
+        mRunMultipleNew.BringToFront()
+
     End Sub
 
     Private Sub ViewSimulationAnimationItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _

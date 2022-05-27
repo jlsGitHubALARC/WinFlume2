@@ -1190,10 +1190,10 @@ Public Class WinSRFR
             ' Open Language file
             If (File.Exists(txtPath)) Then
                 Path = txtPath
-                errCode = mDictionary.OpenForeignLanguage(Path)
+                errCode = mDictionary.OpenReadForeignLanguage(Path)
             ElseIf (File.Exists(binPath)) Then
                 Path = binPath
-                errCode = mDictionary.OpenForeignLanguage(Path)
+                errCode = mDictionary.OpenReadForeignLanguage(Path)
             Else
                 errCode = Translator.ErrorCode.NoData
             End If
@@ -1930,7 +1930,7 @@ Public Class WinSRFR
         ' Enable MyStore events
         mMyStore.EventsEnabled = True
 
-        UpdateTranslation(mUnitsDialogBox)
+        'jls UpdateTranslation(mUnitsDialogBox)
 
         '*****************************************************************************************************
         ' Initialize Units from User Preferences
@@ -6647,15 +6647,15 @@ SellTheFarm:
         'Handles SaveTranslationAsBinItem.Click
 
         Dim languagePath As String = Application.CommonAppDataPath + "\Languages"
-        Dim nativeLanguage As String = mDictionary.NativeLanguage
+        'JLS Dim nativeLanguage As String = mDictionary.NativeLanguage
 
         Try
-            mDictionary.NativeLanguage = sNativeFamily & "." & "text".Replace("e", "")
+            'JLS mDictionary.NativeLanguage = sNativeFamily & "." & "text".Replace("e", "")
             mDictionary.SaveForeignLanuage(languagePath, "")
         Catch ex As Exception
 
         Finally
-            mDictionary.NativeLanguage = nativeLanguage
+            'JLS mDictionary.NativeLanguage = nativeLanguage
         End Try
 
         'mDictionary.OpenForeignLanguage(Path & "\" & Dictionary.ForeignLanguage & ".bin")
