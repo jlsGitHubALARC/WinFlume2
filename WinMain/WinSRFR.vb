@@ -3327,6 +3327,12 @@ SellTheFarm:
         dialog.Dispose()
         dialog = Nothing
 
+        dialog = New RunMultiSimulationsNew
+        dialog.Name = "RunMultiSimulationsNew"
+        mDictionary.AddNativeControlTable(dialog)
+        dialog.Dispose()
+        dialog = Nothing
+
         dialog = New SandSiltClayTable(Nothing)
         dialog.Name = "SandSiltClayTable"
         mDictionary.AddNativeControlTable(dialog)

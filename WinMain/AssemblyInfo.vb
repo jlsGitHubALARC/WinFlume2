@@ -8,12 +8,12 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("WinSRFR 5.1.1.7")>
+<Assembly: AssemblyTitle("WinSRFR 5.1.1.8")>
 <Assembly: AssemblyDescription("Surface Irrigation Analysis, Design, Operations & Simulation")> 
 <Assembly: AssemblyCompany("USDA")> 
 <Assembly: AssemblyProduct("WinSRFR")>
-<Assembly: AssemblyFileVersion("5.1.1.7")>
-<Assembly: AssemblyCopyright("Copyright © USDA 2021")>
+<Assembly: AssemblyFileVersion("5.1.1.8")>
+<Assembly: AssemblyCopyright("Copyright © USDA 2022")>
 <Assembly: AssemblyTrademark("")> 
 <Assembly: CLSCompliant(True)> 
 

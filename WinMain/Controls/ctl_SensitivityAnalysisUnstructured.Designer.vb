@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class ctl_SensitivityAnalysisUnstructured
     Inherits System.Windows.Forms.UserControl
 
     'UserControl overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()>
+    <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,8 +20,11 @@ Partial Class ctl_SensitivityAnalysisUnstructured
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()>
+    <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.ShowMessageOnError = New DataStore.ctl_CheckParameter()
+        Me.CloseButton = New DataStore.ctl_Button()
+        Me.RunMultiButton = New DataStore.ctl_Button()
         Me.OutputFileBox = New DataStore.ctl_GroupBox()
         Me.ClearResultsFile = New DataStore.ctl_CheckParameter()
         Me.OutputInstructions = New DataStore.ctl_Label()
@@ -35,6 +38,45 @@ Partial Class ctl_SensitivityAnalysisUnstructured
         Me.InputFileBox.SuspendLayout()
         Me.SuspendLayout()
         '
+        'ShowMessageOnError
+        '
+        Me.ShowMessageOnError.AlwaysChecked = False
+        Me.ShowMessageOnError.AutoSize = True
+        Me.ShowMessageOnError.ErrorMessage = Nothing
+        Me.ShowMessageOnError.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.ShowMessageOnError.Location = New System.Drawing.Point(24, 570)
+        Me.ShowMessageOnError.Margin = New System.Windows.Forms.Padding(4)
+        Me.ShowMessageOnError.Name = "ShowMessageOnError"
+        Me.ShowMessageOnError.Size = New System.Drawing.Size(270, 24)
+        Me.ShowMessageOnError.TabIndex = 11
+        Me.ShowMessageOnError.Text = "Show message on first error"
+        Me.ShowMessageOnError.UncheckAttemptMessage = Nothing
+        Me.ShowMessageOnError.UseVisualStyleBackColor = True
+        '
+        'CloseButton
+        '
+        Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.CloseButton.Location = New System.Drawing.Point(553, 604)
+        Me.CloseButton.Margin = New System.Windows.Forms.Padding(4)
+        Me.CloseButton.Name = "CloseButton"
+        Me.CloseButton.Size = New System.Drawing.Size(90, 30)
+        Me.CloseButton.TabIndex = 10
+        Me.CloseButton.Text = "Close"
+        Me.CloseButton.UseVisualStyleBackColor = True
+        '
+        'RunMultiButton
+        '
+        Me.RunMultiButton.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.RunMultiButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.RunMultiButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.RunMultiButton.Location = New System.Drawing.Point(24, 604)
+        Me.RunMultiButton.Margin = New System.Windows.Forms.Padding(4)
+        Me.RunMultiButton.Name = "RunMultiButton"
+        Me.RunMultiButton.Size = New System.Drawing.Size(289, 35)
+        Me.RunMultiButton.TabIndex = 9
+        Me.RunMultiButton.Text = "&Run Simulations"
+        Me.RunMultiButton.UseVisualStyleBackColor = False
+        '
         'OutputFileBox
         '
         Me.OutputFileBox.AccessibleDescription = "Specifies the default directory for WinSRFR log & diagnostic files."
@@ -44,10 +86,12 @@ Partial Class ctl_SensitivityAnalysisUnstructured
         Me.OutputFileBox.Controls.Add(Me.BrowseOutputFileButton)
         Me.OutputFileBox.Controls.Add(Me.OutputFilename)
         Me.OutputFileBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OutputFileBox.Location = New System.Drawing.Point(15, 610)
+        Me.OutputFileBox.Location = New System.Drawing.Point(4, 319)
+        Me.OutputFileBox.Margin = New System.Windows.Forms.Padding(4)
         Me.OutputFileBox.Name = "OutputFileBox"
-        Me.OutputFileBox.Size = New System.Drawing.Size(710, 115)
-        Me.OutputFileBox.TabIndex = 1
+        Me.OutputFileBox.Padding = New System.Windows.Forms.Padding(4)
+        Me.OutputFileBox.Size = New System.Drawing.Size(745, 125)
+        Me.OutputFileBox.TabIndex = 8
         Me.OutputFileBox.TabStop = False
         Me.OutputFileBox.Text = "&Output File"
         '
@@ -56,11 +100,11 @@ Partial Class ctl_SensitivityAnalysisUnstructured
         Me.ClearResultsFile.AlwaysChecked = False
         Me.ClearResultsFile.AutoSize = True
         Me.ClearResultsFile.ErrorMessage = Nothing
-        Me.ClearResultsFile.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ClearResultsFile.Location = New System.Drawing.Point(15, 80)
+        Me.ClearResultsFile.Location = New System.Drawing.Point(20, 91)
+        Me.ClearResultsFile.Margin = New System.Windows.Forms.Padding(4)
         Me.ClearResultsFile.Name = "ClearResultsFile"
-        Me.ClearResultsFile.Size = New System.Drawing.Size(178, 22)
-        Me.ClearResultsFile.TabIndex = 3
+        Me.ClearResultsFile.Size = New System.Drawing.Size(199, 24)
+        Me.ClearResultsFile.TabIndex = 4
         Me.ClearResultsFile.Text = "Pre-&clear output file"
         Me.ClearResultsFile.UncheckAttemptMessage = Nothing
         Me.ClearResultsFile.UseVisualStyleBackColor = True
@@ -68,21 +112,23 @@ Partial Class ctl_SensitivityAnalysisUnstructured
         'OutputInstructions
         '
         Me.OutputInstructions.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OutputInstructions.Location = New System.Drawing.Point(16, 25)
+        Me.OutputInstructions.Location = New System.Drawing.Point(20, 27)
+        Me.OutputInstructions.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.OutputInstructions.Name = "OutputInstructions"
-        Me.OutputInstructions.Size = New System.Drawing.Size(610, 21)
-        Me.OutputInstructions.TabIndex = 0
-        Me.OutputInstructions.Text = "Enter the name of the .txt of .csv Tabulated Script output file"
+        Me.OutputInstructions.Size = New System.Drawing.Size(550, 26)
+        Me.OutputInstructions.TabIndex = 3
+        Me.OutputInstructions.Text = "Enter the name of the .txt of .csv Tabulated Script output file."
         '
         'BrowseOutputFileButton
         '
         Me.BrowseOutputFileButton.AccessibleDescription = "Browses for WinSRFR's log & diagnostic folder."
         Me.BrowseOutputFileButton.AccessibleName = "Browse Log Folder"
         Me.BrowseOutputFileButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BrowseOutputFileButton.Location = New System.Drawing.Point(632, 50)
+        Me.BrowseOutputFileButton.Location = New System.Drawing.Point(647, 52)
+        Me.BrowseOutputFileButton.Margin = New System.Windows.Forms.Padding(4)
         Me.BrowseOutputFileButton.Name = "BrowseOutputFileButton"
-        Me.BrowseOutputFileButton.Size = New System.Drawing.Size(72, 25)
-        Me.BrowseOutputFileButton.TabIndex = 2
+        Me.BrowseOutputFileButton.Size = New System.Drawing.Size(90, 30)
+        Me.BrowseOutputFileButton.TabIndex = 1
         Me.BrowseOutputFileButton.Text = "&Browse"
         '
         'OutputFilename
@@ -90,10 +136,11 @@ Partial Class ctl_SensitivityAnalysisUnstructured
         Me.OutputFilename.AccessibleDescription = "WinSRFR's log & diagnostic folder."
         Me.OutputFilename.AccessibleName = "Log Folder"
         Me.OutputFilename.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OutputFilename.Location = New System.Drawing.Point(16, 50)
+        Me.OutputFilename.Location = New System.Drawing.Point(20, 56)
+        Me.OutputFilename.Margin = New System.Windows.Forms.Padding(4)
         Me.OutputFilename.Name = "OutputFilename"
-        Me.OutputFilename.Size = New System.Drawing.Size(610, 26)
-        Me.OutputFilename.TabIndex = 1
+        Me.OutputFilename.Size = New System.Drawing.Size(619, 26)
+        Me.OutputFilename.TabIndex = 0
         '
         'InputFileBox
         '
@@ -103,30 +150,34 @@ Partial Class ctl_SensitivityAnalysisUnstructured
         Me.InputFileBox.Controls.Add(Me.BrowseInputFileButton)
         Me.InputFileBox.Controls.Add(Me.InputFilename)
         Me.InputFileBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.InputFileBox.Location = New System.Drawing.Point(15, 510)
+        Me.InputFileBox.Location = New System.Drawing.Point(4, 153)
+        Me.InputFileBox.Margin = New System.Windows.Forms.Padding(4)
         Me.InputFileBox.Name = "InputFileBox"
-        Me.InputFileBox.Size = New System.Drawing.Size(710, 90)
-        Me.InputFileBox.TabIndex = 0
+        Me.InputFileBox.Padding = New System.Windows.Forms.Padding(4)
+        Me.InputFileBox.Size = New System.Drawing.Size(745, 90)
+        Me.InputFileBox.TabIndex = 7
         Me.InputFileBox.TabStop = False
         Me.InputFileBox.Text = "&Input File"
         '
         'InputInstructions
         '
         Me.InputInstructions.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.InputInstructions.Location = New System.Drawing.Point(16, 25)
+        Me.InputInstructions.Location = New System.Drawing.Point(20, 24)
+        Me.InputInstructions.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.InputInstructions.Name = "InputInstructions"
-        Me.InputInstructions.Size = New System.Drawing.Size(610, 21)
+        Me.InputInstructions.Size = New System.Drawing.Size(550, 26)
         Me.InputInstructions.TabIndex = 0
-        Me.InputInstructions.Text = "Enter the name of the .txt or .csv Tabulated Script input file"
+        Me.InputInstructions.Text = "Enter the name of the .txt or .csv Tabulated Script input file."
         '
         'BrowseInputFileButton
         '
         Me.BrowseInputFileButton.AccessibleDescription = "Browses for WinSRFR's log & diagnostic folder."
         Me.BrowseInputFileButton.AccessibleName = "Browse Log Folder"
         Me.BrowseInputFileButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BrowseInputFileButton.Location = New System.Drawing.Point(632, 50)
+        Me.BrowseInputFileButton.Location = New System.Drawing.Point(647, 47)
+        Me.BrowseInputFileButton.Margin = New System.Windows.Forms.Padding(4)
         Me.BrowseInputFileButton.Name = "BrowseInputFileButton"
-        Me.BrowseInputFileButton.Size = New System.Drawing.Size(72, 25)
+        Me.BrowseInputFileButton.Size = New System.Drawing.Size(90, 30)
         Me.BrowseInputFileButton.TabIndex = 2
         Me.BrowseInputFileButton.Text = "&Browse"
         '
@@ -135,29 +186,37 @@ Partial Class ctl_SensitivityAnalysisUnstructured
         Me.InputFilename.AccessibleDescription = "WinSRFR's log & diagnostic folder."
         Me.InputFilename.AccessibleName = "Log Folder"
         Me.InputFilename.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.InputFilename.Location = New System.Drawing.Point(16, 50)
+        Me.InputFilename.Location = New System.Drawing.Point(20, 50)
+        Me.InputFilename.Margin = New System.Windows.Forms.Padding(4)
         Me.InputFilename.Name = "InputFilename"
-        Me.InputFilename.Size = New System.Drawing.Size(610, 26)
+        Me.InputFilename.Size = New System.Drawing.Size(619, 26)
         Me.InputFilename.TabIndex = 1
         '
         'ctl_SensitivityAnalysisUnstructured
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.ShowMessageOnError)
+        Me.Controls.Add(Me.CloseButton)
+        Me.Controls.Add(Me.RunMultiButton)
         Me.Controls.Add(Me.OutputFileBox)
         Me.Controls.Add(Me.InputFileBox)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "ctl_SensitivityAnalysisUnstructured"
-        Me.Size = New System.Drawing.Size(735, 735)
+        Me.Size = New System.Drawing.Size(770, 710)
         Me.OutputFileBox.ResumeLayout(False)
         Me.OutputFileBox.PerformLayout()
         Me.InputFileBox.ResumeLayout(False)
         Me.InputFileBox.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
+    Friend WithEvents ShowMessageOnError As DataStore.ctl_CheckParameter
+    Friend WithEvents CloseButton As DataStore.ctl_Button
+    Friend WithEvents RunMultiButton As DataStore.ctl_Button
     Friend WithEvents OutputFileBox As DataStore.ctl_GroupBox
     Friend WithEvents ClearResultsFile As DataStore.ctl_CheckParameter
     Friend WithEvents OutputInstructions As DataStore.ctl_Label
@@ -167,5 +226,4 @@ Partial Class ctl_SensitivityAnalysisUnstructured
     Friend WithEvents InputInstructions As DataStore.ctl_Label
     Friend WithEvents BrowseInputFileButton As DataStore.ctl_Button
     Friend WithEvents InputFilename As TextBox
-
 End Class

@@ -27,6 +27,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.BrowseInputFileButton = New DataStore.ctl_Button()
         Me.InputFilename = New System.Windows.Forms.TextBox()
         Me.DependentVariablesGroup = New DataStore.ctl_GroupBox()
+        Me.ZeroDepVarRadioButton = New DataStore.ctl_RadioButton()
         Me.Dependent4GroupBox = New DataStore.ctl_GroupBox()
         Me.Dep4SelParamLabel = New DataStore.ctl_Label()
         Me.Dep4SelParamValue = New DataStore.ctl_SelectParameter()
@@ -53,40 +54,38 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Dep1ParamGroupLabel = New DataStore.ctl_Label()
         Me.Dep1ParamGroupValue = New DataStore.ctl_SelectParameter()
         Me.IndependentVariablesGroup = New DataStore.ctl_GroupBox()
-        Me.TcoSelParamUnits = New System.Windows.Forms.Label()
-        Me.QinSelParamUnits = New System.Windows.Forms.Label()
-        Me.CutoffTimeBox = New DataStore.ctl_GroupBox()
-        Me.TcoUnitsText = New System.Windows.Forms.Label()
-        Me.MaxTcoValue = New System.Windows.Forms.TextBox()
-        Me.MinTcoValue = New System.Windows.Forms.TextBox()
+        Me.Independent2GroupBox = New DataStore.ctl_GroupBox()
+        Me.NumInd2Increments = New DataStore.ctl_IntegerParameter()
+        Me.Ind2UnitsText = New System.Windows.Forms.Label()
+        Me.MaxInd2Value = New System.Windows.Forms.TextBox()
+        Me.MinInd2Value = New System.Windows.Forms.TextBox()
         Me.TcoToLabel = New System.Windows.Forms.Label()
-        Me.TcoContourGridSizeValue = New DataStore.ctl_SelectParameter()
         Me.TcoNumIncsLabal = New System.Windows.Forms.Label()
         Me.Indep2SelParamLabel = New DataStore.ctl_Label()
-        Me.CutoffTimeParamValue = New DataStore.ctl_SelectParameter()
+        Me.Indep2ParamValue = New DataStore.ctl_SelectParameter()
         Me.Indep2ParamGroupLabel = New DataStore.ctl_Label()
-        Me.CutoffTimeGroupValue = New DataStore.ctl_SelectParameter()
+        Me.Indep2GroupValue = New DataStore.ctl_SelectParameter()
         Me.CutoffTimeRange = New DataStore.ctl_Label()
         Me.TwoIndVarRadioButton = New DataStore.ctl_RadioButton()
         Me.OneIndVarRadioButton = New DataStore.ctl_RadioButton()
         Me.NoIndVarsLabel = New DataStore.ctl_Label()
-        Me.InflowRateBox = New DataStore.ctl_GroupBox()
-        Me.QinUnitsText = New System.Windows.Forms.Label()
-        Me.MaxQinValue = New System.Windows.Forms.TextBox()
-        Me.MinQinValue = New System.Windows.Forms.TextBox()
-        Me.QinContourGridSizeValue = New DataStore.ctl_SelectParameter()
+        Me.Independent1GroupBox = New DataStore.ctl_GroupBox()
+        Me.NumInd1Increments = New DataStore.ctl_IntegerParameter()
+        Me.Ind1UnitsText = New System.Windows.Forms.Label()
+        Me.MaxInd1Value = New System.Windows.Forms.TextBox()
+        Me.MinInd1Value = New System.Windows.Forms.TextBox()
         Me.QinNumIncsLabel = New System.Windows.Forms.Label()
         Me.Indep1SelParamLabel = New DataStore.ctl_Label()
-        Me.InflowRateParamValue = New DataStore.ctl_SelectParameter()
+        Me.Indep1ParamValue = New DataStore.ctl_SelectParameter()
         Me.Indep1ParamGroupLabel = New DataStore.ctl_Label()
-        Me.InflowRateGroupValue = New DataStore.ctl_SelectParameter()
+        Me.Indep1GroupValue = New DataStore.ctl_SelectParameter()
         Me.QinToLabel = New System.Windows.Forms.Label()
         Me.QinRangeLabel = New DataStore.ctl_Label()
         Me.OutputFileBox = New DataStore.ctl_GroupBox()
-        Me.ClearResultsFile = New DataStore.ctl_CheckParameter()
+        Me.SaveButton = New DataStore.ctl_Button()
         Me.OutputInstructions = New DataStore.ctl_Label()
         Me.BrowseOutputFileName = New DataStore.ctl_Button()
-        Me.OutputFileName2 = New System.Windows.Forms.TextBox()
+        Me.OutputFileName = New System.Windows.Forms.TextBox()
         Me.InputFileBox.SuspendLayout()
         Me.DependentVariablesGroup.SuspendLayout()
         Me.Dependent4GroupBox.SuspendLayout()
@@ -94,8 +93,8 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Dependent2GroupBox.SuspendLayout()
         Me.Dependent1GroupBox.SuspendLayout()
         Me.IndependentVariablesGroup.SuspendLayout()
-        Me.CutoffTimeBox.SuspendLayout()
-        Me.InflowRateBox.SuspendLayout()
+        Me.Independent2GroupBox.SuspendLayout()
+        Me.Independent1GroupBox.SuspendLayout()
         Me.OutputFileBox.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -107,10 +106,10 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.InputFileBox.Controls.Add(Me.BrowseInputFileButton)
         Me.InputFileBox.Controls.Add(Me.InputFilename)
         Me.InputFileBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.InputFileBox.Location = New System.Drawing.Point(15, 499)
+        Me.InputFileBox.Location = New System.Drawing.Point(15, 500)
         Me.InputFileBox.Name = "InputFileBox"
-        Me.InputFileBox.Size = New System.Drawing.Size(710, 90)
-        Me.InputFileBox.TabIndex = 2
+        Me.InputFileBox.Size = New System.Drawing.Size(745, 90)
+        Me.InputFileBox.TabIndex = 3
         Me.InputFileBox.TabStop = False
         Me.InputFileBox.Text = "&Input File (Created by WinSRFR for Sensitivity Analysis)"
         '
@@ -128,9 +127,9 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.BrowseInputFileButton.AccessibleDescription = "Browses for location to save script input file"
         Me.BrowseInputFileButton.AccessibleName = "Browse Input File Folder"
         Me.BrowseInputFileButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BrowseInputFileButton.Location = New System.Drawing.Point(630, 51)
+        Me.BrowseInputFileButton.Location = New System.Drawing.Point(656, 51)
         Me.BrowseInputFileButton.Name = "BrowseInputFileButton"
-        Me.BrowseInputFileButton.Size = New System.Drawing.Size(72, 25)
+        Me.BrowseInputFileButton.Size = New System.Drawing.Size(90, 30)
         Me.BrowseInputFileButton.TabIndex = 2
         Me.BrowseInputFileButton.Text = "&Browse"
         '
@@ -141,11 +140,12 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.InputFilename.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.InputFilename.Location = New System.Drawing.Point(16, 50)
         Me.InputFilename.Name = "InputFilename"
-        Me.InputFilename.Size = New System.Drawing.Size(608, 26)
+        Me.InputFilename.Size = New System.Drawing.Size(634, 26)
         Me.InputFilename.TabIndex = 1
         '
         'DependentVariablesGroup
         '
+        Me.DependentVariablesGroup.Controls.Add(Me.ZeroDepVarRadioButton)
         Me.DependentVariablesGroup.Controls.Add(Me.Dependent4GroupBox)
         Me.DependentVariablesGroup.Controls.Add(Me.Dependent3GroupBox)
         Me.DependentVariablesGroup.Controls.Add(Me.Dependent2GroupBox)
@@ -159,9 +159,21 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.DependentVariablesGroup.Location = New System.Drawing.Point(395, 9)
         Me.DependentVariablesGroup.Name = "DependentVariablesGroup"
         Me.DependentVariablesGroup.Size = New System.Drawing.Size(364, 483)
-        Me.DependentVariablesGroup.TabIndex = 1
+        Me.DependentVariablesGroup.TabIndex = 2
         Me.DependentVariablesGroup.TabStop = False
         Me.DependentVariablesGroup.Text = "&Dependent Variables"
+        '
+        'ZeroDepVarRadioButton
+        '
+        Me.ZeroDepVarRadioButton.AutoSize = True
+        Me.ZeroDepVarRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ZeroDepVarRadioButton.Location = New System.Drawing.Point(120, 25)
+        Me.ZeroDepVarRadioButton.Name = "ZeroDepVarRadioButton"
+        Me.ZeroDepVarRadioButton.Size = New System.Drawing.Size(39, 24)
+        Me.ZeroDepVarRadioButton.TabIndex = 4
+        Me.ZeroDepVarRadioButton.TabStop = True
+        Me.ZeroDepVarRadioButton.Text = "0"
+        Me.ZeroDepVarRadioButton.UseVisualStyleBackColor = True
         '
         'Dependent4GroupBox
         '
@@ -172,7 +184,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Dependent4GroupBox.Location = New System.Drawing.Point(5, 376)
         Me.Dependent4GroupBox.Name = "Dependent4GroupBox"
         Me.Dependent4GroupBox.Size = New System.Drawing.Size(369, 100)
-        Me.Dependent4GroupBox.TabIndex = 8
+        Me.Dependent4GroupBox.TabIndex = 2
         Me.Dependent4GroupBox.TabStop = False
         Me.Dependent4GroupBox.Text = "Dependent Variable &4"
         '
@@ -233,7 +245,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Dependent3GroupBox.Location = New System.Drawing.Point(5, 270)
         Me.Dependent3GroupBox.Name = "Dependent3GroupBox"
         Me.Dependent3GroupBox.Size = New System.Drawing.Size(369, 100)
-        Me.Dependent3GroupBox.TabIndex = 7
+        Me.Dependent3GroupBox.TabIndex = 1
         Me.Dependent3GroupBox.TabStop = False
         Me.Dependent3GroupBox.Text = "Dependent Varialble &3"
         '
@@ -294,7 +306,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Dependent2GroupBox.Location = New System.Drawing.Point(5, 162)
         Me.Dependent2GroupBox.Name = "Dependent2GroupBox"
         Me.Dependent2GroupBox.Size = New System.Drawing.Size(369, 100)
-        Me.Dependent2GroupBox.TabIndex = 6
+        Me.Dependent2GroupBox.TabIndex = 0
         Me.Dependent2GroupBox.TabStop = False
         Me.Dependent2GroupBox.Text = "Dependent Variable &2"
         '
@@ -350,10 +362,10 @@ Partial Class ctl_SensitivityAnalysisStructured
         '
         Me.FourDepVarRadioButton.AutoSize = True
         Me.FourDepVarRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FourDepVarRadioButton.Location = New System.Drawing.Point(263, 25)
+        Me.FourDepVarRadioButton.Location = New System.Drawing.Point(320, 25)
         Me.FourDepVarRadioButton.Name = "FourDepVarRadioButton"
         Me.FourDepVarRadioButton.Size = New System.Drawing.Size(39, 24)
-        Me.FourDepVarRadioButton.TabIndex = 4
+        Me.FourDepVarRadioButton.TabIndex = 8
         Me.FourDepVarRadioButton.TabStop = True
         Me.FourDepVarRadioButton.Text = "4"
         Me.FourDepVarRadioButton.UseVisualStyleBackColor = True
@@ -362,10 +374,10 @@ Partial Class ctl_SensitivityAnalysisStructured
         '
         Me.ThreeDepVarRadioButton.AutoSize = True
         Me.ThreeDepVarRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ThreeDepVarRadioButton.Location = New System.Drawing.Point(211, 25)
+        Me.ThreeDepVarRadioButton.Location = New System.Drawing.Point(270, 25)
         Me.ThreeDepVarRadioButton.Name = "ThreeDepVarRadioButton"
         Me.ThreeDepVarRadioButton.Size = New System.Drawing.Size(39, 24)
-        Me.ThreeDepVarRadioButton.TabIndex = 3
+        Me.ThreeDepVarRadioButton.TabIndex = 7
         Me.ThreeDepVarRadioButton.TabStop = True
         Me.ThreeDepVarRadioButton.Text = "3"
         Me.ThreeDepVarRadioButton.UseVisualStyleBackColor = True
@@ -374,10 +386,10 @@ Partial Class ctl_SensitivityAnalysisStructured
         '
         Me.TwoDepVarRadioButton.AutoSize = True
         Me.TwoDepVarRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TwoDepVarRadioButton.Location = New System.Drawing.Point(156, 24)
+        Me.TwoDepVarRadioButton.Location = New System.Drawing.Point(220, 25)
         Me.TwoDepVarRadioButton.Name = "TwoDepVarRadioButton"
         Me.TwoDepVarRadioButton.Size = New System.Drawing.Size(39, 24)
-        Me.TwoDepVarRadioButton.TabIndex = 2
+        Me.TwoDepVarRadioButton.TabIndex = 6
         Me.TwoDepVarRadioButton.TabStop = True
         Me.TwoDepVarRadioButton.Text = "2"
         Me.TwoDepVarRadioButton.UseVisualStyleBackColor = True
@@ -386,10 +398,10 @@ Partial Class ctl_SensitivityAnalysisStructured
         '
         Me.OneDepVarRadioButton.AutoSize = True
         Me.OneDepVarRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OneDepVarRadioButton.Location = New System.Drawing.Point(101, 25)
+        Me.OneDepVarRadioButton.Location = New System.Drawing.Point(170, 25)
         Me.OneDepVarRadioButton.Name = "OneDepVarRadioButton"
         Me.OneDepVarRadioButton.Size = New System.Drawing.Size(39, 24)
-        Me.OneDepVarRadioButton.TabIndex = 1
+        Me.OneDepVarRadioButton.TabIndex = 5
         Me.OneDepVarRadioButton.TabStop = True
         Me.OneDepVarRadioButton.Text = "1"
         Me.OneDepVarRadioButton.UseVisualStyleBackColor = True
@@ -400,7 +412,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.NumDepVarsLabel.Location = New System.Drawing.Point(10, 26)
         Me.NumDepVarsLabel.Name = "NumDepVarsLabel"
         Me.NumDepVarsLabel.Size = New System.Drawing.Size(80, 20)
-        Me.NumDepVarsLabel.TabIndex = 0
+        Me.NumDepVarsLabel.TabIndex = 3
         Me.NumDepVarsLabel.Text = "Number:"
         '
         'Dependent1GroupBox
@@ -412,7 +424,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Dependent1GroupBox.Location = New System.Drawing.Point(5, 55)
         Me.Dependent1GroupBox.Name = "Dependent1GroupBox"
         Me.Dependent1GroupBox.Size = New System.Drawing.Size(369, 100)
-        Me.Dependent1GroupBox.TabIndex = 5
+        Me.Dependent1GroupBox.TabIndex = 9
         Me.Dependent1GroupBox.TabStop = False
         Me.Dependent1GroupBox.Text = "Dependent Variable &1"
         '
@@ -466,85 +478,75 @@ Partial Class ctl_SensitivityAnalysisStructured
         '
         'IndependentVariablesGroup
         '
-        Me.IndependentVariablesGroup.Controls.Add(Me.TcoSelParamUnits)
-        Me.IndependentVariablesGroup.Controls.Add(Me.QinSelParamUnits)
-        Me.IndependentVariablesGroup.Controls.Add(Me.CutoffTimeBox)
+        Me.IndependentVariablesGroup.Controls.Add(Me.Independent2GroupBox)
         Me.IndependentVariablesGroup.Controls.Add(Me.TwoIndVarRadioButton)
         Me.IndependentVariablesGroup.Controls.Add(Me.OneIndVarRadioButton)
         Me.IndependentVariablesGroup.Controls.Add(Me.NoIndVarsLabel)
-        Me.IndependentVariablesGroup.Controls.Add(Me.InflowRateBox)
+        Me.IndependentVariablesGroup.Controls.Add(Me.Independent1GroupBox)
         Me.IndependentVariablesGroup.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.IndependentVariablesGroup.Location = New System.Drawing.Point(14, 9)
         Me.IndependentVariablesGroup.Name = "IndependentVariablesGroup"
         Me.IndependentVariablesGroup.Size = New System.Drawing.Size(372, 483)
-        Me.IndependentVariablesGroup.TabIndex = 0
+        Me.IndependentVariablesGroup.TabIndex = 1
         Me.IndependentVariablesGroup.TabStop = False
         Me.IndependentVariablesGroup.Text = "&Independent Variables"
         '
-        'TcoSelParamUnits
+        'Independent2GroupBox
         '
-        Me.TcoSelParamUnits.AutoSize = True
-        Me.TcoSelParamUnits.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TcoSelParamUnits.Location = New System.Drawing.Point(244, 456)
-        Me.TcoSelParamUnits.Name = "TcoSelParamUnits"
-        Me.TcoSelParamUnits.Size = New System.Drawing.Size(23, 20)
-        Me.TcoSelParamUnits.TabIndex = 6
-        Me.TcoSelParamUnits.Text = "m"
+        Me.Independent2GroupBox.Controls.Add(Me.NumInd2Increments)
+        Me.Independent2GroupBox.Controls.Add(Me.Ind2UnitsText)
+        Me.Independent2GroupBox.Controls.Add(Me.MaxInd2Value)
+        Me.Independent2GroupBox.Controls.Add(Me.MinInd2Value)
+        Me.Independent2GroupBox.Controls.Add(Me.TcoToLabel)
+        Me.Independent2GroupBox.Controls.Add(Me.TcoNumIncsLabal)
+        Me.Independent2GroupBox.Controls.Add(Me.Indep2SelParamLabel)
+        Me.Independent2GroupBox.Controls.Add(Me.Indep2ParamValue)
+        Me.Independent2GroupBox.Controls.Add(Me.Indep2ParamGroupLabel)
+        Me.Independent2GroupBox.Controls.Add(Me.Indep2GroupValue)
+        Me.Independent2GroupBox.Controls.Add(Me.CutoffTimeRange)
+        Me.Independent2GroupBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Independent2GroupBox.Location = New System.Drawing.Point(6, 263)
+        Me.Independent2GroupBox.Name = "Independent2GroupBox"
+        Me.Independent2GroupBox.Size = New System.Drawing.Size(361, 183)
+        Me.Independent2GroupBox.TabIndex = 4
+        Me.Independent2GroupBox.TabStop = False
+        Me.Independent2GroupBox.Text = "Independent Variable &2"
         '
-        'QinSelParamUnits
+        'NumInd2Increments
         '
-        Me.QinSelParamUnits.AutoSize = True
-        Me.QinSelParamUnits.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.QinSelParamUnits.Location = New System.Drawing.Point(133, 456)
-        Me.QinSelParamUnits.Name = "QinSelParamUnits"
-        Me.QinSelParamUnits.Size = New System.Drawing.Size(23, 20)
-        Me.QinSelParamUnits.TabIndex = 5
-        Me.QinSelParamUnits.Text = "m"
+        Me.NumInd2Increments.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumInd2Increments.IsCalculated = False
+        Me.NumInd2Increments.Location = New System.Drawing.Point(190, 149)
+        Me.NumInd2Increments.Name = "NumInd2Increments"
+        Me.NumInd2Increments.Size = New System.Drawing.Size(104, 24)
+        Me.NumInd2Increments.TabIndex = 10
+        Me.NumInd2Increments.ValueBackColor = System.Drawing.SystemColors.Window
+        Me.NumInd2Increments.ValueForeColor = System.Drawing.SystemColors.WindowText
+        Me.NumInd2Increments.ValueText = ""
         '
-        'CutoffTimeBox
+        'Ind2UnitsText
         '
-        Me.CutoffTimeBox.Controls.Add(Me.TcoUnitsText)
-        Me.CutoffTimeBox.Controls.Add(Me.MaxTcoValue)
-        Me.CutoffTimeBox.Controls.Add(Me.MinTcoValue)
-        Me.CutoffTimeBox.Controls.Add(Me.TcoToLabel)
-        Me.CutoffTimeBox.Controls.Add(Me.TcoContourGridSizeValue)
-        Me.CutoffTimeBox.Controls.Add(Me.TcoNumIncsLabal)
-        Me.CutoffTimeBox.Controls.Add(Me.Indep2SelParamLabel)
-        Me.CutoffTimeBox.Controls.Add(Me.CutoffTimeParamValue)
-        Me.CutoffTimeBox.Controls.Add(Me.Indep2ParamGroupLabel)
-        Me.CutoffTimeBox.Controls.Add(Me.CutoffTimeGroupValue)
-        Me.CutoffTimeBox.Controls.Add(Me.CutoffTimeRange)
-        Me.CutoffTimeBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CutoffTimeBox.Location = New System.Drawing.Point(6, 263)
-        Me.CutoffTimeBox.Name = "CutoffTimeBox"
-        Me.CutoffTimeBox.Size = New System.Drawing.Size(361, 183)
-        Me.CutoffTimeBox.TabIndex = 4
-        Me.CutoffTimeBox.TabStop = False
-        Me.CutoffTimeBox.Text = "Cutoff Time (&Tco)"
+        Me.Ind2UnitsText.AutoSize = True
+        Me.Ind2UnitsText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Ind2UnitsText.Location = New System.Drawing.Point(267, 111)
+        Me.Ind2UnitsText.Name = "Ind2UnitsText"
+        Me.Ind2UnitsText.Size = New System.Drawing.Size(48, 20)
+        Me.Ind2UnitsText.TabIndex = 8
+        Me.Ind2UnitsText.Text = "Units"
         '
-        'TcoUnitsText
+        'MaxInd2Value
         '
-        Me.TcoUnitsText.AutoSize = True
-        Me.TcoUnitsText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TcoUnitsText.Location = New System.Drawing.Point(267, 111)
-        Me.TcoUnitsText.Name = "TcoUnitsText"
-        Me.TcoUnitsText.Size = New System.Drawing.Size(48, 20)
-        Me.TcoUnitsText.TabIndex = 16
-        Me.TcoUnitsText.Text = "Units"
+        Me.MaxInd2Value.Location = New System.Drawing.Point(190, 108)
+        Me.MaxInd2Value.Name = "MaxInd2Value"
+        Me.MaxInd2Value.Size = New System.Drawing.Size(71, 26)
+        Me.MaxInd2Value.TabIndex = 7
         '
-        'MaxTcoValue
+        'MinInd2Value
         '
-        Me.MaxTcoValue.Location = New System.Drawing.Point(190, 108)
-        Me.MaxTcoValue.Name = "MaxTcoValue"
-        Me.MaxTcoValue.Size = New System.Drawing.Size(71, 26)
-        Me.MaxTcoValue.TabIndex = 15
-        '
-        'MinTcoValue
-        '
-        Me.MinTcoValue.Location = New System.Drawing.Point(81, 108)
-        Me.MinTcoValue.Name = "MinTcoValue"
-        Me.MinTcoValue.Size = New System.Drawing.Size(71, 26)
-        Me.MinTcoValue.TabIndex = 14
+        Me.MinInd2Value.Location = New System.Drawing.Point(81, 108)
+        Me.MinInd2Value.Name = "MinInd2Value"
+        Me.MinInd2Value.Size = New System.Drawing.Size(71, 26)
+        Me.MinInd2Value.TabIndex = 5
         '
         'TcoToLabel
         '
@@ -553,22 +555,8 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.TcoToLabel.Location = New System.Drawing.Point(161, 110)
         Me.TcoToLabel.Name = "TcoToLabel"
         Me.TcoToLabel.Size = New System.Drawing.Size(23, 20)
-        Me.TcoToLabel.TabIndex = 13
+        Me.TcoToLabel.TabIndex = 6
         Me.TcoToLabel.Text = "to"
-        '
-        'TcoContourGridSizeValue
-        '
-        Me.TcoContourGridSizeValue.ApplicationValue = -1
-        Me.TcoContourGridSizeValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.TcoContourGridSizeValue.EnableSaveActions = False
-        Me.TcoContourGridSizeValue.FormattingEnabled = True
-        Me.TcoContourGridSizeValue.IsCalculated = False
-        Me.TcoContourGridSizeValue.Items.AddRange(New Object() {"Course (10)", "Medium (20)", "Fine (40)"})
-        Me.TcoContourGridSizeValue.Location = New System.Drawing.Point(190, 144)
-        Me.TcoContourGridSizeValue.Name = "TcoContourGridSizeValue"
-        Me.TcoContourGridSizeValue.SelectedIndexSet = True
-        Me.TcoContourGridSizeValue.Size = New System.Drawing.Size(163, 28)
-        Me.TcoContourGridSizeValue.TabIndex = 9
         '
         'TcoNumIncsLabal
         '
@@ -577,7 +565,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.TcoNumIncsLabal.Location = New System.Drawing.Point(8, 149)
         Me.TcoNumIncsLabal.Name = "TcoNumIncsLabal"
         Me.TcoNumIncsLabal.Size = New System.Drawing.Size(175, 20)
-        Me.TcoNumIncsLabal.TabIndex = 8
+        Me.TcoNumIncsLabal.TabIndex = 9
         Me.TcoNumIncsLabal.Text = "Number of Increments"
         '
         'Indep2SelParamLabel
@@ -590,19 +578,19 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Indep2SelParamLabel.TabIndex = 2
         Me.Indep2SelParamLabel.Text = "Sel. Parameter"
         '
-        'CutoffTimeParamValue
+        'Indep2ParamValue
         '
-        Me.CutoffTimeParamValue.ApplicationValue = -1
-        Me.CutoffTimeParamValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CutoffTimeParamValue.EnableSaveActions = False
-        Me.CutoffTimeParamValue.FormattingEnabled = True
-        Me.CutoffTimeParamValue.IsCalculated = False
-        Me.CutoffTimeParamValue.Items.AddRange(New Object() {"CharacteristivcnfiltrationTime", "Kostiakova-CharTime"})
-        Me.CutoffTimeParamValue.Location = New System.Drawing.Point(137, 69)
-        Me.CutoffTimeParamValue.Name = "CutoffTimeParamValue"
-        Me.CutoffTimeParamValue.SelectedIndexSet = False
-        Me.CutoffTimeParamValue.Size = New System.Drawing.Size(216, 28)
-        Me.CutoffTimeParamValue.TabIndex = 3
+        Me.Indep2ParamValue.ApplicationValue = -1
+        Me.Indep2ParamValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Indep2ParamValue.EnableSaveActions = False
+        Me.Indep2ParamValue.FormattingEnabled = True
+        Me.Indep2ParamValue.IsCalculated = False
+        Me.Indep2ParamValue.Items.AddRange(New Object() {"CharacteristivcnfiltrationTime", "Kostiakova-CharTime"})
+        Me.Indep2ParamValue.Location = New System.Drawing.Point(137, 69)
+        Me.Indep2ParamValue.Name = "Indep2ParamValue"
+        Me.Indep2ParamValue.SelectedIndexSet = False
+        Me.Indep2ParamValue.Size = New System.Drawing.Size(216, 28)
+        Me.Indep2ParamValue.TabIndex = 3
         '
         'Indep2ParamGroupLabel
         '
@@ -614,19 +602,19 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Indep2ParamGroupLabel.TabIndex = 0
         Me.Indep2ParamGroupLabel.Text = "Param Group"
         '
-        'CutoffTimeGroupValue
+        'Indep2GroupValue
         '
-        Me.CutoffTimeGroupValue.ApplicationValue = -1
-        Me.CutoffTimeGroupValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CutoffTimeGroupValue.EnableSaveActions = False
-        Me.CutoffTimeGroupValue.FormattingEnabled = True
-        Me.CutoffTimeGroupValue.IsCalculated = False
-        Me.CutoffTimeGroupValue.Items.AddRange(New Object() {"System Geometry", "Roughness", "Infiltration", "Inflow / Runoff"})
-        Me.CutoffTimeGroupValue.Location = New System.Drawing.Point(136, 32)
-        Me.CutoffTimeGroupValue.Name = "CutoffTimeGroupValue"
-        Me.CutoffTimeGroupValue.SelectedIndexSet = True
-        Me.CutoffTimeGroupValue.Size = New System.Drawing.Size(217, 28)
-        Me.CutoffTimeGroupValue.TabIndex = 1
+        Me.Indep2GroupValue.ApplicationValue = -1
+        Me.Indep2GroupValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Indep2GroupValue.EnableSaveActions = False
+        Me.Indep2GroupValue.FormattingEnabled = True
+        Me.Indep2GroupValue.IsCalculated = False
+        Me.Indep2GroupValue.Items.AddRange(New Object() {"System Geometry", "Roughness", "Infiltration", "Inflow / Runoff"})
+        Me.Indep2GroupValue.Location = New System.Drawing.Point(136, 32)
+        Me.Indep2GroupValue.Name = "Indep2GroupValue"
+        Me.Indep2GroupValue.SelectedIndexSet = True
+        Me.Indep2GroupValue.Size = New System.Drawing.Size(217, 28)
+        Me.Indep2GroupValue.TabIndex = 1
         '
         'CutoffTimeRange
         '
@@ -642,7 +630,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         '
         Me.TwoIndVarRadioButton.AutoSize = True
         Me.TwoIndVarRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TwoIndVarRadioButton.Location = New System.Drawing.Point(153, 25)
+        Me.TwoIndVarRadioButton.Location = New System.Drawing.Point(150, 25)
         Me.TwoIndVarRadioButton.Name = "TwoIndVarRadioButton"
         Me.TwoIndVarRadioButton.Size = New System.Drawing.Size(39, 24)
         Me.TwoIndVarRadioButton.TabIndex = 2
@@ -654,7 +642,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         '
         Me.OneIndVarRadioButton.AutoSize = True
         Me.OneIndVarRadioButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OneIndVarRadioButton.Location = New System.Drawing.Point(98, 26)
+        Me.OneIndVarRadioButton.Location = New System.Drawing.Point(100, 25)
         Me.OneIndVarRadioButton.Name = "OneIndVarRadioButton"
         Me.OneIndVarRadioButton.Size = New System.Drawing.Size(39, 24)
         Me.OneIndVarRadioButton.TabIndex = 1
@@ -671,64 +659,62 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.NoIndVarsLabel.TabIndex = 0
         Me.NoIndVarsLabel.Text = "Number:"
         '
-        'InflowRateBox
+        'Independent1GroupBox
         '
-        Me.InflowRateBox.Controls.Add(Me.QinUnitsText)
-        Me.InflowRateBox.Controls.Add(Me.MaxQinValue)
-        Me.InflowRateBox.Controls.Add(Me.MinQinValue)
-        Me.InflowRateBox.Controls.Add(Me.QinContourGridSizeValue)
-        Me.InflowRateBox.Controls.Add(Me.QinNumIncsLabel)
-        Me.InflowRateBox.Controls.Add(Me.Indep1SelParamLabel)
-        Me.InflowRateBox.Controls.Add(Me.InflowRateParamValue)
-        Me.InflowRateBox.Controls.Add(Me.Indep1ParamGroupLabel)
-        Me.InflowRateBox.Controls.Add(Me.InflowRateGroupValue)
-        Me.InflowRateBox.Controls.Add(Me.QinToLabel)
-        Me.InflowRateBox.Controls.Add(Me.QinRangeLabel)
-        Me.InflowRateBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.InflowRateBox.Location = New System.Drawing.Point(5, 55)
-        Me.InflowRateBox.Name = "InflowRateBox"
-        Me.InflowRateBox.Size = New System.Drawing.Size(361, 183)
-        Me.InflowRateBox.TabIndex = 3
-        Me.InflowRateBox.TabStop = False
-        Me.InflowRateBox.Text = "Inflow Rate (&Qin)"
+        Me.Independent1GroupBox.Controls.Add(Me.NumInd1Increments)
+        Me.Independent1GroupBox.Controls.Add(Me.Ind1UnitsText)
+        Me.Independent1GroupBox.Controls.Add(Me.MaxInd1Value)
+        Me.Independent1GroupBox.Controls.Add(Me.MinInd1Value)
+        Me.Independent1GroupBox.Controls.Add(Me.QinNumIncsLabel)
+        Me.Independent1GroupBox.Controls.Add(Me.Indep1SelParamLabel)
+        Me.Independent1GroupBox.Controls.Add(Me.Indep1ParamValue)
+        Me.Independent1GroupBox.Controls.Add(Me.Indep1ParamGroupLabel)
+        Me.Independent1GroupBox.Controls.Add(Me.Indep1GroupValue)
+        Me.Independent1GroupBox.Controls.Add(Me.QinToLabel)
+        Me.Independent1GroupBox.Controls.Add(Me.QinRangeLabel)
+        Me.Independent1GroupBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Independent1GroupBox.Location = New System.Drawing.Point(5, 55)
+        Me.Independent1GroupBox.Name = "Independent1GroupBox"
+        Me.Independent1GroupBox.Size = New System.Drawing.Size(361, 183)
+        Me.Independent1GroupBox.TabIndex = 3
+        Me.Independent1GroupBox.TabStop = False
+        Me.Independent1GroupBox.Text = "Independent Variable &1"
         '
-        'QinUnitsText
+        'NumInd1Increments
         '
-        Me.QinUnitsText.AutoSize = True
-        Me.QinUnitsText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.QinUnitsText.Location = New System.Drawing.Point(268, 112)
-        Me.QinUnitsText.Name = "QinUnitsText"
-        Me.QinUnitsText.Size = New System.Drawing.Size(48, 20)
-        Me.QinUnitsText.TabIndex = 12
-        Me.QinUnitsText.Text = "Units"
+        Me.NumInd1Increments.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NumInd1Increments.IsCalculated = False
+        Me.NumInd1Increments.Location = New System.Drawing.Point(191, 149)
+        Me.NumInd1Increments.Name = "NumInd1Increments"
+        Me.NumInd1Increments.Size = New System.Drawing.Size(104, 24)
+        Me.NumInd1Increments.TabIndex = 10
+        Me.NumInd1Increments.ValueBackColor = System.Drawing.SystemColors.Window
+        Me.NumInd1Increments.ValueForeColor = System.Drawing.SystemColors.WindowText
+        Me.NumInd1Increments.ValueText = ""
         '
-        'MaxQinValue
+        'Ind1UnitsText
         '
-        Me.MaxQinValue.Location = New System.Drawing.Point(191, 109)
-        Me.MaxQinValue.Name = "MaxQinValue"
-        Me.MaxQinValue.Size = New System.Drawing.Size(71, 26)
-        Me.MaxQinValue.TabIndex = 11
+        Me.Ind1UnitsText.AutoSize = True
+        Me.Ind1UnitsText.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Ind1UnitsText.Location = New System.Drawing.Point(268, 112)
+        Me.Ind1UnitsText.Name = "Ind1UnitsText"
+        Me.Ind1UnitsText.Size = New System.Drawing.Size(48, 20)
+        Me.Ind1UnitsText.TabIndex = 8
+        Me.Ind1UnitsText.Text = "Units"
         '
-        'MinQinValue
+        'MaxInd1Value
         '
-        Me.MinQinValue.Location = New System.Drawing.Point(82, 109)
-        Me.MinQinValue.Name = "MinQinValue"
-        Me.MinQinValue.Size = New System.Drawing.Size(71, 26)
-        Me.MinQinValue.TabIndex = 10
+        Me.MaxInd1Value.Location = New System.Drawing.Point(191, 109)
+        Me.MaxInd1Value.Name = "MaxInd1Value"
+        Me.MaxInd1Value.Size = New System.Drawing.Size(71, 26)
+        Me.MaxInd1Value.TabIndex = 7
         '
-        'QinContourGridSizeValue
+        'MinInd1Value
         '
-        Me.QinContourGridSizeValue.ApplicationValue = -1
-        Me.QinContourGridSizeValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.QinContourGridSizeValue.EnableSaveActions = False
-        Me.QinContourGridSizeValue.FormattingEnabled = True
-        Me.QinContourGridSizeValue.IsCalculated = False
-        Me.QinContourGridSizeValue.Items.AddRange(New Object() {"Course (10)", "Medium (20)", "Fine (40)"})
-        Me.QinContourGridSizeValue.Location = New System.Drawing.Point(191, 144)
-        Me.QinContourGridSizeValue.Name = "QinContourGridSizeValue"
-        Me.QinContourGridSizeValue.SelectedIndexSet = True
-        Me.QinContourGridSizeValue.Size = New System.Drawing.Size(162, 28)
-        Me.QinContourGridSizeValue.TabIndex = 9
+        Me.MinInd1Value.Location = New System.Drawing.Point(82, 109)
+        Me.MinInd1Value.Name = "MinInd1Value"
+        Me.MinInd1Value.Size = New System.Drawing.Size(71, 26)
+        Me.MinInd1Value.TabIndex = 5
         '
         'QinNumIncsLabel
         '
@@ -737,7 +723,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.QinNumIncsLabel.Location = New System.Drawing.Point(8, 149)
         Me.QinNumIncsLabel.Name = "QinNumIncsLabel"
         Me.QinNumIncsLabel.Size = New System.Drawing.Size(175, 20)
-        Me.QinNumIncsLabel.TabIndex = 8
+        Me.QinNumIncsLabel.TabIndex = 9
         Me.QinNumIncsLabel.Text = "Number of Increments"
         '
         'Indep1SelParamLabel
@@ -750,19 +736,19 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Indep1SelParamLabel.TabIndex = 2
         Me.Indep1SelParamLabel.Text = "Sel. Parameter"
         '
-        'InflowRateParamValue
+        'Indep1ParamValue
         '
-        Me.InflowRateParamValue.ApplicationValue = -1
-        Me.InflowRateParamValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.InflowRateParamValue.EnableSaveActions = False
-        Me.InflowRateParamValue.FormattingEnabled = True
-        Me.InflowRateParamValue.IsCalculated = False
-        Me.InflowRateParamValue.Items.AddRange(New Object() {"CharacteristivcnfiltrationTime", "Kostiakova-CharTime"})
-        Me.InflowRateParamValue.Location = New System.Drawing.Point(137, 69)
-        Me.InflowRateParamValue.Name = "InflowRateParamValue"
-        Me.InflowRateParamValue.SelectedIndexSet = False
-        Me.InflowRateParamValue.Size = New System.Drawing.Size(216, 28)
-        Me.InflowRateParamValue.TabIndex = 3
+        Me.Indep1ParamValue.ApplicationValue = -1
+        Me.Indep1ParamValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Indep1ParamValue.EnableSaveActions = False
+        Me.Indep1ParamValue.FormattingEnabled = True
+        Me.Indep1ParamValue.IsCalculated = False
+        Me.Indep1ParamValue.Items.AddRange(New Object() {"CharacteristivcnfiltrationTime", "Kostiakova-CharTime"})
+        Me.Indep1ParamValue.Location = New System.Drawing.Point(137, 69)
+        Me.Indep1ParamValue.Name = "Indep1ParamValue"
+        Me.Indep1ParamValue.SelectedIndexSet = False
+        Me.Indep1ParamValue.Size = New System.Drawing.Size(216, 28)
+        Me.Indep1ParamValue.TabIndex = 3
         '
         'Indep1ParamGroupLabel
         '
@@ -774,19 +760,19 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Indep1ParamGroupLabel.TabIndex = 0
         Me.Indep1ParamGroupLabel.Text = "Param Group"
         '
-        'InflowRateGroupValue
+        'Indep1GroupValue
         '
-        Me.InflowRateGroupValue.ApplicationValue = -1
-        Me.InflowRateGroupValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.InflowRateGroupValue.EnableSaveActions = False
-        Me.InflowRateGroupValue.FormattingEnabled = True
-        Me.InflowRateGroupValue.IsCalculated = False
-        Me.InflowRateGroupValue.Items.AddRange(New Object() {"System Geometry", "Roughness", "Infiltration", "Inflow / Runoff"})
-        Me.InflowRateGroupValue.Location = New System.Drawing.Point(136, 32)
-        Me.InflowRateGroupValue.Name = "InflowRateGroupValue"
-        Me.InflowRateGroupValue.SelectedIndexSet = True
-        Me.InflowRateGroupValue.Size = New System.Drawing.Size(217, 28)
-        Me.InflowRateGroupValue.TabIndex = 1
+        Me.Indep1GroupValue.ApplicationValue = -1
+        Me.Indep1GroupValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.Indep1GroupValue.EnableSaveActions = False
+        Me.Indep1GroupValue.FormattingEnabled = True
+        Me.Indep1GroupValue.IsCalculated = False
+        Me.Indep1GroupValue.Items.AddRange(New Object() {"System Geometry", "Roughness", "Infiltration", "Inflow / Runoff"})
+        Me.Indep1GroupValue.Location = New System.Drawing.Point(136, 32)
+        Me.Indep1GroupValue.Name = "Indep1GroupValue"
+        Me.Indep1GroupValue.SelectedIndexSet = True
+        Me.Indep1GroupValue.Size = New System.Drawing.Size(217, 28)
+        Me.Indep1GroupValue.TabIndex = 1
         '
         'QinToLabel
         '
@@ -812,31 +798,27 @@ Partial Class ctl_SensitivityAnalysisStructured
         '
         Me.OutputFileBox.AccessibleDescription = "Specifies the default directory for WinSRFR log & diagnostic files."
         Me.OutputFileBox.AccessibleName = "Default Log Folder"
-        Me.OutputFileBox.Controls.Add(Me.ClearResultsFile)
+        Me.OutputFileBox.Controls.Add(Me.SaveButton)
         Me.OutputFileBox.Controls.Add(Me.OutputInstructions)
         Me.OutputFileBox.Controls.Add(Me.BrowseOutputFileName)
-        Me.OutputFileBox.Controls.Add(Me.OutputFileName2)
+        Me.OutputFileBox.Controls.Add(Me.OutputFileName)
         Me.OutputFileBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OutputFileBox.Location = New System.Drawing.Point(15, 594)
+        Me.OutputFileBox.Location = New System.Drawing.Point(15, 595)
         Me.OutputFileBox.Name = "OutputFileBox"
-        Me.OutputFileBox.Size = New System.Drawing.Size(711, 106)
-        Me.OutputFileBox.TabIndex = 3
+        Me.OutputFileBox.Size = New System.Drawing.Size(745, 110)
+        Me.OutputFileBox.TabIndex = 4
         Me.OutputFileBox.TabStop = False
         Me.OutputFileBox.Text = "&Output File"
         '
-        'ClearResultsFile
+        'SaveButton
         '
-        Me.ClearResultsFile.AlwaysChecked = False
-        Me.ClearResultsFile.AutoSize = True
-        Me.ClearResultsFile.ErrorMessage = Nothing
-        Me.ClearResultsFile.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ClearResultsFile.Location = New System.Drawing.Point(15, 80)
-        Me.ClearResultsFile.Name = "ClearResultsFile"
-        Me.ClearResultsFile.Size = New System.Drawing.Size(178, 22)
-        Me.ClearResultsFile.TabIndex = 4
-        Me.ClearResultsFile.Text = "Pre-&clear output file"
-        Me.ClearResultsFile.UncheckAttemptMessage = Nothing
-        Me.ClearResultsFile.UseVisualStyleBackColor = True
+        Me.SaveButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SaveButton.Location = New System.Drawing.Point(560, 82)
+        Me.SaveButton.Name = "SaveButton"
+        Me.SaveButton.Size = New System.Drawing.Size(90, 30)
+        Me.SaveButton.TabIndex = 3
+        Me.SaveButton.Text = "&Save"
+        Me.SaveButton.UseVisualStyleBackColor = True
         '
         'OutputInstructions
         '
@@ -844,7 +826,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.OutputInstructions.Location = New System.Drawing.Point(16, 25)
         Me.OutputInstructions.Name = "OutputInstructions"
         Me.OutputInstructions.Size = New System.Drawing.Size(677, 21)
-        Me.OutputInstructions.TabIndex = 1
+        Me.OutputInstructions.TabIndex = 0
         Me.OutputInstructions.Text = "Enter the name of the .txt or .csv Tabulated Script output file"
         '
         'BrowseOutputFileName
@@ -852,21 +834,21 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.BrowseOutputFileName.AccessibleDescription = "Browses for location to save script output file"
         Me.BrowseOutputFileName.AccessibleName = "Browse Output File Name"
         Me.BrowseOutputFileName.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BrowseOutputFileName.Location = New System.Drawing.Point(628, 51)
+        Me.BrowseOutputFileName.Location = New System.Drawing.Point(656, 51)
         Me.BrowseOutputFileName.Name = "BrowseOutputFileName"
-        Me.BrowseOutputFileName.Size = New System.Drawing.Size(72, 25)
-        Me.BrowseOutputFileName.TabIndex = 3
+        Me.BrowseOutputFileName.Size = New System.Drawing.Size(90, 30)
+        Me.BrowseOutputFileName.TabIndex = 2
         Me.BrowseOutputFileName.Text = "&Browse"
         '
-        'OutputFileName2
+        'OutputFileName
         '
-        Me.OutputFileName2.AccessibleDescription = "WinSRFR's log & diagnostic folder."
-        Me.OutputFileName2.AccessibleName = "Log Folder"
-        Me.OutputFileName2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.OutputFileName2.Location = New System.Drawing.Point(16, 50)
-        Me.OutputFileName2.Name = "OutputFileName2"
-        Me.OutputFileName2.Size = New System.Drawing.Size(607, 26)
-        Me.OutputFileName2.TabIndex = 2
+        Me.OutputFileName.AccessibleDescription = "WinSRFR's log & diagnostic folder."
+        Me.OutputFileName.AccessibleName = "Log Folder"
+        Me.OutputFileName.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.OutputFileName.Location = New System.Drawing.Point(16, 50)
+        Me.OutputFileName.Name = "OutputFileName"
+        Me.OutputFileName.Size = New System.Drawing.Size(634, 26)
+        Me.OutputFileName.TabIndex = 1
         '
         'ctl_SensitivityAnalysisStructured
         '
@@ -882,7 +864,7 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "ctl_SensitivityAnalysisStructured"
-        Me.Size = New System.Drawing.Size(769, 708)
+        Me.Size = New System.Drawing.Size(770, 710)
         Me.InputFileBox.ResumeLayout(False)
         Me.InputFileBox.PerformLayout()
         Me.DependentVariablesGroup.ResumeLayout(False)
@@ -897,10 +879,10 @@ Partial Class ctl_SensitivityAnalysisStructured
         Me.Dependent1GroupBox.PerformLayout()
         Me.IndependentVariablesGroup.ResumeLayout(False)
         Me.IndependentVariablesGroup.PerformLayout()
-        Me.CutoffTimeBox.ResumeLayout(False)
-        Me.CutoffTimeBox.PerformLayout()
-        Me.InflowRateBox.ResumeLayout(False)
-        Me.InflowRateBox.PerformLayout()
+        Me.Independent2GroupBox.ResumeLayout(False)
+        Me.Independent2GroupBox.PerformLayout()
+        Me.Independent1GroupBox.ResumeLayout(False)
+        Me.Independent1GroupBox.PerformLayout()
         Me.OutputFileBox.ResumeLayout(False)
         Me.OutputFileBox.PerformLayout()
         Me.ResumeLayout(False)
@@ -941,35 +923,34 @@ Partial Class ctl_SensitivityAnalysisStructured
     Friend WithEvents TwoIndVarRadioButton As DataStore.ctl_RadioButton
     Friend WithEvents OneIndVarRadioButton As DataStore.ctl_RadioButton
     Friend WithEvents NoIndVarsLabel As DataStore.ctl_Label
-    Friend WithEvents InflowRateBox As DataStore.ctl_GroupBox
+    Friend WithEvents Independent1GroupBox As DataStore.ctl_GroupBox
     Friend WithEvents QinRangeLabel As DataStore.ctl_Label
     Friend WithEvents OutputFileBox As DataStore.ctl_GroupBox
     Friend WithEvents OutputInstructions As DataStore.ctl_Label
     Friend WithEvents BrowseOutputFileName As DataStore.ctl_Button
-    Friend WithEvents OutputFileName2 As TextBox
-    Friend WithEvents ClearResultsFile As DataStore.ctl_CheckParameter
-    Friend WithEvents CutoffTimeBox As DataStore.ctl_GroupBox
-    Friend WithEvents TcoContourGridSizeValue As DataStore.ctl_SelectParameter
+    Friend WithEvents OutputFileName As TextBox
+    Friend WithEvents Independent2GroupBox As DataStore.ctl_GroupBox
     Friend WithEvents TcoNumIncsLabal As Label
     Friend WithEvents Indep2SelParamLabel As DataStore.ctl_Label
-    Friend WithEvents CutoffTimeParamValue As DataStore.ctl_SelectParameter
+    Friend WithEvents Indep2ParamValue As DataStore.ctl_SelectParameter
     Friend WithEvents Indep2ParamGroupLabel As DataStore.ctl_Label
-    Friend WithEvents CutoffTimeGroupValue As DataStore.ctl_SelectParameter
+    Friend WithEvents Indep2GroupValue As DataStore.ctl_SelectParameter
     Friend WithEvents CutoffTimeRange As DataStore.ctl_Label
-    Friend WithEvents QinContourGridSizeValue As DataStore.ctl_SelectParameter
     Friend WithEvents QinNumIncsLabel As Label
     Friend WithEvents Indep1SelParamLabel As DataStore.ctl_Label
-    Friend WithEvents InflowRateParamValue As DataStore.ctl_SelectParameter
+    Friend WithEvents Indep1ParamValue As DataStore.ctl_SelectParameter
     Friend WithEvents Indep1ParamGroupLabel As DataStore.ctl_Label
-    Friend WithEvents InflowRateGroupValue As DataStore.ctl_SelectParameter
+    Friend WithEvents Indep1GroupValue As DataStore.ctl_SelectParameter
     Friend WithEvents QinToLabel As Label
-    Friend WithEvents TcoUnitsText As Label
-    Friend WithEvents MaxTcoValue As TextBox
-    Friend WithEvents MinTcoValue As TextBox
+    Friend WithEvents Ind2UnitsText As Label
+    Friend WithEvents MaxInd2Value As TextBox
+    Friend WithEvents MinInd2Value As TextBox
     Friend WithEvents TcoToLabel As Label
-    Friend WithEvents QinUnitsText As Label
-    Friend WithEvents MaxQinValue As TextBox
-    Friend WithEvents MinQinValue As TextBox
-    Friend WithEvents TcoSelParamUnits As Label
-    Friend WithEvents QinSelParamUnits As Label
+    Friend WithEvents Ind1UnitsText As Label
+    Friend WithEvents MaxInd1Value As TextBox
+    Friend WithEvents MinInd1Value As TextBox
+    Friend WithEvents SaveButton As DataStore.ctl_Button
+    Friend WithEvents ZeroDepVarRadioButton As DataStore.ctl_RadioButton
+    Friend WithEvents NumInd1Increments As DataStore.ctl_IntegerParameter
+    Friend WithEvents NumInd2Increments As DataStore.ctl_IntegerParameter
 End Class
