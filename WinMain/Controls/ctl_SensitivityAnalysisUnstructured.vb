@@ -630,6 +630,9 @@ Public Class ctl_SensitivityAnalysisUnstructured
                         Else
                             line = inStream.ReadLine.Trim
                         End If
+
+                        Application.DoEvents()
+
                     End While ' ((continueRuns) And (line IsNot Nothing))
 
                     If Not (errorViewer.ErrorRichTextBox.Text = "") Then
@@ -672,7 +675,7 @@ Public Class ctl_SensitivityAnalysisUnstructured
         UpdateUI()
     End Sub
 
-    Private Sub RunMultiSimulations_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+    Private Sub ctl_SensitivyAnalysisUnstructed_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) _
     Handles MyBase.Load
         UpdateUI()
     End Sub
@@ -684,11 +687,6 @@ Public Class ctl_SensitivityAnalysisUnstructured
         End If
         Return MyBase.ProcessCmdKey(msg, keyData)
     End Function
-
-    Private Sub CloseButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
-    Handles CloseButton.Click
-        Me.Hide()
-    End Sub
 
 #End Region
 

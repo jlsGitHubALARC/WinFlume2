@@ -630,6 +630,9 @@ Public Class RunMultiSimulations
                         Else
                             line = inStream.ReadLine.Trim
                         End If
+
+                        Application.DoEvents()
+
                     End While ' ((continueRuns) And (line IsNot Nothing))
 
                     If Not (errorViewer.ErrorRichTextBox.Text = "") Then

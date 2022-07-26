@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("WinSRFR 5.1.1.8")>
+<Assembly: AssemblyTitle("WinSRFR 5.1.1.11")>
 <Assembly: AssemblyDescription("Surface Irrigation Analysis, Design, Operations & Simulation")> 
 <Assembly: AssemblyCompany("USDA")> 
 <Assembly: AssemblyProduct("WinSRFR")>
-<Assembly: AssemblyFileVersion("5.1.1.8")>
+<Assembly: AssemblyFileVersion("5.1.1.11")>
 <Assembly: AssemblyCopyright("Copyright © USDA 2022")>
 <Assembly: AssemblyTrademark("")> 
 <Assembly: CLSCompliant(True)> 
@@ -30,6 +30,6 @@ Imports System.Runtime.InteropServices
 ' You can specify all the values or you can default the Build and Revision Numbers 
 ' by using the '*' as shown below:
 
-<Assembly: AssemblyVersion("5.1.1.*")>
+<Assembly: AssemblyVersion("5.1.1.11")>
 
 <Assembly: ComVisibleAttribute(False)> 

@@ -56,6 +56,12 @@ Public Class EventCriteria
         RequiredVB              ' Required  "        "      and    "      "         "
     End Enum
 
+    Public GroupValueMethodSelections() As Selection =
+        {New Selection("System Geometry", 0),
+         New Selection("Roughness", 0),
+         New Selection("Infiltration", 0),
+         New Selection("Inflow / Runoff", 0)}
+
 #End Region
 
 #Region " Properties "
@@ -115,6 +121,551 @@ Public Class EventCriteria
 #End Region
 
 #Region " Serialized Properties "
+
+#Region " Sensitivity Analysis "
+
+    '*********************************************************************************************************
+    ' Independent Variables
+    '*********************************************************************************************************
+
+    ' Independent Parameter 1 is always used, Independent Parameter 2 may or may not  be used
+    Public Const sNumIndependentVariables As String = "Num Independent Variables"
+
+    Public ReadOnly Property NumIndependentVariablesProperty() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sNumIndependentVariables)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(1)
+                mMyStore.AddProperty(sNumIndependentVariables, _integer)
+                _propertyNode = mMyStore.GetProperty(sNumIndependentVariables)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property NumIndependentVariables() As IntegerParameter
+        Get
+            Return NumIndependentVariablesProperty.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            NumIndependentVariablesProperty.SetParameter(Value)
+        End Set
+    End Property
+    ' 
+    ' Independent Variable 1
+    '
+    Public Const sIndep1ParamGroup As String = "Indep 1 Param Group"
+
+    Public ReadOnly Property Indep1ParamGroupProperty() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sIndep1ParamGroup)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(0)
+                mMyStore.AddProperty(sIndep1ParamGroup, _integer)
+                _propertyNode = mMyStore.GetProperty(sIndep1ParamGroup)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property Indep1ParamGroup() As IntegerParameter
+        Get
+            Return Indep1ParamGroupProperty.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            Indep1ParamGroupProperty.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sIndep1SelectedParameter As String = "Indep 1 Selected Parameter"
+
+    Public ReadOnly Property Indep1ParamValueProperty() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sIndep1SelectedParameter)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(0)
+                mMyStore.AddProperty(sIndep1SelectedParameter, _integer)
+                _propertyNode = mMyStore.GetProperty(sIndep1SelectedParameter)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property Indep1SelectedParameter() As IntegerParameter
+        Get
+            Return Indep1ParamValueProperty.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            Indep1ParamValueProperty.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sMinIdepen1Parameter As String = "Min Indep 1 Parameter"
+
+    Public ReadOnly Property MinIndepParameter1Property As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sMinIdepen1Parameter)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As DoubleParameter = New DoubleParameter(10)
+                mMyStore.AddProperty(sMinIdepen1Parameter, _integer)
+                _propertyNode = mMyStore.GetProperty(sMinIdepen1Parameter)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property MinIndep1SelectedParameter() As DoubleParameter
+        Get
+            Return MinIndepParameter1Property.GetDoubleParameter()
+        End Get
+        Set(ByVal Value As DoubleParameter)
+            MinIndepParameter1Property.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sMaxIdepen1Parameter As String = "Max Indep 1 Parameter"
+
+    Public ReadOnly Property MaxIndepParameter1Property As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sMaxIdepen1Parameter)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As DoubleParameter = New DoubleParameter(100)
+                mMyStore.AddProperty(sMaxIdepen1Parameter, _integer)
+                _propertyNode = mMyStore.GetProperty(sMaxIdepen1Parameter)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property MaxIndep1SelectedParameter() As DoubleParameter
+        Get
+            Return MaxIndepParameter1Property.GetDoubleParameter()
+        End Get
+        Set(ByVal Value As DoubleParameter)
+            MaxIndepParameter1Property.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sNumIndep1Parameter1Incs As String = "Num Indep 1 Parameter Increments"
+
+    Public ReadOnly Property NumIndepParameter1Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sNumIndep1Parameter1Incs)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(10)
+                mMyStore.AddProperty(sNumIndep1Parameter1Incs, _integer)
+                _propertyNode = mMyStore.GetProperty(sNumIndep1Parameter1Incs)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property NumIndepParameter1() As IntegerParameter
+        Get
+            Return NumIndepParameter1Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            NumIndepParameter1Property.SetParameter(Value)
+        End Set
+    End Property
+    ' 
+    ' Independent Variable 2
+    '
+    Public Const sIndep2ParamGroup As String = "Indep 2 Param Group"
+
+    Public ReadOnly Property Indep2ParamGroupProperty() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sIndep2ParamGroup)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(0)
+                mMyStore.AddProperty(sIndep2ParamGroup, _integer)
+                _propertyNode = mMyStore.GetProperty(sIndep2ParamGroup)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property Indep2ParamGroup() As IntegerParameter
+        Get
+            Return Indep2ParamGroupProperty.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            Indep2ParamGroupProperty.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sIndep2SelectedParameter As String = "Indep 2 Selected Parameter"
+
+    Public ReadOnly Property Indep2ParamValueProperty() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sIndep2SelectedParameter)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(0)
+                mMyStore.AddProperty(sIndep2SelectedParameter, _integer)
+                _propertyNode = mMyStore.GetProperty(sIndep2SelectedParameter)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property Indep2SelectedParameter() As IntegerParameter
+        Get
+            Return Indep2ParamValueProperty.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            Indep2ParamValueProperty.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sMinIdepen2Parameter As String = "Min Indep 2 Parameter"
+
+    Public ReadOnly Property MinIndepParameter2Property As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sMinIdepen2Parameter)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As DoubleParameter = New DoubleParameter(20)
+                mMyStore.AddProperty(sMinIdepen2Parameter, _integer)
+                _propertyNode = mMyStore.GetProperty(sMinIdepen2Parameter)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property MinIndep2SelectedParameter() As DoubleParameter
+        Get
+            Return MinIndepParameter2Property.GetDoubleParameter()
+        End Get
+        Set(ByVal Value As DoubleParameter)
+            MinIndepParameter2Property.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sMaxIdepen2Parameter As String = "Max Indep 2 Parameter"
+
+    Public ReadOnly Property MaxIndepParameter2Property As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sMaxIdepen2Parameter)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As DoubleParameter = New DoubleParameter(200)
+                mMyStore.AddProperty(sMaxIdepen2Parameter, _integer)
+                _propertyNode = mMyStore.GetProperty(sMaxIdepen2Parameter)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property MaxIndep2SelectedParameter() As DoubleParameter
+        Get
+            Return MaxIndepParameter2Property.GetDoubleParameter()
+        End Get
+        Set(ByVal Value As DoubleParameter)
+            MaxIndepParameter2Property.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sNumIndep2ParameterIncs As String = "Num Indep 2 Parameter Increments"
+
+    Public ReadOnly Property NumIndepParameter2Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sNumIndep2ParameterIncs)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(10)
+                mMyStore.AddProperty(sNumIndep2ParameterIncs, _integer)
+                _propertyNode = mMyStore.GetProperty(sNumIndep2ParameterIncs)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property NumIndep2Parameter() As IntegerParameter
+        Get
+            Return NumIndepParameter2Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            NumIndepParameter2Property.SetParameter(Value)
+        End Set
+    End Property
+
+    '*********************************************************************************************************
+    ' Dependent Variables
+    '*********************************************************************************************************
+
+    Public Const sNumDependentVariables As String = "Num Dependent Variables"
+
+    Public ReadOnly Property NumDependentVariablesProperty() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sNumDependentVariables)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(1)
+                mMyStore.AddProperty(sNumDependentVariables, _integer)
+                _propertyNode = mMyStore.GetProperty(sNumDependentVariables)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property NumDependentVariables() As IntegerParameter
+        Get
+            Return NumDependentVariablesProperty.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            NumDependentVariablesProperty.SetParameter(Value)
+        End Set
+    End Property
+    ' 
+    ' Dependent Variable 1
+    '
+    Public Const sDepParamGroup1 As String = "Dep Param Group 1"
+
+    Public ReadOnly Property DepParamGroup1Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sDepParamGroup1)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(1)
+                mMyStore.AddProperty(sDepParamGroup1, _integer)
+                _propertyNode = mMyStore.GetProperty(sDepParamGroup1)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property DepParamGroup1() As IntegerParameter
+        Get
+            Return DepParamGroup1Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            DepParamGroup1Property.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sDepSelectedParameter1 As String = "Dep Selected Parameter 1"
+
+    Public ReadOnly Property DepSelectedParameter1Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sDepSelectedParameter1)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(1)
+                mMyStore.AddProperty(sDepSelectedParameter1, _integer)
+                _propertyNode = mMyStore.GetProperty(sDepSelectedParameter1)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property DepSelectedParameter1() As IntegerParameter
+        Get
+            Return DepSelectedParameter1Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            DepSelectedParameter1Property.SetParameter(Value)
+        End Set
+    End Property
+    ' 
+    ' Dependent Variable 2
+    '
+    Public Const sDepParamGroup2 As String = "Dep Param Group 2"
+
+    Public ReadOnly Property DepParamGroup2Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sDepParamGroup2)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(1)
+                mMyStore.AddProperty(sDepParamGroup2, _integer)
+                _propertyNode = mMyStore.GetProperty(sDepParamGroup2)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property DepParamGroup2() As IntegerParameter
+        Get
+            Return DepParamGroup2Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            DepParamGroup2Property.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sDepSelectedParameter2 As String = "Dep Selected Parameter 2"
+
+    Public ReadOnly Property DepSelectedParameter2Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sDepSelectedParameter2)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(1)
+                mMyStore.AddProperty(sDepSelectedParameter2, _integer)
+                _propertyNode = mMyStore.GetProperty(sDepSelectedParameter2)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property DepSelectedParameter2() As IntegerParameter
+        Get
+            Return DepSelectedParameter2Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            DepSelectedParameter2Property.SetParameter(Value)
+        End Set
+    End Property
+    ' 
+    ' Dependent Variable 3
+    '
+    Public Const sDepParamGroup3 As String = "Dep Param Group 3"
+
+    Public ReadOnly Property DepParamGroup3Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sDepParamGroup3)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(1)
+                mMyStore.AddProperty(sDepParamGroup3, _integer)
+                _propertyNode = mMyStore.GetProperty(sDepParamGroup3)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property DepParamGroup3() As IntegerParameter
+        Get
+            Return DepParamGroup3Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            DepParamGroup3Property.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sDepSelectedParameter3 As String = "Dep Selected Parameter 3"
+
+    Public ReadOnly Property DepSelectedParameter3Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sDepSelectedParameter3)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(3)
+                mMyStore.AddProperty(sDepSelectedParameter3, _integer)
+                _propertyNode = mMyStore.GetProperty(sDepSelectedParameter3)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property DepSelectedParameter3() As IntegerParameter
+        Get
+            Return DepSelectedParameter3Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            DepSelectedParameter3Property.SetParameter(Value)
+        End Set
+    End Property
+    ' 
+    ' Dependent Variable 4
+    '
+    Public Const sDepParamGroup4 As String = "Dep Param Group 4"
+
+    Public ReadOnly Property DepParamGroup4Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sDepParamGroup4)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(4)
+                mMyStore.AddProperty(sDepParamGroup4, _integer)
+                _propertyNode = mMyStore.GetProperty(sDepParamGroup4)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property DepParamGroup4() As IntegerParameter
+        Get
+            Return DepParamGroup4Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            DepParamGroup4Property.SetParameter(Value)
+        End Set
+    End Property
+
+    Public Const sDepSelectedParameter4 As String = "Dep Selected Parameter 4"
+
+    Public ReadOnly Property DepSelectedParameter4Property() As PropertyNode
+        Get
+            Dim _propertyNode As PropertyNode = mMyStore.GetProperty(sDepSelectedParameter4)
+
+            ' If it was not found; create it
+            If (_propertyNode Is Nothing) Then
+                Dim _integer As IntegerParameter = New IntegerParameter(1)
+                mMyStore.AddProperty(sDepSelectedParameter4, _integer)
+                _propertyNode = mMyStore.GetProperty(sDepSelectedParameter4)
+            End If
+
+            Return _propertyNode
+        End Get
+    End Property
+
+    Public Property DepSelectedParameter4() As IntegerParameter
+        Get
+            Return DepSelectedParameter4Property.GetIntegerParameter()
+        End Get
+        Set(ByVal Value As IntegerParameter)
+            DepSelectedParameter4Property.SetParameter(Value)
+        End Set
+    End Property
+
+#End Region
 
 #Region " Event Analysis Type "
 

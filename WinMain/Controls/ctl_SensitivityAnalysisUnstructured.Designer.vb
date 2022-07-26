@@ -23,7 +23,6 @@ Partial Class ctl_SensitivityAnalysisUnstructured
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.ShowMessageOnError = New DataStore.ctl_CheckParameter()
-        Me.CloseButton = New DataStore.ctl_Button()
         Me.RunMultiButton = New DataStore.ctl_Button()
         Me.OutputFileBox = New DataStore.ctl_GroupBox()
         Me.ClearResultsFile = New DataStore.ctl_CheckParameter()
@@ -52,17 +51,6 @@ Partial Class ctl_SensitivityAnalysisUnstructured
         Me.ShowMessageOnError.Text = "Show message on first error"
         Me.ShowMessageOnError.UncheckAttemptMessage = Nothing
         Me.ShowMessageOnError.UseVisualStyleBackColor = True
-        '
-        'CloseButton
-        '
-        Me.CloseButton.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.CloseButton.Location = New System.Drawing.Point(553, 604)
-        Me.CloseButton.Margin = New System.Windows.Forms.Padding(4)
-        Me.CloseButton.Name = "CloseButton"
-        Me.CloseButton.Size = New System.Drawing.Size(90, 30)
-        Me.CloseButton.TabIndex = 10
-        Me.CloseButton.Text = "Close"
-        Me.CloseButton.UseVisualStyleBackColor = True
         '
         'RunMultiButton
         '
@@ -197,7 +185,6 @@ Partial Class ctl_SensitivityAnalysisUnstructured
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.ShowMessageOnError)
-        Me.Controls.Add(Me.CloseButton)
         Me.Controls.Add(Me.RunMultiButton)
         Me.Controls.Add(Me.OutputFileBox)
         Me.Controls.Add(Me.InputFileBox)
@@ -215,7 +202,6 @@ Partial Class ctl_SensitivityAnalysisUnstructured
     End Sub
 
     Friend WithEvents ShowMessageOnError As DataStore.ctl_CheckParameter
-    Friend WithEvents CloseButton As DataStore.ctl_Button
     Friend WithEvents RunMultiButton As DataStore.ctl_Button
     Friend WithEvents OutputFileBox As DataStore.ctl_GroupBox
     Friend WithEvents ClearResultsFile As DataStore.ctl_CheckParameter

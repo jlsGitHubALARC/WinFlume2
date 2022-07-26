@@ -1046,8 +1046,11 @@ Public Class SimulationWorld
         Handles RunMultipleSimulationsNewItem.Click
         If (mRunMultipleNew Is Nothing) Then
             mRunMultipleNew = New RunMultiSimulationsNew()
+            mRunMultipleNew.WinSRFR = mWinSRFR
 
             UpdateTranslation(mRunMultipleNew)
+
+            mRunMultipleNew.SimulationWorld = Me
         End If
 
         If (mRunMultipleNew.IsDisposed) Then
@@ -1057,7 +1060,7 @@ Public Class SimulationWorld
         End If
 
         mRunMultipleNew.SetUnit(mUnit)
-        mRunMultipleNew.Show()
+        mRunMultipleNew.ShowDialog()
         mRunMultipleNew.BringToFront()
 
     End Sub
