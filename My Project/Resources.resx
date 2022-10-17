@@ -1,0 +1,1080 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="ValueChange" xml:space="preserve">
+    <value>Value Change</value>
+    <comment>Undo/Redo text</comment>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="TRAPPARA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TRAPPARA.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="FocalDistance" xml:space="preserve">
+    <value>Focal Distance</value>
+    <comment>Cross section property</comment>
+  </data>
+  <data name="CTRAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CTRAP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>Save Error</value>
+    <comment>File I/O</comment>
+  </data>
+  <data name="Warnings" xml:space="preserve">
+    <value>Warnings</value>
+  </data>
+  <data name="SILLCIRC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SILLCIRC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="TailwaterLevel" xml:space="preserve">
+    <value>Tailwater Level</value>
+    <comment>Linear lookup table</comment>
+  </data>
+  <data name="MeasuredData" xml:space="preserve">
+    <value>Measured Data</value>
+    <comment>Rating Comparison Graph</comment>
+  </data>
+  <data name="VRECT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VRECT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Trapezoid" xml:space="preserve">
+    <value>Trapezoid</value>
+  </data>
+  <data name="SillHeight" xml:space="preserve">
+    <value>Sill Height</value>
+  </data>
+  <data name="RatingEquMsg2" xml:space="preserve">
+    <value>Theoretical discharge (Q) is determined by the WinFlume model, using hydraulic theory and empirical relationships determined from laboratory testing.</value>
+  </data>
+  <data name="Difference" xml:space="preserve">
+    <value>Difference</value>
+  </data>
+  <data name="StaffNoStillFrMed" xml:space="preserve">
+    <value>Staff gage without stilling well, Fr=</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="PressureBuld" xml:space="preserve">
+    <value>Pressure bulb and recorder</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="Custom" xml:space="preserve">
+    <value>Custom</value>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>Button</value>
+    <comment>Button Control</comment>
+  </data>
+  <data name="FreeboardLimit" xml:space="preserve">
+    <value>Freeboard Limit</value>
+  </data>
+  <data name="AllWarningMessagesForThisTable" xml:space="preserve">
+    <value>All Warning Messages for this Table</value>
+  </data>
+  <data name="SILLV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SILLV.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PrimaryCriteria" xml:space="preserve">
+    <value>Primary Criteria</value>
+  </data>
+  <data name="ILRI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ILRI.GIF;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RatingEquMsg4" xml:space="preserve">
+    <value>Curve fit discharge (Q_fit) is computed with the equation above, which was fitted to the theoretical discharge values.</value>
+  </data>
+  <data name="EnterPageSelection" xml:space="preserve">
+    <value>Enter selection of pages</value>
+  </data>
+  <data name="OuterTrapezoid" xml:space="preserve">
+    <value>Outer Trapezoid</value>
+  </data>
+  <data name="TabChange" xml:space="preserve">
+    <value>Tab Change</value>
+    <comment>Undo/Redo text</comment>
+  </data>
+  <data name="RatingComparisonGraph" xml:space="preserve">
+    <value>Rating Comparison Graph</value>
+  </data>
+  <data name="RaiseLowerSillHeight" xml:space="preserve">
+    <value>Raise or Lower sill height</value>
+    <comment>Method of Contraction</comment>
+  </data>
+  <data name="ExpansionRampStyle" xml:space="preserve">
+    <value>Expansion Ramp Style</value>
+    <comment>Bottom Profile Shape</comment>
+  </data>
+  <data name="FlumeDataReport" xml:space="preserve">
+    <value>Flume Data Report</value>
+    <comment>Drawings &amp; Reports</comment>
+  </data>
+  <data name="ConcreteRough" xml:space="preserve">
+    <value>Concrete - rough</value>
+    <comment>Construction material</comment>
+  </data>
+  <data name="FlumeDescription" xml:space="preserve">
+    <value>Flume Description</value>
+    <comment>Undo/Redo text</comment>
+  </data>
+  <data name="GageSlopeChoice" xml:space="preserve">
+    <value>Gage Slope Choice</value>
+  </data>
+  <data name="downstreamfromtransition" xml:space="preserve">
+    <value>downstream from diverging transition</value>
+    <comment>Cross section descriptor</comment>
+  </data>
+  <data name="MetersPerMeter" xml:space="preserve">
+    <value>Meters/Meter</value>
+    <comment>Slope units</comment>
+  </data>
+  <data name="TailwaterBasis1QH" xml:space="preserve">
+    <value>Manning's equation using one Q-y2 measurement</value>
+    <comment>Tailwater calculation method</comment>
+  </data>
+  <data name="MetalSmooth" xml:space="preserve">
+    <value>Metal - smooth</value>
+    <comment>Construction material</comment>
+  </data>
+  <data name="FileCannotBeWritten" xml:space="preserve">
+    <value>File Cannot Be Written</value>
+    <comment>File I/O</comment>
+  </data>
+  <data name="TextChange" xml:space="preserve">
+    <value>Text Change</value>
+    <comment>Undo/Redo text</comment>
+  </data>
+  <data name="CheckChange" xml:space="preserve">
+    <value>Check Change</value>
+    <comment>Undo/Redo text</comment>
+  </data>
+  <data name="TailwaterBasis" xml:space="preserve">
+    <value>Tailwater Basis</value>
+    <comment>Tailwater calculation method</comment>
+  </data>
+  <data name="Slope" xml:space="preserve">
+    <value>Slope</value>
+  </data>
+  <data name="DischargeDifference" xml:space="preserve">
+    <value>Discharge Difference</value>
+    <comment>Measured Data Comparison</comment>
+  </data>
+  <data name="FlumeCrest" xml:space="preserve">
+    <value>Flume Crest</value>
+  </data>
+  <data name="TRAPTRAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TRAPTRAP.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="CustomMaterial" xml:space="preserve">
+    <value>Custom Material</value>
+  </data>
+  <data name="SectionHeightMatchesProfile" xml:space="preserve">
+    <value>Section height matches bottom profile sill height</value>
+    <comment>Match Constraint</comment>
+  </data>
+  <data name="ThroatWidth" xml:space="preserve">
+    <value>Throat Width</value>
+  </data>
+  <data name="RaiseLowerInnerSection" xml:space="preserve">
+    <value>Raise or Lower inner section</value>
+    <comment>Method of Contraction</comment>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="EnterFlumeDescription" xml:space="preserve">
+    <value>Enter Flume Description</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="StaffInStillFrMed" xml:space="preserve">
+    <value>Staff gage in stilling well, Fr=</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="FlumeMaterial" xml:space="preserve">
+    <value>Flume Material</value>
+  </data>
+  <data name="Instructions" xml:space="preserve">
+    <value>Instructions</value>
+  </data>
+  <data name="ToReportProblems" xml:space="preserve">
+    <value>To report problems or make suggestions for improvement, contact:</value>
+  </data>
+  <data name="SILLRECT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SILLRECT.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CopyImage" xml:space="preserve">
+    <value>Copy Image</value>
+  </data>
+  <data name="DesignNotFoundLine2" xml:space="preserve">
+    <value>Please review the flumes that were evaluated and the warning messages in the design review summary to learn how you might modify the design to obtain an acceptable flume.</value>
+    <comment>Design not found message - line 2</comment>
+  </data>
+  <data name="CoefficientOfDetermination" xml:space="preserve">
+    <value>Coefficient of Determination</value>
+  </data>
+  <data name="TRAPU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TRAPU.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RatingEquMsg5" xml:space="preserve">
+    <value>The 'difference' columns show the difference between the flow rates computed from the simplified equation and those obtained from the theoretical WinFlume model.</value>
+  </data>
+  <data name="SillReferencedHeadAtGage" xml:space="preserve">
+    <value>Sill Referenced Head at Gage</value>
+    <comment>Equations table</comment>
+  </data>
+  <data name="Seconds" xml:space="preserve">
+    <value>Seconds</value>
+    <comment>Time units</comment>
+  </data>
+  <data name="RECTRECT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RECTRECT.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PointGage" xml:space="preserve">
+    <value>Point gage in stilling well</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="InnerTrapezoid" xml:space="preserve">
+    <value>Inner Trapezoid</value>
+  </data>
+  <data name="RatingEquation" xml:space="preserve">
+    <value>Rating Equation</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="InstallOnSlopeOf" xml:space="preserve">
+    <value>Install on slope of</value>
+    <comment>Gage plot output</comment>
+  </data>
+  <data name="Discharge" xml:space="preserve">
+    <value>Discharge</value>
+    <comment>Rating Table parameter</comment>
+  </data>
+  <data name="ViewFromDownstream" xml:space="preserve">
+    <value>View From Downstream</value>
+  </data>
+  <data name="FtpFt" xml:space="preserve">
+    <value>ft/ft</value>
+    <comment>Slope units abbreviation</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="RatingComparisonTable" xml:space="preserve">
+    <value>Rating Comparison Table</value>
+  </data>
+  <data name="CurveFittedEquation" xml:space="preserve">
+    <value>Curve-fitted equation</value>
+  </data>
+  <data name="SILLU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SILLU.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="StandardCustom" xml:space="preserve">
+    <value>Standard Custom</value>
+  </data>
+  <data name="sec" xml:space="preserve">
+    <value>sec</value>
+    <comment>Time units abbreviation</comment>
+  </data>
+  <data name="WarningMessagesForThisRow" xml:space="preserve">
+    <value>Warning Messages For This Row</value>
+  </data>
+  <data name="SelectChange" xml:space="preserve">
+    <value>Select Change</value>
+    <comment>Undo/Redo text</comment>
+  </data>
+  <data name="CopyBitmap" xml:space="preserve">
+    <value>Copy Bitmap</value>
+  </data>
+  <data name="CopyData" xml:space="preserve">
+    <value>Copy Data</value>
+  </data>
+  <data name="StaffNoStillFrHigh" xml:space="preserve">
+    <value>Staff gage without stilling well, Fr=</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="Diameter" xml:space="preserve">
+    <value>Diameter</value>
+    <comment>Cross section property</comment>
+  </data>
+  <data name="FATAL" xml:space="preserve">
+    <value>FATAL</value>
+  </data>
+  <data name="BottomProfile" xml:space="preserve">
+    <value>Bottom Profile</value>
+  </data>
+  <data name="ExportImageAs" xml:space="preserve">
+    <value>Export Image As</value>
+  </data>
+  <data name="SaveConfirmation" xml:space="preserve">
+    <value>Save Project Confirmation</value>
+  </data>
+  <data name="BubbleGage" xml:space="preserve">
+    <value>Bubble gage and recorder</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="HeadAtGage" xml:space="preserve">
+    <value>Head at Gage</value>
+    <comment>Rating Table parameter</comment>
+  </data>
+  <data name="File" xml:space="preserve">
+    <value>File</value>
+  </data>
+  <data name="FileIsReadonly" xml:space="preserve">
+    <value>File Is Readonly</value>
+    <comment>File I/O</comment>
+  </data>
+  <data name="CustomMethod" xml:space="preserve">
+    <value>Custom Method</value>
+  </data>
+  <data name="RatingTable" xml:space="preserve">
+    <value>Rating Table</value>
+  </data>
+  <data name="Example" xml:space="preserve">
+    <value>Example</value>
+  </data>
+  <data name="TailwaterBasisLinearLookupTable" xml:space="preserve">
+    <value>Linear interpolation of Q-y2 lookup table</value>
+    <comment>Tailwater calculation method</comment>
+  </data>
+  <data name="SILLPARA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SILLPARA.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EnterUsername" xml:space="preserve">
+    <value>Enter Username</value>
+  </data>
+  <data name="BottomReferenced" xml:space="preserve">
+    <value>Bottom-Referenced</value>
+    <comment>Wall Gage</comment>
+  </data>
+  <data name="day" xml:space="preserve">
+    <value>day</value>
+    <comment>Time units abbreviation</comment>
+  </data>
+  <data name="TailwaterBasis2QHPower" xml:space="preserve">
+    <value>Power curve using 2 Q-y2 measurements</value>
+    <comment>Tailwater calculation method</comment>
+  </data>
+  <data name="RaiseLowerEntireSection" xml:space="preserve">
+    <value>Raise or Lower entire section</value>
+    <comment>Method of Contraction</comment>
+  </data>
+  <data name="V" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\V.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DesignCriteria" xml:space="preserve">
+    <value>Design Criteria</value>
+  </data>
+  <data name="InstallGageVertically" xml:space="preserve">
+    <value>Install gage vertically</value>
+    <comment>Gage plot output</comment>
+  </data>
+  <data name="Wood" xml:space="preserve">
+    <value>Wood</value>
+    <comment>Construction material</comment>
+  </data>
+  <data name="DesignNotFoundLine1" xml:space="preserve">
+    <value>An acceptable design could not be found.</value>
+    <comment>Design not found message - line1</comment>
+  </data>
+  <data name="GageTextSize" xml:space="preserve">
+    <value>Gage Text Size</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="Discharges" xml:space="preserve">
+    <value>Discharges</value>
+    <comment>Ditchrider's Table</comment>
+  </data>
+  <data name="TRAPRECT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TRAPRECT.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Dialog" xml:space="preserve">
+    <value>Dialog</value>
+  </data>
+  <data name="U" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\U.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GageLabelType" xml:space="preserve">
+    <value>Gage Label Type</value>
+    <comment>Wall Gages</comment>
+  </data>
+  <data name="StepStr" xml:space="preserve">
+    <value>Step</value>
+  </data>
+  <data name="CurveFitEquationDischarge" xml:space="preserve">
+    <value>Curve Fit Equation Discharge</value>
+    <comment>Equation table</comment>
+  </data>
+  <data name="DitchridersTable" xml:space="preserve">
+    <value>Ditchrider's Table</value>
+  </data>
+  <data name="RatingTableGraph" xml:space="preserve">
+    <value>Rating Table Graph</value>
+  </data>
+  <data name="Parameters" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="InnerSillHeight" xml:space="preserve">
+    <value>Inner Sill Height</value>
+    <comment>Cross section controls</comment>
+  </data>
+  <data name="TheoreticalDischarge" xml:space="preserve">
+    <value>Theoretical Discharge</value>
+    <comment>Equations table</comment>
+  </data>
+  <data name="Minutes" xml:space="preserve">
+    <value>Minutes</value>
+    <comment>Time units</comment>
+  </data>
+  <data name="hr" xml:space="preserve">
+    <value>hr</value>
+    <comment>Time units abbreviation</comment>
+  </data>
+  <data name="PARA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PARA.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="min" xml:space="preserve">
+    <value>min</value>
+    <comment>Time units abbreviation</comment>
+  </data>
+  <data name="CopyOf" xml:space="preserve">
+    <value>Copy Of</value>
+  </data>
+  <data name="OuterShapeMatchesApproachChannel" xml:space="preserve">
+    <value>Outer shape matches Approach Channel</value>
+    <comment>Match Constraint</comment>
+  </data>
+  <data name="AlternativeDesigns" xml:space="preserve">
+    <value>Alternative Designs</value>
+  </data>
+  <data name="TailwaterBasis3QH" xml:space="preserve">
+    <value>Power curve with offset using 3 Q-y2 measurements</value>
+    <comment>Tailwater calculation method</comment>
+  </data>
+  <data name="DischargeRange" xml:space="preserve">
+    <value>Discharge &amp;Range</value>
+    <comment>RatingTable Range</comment>
+  </data>
+  <data name="RatingEquationGraph" xml:space="preserve">
+    <value>Rating Equation Graph</value>
+  </data>
+  <data name="TRAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TRAP.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Equation" xml:space="preserve">
+    <value>Equation</value>
+  </data>
+  <data name="ApproachChannel" xml:space="preserve">
+    <value>Approach Channel</value>
+  </data>
+  <data name="TRAPCIRC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TRAPCIRC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Undo1Action" xml:space="preserve">
+    <value>Undo 1 Action</value>
+    <comment>Undo/Redo text</comment>
+  </data>
+  <data name="SlopeDistance" xml:space="preserve">
+    <value>Slope Distance</value>
+    <comment>Ditchrider's Table</comment>
+  </data>
+  <data name="SILLTRAP" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SILLTRAP.BMP;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Desc" xml:space="preserve">
+    <value>Desc</value>
+  </data>
+  <data name="NotOK" xml:space="preserve">
+    <value>Not OK</value>
+  </data>
+  <data name="Defmovbl" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Defmovbl.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Head" xml:space="preserve">
+    <value>Head</value>
+  </data>
+  <data name="atgagingstation" xml:space="preserve">
+    <value>at gaging station</value>
+    <comment>Cross section descriptor</comment>
+  </data>
+  <data name="SplashPhoto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SplashPhoto.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="USBR" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\USBR.GIF;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Dipstick" xml:space="preserve">
+    <value>Dipstick in stilling well</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="per" xml:space="preserve">
+    <value>per</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="WinFlumeAvailableAt" xml:space="preserve">
+    <value>The latest version of WinFlume is available at:</value>
+  </data>
+  <data name="FeetPerFeet" xml:space="preserve">
+    <value>Feet/Feet</value>
+    <comment>Slope units</comment>
+  </data>
+  <data name="FlumeRatingTable" xml:space="preserve">
+    <value>Flume Rating Table</value>
+  </data>
+  <data name="BottomBaselineIsTopOfSill" xml:space="preserve">
+    <value>Bottom of baseline is top of sill.</value>
+    <comment>Gage plot output</comment>
+  </data>
+  <data name="PrintSelection" xml:space="preserve">
+    <value>Print Selection</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Glass" xml:space="preserve">
+    <value>Glass</value>
+    <comment>Construction material</comment>
+  </data>
+  <data name="FiberglassGelCoat" xml:space="preserve">
+    <value>Fiberglass - gel coat</value>
+    <comment>Construction material</comment>
+  </data>
+  <data name="RatingEquMsg1" xml:space="preserve">
+    <value>NOTE: This equation is only valid for h1 &gt;=</value>
+  </data>
+  <data name="Errors" xml:space="preserve">
+    <value>Errors</value>
+  </data>
+  <data name="StaffInStillFrHigh" xml:space="preserve">
+    <value>Staff gage in stilling well, Fr=</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="MeasuredDischarge" xml:space="preserve">
+    <value>Measured Discharge</value>
+    <comment>Measured Data Comparison</comment>
+  </data>
+  <data name="GageSlope" xml:space="preserve">
+    <value>Gage Slope</value>
+    <comment>Ditchrider's Table</comment>
+  </data>
+  <data name="ViewFromUpstream" xml:space="preserve">
+    <value>View From Upstream</value>
+  </data>
+  <data name="MetalRough" xml:space="preserve">
+    <value>Metal - rough</value>
+    <comment>Construction material</comment>
+  </data>
+  <data name="ComputedByWinFlume" xml:space="preserve">
+    <value>Computed by WinFlume from hydraulic theory</value>
+  </data>
+  <data name="FloatRecorder" xml:space="preserve">
+    <value>Float and recorder in stilling well</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="ThroatDiameter" xml:space="preserve">
+    <value>Throat Diameter</value>
+  </data>
+  <data name="CopyableBitmap" xml:space="preserve">
+    <value>Copyable bitmap of graph</value>
+  </data>
+  <data name="OuterWidth" xml:space="preserve">
+    <value>Outer Width</value>
+    <comment>Cross section property</comment>
+  </data>
+  <data name="FlumeDesignReview" xml:space="preserve">
+    <value>Flume Design Review</value>
+    <comment>Drawings &amp; Reports</comment>
+  </data>
+  <data name="VarySideContraction" xml:space="preserve">
+    <value>Vary side contraction</value>
+    <comment>Method of Contraction</comment>
+  </data>
+  <data name="ConcreteSmooth" xml:space="preserve">
+    <value>Concrete - smooth</value>
+    <comment>Construction material</comment>
+  </data>
+  <data name="ErrorPageSelection" xml:space="preserve">
+    <value>Error in page selection</value>
+  </data>
+  <data name="ControlSectionAdjustment" xml:space="preserve">
+    <value>Control Section Adjustment</value>
+    <comment>Design Options</comment>
+  </data>
+  <data name="ControlSection" xml:space="preserve">
+    <value>Control Section</value>
+  </data>
+  <data name="CopyableTableOfData" xml:space="preserve">
+    <value>Copyable table of data</value>
+  </data>
+  <data name="MethodsOfContraction" xml:space="preserve">
+    <value>Method(s) of Contraction</value>
+  </data>
+  <data name="Vertical" xml:space="preserve">
+    <value>Vertical</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>Days</value>
+    <comment>Time units</comment>
+  </data>
+  <data name="HeadAtGageRange" xml:space="preserve">
+    <value>Head at Gage &amp;Range</value>
+    <comment>Rating Table Range</comment>
+  </data>
+  <data name="FlumeDrawings" xml:space="preserve">
+    <value>Flume Drawings</value>
+  </data>
+  <data name="HeadDepth" xml:space="preserve">
+    <value>Head Depth</value>
+    <comment>Ditchrider's table</comment>
+  </data>
+  <data name="Defsktch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Defsktch.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RatingCurveComputed" xml:space="preserve">
+    <value>Rating curve computed from hydraulic theory</value>
+    <comment>Rating Comparison Graph</comment>
+  </data>
+  <data name="ARS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ARS.GIF;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OperatingUpstreamDepth" xml:space="preserve">
+    <value>Operating Upstream Depth</value>
+  </data>
+  <data name="CIRC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CIRC.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Do you want to save the changes to the project?</value>
+  </data>
+  <data name="TailwaterBasisManning" xml:space="preserve">
+    <value>Manning's equation using n and S</value>
+    <comment>Tailwater calculation method</comment>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value>Hours</value>
+    <comment>Time units</comment>
+  </data>
+  <data name="SillReferenced" xml:space="preserve">
+    <value>Sill-Referenced</value>
+    <comment>Wall Gage</comment>
+  </data>
+  <data name="Revision" xml:space="preserve">
+    <value>Revision</value>
+  </data>
+  <data name="RECT" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RECT.BMP;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RatingEquMsg3" xml:space="preserve">
+    <value>It is the most accurate estimate of discharge.</value>
+  </data>
+  <data name="FlumeRatingEquation" xml:space="preserve">
+    <value>Flume Rating Equation</value>
+  </data>
+  <data name="ThroatFocalDistance" xml:space="preserve">
+    <value>Throat Focal Distance</value>
+  </data>
+  <data name="EquationReport" xml:space="preserve">
+    <value>Equation Report</value>
+  </data>
+  <data name="TailwaterChannel" xml:space="preserve">
+    <value>Tailwater Channel</value>
+  </data>
+  <data name="BottomBaselineIsInverftUpstream" xml:space="preserve">
+    <value>Bottom of baseline is invert of upstream channel</value>
+  </data>
+  <data name="InnerSillHeightMatchesProfile" xml:space="preserve">
+    <value>Inner sill height matches bottom profile sill height</value>
+    <comment>Match Constraint</comment>
+  </data>
+  <data name="Redo1Action" xml:space="preserve">
+    <value>Redo 1 Action</value>
+    <comment>Undo/Redo text</comment>
+  </data>
+  <data name="OuterHeightProfileSillMinusInnerSill" xml:space="preserve">
+    <value>Outer shape height = bottom profile sill height - inner sill height</value>
+    <comment>Match Constraint</comment>
+  </data>
+  <data name="StaffFrLow" xml:space="preserve">
+    <value>Staff gage, Fr&lt;</value>
+    <comment>Gage description</comment>
+  </data>
+  <data name="MpM" xml:space="preserve">
+    <value>m/m</value>
+    <comment>Slope units abbreviation</comment>
+  </data>
+  <data name="TRAPV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TRAPV.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SillInShapeOption" xml:space="preserve">
+    <value>This option allows only bottom contractions.  The sill is as wide as the channel at the selected sill height.</value>
+    <comment>Match Control to Approach</comment>
+  </data>
+  <data name="SimpleShapeOption" xml:space="preserve">
+    <value>This option replicates the shape of the approach channel and produces only bottom contractions, as determined by the sill height.  The sill height is to be determined.</value>
+    <comment>Match Control to Approach</comment>
+  </data>
+  <data name="VariableBottomAndSideContraction" xml:space="preserve">
+    <value>This option produces variable bottom and side contraction.</value>
+    <comment>Match Control to Approach</comment>
+  </data>
+  <data name="ControlMatchedToApproach" xml:space="preserve">
+    <value>Control Section is matched to Approach Section</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="ControlSectionUpdated" xml:space="preserve">
+    <value>Control Section value(s) have been updated</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="CtrlTailMatchedToApproach" xml:space="preserve">
+    <value>Both Control and Tailwater Sections are matched to Approach</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="CtrlTailSectionsUpdated" xml:space="preserve">
+    <value>Both Control and Tailwater value(s) have been updated</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="ProceeedDownTabs" xml:space="preserve">
+    <value>Proceed down tabs verifying data is correct for your flume</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="TailwaterMatchedToApproach" xml:space="preserve">
+    <value>Tailwater Section is matched to Approach Section</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="TailwaterSectionUpdated" xml:space="preserve">
+    <value>Tailwater Section value(s) have been updated</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="UseFileNew" xml:space="preserve">
+    <value>Use File / New to create a new Flume</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="UserFileOpen" xml:space="preserve">
+    <value>Use File / Open to open an existing flume</value>
+    <comment>Status message</comment>
+  </data>
+  <data name="Constraints" xml:space="preserve">
+    <value>Constraints</value>
+  </data>
+  <data name="ControlSideSlopeMatchesApproach" xml:space="preserve">
+    <value>The control side-slope is equal to the approach side-slope.</value>
+    <comment>Match Control to Approach</comment>
+  </data>
+  <data name="VariableBottomContraction" xml:space="preserve">
+    <value>This option produces variable bottom contraction.</value>
+    <comment>Match Control to Approach</comment>
+  </data>
+  <data name="ShapeMatchesApproachChannel" xml:space="preserve">
+    <value />
+    <comment>Match Constraint</comment>
+  </data>
+  <data name="BottomWidth" xml:space="preserve">
+    <value>Bottom Width</value>
+  </data>
+  <data name="BottomWidthLimited" xml:space="preserve">
+    <value>Bottom width limited so cross-section fits within channel.</value>
+  </data>
+  <data name="SideSlope" xml:space="preserve">
+    <value>Side Slope</value>
+  </data>
+  <data name="SideSlopeLimited" xml:space="preserve">
+    <value>Side slope limited so cross-section fits within channel.</value>
+  </data>
+  <data name="DesignEvaluationIncrement" xml:space="preserve">
+    <value>Design Evaluation Increment</value>
+  </data>
+  <data name="DesignIncrementWarning" xml:space="preserve">
+    <value>Design evaluation increment is greater than 10% of channel depth.</value>
+  </data>
+  <data name="Y2atQMax" xml:space="preserve">
+    <value>Tailwater Level, y2, at QMax</value>
+  </data>
+  <data name="Y2atQMin" xml:space="preserve">
+    <value>Tailwater Level, y2, at QMin</value>
+  </data>
+  <data name="ChannelDepth" xml:space="preserve">
+    <value>Channel Depth</value>
+  </data>
+  <data name="MaxAllowed" xml:space="preserve">
+    <value>Max Allowed</value>
+  </data>
+  <data name="ThenCloseDialog" xml:space="preserve">
+    <value>Then Close Dialog</value>
+  </data>
+  <data name="MenuItem" xml:space="preserve">
+    <value>Menu Item</value>
+  </data>
+  <data name="DiameterLimited" xml:space="preserve">
+    <value>Diameter limited so cross-section fits within channel.</value>
+  </data>
+  <data name="FocalDistanceLimited" xml:space="preserve">
+    <value>Focal distance limited so cross-section fits within channel.</value>
+  </data>
+  <data name="MsgQandHmustIncrease" xml:space="preserve">
+    <value>Both discharge and level values must increase monotonically</value>
+  </data>
+  <data name="SimplifyToSill" xml:space="preserve">
+    <value>Should the cross-section be simplified to a Sill?</value>
+  </data>
+  <data name="UU" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UU.BMP;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PARAPARA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PARAPARA.BMP;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VV" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VV.BMP;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CIRCCIRC" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CIRCCIRC.BMP;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NoAlternativeDesignsFound" xml:space="preserve">
+    <value>No alternative designs were found that met the following criterian:</value>
+  </data>
+  <data name="InvalidTailwaterLevel" xml:space="preserve">
+    <value>Invalid Tailwater Level</value>
+  </data>
+  <data name="TopWidth" xml:space="preserve">
+    <value>Top Width</value>
+  </data>
+  <data name="StatusOfHighlightedDesign" xml:space="preserve">
+    <value>Status of Highlighted Design</value>
+  </data>
+  <data name="NewFlumeDescription" xml:space="preserve">
+    <value>New flume with default dimensions</value>
+  </data>
+  <data name="MsgCDgtDiameter" xml:space="preserve">
+    <value>The channel depth cannot be greater than the diameter of a circular channel.  OK to set the channel depth equal to the diameter?</value>
+  </data>
+  <data name="MsgCDltSH" xml:space="preserve">
+    <value>The channel depth cannot be less than the sill height.  OK to set channel depth to sill height?</value>
+  </data>
+  <data name="TitleCDgtDiameter" xml:space="preserve">
+    <value>Channel Depth greater than Diameter</value>
+  </data>
+  <data name="MsgControSectionModified" xml:space="preserve">
+    <value>One or more Control Section cross-section parameters have been modified proportionaly with this change.</value>
+  </data>
+  <data name="TitleControlSectionModified" xml:space="preserve">
+    <value>Control Section's cross-section modified</value>
+  </data>
+  <data name="SaveSelectedUnitsAsDefaults" xml:space="preserve">
+    <value>Save selected units as defaults</value>
+  </data>
+  <data name="SelectDefaultUnits" xml:space="preserve">
+    <value>Select Default Units</value>
+  </data>
+  <data name="ConstructionNotes" xml:space="preserve">
+    <value>Construction Notes</value>
+  </data>
+  <data name="MeasurmentUncertainty" xml:space="preserve">
+    <value>Measurment Uncertainty</value>
+  </data>
+  <data name="AcceptDuration" xml:space="preserve">
+    <value>Press YES to accept the new Duration value and reset the Measurement Interval to 1 second.</value>
+  </data>
+  <data name="DurationLessThanIteration" xml:space="preserve">
+    <value>The specified Duration of the totalizing / averaging period is LESS than the Measurement Interval (value and selected time units).</value>
+  </data>
+  <data name="EditDuration" xml:space="preserve">
+    <value>Edit FIRST the Duration value and/or units.</value>
+  </data>
+  <data name="IntervalExceedsDuration" xml:space="preserve">
+    <value>The specified Measurement Interval (value and selected time units) exceeds the Duration of the totalizing / averaging period.</value>
+  </data>
+  <data name="PreserveIntervalDuration" xml:space="preserve">
+    <value>Press NO to preserve the existing Interval and Duration values.</value>
+  </data>
+  <data name="IntervalGtDuration" xml:space="preserve">
+    <value>Measurement Interval &gt; Duration</value>
+  </data>
+  <data name="HighlightedIsNewDesign" xml:space="preserve">
+    <value>Highlighted Design is New Current Design</value>
+  </data>
+  <data name="ReturnToDefineControl" xml:space="preserve">
+    <value>Return to Define Control tab to view changes</value>
+  </data>
+  <data name="ChannelDepthLessThanSillHeight" xml:space="preserve">
+    <value>Channel Depth is less than Sill Height</value>
+  </data>
+  <data name="SillHeightGreaterThanChannelDepth" xml:space="preserve">
+    <value>Sill Height is greater than Channel Depth</value>
+  </data>
+  <data name="MsgSHgtCD" xml:space="preserve">
+    <value>The sill height cannot be greater than the channel depth.  OK to set sill height to channel depth?</value>
+  </data>
+  <data name="MsgBedSlopeLeZero" xml:space="preserve">
+    <value>Bed Slope must be greater than zero</value>
+  </data>
+  <data name="MsgManningnLeZero" xml:space="preserve">
+    <value>Manning's n must be greater than zero</value>
+  </data>
+  <data name="EditDischargeTailwaterTab" xml:space="preserve">
+    <value>Edit the data in the Discharge &amp; Tailwater tab</value>
+  </data>
+  <data name="MsgDischargeLeZero" xml:space="preserve">
+    <value>Disharge must be greater than zero</value>
+  </data>
+  <data name="MsgLevelLeZero" xml:space="preserve">
+    <value>Level must be greater than zero</value>
+  </data>
+  <data name="MsgInvalidLookupTable" xml:space="preserve">
+    <value>Invalid data for tailwater lookup table</value>
+  </data>
+  <data name="EditChannelDepth" xml:space="preserve">
+    <value>Edit the channel depth</value>
+  </data>
+  <data name="MsgTableMustHaveTwoRows" xml:space="preserve">
+    <value>Table must have at least two rows</value>
+  </data>
+  <data name="ChannelDepthLessThanOperatingDepth" xml:space="preserve">
+    <value>Channel Depth is less than Operating Depth</value>
+  </data>
+  <data name="OperatingDepthGreaterThanChannelDepth" xml:space="preserve">
+    <value>Operating Depth is greater than Channel Depth</value>
+  </data>
+  <data name="MsgCDltOD" xml:space="preserve">
+    <value>The channel depth cannot be less than the operating depth.  OK to set channel depth to operating depth?</value>
+  </data>
+  <data name="MsgODgtCD" xml:space="preserve">
+    <value>The operating depth cannot be greater than the channel depth.  OK to set operating depth to channel depth?</value>
+  </data>
+</root>

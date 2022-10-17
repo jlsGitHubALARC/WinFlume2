@@ -1,0 +1,1275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="FixedDischargeIntervalBox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="FixedDischargeThumbnailLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="FixedDischargeThumbnailLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 4</value>
+  </data>
+  <data name="FixedDischargeThumbnailLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 17</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="FixedDischargeThumbnailLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="FixedDischargeThumbnailLabel.Text" xml:space="preserve">
+    <value>Gage Thumbnail</value>
+  </data>
+  <data name="FixedDischargeThumbnailLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeThumbnailLabel.Name" xml:space="preserve">
+    <value>FixedDischargeThumbnailLabel</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeThumbnailLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeThumbnailLabel.Parent" xml:space="preserve">
+    <value>FixedDischargeGagePanel</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeThumbnailLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="FixedDischargeGagePlot.AccessibleDescription" xml:space="preserve">
+    <value>A copyable bitmap image</value>
+  </data>
+  <data name="FixedDischargeGagePlot.AccessibleName" xml:space="preserve">
+    <value>Fixed-Discharge Gage</value>
+  </data>
+  <data name="FixedDischargeGagePlot.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="FixedDischargeGagePlot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 30</value>
+  </data>
+  <data name="FixedDischargeGagePlot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 300</value>
+  </data>
+  <data name="FixedDischargeGagePlot.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="FixedDischargeGagePlot.Text" xml:space="preserve">
+    <value>Bitmap Diagram</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeGagePlot.Name" xml:space="preserve">
+    <value>FixedDischargeGagePlot</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeGagePlot.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Canvas2D, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeGagePlot.Parent" xml:space="preserve">
+    <value>FixedDischargeGagePanel</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeGagePlot.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="FixedDischargeGagePanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="FixedDischargeGagePanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="FixedDischargeGagePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 19</value>
+  </data>
+  <data name="FixedDischargeGagePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="FixedDischargeGagePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 372</value>
+  </data>
+  <data name="FixedDischargeGagePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeGagePanel.Name" xml:space="preserve">
+    <value>FixedDischargeGagePanel</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeGagePanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeGagePanel.Parent" xml:space="preserve">
+    <value>FixedDischargeIntervalBox</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeGagePanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 227</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 25</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetLabel.Text" xml:space="preserve">
+    <value>First Labeled Tick</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;DischargeFirstLabelOffsetLabel.Name" xml:space="preserve">
+    <value>DischargeFirstLabelOffsetLabel</value>
+  </data>
+  <data name="&gt;&gt;DischargeFirstLabelOffsetLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeFirstLabelOffsetLabel.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeFirstLabelOffsetLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 229</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="DischargeFirstLabelOffsetControl.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;DischargeFirstLabelOffsetControl.Name" xml:space="preserve">
+    <value>DischargeFirstLabelOffsetControl</value>
+  </data>
+  <data name="&gt;&gt;DischargeFirstLabelOffsetControl.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUpDown, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeFirstLabelOffsetControl.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeFirstLabelOffsetControl.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DischargeDecimalsToShowLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="DischargeDecimalsToShowLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DischargeDecimalsToShowLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 174</value>
+  </data>
+  <data name="DischargeDecimalsToShowLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 17</value>
+  </data>
+  <data name="DischargeDecimalsToShowLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="DischargeDecimalsToShowLabel.Text" xml:space="preserve">
+    <value>Deci&amp;mals to Show</value>
+  </data>
+  <data name="&gt;&gt;DischargeDecimalsToShowLabel.Name" xml:space="preserve">
+    <value>DischargeDecimalsToShowLabel</value>
+  </data>
+  <data name="&gt;&gt;DischargeDecimalsToShowLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeDecimalsToShowLabel.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeDecimalsToShowLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="DischargeDecimalsToShowControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 194</value>
+  </data>
+  <data name="DischargeDecimalsToShowControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="DischargeDecimalsToShowControl.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;DischargeDecimalsToShowControl.Name" xml:space="preserve">
+    <value>DischargeDecimalsToShowControl</value>
+  </data>
+  <data name="&gt;&gt;DischargeDecimalsToShowControl.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUpDown, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeDecimalsToShowControl.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeDecimalsToShowControl.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalControl.Items" xml:space="preserve">
+    <value>Label every tick mark</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalControl.Items1" xml:space="preserve">
+    <value>Label every other tick</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalControl.Items2" xml:space="preserve">
+    <value>Label every 4th tick</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalControl.Items3" xml:space="preserve">
+    <value>Label every 5th tick</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalControl.Items4" xml:space="preserve">
+    <value>Label every 10th tick</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 137</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 24</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalControl.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabeledTickIntervalControl.Name" xml:space="preserve">
+    <value>DischargeLabeledTickIntervalControl</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabeledTickIntervalControl.Type" xml:space="preserve">
+    <value>WinFlume.ctl_ComboBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabeledTickIntervalControl.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabeledTickIntervalControl.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 116</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 17</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="DischargeLabeledTickIntervalLabel.Text" xml:space="preserve">
+    <value>Labeled Tick I&amp;nterval</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabeledTickIntervalLabel.Name" xml:space="preserve">
+    <value>DischargeLabeledTickIntervalLabel</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabeledTickIntervalLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabeledTickIntervalLabel.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabeledTickIntervalLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="DischargeLabelSizeFactorLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="DischargeLabelSizeFactorLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DischargeLabelSizeFactorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 63</value>
+  </data>
+  <data name="DischargeLabelSizeFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 17</value>
+  </data>
+  <data name="DischargeLabelSizeFactorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="DischargeLabelSizeFactorLabel.Text" xml:space="preserve">
+    <value>Label Si&amp;ze Factor</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabelSizeFactorLabel.Name" xml:space="preserve">
+    <value>DischargeLabelSizeFactorLabel</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabelSizeFactorLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabelSizeFactorLabel.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabelSizeFactorLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="DischargeLabelSizeFactorUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 82</value>
+  </data>
+  <data name="DischargeLabelSizeFactorUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="DischargeLabelSizeFactorUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabelSizeFactorUpDown.Name" xml:space="preserve">
+    <value>DischargeLabelSizeFactorUpDown</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabelSizeFactorUpDown.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUpDown, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabelSizeFactorUpDown.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeLabelSizeFactorUpDown.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="ViewDischargeGageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ViewDischargeGageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 330</value>
+  </data>
+  <data name="ViewDischargeGageButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="ViewDischargeGageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 25</value>
+  </data>
+  <data name="ViewDischargeGageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="ViewDischargeGageButton.Text" xml:space="preserve">
+    <value>View Fixed-&amp;Discharge Gage</value>
+  </data>
+  <data name="&gt;&gt;ViewDischargeGageButton.Name" xml:space="preserve">
+    <value>ViewDischargeGageButton</value>
+  </data>
+  <data name="&gt;&gt;ViewDischargeGageButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ViewDischargeGageButton.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;ViewDischargeGageButton.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="VerticalDischargeGageButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="VerticalDischargeGageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="VerticalDischargeGageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="VerticalDischargeGageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 21</value>
+  </data>
+  <data name="VerticalDischargeGageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="VerticalDischargeGageButton.Text" xml:space="preserve">
+    <value>Ve&amp;rtical Gage</value>
+  </data>
+  <data name="&gt;&gt;VerticalDischargeGageButton.Name" xml:space="preserve">
+    <value>VerticalDischargeGageButton</value>
+  </data>
+  <data name="&gt;&gt;VerticalDischargeGageButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_RadioButton, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;VerticalDischargeGageButton.Parent" xml:space="preserve">
+    <value>DischargeGageTypePanel</value>
+  </data>
+  <data name="&gt;&gt;VerticalDischargeGageButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="SlopedDischargeGageButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SlopedDischargeGageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="SlopedDischargeGageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 2</value>
+  </data>
+  <data name="SlopedDischargeGageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="SlopedDischargeGageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="SlopedDischargeGageButton.Text" xml:space="preserve">
+    <value>Gage on S&amp;lope</value>
+  </data>
+  <data name="&gt;&gt;SlopedDischargeGageButton.Name" xml:space="preserve">
+    <value>SlopedDischargeGageButton</value>
+  </data>
+  <data name="&gt;&gt;SlopedDischargeGageButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_RadioButton, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SlopedDischargeGageButton.Parent" xml:space="preserve">
+    <value>DischargeGageTypePanel</value>
+  </data>
+  <data name="&gt;&gt;SlopedDischargeGageButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DischargeGageTypePanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="DischargeGageTypePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
+  </data>
+  <data name="DischargeGageTypePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="DischargeGageTypePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 50</value>
+  </data>
+  <data name="DischargeGageTypePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;DischargeGageTypePanel.Name" xml:space="preserve">
+    <value>DischargeGageTypePanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeGageTypePanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeGageTypePanel.Parent" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeGageTypePanel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="FixedDischargeControlPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="FixedDischargeControlPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="FixedDischargeControlPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="FixedDischargeControlPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="FixedDischargeControlPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 372</value>
+  </data>
+  <data name="FixedDischargeControlPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeControlPanel.Name" xml:space="preserve">
+    <value>FixedDischargeControlPanel</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeControlPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeControlPanel.Parent" xml:space="preserve">
+    <value>FixedDischargeIntervalBox</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeControlPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="FixedDischargeIntervalBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="FixedDischargeIntervalBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>377, 3</value>
+  </data>
+  <data name="FixedDischargeIntervalBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>368, 394</value>
+  </data>
+  <data name="FixedDischargeIntervalBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="FixedDischargeIntervalBox.Text" xml:space="preserve">
+    <value>Fixed-Discharge Interval Gage</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeIntervalBox.Name" xml:space="preserve">
+    <value>FixedDischargeIntervalBox</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeIntervalBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_GroupBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeIntervalBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;FixedDischargeIntervalBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="FixedHeadIntervalBox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="FixedHeadThumbnailLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="FixedHeadThumbnailLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 4</value>
+  </data>
+  <data name="FixedHeadThumbnailLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>154, 17</value>
+  </data>
+  <data name="FixedHeadThumbnailLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="FixedHeadThumbnailLabel.Text" xml:space="preserve">
+    <value>Gage Thumbnail</value>
+  </data>
+  <data name="FixedHeadThumbnailLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadThumbnailLabel.Name" xml:space="preserve">
+    <value>FixedHeadThumbnailLabel</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadThumbnailLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadThumbnailLabel.Parent" xml:space="preserve">
+    <value>FixedHeadGagePanel</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadThumbnailLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="FixedHeadGagePlot.AccessibleDescription" xml:space="preserve">
+    <value>A copyable bitmap image</value>
+  </data>
+  <data name="FixedHeadGagePlot.AccessibleName" xml:space="preserve">
+    <value>Fixed-Head Gage</value>
+  </data>
+  <data name="FixedHeadGagePlot.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="FixedHeadGagePlot.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 30</value>
+  </data>
+  <data name="FixedHeadGagePlot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 300</value>
+  </data>
+  <data name="FixedHeadGagePlot.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="FixedHeadGagePlot.Text" xml:space="preserve">
+    <value>Bitmap Diagram</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadGagePlot.Name" xml:space="preserve">
+    <value>FixedHeadGagePlot</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadGagePlot.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Canvas2D, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadGagePlot.Parent" xml:space="preserve">
+    <value>FixedHeadGagePanel</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadGagePlot.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="FixedHeadGagePanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="FixedHeadGagePanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="FixedHeadGagePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="FixedHeadGagePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="FixedHeadGagePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 372</value>
+  </data>
+  <data name="FixedHeadGagePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadGagePanel.Name" xml:space="preserve">
+    <value>FixedHeadGagePanel</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadGagePanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadGagePanel.Parent" xml:space="preserve">
+    <value>FixedHeadPlotPanel</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadGagePanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="FixedHeadPlotPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="FixedHeadPlotPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="FixedHeadPlotPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>203, 19</value>
+  </data>
+  <data name="FixedHeadPlotPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="FixedHeadPlotPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 372</value>
+  </data>
+  <data name="FixedHeadPlotPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadPlotPanel.Name" xml:space="preserve">
+    <value>FixedHeadPlotPanel</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadPlotPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadPlotPanel.Parent" xml:space="preserve">
+    <value>FixedHeadIntervalBox</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadPlotPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="HeadFirstLabelOffsetLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="HeadFirstLabelOffsetLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="HeadFirstLabelOffsetLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 227</value>
+  </data>
+  <data name="HeadFirstLabelOffsetLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 25</value>
+  </data>
+  <data name="HeadFirstLabelOffsetLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="HeadFirstLabelOffsetLabel.Text" xml:space="preserve">
+    <value>First Labeled Tick</value>
+  </data>
+  <data name="HeadFirstLabelOffsetLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;HeadFirstLabelOffsetLabel.Name" xml:space="preserve">
+    <value>HeadFirstLabelOffsetLabel</value>
+  </data>
+  <data name="&gt;&gt;HeadFirstLabelOffsetLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadFirstLabelOffsetLabel.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadFirstLabelOffsetLabel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="HeadFirstLabelOffsetControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>72, 229</value>
+  </data>
+  <data name="HeadFirstLabelOffsetControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="HeadFirstLabelOffsetControl.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;HeadFirstLabelOffsetControl.Name" xml:space="preserve">
+    <value>HeadFirstLabelOffsetControl</value>
+  </data>
+  <data name="&gt;&gt;HeadFirstLabelOffsetControl.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUpDown, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadFirstLabelOffsetControl.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadFirstLabelOffsetControl.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="FlowLabelsButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="FlowLabelsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="FlowLabelsButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="FlowLabelsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 21</value>
+  </data>
+  <data name="FlowLabelsButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="FlowLabelsButton.Text" xml:space="preserve">
+    <value>Fl&amp;ow Labels</value>
+  </data>
+  <data name="&gt;&gt;FlowLabelsButton.Name" xml:space="preserve">
+    <value>FlowLabelsButton</value>
+  </data>
+  <data name="&gt;&gt;FlowLabelsButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_RadioButton, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FlowLabelsButton.Parent" xml:space="preserve">
+    <value>LabelsTypePanel</value>
+  </data>
+  <data name="&gt;&gt;FlowLabelsButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="HeadLabelsButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="HeadLabelsButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="HeadLabelsButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 2</value>
+  </data>
+  <data name="HeadLabelsButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>106, 21</value>
+  </data>
+  <data name="HeadLabelsButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="HeadLabelsButton.Text" xml:space="preserve">
+    <value>He&amp;ad Labels</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelsButton.Name" xml:space="preserve">
+    <value>HeadLabelsButton</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelsButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_RadioButton, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelsButton.Parent" xml:space="preserve">
+    <value>LabelsTypePanel</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelsButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="LabelsTypePanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="LabelsTypePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 263</value>
+  </data>
+  <data name="LabelsTypePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="LabelsTypePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 50</value>
+  </data>
+  <data name="LabelsTypePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;LabelsTypePanel.Name" xml:space="preserve">
+    <value>LabelsTypePanel</value>
+  </data>
+  <data name="&gt;&gt;LabelsTypePanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;LabelsTypePanel.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;LabelsTypePanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="HeadDecimalsToShowLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="HeadDecimalsToShowLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="HeadDecimalsToShowLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 174</value>
+  </data>
+  <data name="HeadDecimalsToShowLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 17</value>
+  </data>
+  <data name="HeadDecimalsToShowLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="HeadDecimalsToShowLabel.Text" xml:space="preserve">
+    <value>De&amp;cimals to Show</value>
+  </data>
+  <data name="&gt;&gt;HeadDecimalsToShowLabel.Name" xml:space="preserve">
+    <value>HeadDecimalsToShowLabel</value>
+  </data>
+  <data name="&gt;&gt;HeadDecimalsToShowLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadDecimalsToShowLabel.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadDecimalsToShowLabel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="HeadDecimalsToShowControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 194</value>
+  </data>
+  <data name="HeadDecimalsToShowControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="HeadDecimalsToShowControl.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;HeadDecimalsToShowControl.Name" xml:space="preserve">
+    <value>HeadDecimalsToShowControl</value>
+  </data>
+  <data name="&gt;&gt;HeadDecimalsToShowControl.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUpDown, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadDecimalsToShowControl.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadDecimalsToShowControl.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="HeadLabeledTickIntervalControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="HeadLabeledTickIntervalControl.Items" xml:space="preserve">
+    <value>Label every tick mark</value>
+  </data>
+  <data name="HeadLabeledTickIntervalControl.Items1" xml:space="preserve">
+    <value>Label every other tick</value>
+  </data>
+  <data name="HeadLabeledTickIntervalControl.Items2" xml:space="preserve">
+    <value>Label every 4th tick</value>
+  </data>
+  <data name="HeadLabeledTickIntervalControl.Items3" xml:space="preserve">
+    <value>Label every 5th tick</value>
+  </data>
+  <data name="HeadLabeledTickIntervalControl.Items4" xml:space="preserve">
+    <value>Label every 10th tick</value>
+  </data>
+  <data name="HeadLabeledTickIntervalControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 137</value>
+  </data>
+  <data name="HeadLabeledTickIntervalControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 24</value>
+  </data>
+  <data name="HeadLabeledTickIntervalControl.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;HeadLabeledTickIntervalControl.Name" xml:space="preserve">
+    <value>HeadLabeledTickIntervalControl</value>
+  </data>
+  <data name="&gt;&gt;HeadLabeledTickIntervalControl.Type" xml:space="preserve">
+    <value>WinFlume.ctl_ComboBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadLabeledTickIntervalControl.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadLabeledTickIntervalControl.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="HeadLabeledTickIntervalLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="HeadLabeledTickIntervalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="HeadLabeledTickIntervalLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 116</value>
+  </data>
+  <data name="HeadLabeledTickIntervalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 17</value>
+  </data>
+  <data name="HeadLabeledTickIntervalLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="HeadLabeledTickIntervalLabel.Text" xml:space="preserve">
+    <value>Labeled Tick &amp;Interval</value>
+  </data>
+  <data name="&gt;&gt;HeadLabeledTickIntervalLabel.Name" xml:space="preserve">
+    <value>HeadLabeledTickIntervalLabel</value>
+  </data>
+  <data name="&gt;&gt;HeadLabeledTickIntervalLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadLabeledTickIntervalLabel.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadLabeledTickIntervalLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="HeadLabelSizeFactorLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="HeadLabelSizeFactorLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="HeadLabelSizeFactorLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 63</value>
+  </data>
+  <data name="HeadLabelSizeFactorLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 17</value>
+  </data>
+  <data name="HeadLabelSizeFactorLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="HeadLabelSizeFactorLabel.Text" xml:space="preserve">
+    <value>Label Size &amp;Factor</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelSizeFactorLabel.Name" xml:space="preserve">
+    <value>HeadLabelSizeFactorLabel</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelSizeFactorLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelSizeFactorLabel.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelSizeFactorLabel.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="HeadLabelSizeFactorUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 82</value>
+  </data>
+  <data name="HeadLabelSizeFactorUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 23</value>
+  </data>
+  <data name="HeadLabelSizeFactorUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelSizeFactorUpDown.Name" xml:space="preserve">
+    <value>HeadLabelSizeFactorUpDown</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelSizeFactorUpDown.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUpDown, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelSizeFactorUpDown.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadLabelSizeFactorUpDown.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="ViewHeadGageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ViewHeadGageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 330</value>
+  </data>
+  <data name="ViewHeadGageButton.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="ViewHeadGageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 25</value>
+  </data>
+  <data name="ViewHeadGageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="ViewHeadGageButton.Text" xml:space="preserve">
+    <value>View Fixed-&amp;Head Gage</value>
+  </data>
+  <data name="&gt;&gt;ViewHeadGageButton.Name" xml:space="preserve">
+    <value>ViewHeadGageButton</value>
+  </data>
+  <data name="&gt;&gt;ViewHeadGageButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ViewHeadGageButton.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;ViewHeadGageButton.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="VerticalHeadGageButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="VerticalHeadGageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="VerticalHeadGageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 24</value>
+  </data>
+  <data name="VerticalHeadGageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 21</value>
+  </data>
+  <data name="VerticalHeadGageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="VerticalHeadGageButton.Text" xml:space="preserve">
+    <value>&amp;Vertical Gage</value>
+  </data>
+  <data name="&gt;&gt;VerticalHeadGageButton.Name" xml:space="preserve">
+    <value>VerticalHeadGageButton</value>
+  </data>
+  <data name="&gt;&gt;VerticalHeadGageButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_RadioButton, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;VerticalHeadGageButton.Parent" xml:space="preserve">
+    <value>HeadGageTypePanel</value>
+  </data>
+  <data name="&gt;&gt;VerticalHeadGageButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="SlopedHeadGageButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SlopedHeadGageButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="SlopedHeadGageButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 2</value>
+  </data>
+  <data name="SlopedHeadGageButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="SlopedHeadGageButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="SlopedHeadGageButton.Text" xml:space="preserve">
+    <value>Gage on &amp;Slope</value>
+  </data>
+  <data name="&gt;&gt;SlopedHeadGageButton.Name" xml:space="preserve">
+    <value>SlopedHeadGageButton</value>
+  </data>
+  <data name="&gt;&gt;SlopedHeadGageButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_RadioButton, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SlopedHeadGageButton.Parent" xml:space="preserve">
+    <value>HeadGageTypePanel</value>
+  </data>
+  <data name="&gt;&gt;SlopedHeadGageButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="HeadGageTypePanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="HeadGageTypePanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 4</value>
+  </data>
+  <data name="HeadGageTypePanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="HeadGageTypePanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 50</value>
+  </data>
+  <data name="HeadGageTypePanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;HeadGageTypePanel.Name" xml:space="preserve">
+    <value>HeadGageTypePanel</value>
+  </data>
+  <data name="&gt;&gt;HeadGageTypePanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadGageTypePanel.Parent" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadGageTypePanel.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="FixedHeadControlPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="FixedHeadControlPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="FixedHeadControlPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="FixedHeadControlPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="FixedHeadControlPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 372</value>
+  </data>
+  <data name="FixedHeadControlPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadControlPanel.Name" xml:space="preserve">
+    <value>FixedHeadControlPanel</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadControlPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadControlPanel.Parent" xml:space="preserve">
+    <value>FixedHeadIntervalBox</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadControlPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="FixedHeadIntervalBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="FixedHeadIntervalBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="FixedHeadIntervalBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>368, 394</value>
+  </data>
+  <data name="FixedHeadIntervalBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="FixedHeadIntervalBox.Text" xml:space="preserve">
+    <value>Fixed-Head Interval Gage</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadIntervalBox.Name" xml:space="preserve">
+    <value>FixedHeadIntervalBox</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadIntervalBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_GroupBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadIntervalBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadIntervalBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="PrintWallGageDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="PrintWallGageDocument.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>182, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AccessibleDescription" xml:space="preserve">
+    <value>Setup and view wall gages</value>
+  </data>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>Wall Gage Plots</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>750, 400</value>
+  </data>
+  <data name="&gt;&gt;PrintWallGageDialog.Name" xml:space="preserve">
+    <value>PrintWallGageDialog</value>
+  </data>
+  <data name="&gt;&gt;PrintWallGageDialog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PrintDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PrintWallGageDocument.Name" xml:space="preserve">
+    <value>PrintWallGageDocument</value>
+  </data>
+  <data name="&gt;&gt;PrintWallGageDocument.Type" xml:space="preserve">
+    <value>System.Drawing.Printing.PrintDocument, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>WallGagePlotsControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

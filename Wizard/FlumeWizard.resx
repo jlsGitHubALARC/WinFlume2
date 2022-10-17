@@ -1,0 +1,1179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Step02Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="Step02Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 28</value>
+  </data>
+  <data name="Step02Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Step02Label.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="Step02Label.Text" xml:space="preserve">
+    <value>2)</value>
+  </data>
+  <data name="Step02Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step02Label.Name" xml:space="preserve">
+    <value>Step02Label</value>
+  </data>
+  <data name="&gt;&gt;Step02Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step02Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step02Label.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="SystemOfUnitsCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SystemOfUnitsCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="SystemOfUnitsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 28</value>
+  </data>
+  <data name="SystemOfUnitsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 21</value>
+  </data>
+  <data name="SystemOfUnitsCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="SystemOfUnitsCheckBox.Text" xml:space="preserve">
+    <value>System of Units</value>
+  </data>
+  <data name="&gt;&gt;SystemOfUnitsCheckBox.Name" xml:space="preserve">
+    <value>SystemOfUnitsCheckBox</value>
+  </data>
+  <data name="&gt;&gt;SystemOfUnitsCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SystemOfUnitsCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;SystemOfUnitsCheckBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Step03Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step03Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 50</value>
+  </data>
+  <data name="Step03Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step03Label.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="Step03Label.Text" xml:space="preserve">
+    <value>3)</value>
+  </data>
+  <data name="Step03Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step03Label.Name" xml:space="preserve">
+    <value>Step03Label</value>
+  </data>
+  <data name="&gt;&gt;Step03Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step03Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step03Label.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="ProjectDecriptionCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ProjectDecriptionCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ProjectDecriptionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 50</value>
+  </data>
+  <data name="ProjectDecriptionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 21</value>
+  </data>
+  <data name="ProjectDecriptionCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="ProjectDecriptionCheckBox.Text" xml:space="preserve">
+    <value>Project Description</value>
+  </data>
+  <data name="&gt;&gt;ProjectDecriptionCheckBox.Name" xml:space="preserve">
+    <value>ProjectDecriptionCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ProjectDecriptionCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ProjectDecriptionCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;ProjectDecriptionCheckBox.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="HeadMeasurementCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="HeadMeasurementCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="HeadMeasurementCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 250</value>
+  </data>
+  <data name="HeadMeasurementCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>198, 21</value>
+  </data>
+  <data name="HeadMeasurementCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="HeadMeasurementCheckBox.Text" xml:space="preserve">
+    <value>Head Measurement Device</value>
+  </data>
+  <data name="&gt;&gt;HeadMeasurementCheckBox.Name" xml:space="preserve">
+    <value>HeadMeasurementCheckBox</value>
+  </data>
+  <data name="&gt;&gt;HeadMeasurementCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadMeasurementCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;HeadMeasurementCheckBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="Step10Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step10Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 250</value>
+  </data>
+  <data name="Step10Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step10Label.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="Step10Label.Text" xml:space="preserve">
+    <value>10)</value>
+  </data>
+  <data name="Step10Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step10Label.Name" xml:space="preserve">
+    <value>Step10Label</value>
+  </data>
+  <data name="&gt;&gt;Step10Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step10Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step10Label.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Step11Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step11Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 272</value>
+  </data>
+  <data name="Step11Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step11Label.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="Step11Label.Text" xml:space="preserve">
+    <value>11)</value>
+  </data>
+  <data name="Step11Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step11Label.Name" xml:space="preserve">
+    <value>Step11Label</value>
+  </data>
+  <data name="&gt;&gt;Step11Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step11Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step11Label.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="FlumeCrestCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="FlumeCrestCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="FlumeCrestCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 228</value>
+  </data>
+  <data name="FlumeCrestCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>102, 21</value>
+  </data>
+  <data name="FlumeCrestCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="FlumeCrestCheckBox.Text" xml:space="preserve">
+    <value>Flume Crest</value>
+  </data>
+  <data name="&gt;&gt;FlumeCrestCheckBox.Name" xml:space="preserve">
+    <value>FlumeCrestCheckBox</value>
+  </data>
+  <data name="&gt;&gt;FlumeCrestCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FlumeCrestCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;FlumeCrestCheckBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="Step08Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step08Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 183</value>
+  </data>
+  <data name="Step08Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step08Label.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="Step08Label.Text" xml:space="preserve">
+    <value>8)</value>
+  </data>
+  <data name="Step08Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step08Label.Name" xml:space="preserve">
+    <value>Step08Label</value>
+  </data>
+  <data name="&gt;&gt;Step08Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step08Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step08Label.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="DefineControlLabel2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="DefineControlLabel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="DefineControlLabel2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DefineControlLabel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 208</value>
+  </data>
+  <data name="DefineControlLabel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 17</value>
+  </data>
+  <data name="DefineControlLabel2.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="DefineControlLabel2.Text" xml:space="preserve">
+    <value>Define Control</value>
+  </data>
+  <data name="&gt;&gt;DefineControlLabel2.Name" xml:space="preserve">
+    <value>DefineControlLabel2</value>
+  </data>
+  <data name="&gt;&gt;DefineControlLabel2.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DefineControlLabel2.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;DefineControlLabel2.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="ChannelDepthCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ChannelDepthCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ChannelDepthCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 95</value>
+  </data>
+  <data name="ChannelDepthCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>121, 21</value>
+  </data>
+  <data name="ChannelDepthCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="ChannelDepthCheckBox.Text" xml:space="preserve">
+    <value>Channel Depth</value>
+  </data>
+  <data name="&gt;&gt;ChannelDepthCheckBox.Name" xml:space="preserve">
+    <value>ChannelDepthCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ChannelDepthCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ChannelDepthCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;ChannelDepthCheckBox.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="Step07Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step07Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 161</value>
+  </data>
+  <data name="Step07Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step07Label.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="Step07Label.Text" xml:space="preserve">
+    <value>7)</value>
+  </data>
+  <data name="Step07Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step07Label.Name" xml:space="preserve">
+    <value>Step07Label</value>
+  </data>
+  <data name="&gt;&gt;Step07Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step07Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step07Label.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="Step06Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step06Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 139</value>
+  </data>
+  <data name="Step06Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step06Label.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="Step06Label.Text" xml:space="preserve">
+    <value>6)</value>
+  </data>
+  <data name="Step06Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step06Label.Name" xml:space="preserve">
+    <value>Step06Label</value>
+  </data>
+  <data name="&gt;&gt;Step06Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step06Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step06Label.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="FreeboardRequirementsCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="FreeboardRequirementsCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="FreeboardRequirementsCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 183</value>
+  </data>
+  <data name="FreeboardRequirementsCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>185, 21</value>
+  </data>
+  <data name="FreeboardRequirementsCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="FreeboardRequirementsCheckBox.Text" xml:space="preserve">
+    <value>Freeboard Requirements</value>
+  </data>
+  <data name="&gt;&gt;FreeboardRequirementsCheckBox.Name" xml:space="preserve">
+    <value>FreeboardRequirementsCheckBox</value>
+  </data>
+  <data name="&gt;&gt;FreeboardRequirementsCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FreeboardRequirementsCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;FreeboardRequirementsCheckBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="Step05Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step05Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 117</value>
+  </data>
+  <data name="Step05Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step05Label.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="Step05Label.Text" xml:space="preserve">
+    <value>5)</value>
+  </data>
+  <data name="Step05Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step05Label.Name" xml:space="preserve">
+    <value>Step05Label</value>
+  </data>
+  <data name="&gt;&gt;Step05Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step05Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step05Label.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="DischargeTailwaterCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="DischargeTailwaterCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DischargeTailwaterCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 161</value>
+  </data>
+  <data name="DischargeTailwaterCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>335, 21</value>
+  </data>
+  <data name="DischargeTailwaterCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="DischargeTailwaterCheckBox.Text" xml:space="preserve">
+    <value>Discharge Range &amp;&amp; Tailwater Calculation Method</value>
+  </data>
+  <data name="&gt;&gt;DischargeTailwaterCheckBox.Name" xml:space="preserve">
+    <value>DischargeTailwaterCheckBox</value>
+  </data>
+  <data name="&gt;&gt;DischargeTailwaterCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeTailwaterCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;DischargeTailwaterCheckBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="Step04Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step04Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 95</value>
+  </data>
+  <data name="Step04Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step04Label.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="Step04Label.Text" xml:space="preserve">
+    <value>4)</value>
+  </data>
+  <data name="Step04Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step04Label.Name" xml:space="preserve">
+    <value>Step04Label</value>
+  </data>
+  <data name="&gt;&gt;Step04Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step04Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step04Label.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="TailwaterChannelCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="TailwaterChannelCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="TailwaterChannelCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 139</value>
+  </data>
+  <data name="TailwaterChannelCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>140, 21</value>
+  </data>
+  <data name="TailwaterChannelCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="TailwaterChannelCheckBox.Text" xml:space="preserve">
+    <value>Tailwater Channel</value>
+  </data>
+  <data name="&gt;&gt;TailwaterChannelCheckBox.Name" xml:space="preserve">
+    <value>TailwaterChannelCheckBox</value>
+  </data>
+  <data name="&gt;&gt;TailwaterChannelCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;TailwaterChannelCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;TailwaterChannelCheckBox.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="Step09Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step09Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 228</value>
+  </data>
+  <data name="Step09Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step09Label.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="Step09Label.Text" xml:space="preserve">
+    <value>9)</value>
+  </data>
+  <data name="Step09Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step09Label.Name" xml:space="preserve">
+    <value>Step09Label</value>
+  </data>
+  <data name="&gt;&gt;Step09Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step09Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step09Label.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="ControlSectionCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ControlSectionCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ControlSectionCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 272</value>
+  </data>
+  <data name="ControlSectionCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 21</value>
+  </data>
+  <data name="ControlSectionCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="ControlSectionCheckBox.Text" xml:space="preserve">
+    <value>Control Section</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionCheckBox.Name" xml:space="preserve">
+    <value>ControlSectionCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionCheckBox.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="Step01Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="Step01Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 6</value>
+  </data>
+  <data name="Step01Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>30, 26</value>
+  </data>
+  <data name="Step01Label.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="Step01Label.Text" xml:space="preserve">
+    <value>1)</value>
+  </data>
+  <data name="Step01Label.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;Step01Label.Name" xml:space="preserve">
+    <value>Step01Label</value>
+  </data>
+  <data name="&gt;&gt;Step01Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Step01Label.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;Step01Label.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="ApproachChannelCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ApproachChannelCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ApproachChannelCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 117</value>
+  </data>
+  <data name="ApproachChannelCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 21</value>
+  </data>
+  <data name="ApproachChannelCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="ApproachChannelCheckBox.Text" xml:space="preserve">
+    <value>Approach Channel</value>
+  </data>
+  <data name="&gt;&gt;ApproachChannelCheckBox.Name" xml:space="preserve">
+    <value>ApproachChannelCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ApproachChannelCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ApproachChannelCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;ApproachChannelCheckBox.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="DefineCanalLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="DefineCanalLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="DefineCanalLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DefineCanalLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 75</value>
+  </data>
+  <data name="DefineCanalLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 17</value>
+  </data>
+  <data name="DefineCanalLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="DefineCanalLabel.Text" xml:space="preserve">
+    <value>Define Canal</value>
+  </data>
+  <data name="&gt;&gt;DefineCanalLabel.Name" xml:space="preserve">
+    <value>DefineCanalLabel</value>
+  </data>
+  <data name="&gt;&gt;DefineCanalLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DefineCanalLabel.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;DefineCanalLabel.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="GettingStartedCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GettingStartedCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GettingStartedCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 6</value>
+  </data>
+  <data name="GettingStartedCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>123, 21</value>
+  </data>
+  <data name="GettingStartedCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="GettingStartedCheckBox.Text" xml:space="preserve">
+    <value>Getting Started</value>
+  </data>
+  <data name="&gt;&gt;GettingStartedCheckBox.Name" xml:space="preserve">
+    <value>GettingStartedCheckBox</value>
+  </data>
+  <data name="&gt;&gt;GettingStartedCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;GettingStartedCheckBox.Parent" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;GettingStartedCheckBox.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="MenuPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="MenuPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="MenuPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 170</value>
+  </data>
+  <data name="MenuPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="MenuPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>404, 303</value>
+  </data>
+  <data name="MenuPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;MenuPanel.Name" xml:space="preserve">
+    <value>MenuPanel</value>
+  </data>
+  <data name="&gt;&gt;MenuPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MenuPanel.Parent" xml:space="preserve">
+    <value>WizardPanel</value>
+  </data>
+  <data name="&gt;&gt;MenuPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="StepPanel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="StepPanel2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="StepPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 473</value>
+  </data>
+  <data name="StepPanel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="StepPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>404, 30</value>
+  </data>
+  <data name="StepPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;StepPanel2.Name" xml:space="preserve">
+    <value>StepPanel2</value>
+  </data>
+  <data name="&gt;&gt;StepPanel2.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StepPanel2.Parent" xml:space="preserve">
+    <value>WizardPanel</value>
+  </data>
+  <data name="&gt;&gt;StepPanel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="StepPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="StepPanel1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="StepPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="StepPanel1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="StepPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>404, 170</value>
+  </data>
+  <data name="StepPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;StepPanel1.Name" xml:space="preserve">
+    <value>StepPanel1</value>
+  </data>
+  <data name="&gt;&gt;StepPanel1.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StepPanel1.Parent" xml:space="preserve">
+    <value>WizardPanel</value>
+  </data>
+  <data name="&gt;&gt;StepPanel1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="WizardPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="WizardPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="WizardPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 17</value>
+  </data>
+  <data name="WizardPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="WizardPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>404, 503</value>
+  </data>
+  <data name="WizardPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;WizardPanel.Name" xml:space="preserve">
+    <value>WizardPanel</value>
+  </data>
+  <data name="&gt;&gt;WizardPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;WizardPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;WizardPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="CloseButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CloseButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>297, 9</value>
+  </data>
+  <data name="CloseButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="CloseButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="CloseButton.Text" xml:space="preserve">
+    <value>&amp;Close</value>
+  </data>
+  <data name="&gt;&gt;CloseButton.Name" xml:space="preserve">
+    <value>CloseButton</value>
+  </data>
+  <data name="&gt;&gt;CloseButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;CloseButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;CloseButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="StepHelpButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="StepHelpButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 9</value>
+  </data>
+  <data name="StepHelpButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="StepHelpButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="StepHelpButton.Text" xml:space="preserve">
+    <value>&amp;Help</value>
+  </data>
+  <data name="StepHelpButton.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;StepHelpButton.Name" xml:space="preserve">
+    <value>StepHelpButton</value>
+  </data>
+  <data name="&gt;&gt;StepHelpButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StepHelpButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;StepHelpButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="PrevStepButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="PrevStepButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 9</value>
+  </data>
+  <data name="PrevStepButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="PrevStepButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="PrevStepButton.Text" xml:space="preserve">
+    <value>&lt; &amp;Prev</value>
+  </data>
+  <data name="&gt;&gt;PrevStepButton.Name" xml:space="preserve">
+    <value>PrevStepButton</value>
+  </data>
+  <data name="&gt;&gt;PrevStepButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;PrevStepButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;PrevStepButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="NextStepButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="NextStepButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>194, 9</value>
+  </data>
+  <data name="NextStepButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
+  </data>
+  <data name="NextStepButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="NextStepButton.Text" xml:space="preserve">
+    <value>&amp;Next &gt;</value>
+  </data>
+  <data name="&gt;&gt;NextStepButton.Name" xml:space="preserve">
+    <value>NextStepButton</value>
+  </data>
+  <data name="&gt;&gt;NextStepButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;NextStepButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;NextStepButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ControlPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="ControlPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="ControlPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 520</value>
+  </data>
+  <data name="ControlPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="ControlPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>404, 41</value>
+  </data>
+  <data name="ControlPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.Name" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="StepDescriptionLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="StepDescriptionLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="StepDescriptionLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="StepDescriptionLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="StepDescriptionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>404, 17</value>
+  </data>
+  <data name="StepDescriptionLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="StepDescriptionLabel.Text" xml:space="preserve">
+    <value>Step Description</value>
+  </data>
+  <data name="&gt;&gt;StepDescriptionLabel.Name" xml:space="preserve">
+    <value>StepDescriptionLabel</value>
+  </data>
+  <data name="&gt;&gt;StepDescriptionLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StepDescriptionLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StepDescriptionLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AccessibleDescription" xml:space="preserve">
+    <value>Wizard guides user through initial data entry sequence</value>
+  </data>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>Flume Wizard</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>404, 561</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>420, 600</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>Manual</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Flume Wizard</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FlumeWizard</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

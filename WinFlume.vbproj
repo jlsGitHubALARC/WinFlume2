@@ -1,0 +1,1294 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{29B1C869-960E-43AB-BCCA-23939B9C859B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>WinFlume.My.MyApplication</StartupObject>
+    <RootNamespace>WinFlume</RootNamespace>
+    <AssemblyName>WinFlume</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <ApplicationIcon>FLUME.ICO</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>WinFlume.xml</DocumentationFile>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>WinFlume.xml</DocumentationFile>
+    <NoWarn>42353,42354,42355</NoWarn>
+    <WarningsAsErrors>41999,42016,42017,42018,42019,42020,42021,42022,42032,42036</WarningsAsErrors>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Flume, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Flume\Flume\bin\Flume.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CalibrationControls\DitchridersTableControl.Designer.vb">
+      <DependentUpon>DitchridersTableControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CalibrationControls\DitchridersTableControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalibrationControls\RatingEquationControl.Designer.vb">
+      <DependentUpon>RatingEquationControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CalibrationControls\RatingEquationControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalibrationControls\RatingEquationGraph.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CalibrationControls\RatingTableControl.Designer.vb">
+      <DependentUpon>RatingTableControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CalibrationControls\RatingTableControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\CircleInCircleControl.Designer.vb">
+      <DependentUpon>CircleInCircleControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\CircleInCircleControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\ParabolaInParabolaControl.Designer.vb">
+      <DependentUpon>ParabolaInParabolaControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\ParabolaInParabolaControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInRectangleControl.Designer.vb">
+      <DependentUpon>SillInRectangleControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInRectangleControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInTrapezoidControl.Designer.vb">
+      <DependentUpon>SillInTrapezoidControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInTrapezoidControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\RectangleInRectangleControl.Designer.vb">
+      <DependentUpon>RectangleInRectangleControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\RectangleInRectangleControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInVShapedControl.Designer.vb">
+      <DependentUpon>SillInVShapedControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInVShapedControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInRectangleControl.Designer.vb">
+      <DependentUpon>TrapezoidInRectangleControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInRectangleControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInTrapezoidControl.Designer.vb">
+      <DependentUpon>TrapezoidInTrapezoidControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInTrapezoidControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInVShapedControl.Designer.vb">
+      <DependentUpon>TrapezoidInVShapedControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInVShapedControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\UShapedInUShapedControl.Designer.vb">
+      <DependentUpon>UShapedInUShapedControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\UShapedInUShapedControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\VShapedInVShapedControl.Designer.vb">
+      <DependentUpon>VShapedInVShapedControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\VShapedInVShapedControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\AboutWinFlumeDialog.Designer.vb">
+      <DependentUpon>AboutWinFlumeDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\AboutWinFlumeDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\ControlMatchedToApproachDialog.Designer.vb">
+      <DependentUpon>ControlMatchedToApproachDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\ControlMatchedToApproachDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\ControlViewerDialog.Designer.vb">
+      <DependentUpon>ControlViewerDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\ControlViewerDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\db_GetIntegerValue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\db_GetStringValue.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\MatchControlDialog.Designer.vb">
+      <DependentUpon>MatchControlDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\MatchControlDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\MatchTailwaterDialog.Designer.vb">
+      <DependentUpon>MatchTailwaterDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\MatchTailwaterDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\NewFlumeDialog.Designer.vb">
+      <DependentUpon>NewFlumeDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\NewFlumeDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\SillHeightMatchesProfile.Designer.vb">
+      <DependentUpon>SillHeightMatchesProfile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\SillHeightMatchesProfile.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\StartFlumeDialog.Designer.vb">
+      <DependentUpon>StartFlumeDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\StartFlumeDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\TailwaterMatchedToApproachDialog.Designer.vb">
+      <DependentUpon>TailwaterMatchedToApproachDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\TailwaterMatchedToApproachDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\WallGageViewer.Designer.vb">
+      <DependentUpon>WallGageViewer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\WallGageViewer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawingsReports\FlumeDrawings.vb" />
+    <Compile Include="DrawingsReports\RatingTableDrawing.vb" />
+    <Compile Include="CalibrationControls\RatingTableGraph.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\CircleControl.Designer.vb">
+      <DependentUpon>CircleControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\CircleControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\ComplexTrapezoidControl.Designer.vb">
+      <DependentUpon>ComplexTrapezoidControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\ComplexTrapezoidControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\CrossSectionControl.Designer.vb">
+      <DependentUpon>CrossSectionControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\CrossSectionControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\ParabolaControl.Designer.vb">
+      <DependentUpon>ParabolaControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\ParabolaControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\RectangularControl.Designer.vb">
+      <DependentUpon>RectangularControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\RectangularControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInCircleControl.Designer.vb">
+      <DependentUpon>SillInCircleControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInCircleControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInParabolaControl.Designer.vb">
+      <DependentUpon>SillInParabolaControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInParabolaControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInUShapedControl.Designer.vb">
+      <DependentUpon>SillInUShapedControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\SillInUShapedControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\SimpleTrapezoidControl.Designer.vb">
+      <DependentUpon>SimpleTrapezoidControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\SimpleTrapezoidControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInCircleControl.Designer.vb">
+      <DependentUpon>TrapezoidInCircleControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInCircleControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInParabolaControl.Designer.vb">
+      <DependentUpon>TrapezoidInParabolaControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInParabolaControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInUShapedControl.Designer.vb">
+      <DependentUpon>TrapezoidInUShapedControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\TrapezoidInUShapedControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\UShapedControl.Designer.vb">
+      <DependentUpon>UShapedControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\UShapedControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\VinRectangleControl.Designer.vb">
+      <DependentUpon>VinRectangleControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\VinRectangleControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CrossSectionControls\VShapedControl.Designer.vb">
+      <DependentUpon>VShapedControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrossSectionControls\VShapedControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\DefinitionSketchDialog.Designer.vb">
+      <DependentUpon>DefinitionSketchDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\DefinitionSketchDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\PdfViewerDialog.Designer.vb">
+      <DependentUpon>PdfViewerDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\PdfViewerDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogBoxes\UnitsDialog.Designer.vb">
+      <DependentUpon>UnitsDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="DialogBoxes\UnitsDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DrawingsReports\BaseReport.vb" />
+    <Compile Include="DrawingsReports\DitchridersTableReport.vb" />
+    <Compile Include="DrawingsReports\FlumeDataReport.vb" />
+    <Compile Include="DrawingsReports\FlumeDesignReview.vb" />
+    <Compile Include="DrawingsReports\RatingEquationReport.vb" />
+    <Compile Include="DrawingsReports\RatingTableReport.vb" />
+    <Compile Include="FlumeAPI.vb" />
+    <Compile Include="HighLevelControls\CalibrationControl.Designer.vb">
+      <DependentUpon>CalibrationControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HighLevelControls\CalibrationControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HighLevelControls\DataComparisonControl.Designer.vb">
+      <DependentUpon>DataComparisonControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HighLevelControls\DataComparisonControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HighLevelControls\DefineCanalControl.Designer.vb">
+      <DependentUpon>DefineCanalControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HighLevelControls\DefineCanalControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HighLevelControls\DefineControlControl.Designer.vb">
+      <DependentUpon>DefineControlControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HighLevelControls\DefineControlControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HighLevelControls\DesignControl.Designer.vb">
+      <DependentUpon>DesignControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HighLevelControls\DesignControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HighLevelControls\DrawingsReportsControl.Designer.vb">
+      <DependentUpon>DrawingsReportsControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HighLevelControls\DrawingsReportsControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HighLevelControls\WallGageControl.Designer.vb">
+      <DependentUpon>WallGageControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="HighLevelControls\WallGageControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Button.Designer.vb">
+      <DependentUpon>ctl_Button.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Button.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Canvas2D.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_CheckBox.Designer.vb">
+      <DependentUpon>ctl_CheckBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_CheckBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_ComboBox.Designer.vb">
+      <DependentUpon>ctl_ComboBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_ComboBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_DataGridView.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Graph2D.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Graph2D2Y.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_GroupBox.Designer.vb">
+      <DependentUpon>ctl_GroupBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_GroupBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Label.Designer.vb">
+      <DependentUpon>ctl_Label.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Label.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Panel.Designer.vb">
+      <DependentUpon>ctl_Panel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Panel.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_PictureBox.Designer.vb">
+      <DependentUpon>ctl_PictureBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_PictureBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Precision.Designer.vb">
+      <DependentUpon>ctl_Precision.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Precision.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_RadioButton.Designer.vb">
+      <DependentUpon>ctl_RadioButton.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_RadioButton.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Single.Designer.vb">
+      <DependentUpon>ctl_Single.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Single.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Single6Units.Designer.vb">
+      <DependentUpon>ctl_Single6Units.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_Single6Units.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_SingleUnits.Designer.vb">
+      <DependentUpon>ctl_SingleUnits.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_SingleUnits.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_SingleUpDown.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_StatusPanel.Designer.vb">
+      <DependentUpon>ctl_StatusPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_StatusPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_TabControl.Designer.vb">
+      <DependentUpon>ctl_TabControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_TabControl.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_TextBox.Designer.vb">
+      <DependentUpon>ctl_TextBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_TextBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ctl_WallGage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LowLevelControls\ex_PictureBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MeasuredDataControls\MeasuredDataEntryControl.Designer.vb">
+      <DependentUpon>MeasuredDataEntryControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MeasuredDataControls\MeasuredDataEntryControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasuredDataControls\RatingComparisonControl.Designer.vb">
+      <DependentUpon>RatingComparisonControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MeasuredDataControls\RatingComparisonControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MeasuredDataControls\RatingComparisonGraph.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\ApproachChannelControl.Designer.vb">
+      <DependentUpon>ApproachChannelControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\ApproachChannelControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\BottomProfileControl.Designer.vb">
+      <DependentUpon>BottomProfileControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\BottomProfileControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\ControlSectionControl.Designer.vb">
+      <DependentUpon>ControlSectionControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\ControlSectionControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\DesignOptionsControl.Designer.vb">
+      <DependentUpon>DesignOptionsControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\DesignOptionsControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\DischargeTailwaterControl.Designer.vb">
+      <DependentUpon>DischargeTailwaterControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\DischargeTailwaterControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\DownstreamViewControl.Designer.vb">
+      <DependentUpon>DownstreamViewControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\DownstreamViewControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\FlumeCrestControl.Designer.vb">
+      <DependentUpon>FlumeCrestControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\FlumeCrestControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\FreeboardRequirementControl.Designer.vb">
+      <DependentUpon>FreeboardRequirementControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\FreeboardRequirementControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\HeadMeasurementControl.Designer.vb">
+      <DependentUpon>HeadMeasurementControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\HeadMeasurementControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\AlternativeDesignsControl.Designer.vb">
+      <DependentUpon>AlternativeDesignsControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\AlternativeDesignsControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\SideBarControl.Designer.vb">
+      <DependentUpon>SideBarControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\SideBarControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalibrationControls\TableChoicesControl.Designer.vb">
+      <DependentUpon>TableChoicesControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CalibrationControls\TableChoicesControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\TailwaterChannelControl.Designer.vb">
+      <DependentUpon>TailwaterChannelControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\TailwaterChannelControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MidLevelControls\UpstreamViewControl.Designer.vb">
+      <DependentUpon>UpstreamViewControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MidLevelControls\UpstreamViewControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources.es-MX.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.es-MX.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources.es.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.es.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisLinearLookupControl.Designer.vb">
+      <DependentUpon>BasisLinearLookupControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisLinearLookupControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisManning1QHControl.Designer.vb">
+      <DependentUpon>BasisManning1QHControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisManning1QHControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisManningControl.Designer.vb">
+      <DependentUpon>BasisManningControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisManningControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisPower2QHControl.Designer.vb">
+      <DependentUpon>BasisPower2QHControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisPower2QHControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisPower3QHControl.Designer.vb">
+      <DependentUpon>BasisPower3QHControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TailwaterBasisControls\BasisPower3QHControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utilities\BasePage.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utilities\GraphOutput.vb" />
+    <Compile Include="Utilities\RegistryIO.vb" />
+    <Compile Include="Utilities\RtfPage.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Utilities\TextOutput.vb" />
+    <Compile Include="Utilities\Utilities.vb" />
+    <Compile Include="WallGageControls\FixedDischargeDataControl.Designer.vb">
+      <DependentUpon>FixedDischargeDataControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WallGageControls\FixedDischargeDataControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WallGageControls\FixedHeadDataControl.Designer.vb">
+      <DependentUpon>FixedHeadDataControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WallGageControls\FixedHeadDataControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WallGageControls\WallGagePlotsControl.Designer.vb">
+      <DependentUpon>WallGagePlotsControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WallGageControls\WallGagePlotsControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="WinFlumeDesign.vb" />
+    <Compile Include="WinFlumeForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinFlumeForm.Designer.vb">
+      <DependentUpon>WinFlumeForm.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="WinFlumeSectionType.vb" />
+    <Compile Include="Wizard\DefineApproachChannel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\DefineControlSection.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\DefineDischargeTailwater.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\DefineFlumeCrest.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\DefineFreeboardRequirements.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\DefineHeadMeasDevice.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\DefineTailwaterChannel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\EditBottomProfile.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\FlumeWizard.Designer.vb">
+      <DependentUpon>FlumeWizard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\FlumeWizard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wizard\GettingStarted.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\ProjectDescription.Designer.vb">
+      <DependentUpon>ProjectDescription.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\ProjectDescription.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\SystemOfUnits.Designer.vb">
+      <DependentUpon>SystemOfUnits.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\SystemOfUnits.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Wizard\WizardStep.Designer.vb">
+      <DependentUpon>WizardStep.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\WizardStep.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CalibrationControls\DitchridersTableControl.resx">
+      <DependentUpon>DitchridersTableControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalibrationControls\RatingEquationControl.resx">
+      <DependentUpon>RatingEquationControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalibrationControls\RatingTableControl.resx">
+      <DependentUpon>RatingTableControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\CircleControl.resx">
+      <DependentUpon>CircleControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\CircleInCircleControl.resx">
+      <DependentUpon>CircleInCircleControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\ComplexTrapezoidControl.resx">
+      <DependentUpon>ComplexTrapezoidControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\CrossSectionControl.resx">
+      <DependentUpon>CrossSectionControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\ParabolaControl.resx">
+      <DependentUpon>ParabolaControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\ParabolaInParabolaControl.resx">
+      <DependentUpon>ParabolaInParabolaControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\RectangularControl.resx">
+      <DependentUpon>RectangularControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\SillInCircleControl.resx">
+      <DependentUpon>SillInCircleControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\SillInParabolaControl.resx">
+      <DependentUpon>SillInParabolaControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\SillInRectangleControl.resx">
+      <DependentUpon>SillInRectangleControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\SillInTrapezoidControl.resx">
+      <DependentUpon>SillInTrapezoidControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\SillInUShapedControl.resx">
+      <DependentUpon>SillInUShapedControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\SillInVShapedControl.resx">
+      <DependentUpon>SillInVShapedControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\SimpleTrapezoidControl.resx">
+      <DependentUpon>SimpleTrapezoidControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\TrapezoidInCircleControl.resx">
+      <DependentUpon>TrapezoidInCircleControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\TrapezoidInParabolaControl.resx">
+      <DependentUpon>TrapezoidInParabolaControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\RectangleInRectangleControl.resx">
+      <DependentUpon>RectangleInRectangleControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\TrapezoidInRectangleControl.resx">
+      <DependentUpon>TrapezoidInRectangleControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\TrapezoidInTrapezoidControl.resx">
+      <DependentUpon>TrapezoidInTrapezoidControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\TrapezoidInUShapedControl.resx">
+      <DependentUpon>TrapezoidInUShapedControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\TrapezoidInVShapedControl.resx">
+      <DependentUpon>TrapezoidInVShapedControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\UShapedControl.resx">
+      <DependentUpon>UShapedControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\UShapedInUShapedControl.resx">
+      <DependentUpon>UShapedInUShapedControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\VinRectangleControl.resx">
+      <DependentUpon>VinRectangleControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\VShapedControl.resx">
+      <DependentUpon>VShapedControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrossSectionControls\VShapedInVShapedControl.resx">
+      <DependentUpon>VShapedInVShapedControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\AboutWinFlumeDialog.resx">
+      <DependentUpon>AboutWinFlumeDialog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\ControlMatchedToApproachDialog.resx">
+      <DependentUpon>ControlMatchedToApproachDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\ControlViewerDialog.resx">
+      <DependentUpon>ControlViewerDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\db_GetIntegerValue.resx" />
+    <EmbeddedResource Include="DialogBoxes\db_GetStringValue.resx" />
+    <EmbeddedResource Include="DialogBoxes\DefinitionSketchDialog.resx">
+      <DependentUpon>DefinitionSketchDialog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\MatchControlDialog.resx">
+      <DependentUpon>MatchControlDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\MatchTailwaterDialog.resx">
+      <DependentUpon>MatchTailwaterDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\NewFlumeDialog.resx">
+      <DependentUpon>NewFlumeDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\PdfViewerDialog.resx">
+      <DependentUpon>PdfViewerDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\SillHeightMatchesProfile.resx">
+      <DependentUpon>SillHeightMatchesProfile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\StartFlumeDialog.resx">
+      <DependentUpon>StartFlumeDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\TailwaterMatchedToApproachDialog.resx">
+      <DependentUpon>TailwaterMatchedToApproachDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\UnitsDialog.es.resx">
+      <DependentUpon>UnitsDialog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\UnitsDialog.resx">
+      <DependentUpon>UnitsDialog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogBoxes\WallGageViewer.resx">
+      <DependentUpon>WallGageViewer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighLevelControls\CalibrationControl.resx">
+      <DependentUpon>CalibrationControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighLevelControls\DataComparisonControl.resx">
+      <DependentUpon>DataComparisonControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighLevelControls\DefineCanalControl.es-MX.resx">
+      <DependentUpon>DefineCanalControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighLevelControls\DefineCanalControl.resx">
+      <DependentUpon>DefineCanalControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighLevelControls\DefineControlControl.resx">
+      <DependentUpon>DefineControlControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighLevelControls\DesignControl.resx">
+      <DependentUpon>DesignControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighLevelControls\DrawingsReportsControl.resx">
+      <DependentUpon>DrawingsReportsControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HighLevelControls\WallGageControl.resx">
+      <DependentUpon>WallGageControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_Canvas2D.resx">
+      <DependentUpon>ctl_Canvas2D.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_CheckBox.resx">
+      <DependentUpon>ctl_CheckBox.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_ComboBox.resx">
+      <DependentUpon>ctl_ComboBox.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_DataGridView.resx">
+      <DependentUpon>ctl_DataGridView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_Graph2D.resx">
+      <DependentUpon>ctl_Graph2D.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_GroupBox.resx">
+      <DependentUpon>ctl_GroupBox.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_Panel.resx">
+      <DependentUpon>ctl_Panel.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_Precision.resx">
+      <DependentUpon>ctl_Precision.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_RadioButton.resx">
+      <DependentUpon>ctl_RadioButton.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_Single.resx">
+      <DependentUpon>ctl_Single.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_Single6Units.resx">
+      <DependentUpon>ctl_Single6Units.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_SingleUnits.resx">
+      <DependentUpon>ctl_SingleUnits.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_SingleUpDown.resx">
+      <DependentUpon>ctl_SingleUpDown.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_StatusPanel.resx">
+      <DependentUpon>ctl_StatusPanel.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_TabControl.resx">
+      <DependentUpon>ctl_TabControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ctl_TextBox.resx">
+      <DependentUpon>ctl_TextBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LowLevelControls\ex_PictureBox.resx">
+      <DependentUpon>ex_PictureBox.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasuredDataControls\MeasuredDataEntryControl.resx">
+      <DependentUpon>MeasuredDataEntryControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MeasuredDataControls\RatingComparisonControl.resx">
+      <DependentUpon>RatingComparisonControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\ApproachChannelControl.es-MX.resx">
+      <DependentUpon>ApproachChannelControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\ApproachChannelControl.resx">
+      <DependentUpon>ApproachChannelControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\BottomProfileControl.es-MX.resx">
+      <DependentUpon>BottomProfileControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\BottomProfileControl.resx">
+      <DependentUpon>BottomProfileControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\ControlSectionControl.es-MX.resx">
+      <DependentUpon>ControlSectionControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\ControlSectionControl.resx">
+      <DependentUpon>ControlSectionControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\DesignOptionsControl.resx">
+      <DependentUpon>DesignOptionsControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\DischargeTailwaterControl.resx">
+      <DependentUpon>DischargeTailwaterControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\DownstreamViewControl.es-MX.resx">
+      <DependentUpon>DownstreamViewControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\DownstreamViewControl.resx">
+      <DependentUpon>DownstreamViewControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\FlumeCrestControl.resx">
+      <DependentUpon>FlumeCrestControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\FreeboardRequirementControl.resx">
+      <DependentUpon>FreeboardRequirementControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\HeadMeasurementControl.resx">
+      <DependentUpon>HeadMeasurementControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\AlternativeDesignsControl.resx">
+      <DependentUpon>AlternativeDesignsControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\SideBarControl.es-MX.resx">
+      <DependentUpon>SideBarControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\SideBarControl.resx">
+      <DependentUpon>SideBarControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalibrationControls\TableChoicesControl.resx">
+      <DependentUpon>TableChoicesControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\TailwaterChannelControl.es-MX.resx">
+      <DependentUpon>TailwaterChannelControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\TailwaterChannelControl.resx">
+      <DependentUpon>TailwaterChannelControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\UpstreamViewControl.es-MX.resx">
+      <DependentUpon>UpstreamViewControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MidLevelControls\UpstreamViewControl.resx">
+      <DependentUpon>UpstreamViewControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.es-MX.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.es-MX.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources.es.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.es.Designer.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TailwaterBasisControls\BasisLinearLookupControl.resx">
+      <DependentUpon>BasisLinearLookupControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TailwaterBasisControls\BasisManning1QHControl.resx">
+      <DependentUpon>BasisManning1QHControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TailwaterBasisControls\BasisManningControl.resx">
+      <DependentUpon>BasisManningControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TailwaterBasisControls\BasisPower2QHControl.resx">
+      <DependentUpon>BasisPower2QHControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TailwaterBasisControls\BasisPower3QHControl.resx">
+      <DependentUpon>BasisPower3QHControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\BasePage.resx">
+      <DependentUpon>BasePage.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\RtfPage.resx">
+      <DependentUpon>RtfPage.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WallGageControls\FixedDischargeDataControl.resx">
+      <DependentUpon>FixedDischargeDataControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WallGageControls\FixedHeadDataControl.resx">
+      <DependentUpon>FixedHeadDataControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WallGageControls\WallGagePlotsControl.resx">
+      <DependentUpon>WallGagePlotsControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFlumeForm.es-MX.resx">
+      <DependentUpon>WinFlumeForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFlumeForm.resx">
+      <DependentUpon>WinFlumeForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFlumeForm.se-FI.resx">
+      <DependentUpon>WinFlumeForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\DefineApproachChannel.resx">
+      <DependentUpon>DefineApproachChannel.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\DefineControlSection.resx">
+      <DependentUpon>DefineControlSection.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\DefineDischargeTailwater.resx">
+      <DependentUpon>DefineDischargeTailwater.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\DefineFlumeCrest.resx">
+      <DependentUpon>DefineFlumeCrest.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\DefineFreeboardRequirements.resx">
+      <DependentUpon>DefineFreeboardRequirements.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\DefineHeadMeasDevice.resx">
+      <DependentUpon>DefineHeadMeasDevice.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\DefineTailwaterChannel.resx">
+      <DependentUpon>DefineTailwaterChannel.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\EditBottomProfile.resx">
+      <DependentUpon>EditBottomProfile.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\FlumeWizard.resx">
+      <DependentUpon>FlumeWizard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\GettingStarted.resx">
+      <DependentUpon>GettingStarted.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\ProjectDescription.resx">
+      <DependentUpon>ProjectDescription.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\SystemOfUnits.resx">
+      <DependentUpon>SystemOfUnits.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\WizardStep.resx">
+      <DependentUpon>WizardStep.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TRAP.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\RECT.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\V.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CIRC.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\U.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FLUME.ICO" />
+    <None Include="Resources\VV.BMP" />
+    <None Include="Resources\PARAPARA.BMP" />
+    <None Include="Resources\CIRCCIRC.BMP" />
+    <Content Include="Resources\UU.BMP" />
+    <None Include="Resources\TRAPV.bmp" />
+    <None Include="Resources\SILLV.bmp" />
+    <None Include="Resources\RECTRECT.bmp" />
+    <Content Include="Resources\SILLRECT.bmp" />
+    <Content Include="Resources\SILLTRAP.BMP" />
+    <None Include="Resources\TRAPRECT.bmp" />
+    <None Include="Resources\TRAPTRAP.bmp" />
+    <None Include="Resources\USBR.GIF" />
+    <None Include="Resources\SplashPhoto.bmp" />
+    <None Include="Resources\ILRI.GIF" />
+    <None Include="Resources\ARS.GIF" />
+    <None Include="Resources\Defmovbl.bmp" />
+    <None Include="Resources\Defsktch.bmp" />
+    <None Include="Resources\TRAPPARA.BMP" />
+    <None Include="Resources\SILLPARA.BMP" />
+    <None Include="Resources\CTRAP.BMP" />
+    <None Include="Resources\VRECT.BMP" />
+    <None Include="Resources\TRAPU.BMP" />
+    <None Include="Resources\TRAPCIRC.BMP" />
+    <None Include="Resources\SILLU.BMP" />
+    <None Include="Resources\SILLCIRC.BMP" />
+    <None Include="Resources\PARA.BMP" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="AxAcroPDFLib">
+      <Guid>{05BFD3F1-6319-4F30-B752-C7A22889BCC4}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ViewAsDialogButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="ViewAsDialogButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>388, 5</value>
+  </data>
+  <data name="ViewAsDialogButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 50</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ViewAsDialogButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="ViewAsDialogButton.Text" xml:space="preserve">
+    <value>View as &amp;Dialog</value>
+  </data>
+  <data name="&gt;&gt;ViewAsDialogButton.Name" xml:space="preserve">
+    <value>ViewAsDialogButton</value>
+  </data>
+  <data name="&gt;&gt;ViewAsDialogButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ViewAsDialogButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;ViewAsDialogButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ControlSectionShape.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ControlSectionShape.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ControlSectionShape.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 30</value>
+  </data>
+  <data name="ControlSectionShape.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 17</value>
+  </data>
+  <data name="ControlSectionShape.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="ControlSectionShape.Text" xml:space="preserve">
+    <value>Complex Trapezoid</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionShape.Name" xml:space="preserve">
+    <value>ControlSectionShape</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionShape.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionShape.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionShape.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ControlSectionLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ControlSectionLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="ControlSectionLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ControlSectionLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 10</value>
+  </data>
+  <data name="ControlSectionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 17</value>
+  </data>
+  <data name="ControlSectionLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="ControlSectionLabel.Text" xml:space="preserve">
+    <value>Cont&amp;rol Section</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionLabel.Name" xml:space="preserve">
+    <value>ControlSectionLabel</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionLabel.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;ControlSectionLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="MakeSelectedCurrentButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="MakeSelectedCurrentButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>162, 5</value>
+  </data>
+  <data name="MakeSelectedCurrentButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 50</value>
+  </data>
+  <data name="MakeSelectedCurrentButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="MakeSelectedCurrentButton.Text" xml:space="preserve">
+    <value>&amp;Make Highlighted Design the New Current Design</value>
+  </data>
+  <data name="&gt;&gt;MakeSelectedCurrentButton.Name" xml:space="preserve">
+    <value>MakeSelectedCurrentButton</value>
+  </data>
+  <data name="&gt;&gt;MakeSelectedCurrentButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MakeSelectedCurrentButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;MakeSelectedCurrentButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ControlPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="ControlPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="ControlPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="ControlPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="ControlPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>466, 60</value>
+  </data>
+  <data name="ControlPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.Name" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="StatusLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="StatusLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="StatusLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 225</value>
+  </data>
+  <data name="StatusLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>466, 23</value>
+  </data>
+  <data name="StatusLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="StatusLabel.Text" xml:space="preserve">
+    <value>Status of Highlighted Design =&gt;</value>
+  </data>
+  <data name="StatusLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;StatusLabel.Name" xml:space="preserve">
+    <value>StatusLabel</value>
+  </data>
+  <data name="&gt;&gt;StatusLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StatusLabel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StatusLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ReviewDesignsTable.AccessibleDescription" xml:space="preserve">
+    <value>A copyable table of data</value>
+  </data>
+  <data name="ReviewDesignsTable.AccessibleName" xml:space="preserve">
+    <value>Review Designs Table</value>
+  </data>
+  <metadata name="SillHeightColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="SillHeightColumn.HeaderText" xml:space="preserve">
+    <value>\nSill\nHeight\n(m)</value>
+  </data>
+  <data name="SillHeightColumn.Width" type="System.Int32, mscorlib">
+    <value>149</value>
+  </data>
+  <metadata name="ThroatWidthColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="ThroatWidthColumn.HeaderText" xml:space="preserve">
+    <value>\nThroat\nWidth\n(m)</value>
+  </data>
+  <data name="ThroatWidthColumn.Width" type="System.Int32, mscorlib">
+    <value>168</value>
+  </data>
+  <metadata name="FroudNumberColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="FroudNumberColumn.HeaderText" xml:space="preserve">
+    <value>&lt;--\n&lt;--\nFroude\nNumber</value>
+  </data>
+  <data name="FroudNumberColumn.Width" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <metadata name="FreeboardAtQmaxColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="FreeboardAtQmaxColumn.HeaderText" xml:space="preserve">
+    <value>---\nPRIMARY\nFreeboard\nat Qmax</value>
+  </data>
+  <data name="FreeboardAtQmaxColumn.Width" type="System.Int32, mscorlib">
+    <value>239</value>
+  </data>
+  <metadata name="TailwaterAtQmaxColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="TailwaterAtQmaxColumn.HeaderText" xml:space="preserve">
+    <value>DESIGN\nCRITERIA\nTailwater\nat Qmax</value>
+  </data>
+  <data name="TailwaterAtQmaxColumn.Width" type="System.Int32, mscorlib">
+    <value>265</value>
+  </data>
+  <metadata name="TailwaterAtQminColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="TailwaterAtQminColumn.HeaderText" xml:space="preserve">
+    <value>CRITERIA\n--&gt;\nTailwater\nat Qmin</value>
+  </data>
+  <data name="TailwaterAtQminColumn.Width" type="System.Int32, mscorlib">
+    <value>231</value>
+  </data>
+  <metadata name="AccuracyAtQmaxColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="AccuracyAtQmaxColumn.HeaderText" xml:space="preserve">
+    <value>---\n\nAccuracy\nat Qmax</value>
+  </data>
+  <data name="AccuracyAtQmaxColumn.Width" type="System.Int32, mscorlib">
+    <value>177</value>
+  </data>
+  <metadata name="AccuracyAtQminColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="AccuracyAtQminColumn.HeaderText" xml:space="preserve">
+    <value>--&gt;\n\nAccuracy\nat Qmin</value>
+  </data>
+  <data name="AccuracyAtQminColumn.Width" type="System.Int32, mscorlib">
+    <value>177</value>
+  </data>
+  <metadata name="HeadLossCommentColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="HeadLossCommentColumn.HeaderText" xml:space="preserve">
+    <value>\nHead\nLoss\nComment</value>
+  </data>
+  <data name="HeadLossCommentColumn.Width" type="System.Int32, mscorlib">
+    <value>192</value>
+  </data>
+  <metadata name="ActualHeadLossColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="ActualHeadLossColumn.HeaderText" xml:space="preserve">
+    <value>Actual\nHead\nLoss\n(m)</value>
+  </data>
+  <data name="ActualHeadLossColumn.Width" type="System.Int32, mscorlib">
+    <value>193</value>
+  </data>
+  <metadata name="ActualFroudeNumberColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="ActualFroudeNumberColumn.HeaderText" xml:space="preserve">
+    <value>Actual\nFroude\nNumber\nat Qmax</value>
+  </data>
+  <data name="ActualFroudeNumberColumn.Width" type="System.Int32, mscorlib">
+    <value>231</value>
+  </data>
+  <metadata name="ExtraFreeboardColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="ExtraFreeboardColumn.HeaderText" xml:space="preserve">
+    <value>Extra\nFreeboard\nat Qmax\n(m)</value>
+  </data>
+  <data name="ExtraFreeboardColumn.Width" type="System.Int32, mscorlib">
+    <value>218</value>
+  </data>
+  <metadata name="SubmergenceProtectionColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="SubmergenceProtectionColumn.HeaderText" xml:space="preserve">
+    <value>\nSubmergence\nProtection\n(m)</value>
+  </data>
+  <data name="SubmergenceProtectionColumn.Width" type="System.Int32, mscorlib">
+    <value>242</value>
+  </data>
+  <metadata name="EstimatedRandomErrorColumn.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="EstimatedRandomErrorColumn.HeaderText" xml:space="preserve">
+    <value>Estimated\nRandom\nError @\nQmax/Qmin</value>
+  </data>
+  <data name="EstimatedRandomErrorColumn.Width" type="System.Int32, mscorlib">
+    <value>278</value>
+  </data>
+  <data name="ReviewDesignsTable.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="ReviewDesignsTable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 60</value>
+  </data>
+  <data name="ReviewDesignsTable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>466, 165</value>
+  </data>
+  <data name="ReviewDesignsTable.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;ReviewDesignsTable.Name" xml:space="preserve">
+    <value>ReviewDesignsTable</value>
+  </data>
+  <data name="&gt;&gt;ReviewDesignsTable.Type" xml:space="preserve">
+    <value>WinFlume.ctl_DataGridView, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ReviewDesignsTable.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ReviewDesignsTable.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AccessibleDescription" xml:space="preserve">
+    <value>Table comparing alternative designs</value>
+  </data>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>Alternative Designs</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>466, 248</value>
+  </data>
+  <data name="&gt;&gt;SillHeightColumn.Name" xml:space="preserve">
+    <value>SillHeightColumn</value>
+  </data>
+  <data name="&gt;&gt;SillHeightColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ThroatWidthColumn.Name" xml:space="preserve">
+    <value>ThroatWidthColumn</value>
+  </data>
+  <data name="&gt;&gt;ThroatWidthColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FroudNumberColumn.Name" xml:space="preserve">
+    <value>FroudNumberColumn</value>
+  </data>
+  <data name="&gt;&gt;FroudNumberColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FreeboardAtQmaxColumn.Name" xml:space="preserve">
+    <value>FreeboardAtQmaxColumn</value>
+  </data>
+  <data name="&gt;&gt;FreeboardAtQmaxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TailwaterAtQmaxColumn.Name" xml:space="preserve">
+    <value>TailwaterAtQmaxColumn</value>
+  </data>
+  <data name="&gt;&gt;TailwaterAtQmaxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TailwaterAtQminColumn.Name" xml:space="preserve">
+    <value>TailwaterAtQminColumn</value>
+  </data>
+  <data name="&gt;&gt;TailwaterAtQminColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AccuracyAtQmaxColumn.Name" xml:space="preserve">
+    <value>AccuracyAtQmaxColumn</value>
+  </data>
+  <data name="&gt;&gt;AccuracyAtQmaxColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AccuracyAtQminColumn.Name" xml:space="preserve">
+    <value>AccuracyAtQminColumn</value>
+  </data>
+  <data name="&gt;&gt;AccuracyAtQminColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;HeadLossCommentColumn.Name" xml:space="preserve">
+    <value>HeadLossCommentColumn</value>
+  </data>
+  <data name="&gt;&gt;HeadLossCommentColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ActualHeadLossColumn.Name" xml:space="preserve">
+    <value>ActualHeadLossColumn</value>
+  </data>
+  <data name="&gt;&gt;ActualHeadLossColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ActualFroudeNumberColumn.Name" xml:space="preserve">
+    <value>ActualFroudeNumberColumn</value>
+  </data>
+  <data name="&gt;&gt;ActualFroudeNumberColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExtraFreeboardColumn.Name" xml:space="preserve">
+    <value>ExtraFreeboardColumn</value>
+  </data>
+  <data name="&gt;&gt;ExtraFreeboardColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;SubmergenceProtectionColumn.Name" xml:space="preserve">
+    <value>SubmergenceProtectionColumn</value>
+  </data>
+  <data name="&gt;&gt;SubmergenceProtectionColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;EstimatedRandomErrorColumn.Name" xml:space="preserve">
+    <value>EstimatedRandomErrorColumn</value>
+  </data>
+  <data name="&gt;&gt;EstimatedRandomErrorColumn.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>AlternativeDesignsControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

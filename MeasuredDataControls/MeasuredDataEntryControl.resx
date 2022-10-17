@@ -1,0 +1,1284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="H2H1Label.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="H2H1Label.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="H2H1Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="H2H1Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 240</value>
+  </data>
+  <data name="H2H1Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 17</value>
+  </data>
+  <data name="H2H1Label.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
+  </data>
+  <data name="H2H1Label.Text" xml:space="preserve">
+    <value>(H2/H1)</value>
+  </data>
+  <data name="&gt;&gt;H2H1Label.Name" xml:space="preserve">
+    <value>H2H1Label</value>
+  </data>
+  <data name="&gt;&gt;H2H1Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;H2H1Label.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;H2H1Label.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="y2Label.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="y2Label.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="y2Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="y2Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 220</value>
+  </data>
+  <data name="y2Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 17</value>
+  </data>
+  <data name="y2Label.TabIndex" type="System.Int32, mscorlib">
+    <value>21</value>
+  </data>
+  <data name="y2Label.Text" xml:space="preserve">
+    <value>(y2)</value>
+  </data>
+  <data name="&gt;&gt;y2Label.Name" xml:space="preserve">
+    <value>y2Label</value>
+  </data>
+  <data name="&gt;&gt;y2Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;y2Label.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;y2Label.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="h2Label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="h2Label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="h2Label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="h2Label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 200</value>
+  </data>
+  <data name="h2Label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 17</value>
+  </data>
+  <data name="h2Label2.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="h2Label2.Text" xml:space="preserve">
+    <value>(h2)</value>
+  </data>
+  <data name="&gt;&gt;h2Label2.Name" xml:space="preserve">
+    <value>h2Label2</value>
+  </data>
+  <data name="&gt;&gt;h2Label2.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;h2Label2.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;h2Label2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="h2Label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="h2Label1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="h2Label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="h2Label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 180</value>
+  </data>
+  <data name="h2Label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 17</value>
+  </data>
+  <data name="h2Label1.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="h2Label1.Text" xml:space="preserve">
+    <value>(h2)</value>
+  </data>
+  <data name="&gt;&gt;h2Label1.Name" xml:space="preserve">
+    <value>h2Label1</value>
+  </data>
+  <data name="&gt;&gt;h2Label1.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;h2Label1.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;h2Label1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="CvLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CvLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="CvLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CvLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 160</value>
+  </data>
+  <data name="CvLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>34, 17</value>
+  </data>
+  <data name="CvLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="CvLabel.Text" xml:space="preserve">
+    <value>(Cv)</value>
+  </data>
+  <data name="&gt;&gt;CvLabel.Name" xml:space="preserve">
+    <value>CvLabel</value>
+  </data>
+  <data name="&gt;&gt;CvLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;CvLabel.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;CvLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="CdLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CdLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="CdLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CdLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 140</value>
+  </data>
+  <data name="CdLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 17</value>
+  </data>
+  <data name="CdLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="CdLabel.Text" xml:space="preserve">
+    <value>(Cd)</value>
+  </data>
+  <data name="&gt;&gt;CdLabel.Name" xml:space="preserve">
+    <value>CdLabel</value>
+  </data>
+  <data name="&gt;&gt;CdLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;CdLabel.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;CdLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="VaLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="VaLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="VaLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="VaLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 120</value>
+  </data>
+  <data name="VaLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 17</value>
+  </data>
+  <data name="VaLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="VaLabel.Text" xml:space="preserve">
+    <value>(Va)</value>
+  </data>
+  <data name="&gt;&gt;VaLabel.Name" xml:space="preserve">
+    <value>VaLabel</value>
+  </data>
+  <data name="&gt;&gt;VaLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;VaLabel.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;VaLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="y1Label.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="y1Label.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="y1Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="y1Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 100</value>
+  </data>
+  <data name="y1Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>33, 17</value>
+  </data>
+  <data name="y1Label.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="y1Label.Text" xml:space="preserve">
+    <value>(y1)</value>
+  </data>
+  <data name="&gt;&gt;y1Label.Name" xml:space="preserve">
+    <value>y1Label</value>
+  </data>
+  <data name="&gt;&gt;y1Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;y1Label.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;y1Label.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="H1Label.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="H1Label.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="H1Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="H1Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 80</value>
+  </data>
+  <data name="H1Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 17</value>
+  </data>
+  <data name="H1Label.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="H1Label.Text" xml:space="preserve">
+    <value>(H1)</value>
+  </data>
+  <data name="&gt;&gt;H1Label.Name" xml:space="preserve">
+    <value>H1Label</value>
+  </data>
+  <data name="&gt;&gt;H1Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;H1Label.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;H1Label.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="H1LLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="H1LLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="H1LLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="H1LLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 60</value>
+  </data>
+  <data name="H1LLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 17</value>
+  </data>
+  <data name="H1LLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="H1LLabel.Text" xml:space="preserve">
+    <value>(H1/L)</value>
+  </data>
+  <data name="&gt;&gt;H1LLabel.Name" xml:space="preserve">
+    <value>H1LLabel</value>
+  </data>
+  <data name="&gt;&gt;H1LLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;H1LLabel.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;H1LLabel.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="H1H2Label.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="H1H2Label.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="H1H2Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="H1H2Label.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 40</value>
+  </data>
+  <data name="H1H2Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 17</value>
+  </data>
+  <data name="H1H2Label.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="H1H2Label.Text" xml:space="preserve">
+    <value>(H1-H2)</value>
+  </data>
+  <data name="&gt;&gt;H1H2Label.Name" xml:space="preserve">
+    <value>H1H2Label</value>
+  </data>
+  <data name="&gt;&gt;H1H2Label.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;H1H2Label.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;H1H2Label.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="FrLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="FrLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="FrLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="FrLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>229, 20</value>
+  </data>
+  <data name="FrLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 17</value>
+  </data>
+  <data name="FrLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="FrLabel.Text" xml:space="preserve">
+    <value>(Fr)</value>
+  </data>
+  <data name="&gt;&gt;FrLabel.Name" xml:space="preserve">
+    <value>FrLabel</value>
+  </data>
+  <data name="&gt;&gt;FrLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FrLabel.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;FrLabel.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="ModularLimitCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ModularLimitCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="ModularLimitCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ModularLimitCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 260</value>
+  </data>
+  <data name="ModularLimitCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 21</value>
+  </data>
+  <data name="ModularLimitCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
+  </data>
+  <data name="ModularLimitCheckBox.Text" xml:space="preserve">
+    <value>Modular Limit</value>
+  </data>
+  <data name="&gt;&gt;ModularLimitCheckBox.Name" xml:space="preserve">
+    <value>ModularLimitCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ModularLimitCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ModularLimitCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;ModularLimitCheckBox.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="SubmergenceRatioCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SubmergenceRatioCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="SubmergenceRatioCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="SubmergenceRatioCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 240</value>
+  </data>
+  <data name="SubmergenceRatioCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 21</value>
+  </data>
+  <data name="SubmergenceRatioCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>22</value>
+  </data>
+  <data name="SubmergenceRatioCheckBox.Text" xml:space="preserve">
+    <value>Submergence Ratio</value>
+  </data>
+  <data name="&gt;&gt;SubmergenceRatioCheckBox.Name" xml:space="preserve">
+    <value>SubmergenceRatioCheckBox</value>
+  </data>
+  <data name="&gt;&gt;SubmergenceRatioCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SubmergenceRatioCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;SubmergenceRatioCheckBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="ActualTailwaterDepthCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ActualTailwaterDepthCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="ActualTailwaterDepthCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ActualTailwaterDepthCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 220</value>
+  </data>
+  <data name="ActualTailwaterDepthCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 21</value>
+  </data>
+  <data name="ActualTailwaterDepthCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="ActualTailwaterDepthCheckBox.Text" xml:space="preserve">
+    <value>Actual Tailwater Depth</value>
+  </data>
+  <data name="&gt;&gt;ActualTailwaterDepthCheckBox.Name" xml:space="preserve">
+    <value>ActualTailwaterDepthCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ActualTailwaterDepthCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ActualTailwaterDepthCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;ActualTailwaterDepthCheckBox.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="ActualTailwaterHeadCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ActualTailwaterHeadCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="ActualTailwaterHeadCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ActualTailwaterHeadCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 200</value>
+  </data>
+  <data name="ActualTailwaterHeadCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>165, 21</value>
+  </data>
+  <data name="ActualTailwaterHeadCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="ActualTailwaterHeadCheckBox.Text" xml:space="preserve">
+    <value>Actual Tailwater Head</value>
+  </data>
+  <data name="&gt;&gt;ActualTailwaterHeadCheckBox.Name" xml:space="preserve">
+    <value>ActualTailwaterHeadCheckBox</value>
+  </data>
+  <data name="&gt;&gt;ActualTailwaterHeadCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ActualTailwaterHeadCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;ActualTailwaterHeadCheckBox.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="MaxAllowableTailwaterHeadCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MaxAllowableTailwaterHeadCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="MaxAllowableTailwaterHeadCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="MaxAllowableTailwaterHeadCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 180</value>
+  </data>
+  <data name="MaxAllowableTailwaterHeadCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 21</value>
+  </data>
+  <data name="MaxAllowableTailwaterHeadCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="MaxAllowableTailwaterHeadCheckBox.Text" xml:space="preserve">
+    <value>Max Allowable Tailwater Head</value>
+  </data>
+  <data name="&gt;&gt;MaxAllowableTailwaterHeadCheckBox.Name" xml:space="preserve">
+    <value>MaxAllowableTailwaterHeadCheckBox</value>
+  </data>
+  <data name="&gt;&gt;MaxAllowableTailwaterHeadCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MaxAllowableTailwaterHeadCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;MaxAllowableTailwaterHeadCheckBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="ClearAllButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="ClearAllButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="ClearAllButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 364</value>
+  </data>
+  <data name="ClearAllButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 25</value>
+  </data>
+  <data name="ClearAllButton.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="ClearAllButton.Text" xml:space="preserve">
+    <value>Clear All</value>
+  </data>
+  <data name="&gt;&gt;ClearAllButton.Name" xml:space="preserve">
+    <value>ClearAllButton</value>
+  </data>
+  <data name="&gt;&gt;ClearAllButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ClearAllButton.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;ClearAllButton.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="SelectAllButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="SelectAllButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="SelectAllButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>138, 364</value>
+  </data>
+  <data name="SelectAllButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 25</value>
+  </data>
+  <data name="SelectAllButton.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
+  </data>
+  <data name="SelectAllButton.Text" xml:space="preserve">
+    <value>Select &amp;All</value>
+  </data>
+  <data name="&gt;&gt;SelectAllButton.Name" xml:space="preserve">
+    <value>SelectAllButton</value>
+  </data>
+  <data name="&gt;&gt;SelectAllButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SelectAllButton.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;SelectAllButton.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="VelocityCoefficientCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="VelocityCoefficientCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="VelocityCoefficientCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="VelocityCoefficientCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 160</value>
+  </data>
+  <data name="VelocityCoefficientCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>146, 21</value>
+  </data>
+  <data name="VelocityCoefficientCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="VelocityCoefficientCheckBox.Text" xml:space="preserve">
+    <value>Velocity Coefficient</value>
+  </data>
+  <data name="&gt;&gt;VelocityCoefficientCheckBox.Name" xml:space="preserve">
+    <value>VelocityCoefficientCheckBox</value>
+  </data>
+  <data name="&gt;&gt;VelocityCoefficientCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;VelocityCoefficientCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;VelocityCoefficientCheckBox.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="DischargeCoefficientCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="DischargeCoefficientCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="DischargeCoefficientCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DischargeCoefficientCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 140</value>
+  </data>
+  <data name="DischargeCoefficientCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 21</value>
+  </data>
+  <data name="DischargeCoefficientCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="DischargeCoefficientCheckBox.Text" xml:space="preserve">
+    <value>Discharge Coefficient</value>
+  </data>
+  <data name="&gt;&gt;DischargeCoefficientCheckBox.Name" xml:space="preserve">
+    <value>DischargeCoefficientCheckBox</value>
+  </data>
+  <data name="&gt;&gt;DischargeCoefficientCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DischargeCoefficientCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;DischargeCoefficientCheckBox.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="UpstreamVelocityCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="UpstreamVelocityCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="UpstreamVelocityCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="UpstreamVelocityCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 120</value>
+  </data>
+  <data name="UpstreamVelocityCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>141, 21</value>
+  </data>
+  <data name="UpstreamVelocityCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="UpstreamVelocityCheckBox.Text" xml:space="preserve">
+    <value>Upstream Velocity</value>
+  </data>
+  <data name="&gt;&gt;UpstreamVelocityCheckBox.Name" xml:space="preserve">
+    <value>UpstreamVelocityCheckBox</value>
+  </data>
+  <data name="&gt;&gt;UpstreamVelocityCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;UpstreamVelocityCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;UpstreamVelocityCheckBox.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="UpstreamDepthCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="UpstreamDepthCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="UpstreamDepthCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="UpstreamDepthCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 100</value>
+  </data>
+  <data name="UpstreamDepthCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 21</value>
+  </data>
+  <data name="UpstreamDepthCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="UpstreamDepthCheckBox.Text" xml:space="preserve">
+    <value>Upstream Depth</value>
+  </data>
+  <data name="&gt;&gt;UpstreamDepthCheckBox.Name" xml:space="preserve">
+    <value>UpstreamDepthCheckBox</value>
+  </data>
+  <data name="&gt;&gt;UpstreamDepthCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;UpstreamDepthCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;UpstreamDepthCheckBox.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="UpstreamEnergyHeadCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="UpstreamEnergyHeadCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="UpstreamEnergyHeadCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="UpstreamEnergyHeadCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 80</value>
+  </data>
+  <data name="UpstreamEnergyHeadCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 21</value>
+  </data>
+  <data name="UpstreamEnergyHeadCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="UpstreamEnergyHeadCheckBox.Text" xml:space="preserve">
+    <value>Upstream Energy Head</value>
+  </data>
+  <data name="&gt;&gt;UpstreamEnergyHeadCheckBox.Name" xml:space="preserve">
+    <value>UpstreamEnergyHeadCheckBox</value>
+  </data>
+  <data name="&gt;&gt;UpstreamEnergyHeadCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;UpstreamEnergyHeadCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;UpstreamEnergyHeadCheckBox.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="HeadToCrestLengthRatioCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="HeadToCrestLengthRatioCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="HeadToCrestLengthRatioCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="HeadToCrestLengthRatioCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 60</value>
+  </data>
+  <data name="HeadToCrestLengthRatioCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 21</value>
+  </data>
+  <data name="HeadToCrestLengthRatioCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="HeadToCrestLengthRatioCheckBox.Text" xml:space="preserve">
+    <value>Head to Crest Length Ratio</value>
+  </data>
+  <data name="&gt;&gt;HeadToCrestLengthRatioCheckBox.Name" xml:space="preserve">
+    <value>HeadToCrestLengthRatioCheckBox</value>
+  </data>
+  <data name="&gt;&gt;HeadToCrestLengthRatioCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadToCrestLengthRatioCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;HeadToCrestLengthRatioCheckBox.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="RequiredHeadLossCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="RequiredHeadLossCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="RequiredHeadLossCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="RequiredHeadLossCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 40</value>
+  </data>
+  <data name="RequiredHeadLossCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>157, 21</value>
+  </data>
+  <data name="RequiredHeadLossCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="RequiredHeadLossCheckBox.Text" xml:space="preserve">
+    <value>Required Head Loss</value>
+  </data>
+  <data name="&gt;&gt;RequiredHeadLossCheckBox.Name" xml:space="preserve">
+    <value>RequiredHeadLossCheckBox</value>
+  </data>
+  <data name="&gt;&gt;RequiredHeadLossCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;RequiredHeadLossCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;RequiredHeadLossCheckBox.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="FroudeNumberCheckBox.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="FroudeNumberCheckBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="FroudeNumberCheckBox.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="FroudeNumberCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 20</value>
+  </data>
+  <data name="FroudeNumberCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 21</value>
+  </data>
+  <data name="FroudeNumberCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="FroudeNumberCheckBox.Text" xml:space="preserve">
+    <value>Froude Number</value>
+  </data>
+  <data name="&gt;&gt;FroudeNumberCheckBox.Name" xml:space="preserve">
+    <value>FroudeNumberCheckBox</value>
+  </data>
+  <data name="&gt;&gt;FroudeNumberCheckBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_CheckBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FroudeNumberCheckBox.Parent" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;FroudeNumberCheckBox.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="RatingTableParametersBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="RatingTableParametersBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>445, 2</value>
+  </data>
+  <data name="RatingTableParametersBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>300, 395</value>
+  </data>
+  <data name="RatingTableParametersBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="RatingTableParametersBox.Text" xml:space="preserve">
+    <value>Additional Table &amp;Parameters</value>
+  </data>
+  <data name="&gt;&gt;RatingTableParametersBox.Name" xml:space="preserve">
+    <value>RatingTableParametersBox</value>
+  </data>
+  <data name="&gt;&gt;RatingTableParametersBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_GroupBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;RatingTableParametersBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;RatingTableParametersBox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="MeasuredDataBox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="MeasuredDataTable.AccessibleDescription" xml:space="preserve">
+    <value>Copyable table of data</value>
+  </data>
+  <data name="MeasuredDataTable.AccessibleName" xml:space="preserve">
+    <value>Measured Data</value>
+  </data>
+  <metadata name="Head.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Head.HeaderText" xml:space="preserve">
+    <value>Head</value>
+  </data>
+  <metadata name="Discharge.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Discharge.HeaderText" xml:space="preserve">
+    <value>Discharge</value>
+  </data>
+  <data name="MeasuredDataTable.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="MeasuredDataTable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="MeasuredDataTable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>321, 373</value>
+  </data>
+  <data name="MeasuredDataTable.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;MeasuredDataTable.Name" xml:space="preserve">
+    <value>MeasuredDataTable</value>
+  </data>
+  <data name="&gt;&gt;MeasuredDataTable.Type" xml:space="preserve">
+    <value>WinFlume.ctl_DataGridView, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MeasuredDataTable.Parent" xml:space="preserve">
+    <value>MeasuredDataBox</value>
+  </data>
+  <data name="&gt;&gt;MeasuredDataTable.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="InsertRowButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="InsertRowButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 25</value>
+  </data>
+  <data name="InsertRowButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="InsertRowButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="InsertRowButton.Text" xml:space="preserve">
+    <value>&amp;Insert Row</value>
+  </data>
+  <data name="&gt;&gt;InsertRowButton.Name" xml:space="preserve">
+    <value>InsertRowButton</value>
+  </data>
+  <data name="&gt;&gt;InsertRowButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;InsertRowButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;InsertRowButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="SortTableButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="SortTableButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 115</value>
+  </data>
+  <data name="SortTableButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="SortTableButton.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="SortTableButton.Text" xml:space="preserve">
+    <value>&amp;Sort Table</value>
+  </data>
+  <data name="&gt;&gt;SortTableButton.Name" xml:space="preserve">
+    <value>SortTableButton</value>
+  </data>
+  <data name="&gt;&gt;SortTableButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SortTableButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;SortTableButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DeleteRowButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DeleteRowButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 85</value>
+  </data>
+  <data name="DeleteRowButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="DeleteRowButton.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="DeleteRowButton.Text" xml:space="preserve">
+    <value>&amp;Delete Row</value>
+  </data>
+  <data name="&gt;&gt;DeleteRowButton.Name" xml:space="preserve">
+    <value>DeleteRowButton</value>
+  </data>
+  <data name="&gt;&gt;DeleteRowButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DeleteRowButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DeleteRowButton.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="AddRowButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="AddRowButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 55</value>
+  </data>
+  <data name="AddRowButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 25</value>
+  </data>
+  <data name="AddRowButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="AddRowButton.Text" xml:space="preserve">
+    <value>&amp;Add Row</value>
+  </data>
+  <data name="&gt;&gt;AddRowButton.Name" xml:space="preserve">
+    <value>AddRowButton</value>
+  </data>
+  <data name="&gt;&gt;AddRowButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;AddRowButton.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;AddRowButton.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="ControlPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="ControlPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="ControlPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 19</value>
+  </data>
+  <data name="ControlPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="ControlPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>110, 373</value>
+  </data>
+  <data name="ControlPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.Name" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.Parent" xml:space="preserve">
+    <value>MeasuredDataBox</value>
+  </data>
+  <data name="&gt;&gt;ControlPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="MeasuredDataBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="MeasuredDataBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 2</value>
+  </data>
+  <data name="MeasuredDataBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>437, 395</value>
+  </data>
+  <data name="MeasuredDataBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="MeasuredDataBox.Text" xml:space="preserve">
+    <value>&amp;Measured Data</value>
+  </data>
+  <data name="&gt;&gt;MeasuredDataBox.Name" xml:space="preserve">
+    <value>MeasuredDataBox</value>
+  </data>
+  <data name="&gt;&gt;MeasuredDataBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_GroupBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MeasuredDataBox.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MeasuredDataBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AccessibleDescription" xml:space="preserve">
+    <value>Enter flume measured data and select comparison parameters</value>
+  </data>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>Measured Data Entry</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>750, 400</value>
+  </data>
+  <data name="&gt;&gt;Head.Name" xml:space="preserve">
+    <value>Head</value>
+  </data>
+  <data name="&gt;&gt;Head.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Discharge.Name" xml:space="preserve">
+    <value>Discharge</value>
+  </data>
+  <data name="&gt;&gt;Discharge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>MeasuredDataEntryControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

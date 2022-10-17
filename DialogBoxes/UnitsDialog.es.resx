@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="DischargeGroup.AccessibleDescription" xml:space="preserve">
+    <value>Selección de unidades para valores de descarga</value>
+  </data>
+  <data name="DischargeGroup.AccessibleName" xml:space="preserve">
+    <value>Descarga</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="MillionGallonsDayButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 21</value>
+  </data>
+  <data name="MillionGallonsDayButton.Text" xml:space="preserve">
+    <value>Millones de Galones/Día</value>
+  </data>
+  <data name="MegalitersDayAbbrev.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 17</value>
+  </data>
+  <data name="MegalitersDayAbbrev.Text" xml:space="preserve">
+    <value>ML/día</value>
+  </data>
+  <data name="MegalitersDayButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 21</value>
+  </data>
+  <data name="MegalitersDayButton.Text" xml:space="preserve">
+    <value>Megalitro/Día</value>
+  </data>
+  <data name="MegalitersHourButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>298, 21</value>
+  </data>
+  <data name="MegalitersHourButton.Text" xml:space="preserve">
+    <value>Megalitro/Hora (Decameters Cúbicos/Hora)</value>
+  </data>
+  <data name="GallonsMinuteButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 21</value>
+  </data>
+  <data name="GallonsMinuteButton.Text" xml:space="preserve">
+    <value>Galones/Minuto</value>
+  </data>
+  <data name="CubicFeetSecondButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>166, 21</value>
+  </data>
+  <data name="CubicFeetSecondButton.Text" xml:space="preserve">
+    <value>Pies cúbicos/Segundo</value>
+  </data>
+  <data name="LitersSecondButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 21</value>
+  </data>
+  <data name="LitersSecondButton.Text" xml:space="preserve">
+    <value>Litros/Segundo</value>
+  </data>
+  <data name="CubicMetersSecondButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 21</value>
+  </data>
+  <data name="CubicMetersSecondButton.Text" xml:space="preserve">
+    <value>Metros Cúbicos/Segundo</value>
+  </data>
+  <data name="DischargeGroup.Text" xml:space="preserve">
+    <value>&amp;Descarga</value>
+  </data>
+  <data name="WaterVelocityGroup.AccessibleDescription" xml:space="preserve">
+    <value>Selección de unidades para los valores de velocidad</value>
+  </data>
+  <data name="WaterVelocityGroup.AccessibleName" xml:space="preserve">
+    <value>Velocidad del Agua</value>
+  </data>
+  <data name="FeetSecondButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>114, 21</value>
+  </data>
+  <data name="FeetSecondButton.Text" xml:space="preserve">
+    <value>Pies/Segundo</value>
+  </data>
+  <data name="MetersSecondButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 21</value>
+  </data>
+  <data name="MetersSecondButton.Text" xml:space="preserve">
+    <value>Metros/Segundo</value>
+  </data>
+  <data name="WaterVelocityGroup.Text" xml:space="preserve">
+    <value>&amp;Velocidad del Agua</value>
+  </data>
+  <data name="LengthHeightGroup.AccessibleDescription" xml:space="preserve">
+    <value>Selección de unidades para los valores de longitud y altura</value>
+  </data>
+  <data name="LengthHeightGroup.AccessibleName" xml:space="preserve">
+    <value>Longitud y Altura</value>
+  </data>
+  <data name="CentimetersButton.Text" xml:space="preserve">
+    <value>Centímetros</value>
+  </data>
+  <data name="InchesButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 21</value>
+  </data>
+  <data name="InchesButton.Text" xml:space="preserve">
+    <value>Pulgadas</value>
+  </data>
+  <data name="MillimetersButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>82, 21</value>
+  </data>
+  <data name="MillimetersButton.Text" xml:space="preserve">
+    <value>Milímetro</value>
+  </data>
+  <data name="FeetButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 21</value>
+  </data>
+  <data name="FeetButton.Text" xml:space="preserve">
+    <value>Pies</value>
+  </data>
+  <data name="MetersButton.Text" xml:space="preserve">
+    <value>Metros</value>
+  </data>
+  <data name="LengthHeightGroup.Text" xml:space="preserve">
+    <value>&amp;Longitud y Altura</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAICAQAAAAAADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAgICAAMDAwAAAAP8AAP8AAAD//wD/AAAA/wD/AP//
+        AAD///8A8Av7+/vwAmpiamJqYmpiar+wD7+/vwAGJiYmJiYmJib7+wD7+/vwAGpiamJqYmpiv7+wD7+/
+        AHAAJiYmJiYmJvv7+wD7+wB3cABiamJqYmq/v7+/AAAHeIdwACYmJiYm+/v7+/sAB4h4h3AAamJqYr+/
+        v7+wDuAHiHiHAAYmJiYA+/v7AO7uAAeIcAcAamJqsA+/sA7u7u4AdwB4cAAmJvvw+wDu7u7u7gAHh4dw
+        CmK/vwAO7u7u7u7gAHh4dwAm+/vw7u7u7u7uDuB3h4cACr+/sA7u7u7u4O7uAHhwCAD7+wAA7u7u7g7u
+        7u4AAHeAv7AIAO7u7uDu7u7g4Ah4ePvwiIAO7u4O7u7uDuCHhwC/AIeIDu7g7u7u4O7gCHAA+wiIiADu
+        Du7u7g7u7gAAv7AIh4iA4O7u7uDu7u4A+/sAh4iHiADu7u4O7u7gDw+/CIiIiIgAAO7g7u7uC/vwCwiI
+        eHiACIAADu7u4L+/vwBgiIiIAAeHgAAAAAv7+/v7JgCIgAiIeICIh4AAD7+/v2LiAAAIeIgIh4iA+wAL
+        +/smJiYAAIhwCIh4AL+/AL+/4mLiYuAIgAh4gAv7+/AL+yYmJiYmIACIh4C/v7+/AL9i4mLiYuJiAIgA
+        +/v7+/sLJiYmJiYmJiYAD7+/v7+/sOJi4mLiYuJi4Av7+/v7+/sAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+</value>
+  </data>
+</root>

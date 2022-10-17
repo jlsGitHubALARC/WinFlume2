@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="HorizontalSplitter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="HorizontalSplitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="HorizontalSplitter.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
+    <value>Horizontal</value>
+  </data>
+  <data name="BottomProfileControl.AccessibleDescription" xml:space="preserve">
+    <value>Bottom profile view of the complete flume structure.</value>
+  </data>
+  <data name="BottomProfileControl.AccessibleName" xml:space="preserve">
+    <value>Bottom Profile</value>
+  </data>
+  <data name="BottomProfileControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="BottomProfileControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="BottomProfileControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="BottomProfileControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="BottomProfileControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>768, 165</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BottomProfileControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;BottomProfileControl.Name" xml:space="preserve">
+    <value>BottomProfileControl</value>
+  </data>
+  <data name="&gt;&gt;BottomProfileControl.Type" xml:space="preserve">
+    <value>WinFlume.BottomProfileControl, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;BottomProfileControl.Parent" xml:space="preserve">
+    <value>HorizontalSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;BottomProfileControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Panel1.Name" xml:space="preserve">
+    <value>HorizontalSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Panel1.Parent" xml:space="preserve">
+    <value>HorizontalSplitter</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="HorizontalSplitter.Panel1MinSize" type="System.Int32, mscorlib">
+    <value>165</value>
+  </data>
+  <data name="VerticalSplitter.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="VerticalSplitter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="CalibrationControlTabControl.AccessibleDescription" xml:space="preserve">
+    <value>Various tab pages for displaying and editing the flume calibration.</value>
+  </data>
+  <data name="CalibrationControlTabControl.AccessibleName" xml:space="preserve">
+    <value>Calibration Control tab pages</value>
+  </data>
+  <data name="TableChoicesControl.AccessibleDescription" xml:space="preserve">
+    <value>Selection of data columns for rating tables</value>
+  </data>
+  <data name="TableChoicesControl.AccessibleName" xml:space="preserve">
+    <value>Table Choices</value>
+  </data>
+  <data name="TableChoicesControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="TableChoicesControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="TableChoicesControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="TableChoicesControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="TableChoicesControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>456, 256</value>
+  </data>
+  <data name="TableChoicesControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;TableChoicesControl.Name" xml:space="preserve">
+    <value>TableChoicesControl</value>
+  </data>
+  <data name="&gt;&gt;TableChoicesControl.Type" xml:space="preserve">
+    <value>WinFlume.TableChoicesControl, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;TableChoicesControl.Parent" xml:space="preserve">
+    <value>TableChoicesTab</value>
+  </data>
+  <data name="&gt;&gt;TableChoicesControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TableChoicesTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="TableChoicesTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>456, 256</value>
+  </data>
+  <data name="TableChoicesTab.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="TableChoicesTab.Text" xml:space="preserve">
+    <value>Table Choices</value>
+  </data>
+  <data name="&gt;&gt;TableChoicesTab.Name" xml:space="preserve">
+    <value>TableChoicesTab</value>
+  </data>
+  <data name="&gt;&gt;TableChoicesTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TableChoicesTab.Parent" xml:space="preserve">
+    <value>CalibrationControlTabControl</value>
+  </data>
+  <data name="&gt;&gt;TableChoicesTab.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RatingTableControl.AccessibleDescription" xml:space="preserve">
+    <value>Displays the Rating Table as a table or graph.</value>
+  </data>
+  <data name="RatingTableControl.AccessibleName" xml:space="preserve">
+    <value>Rating Table</value>
+  </data>
+  <data name="RatingTableControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="RatingTableControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="RatingTableControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="RatingTableControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="RatingTableControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>492, 256</value>
+  </data>
+  <data name="RatingTableControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;RatingTableControl.Name" xml:space="preserve">
+    <value>RatingTableControl</value>
+  </data>
+  <data name="&gt;&gt;RatingTableControl.Type" xml:space="preserve">
+    <value>WinFlume.RatingTableControl, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;RatingTableControl.Parent" xml:space="preserve">
+    <value>RatingTableTab</value>
+  </data>
+  <data name="&gt;&gt;RatingTableControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RatingTableTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="RatingTableTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>492, 256</value>
+  </data>
+  <data name="RatingTableTab.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="RatingTableTab.Text" xml:space="preserve">
+    <value>Rating Table</value>
+  </data>
+  <data name="&gt;&gt;RatingTableTab.Name" xml:space="preserve">
+    <value>RatingTableTab</value>
+  </data>
+  <data name="&gt;&gt;RatingTableTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RatingTableTab.Parent" xml:space="preserve">
+    <value>CalibrationControlTabControl</value>
+  </data>
+  <data name="&gt;&gt;RatingTableTab.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="RatingEquationControl.AccessibleDescription" xml:space="preserve">
+    <value>Displays the Rating Equation as a table or graph.</value>
+  </data>
+  <data name="RatingEquationControl.AccessibleName" xml:space="preserve">
+    <value>Rating Equation</value>
+  </data>
+  <data name="RatingEquationControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="RatingEquationControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="RatingEquationControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="RatingEquationControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="RatingEquationControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>492, 256</value>
+  </data>
+  <data name="RatingEquationControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;RatingEquationControl.Name" xml:space="preserve">
+    <value>RatingEquationControl</value>
+  </data>
+  <data name="&gt;&gt;RatingEquationControl.Type" xml:space="preserve">
+    <value>WinFlume.RatingEquationControl, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;RatingEquationControl.Parent" xml:space="preserve">
+    <value>RatingEquationTableTab</value>
+  </data>
+  <data name="&gt;&gt;RatingEquationControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="RatingEquationTableTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="RatingEquationTableTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>492, 256</value>
+  </data>
+  <data name="RatingEquationTableTab.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="RatingEquationTableTab.Text" xml:space="preserve">
+    <value>Rating Equation Table</value>
+  </data>
+  <data name="&gt;&gt;RatingEquationTableTab.Name" xml:space="preserve">
+    <value>RatingEquationTableTab</value>
+  </data>
+  <data name="&gt;&gt;RatingEquationTableTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;RatingEquationTableTab.Parent" xml:space="preserve">
+    <value>CalibrationControlTabControl</value>
+  </data>
+  <data name="&gt;&gt;RatingEquationTableTab.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="DitchridersTableControl.AccessibleDescription" xml:space="preserve">
+    <value>Displays the Ditchrider's Table.</value>
+  </data>
+  <data name="DitchridersTableControl.AccessibleName" xml:space="preserve">
+    <value>Ditchrider's Table</value>
+  </data>
+  <data name="DitchridersTableControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="DitchridersTableControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="DitchridersTableControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="DitchridersTableControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="DitchridersTableControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>492, 256</value>
+  </data>
+  <data name="DitchridersTableControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;DitchridersTableControl.Name" xml:space="preserve">
+    <value>DitchridersTableControl</value>
+  </data>
+  <data name="&gt;&gt;DitchridersTableControl.Type" xml:space="preserve">
+    <value>WinFlume.DitchridersTableControl, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DitchridersTableControl.Parent" xml:space="preserve">
+    <value>DitchridersTableTab</value>
+  </data>
+  <data name="&gt;&gt;DitchridersTableControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="DitchridersTableTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 25</value>
+  </data>
+  <data name="DitchridersTableTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>492, 256</value>
+  </data>
+  <data name="DitchridersTableTab.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="DitchridersTableTab.Text" xml:space="preserve">
+    <value>Ditchrider's Table</value>
+  </data>
+  <data name="&gt;&gt;DitchridersTableTab.Name" xml:space="preserve">
+    <value>DitchridersTableTab</value>
+  </data>
+  <data name="&gt;&gt;DitchridersTableTab.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DitchridersTableTab.Parent" xml:space="preserve">
+    <value>CalibrationControlTabControl</value>
+  </data>
+  <data name="&gt;&gt;DitchridersTableTab.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="CalibrationControlTabControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="CalibrationControlTabControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="CalibrationControlTabControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="CalibrationControlTabControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>464, 285</value>
+  </data>
+  <data name="CalibrationControlTabControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;CalibrationControlTabControl.Name" xml:space="preserve">
+    <value>CalibrationControlTabControl</value>
+  </data>
+  <data name="&gt;&gt;CalibrationControlTabControl.Type" xml:space="preserve">
+    <value>WinFlume.ctl_TabControl, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;CalibrationControlTabControl.Parent" xml:space="preserve">
+    <value>VerticalSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;CalibrationControlTabControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Panel1.Name" xml:space="preserve">
+    <value>VerticalSplitter.Panel1</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Panel1.Parent" xml:space="preserve">
+    <value>VerticalSplitter</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="VerticalSplitter.Panel1MinSize" type="System.Int32, mscorlib">
+    <value>464</value>
+  </data>
+  <data name="SideBarControl.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="SideBarControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="SideBarControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="SideBarControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="SideBarControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>300, 285</value>
+  </data>
+  <data name="SideBarControl.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;SideBarControl.Name" xml:space="preserve">
+    <value>SideBarControl</value>
+  </data>
+  <data name="&gt;&gt;SideBarControl.Type" xml:space="preserve">
+    <value>WinFlume.SideBarControl, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SideBarControl.Parent" xml:space="preserve">
+    <value>VerticalSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;SideBarControl.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Panel2.Name" xml:space="preserve">
+    <value>VerticalSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Panel2.Parent" xml:space="preserve">
+    <value>VerticalSplitter</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="VerticalSplitter.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>300</value>
+  </data>
+  <data name="VerticalSplitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>768, 285</value>
+  </data>
+  <data name="VerticalSplitter.SplitterDistance" type="System.Int32, mscorlib">
+    <value>464</value>
+  </data>
+  <data name="VerticalSplitter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Name" xml:space="preserve">
+    <value>VerticalSplitter</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.Parent" xml:space="preserve">
+    <value>HorizontalSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;VerticalSplitter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Panel2.Name" xml:space="preserve">
+    <value>HorizontalSplitter.Panel2</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Panel2.Parent" xml:space="preserve">
+    <value>HorizontalSplitter</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="HorizontalSplitter.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="HorizontalSplitter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>768, 454</value>
+  </data>
+  <data name="HorizontalSplitter.SplitterDistance" type="System.Int32, mscorlib">
+    <value>165</value>
+  </data>
+  <data name="HorizontalSplitter.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Name" xml:space="preserve">
+    <value>HorizontalSplitter</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;HorizontalSplitter.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>CalibrationControl</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>768, 454</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>CalibrationControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>

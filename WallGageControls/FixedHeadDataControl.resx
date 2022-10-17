@@ -1,0 +1,744 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="GageSlopeSingle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="GageSlopeSingle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="GageSlopeSingle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 257</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="GageSlopeSingle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="GageSlopeSingle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 23</value>
+  </data>
+  <data name="GageSlopeSingle.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;GageSlopeSingle.Name" xml:space="preserve">
+    <value>GageSlopeSingle</value>
+  </data>
+  <data name="&gt;&gt;GageSlopeSingle.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUnits, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;GageSlopeSingle.Parent" xml:space="preserve">
+    <value>DataPanel</value>
+  </data>
+  <data name="&gt;&gt;GageSlopeSingle.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="GageRatioLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GageRatioLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="GageRatioLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GageRatioLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>108, 281</value>
+  </data>
+  <data name="GageRatioLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 17</value>
+  </data>
+  <data name="GageRatioLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="GageRatioLabel.Text" xml:space="preserve">
+    <value>(Z horizontal : 1 vertical)</value>
+  </data>
+  <data name="&gt;&gt;GageRatioLabel.Name" xml:space="preserve">
+    <value>GageRatioLabel</value>
+  </data>
+  <data name="&gt;&gt;GageRatioLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;GageRatioLabel.Parent" xml:space="preserve">
+    <value>DataPanel</value>
+  </data>
+  <data name="&gt;&gt;GageRatioLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="GageSlopeLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="GageSlopeLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="GageSlopeLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="GageSlopeLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 260</value>
+  </data>
+  <data name="GageSlopeLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 17</value>
+  </data>
+  <data name="GageSlopeLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="GageSlopeLabel.Text" xml:space="preserve">
+    <value>Gage Slope &amp;Z =</value>
+  </data>
+  <data name="&gt;&gt;GageSlopeLabel.Name" xml:space="preserve">
+    <value>GageSlopeLabel</value>
+  </data>
+  <data name="&gt;&gt;GageSlopeLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;GageSlopeLabel.Parent" xml:space="preserve">
+    <value>DataPanel</value>
+  </data>
+  <data name="&gt;&gt;GageSlopeLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="UpstreamChannellBottomButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="UpstreamChannellBottomButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="UpstreamChannellBottomButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="UpstreamChannellBottomButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 47</value>
+  </data>
+  <data name="UpstreamChannellBottomButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 21</value>
+  </data>
+  <data name="UpstreamChannellBottomButton.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="UpstreamChannellBottomButton.Text" xml:space="preserve">
+    <value>Upstream Channel &amp;Bottom</value>
+  </data>
+  <data name="&gt;&gt;UpstreamChannellBottomButton.Name" xml:space="preserve">
+    <value>UpstreamChannellBottomButton</value>
+  </data>
+  <data name="&gt;&gt;UpstreamChannellBottomButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_RadioButton, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;UpstreamChannellBottomButton.Parent" xml:space="preserve">
+    <value>GageReferenceGroup</value>
+  </data>
+  <data name="&gt;&gt;UpstreamChannellBottomButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="SillReferencedButton.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="SillReferencedButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="SillReferencedButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="SillReferencedButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 20</value>
+  </data>
+  <data name="SillReferencedButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 21</value>
+  </data>
+  <data name="SillReferencedButton.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="SillReferencedButton.Text" xml:space="preserve">
+    <value>&amp;Sill Referenced</value>
+  </data>
+  <data name="&gt;&gt;SillReferencedButton.Name" xml:space="preserve">
+    <value>SillReferencedButton</value>
+  </data>
+  <data name="&gt;&gt;SillReferencedButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_RadioButton, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SillReferencedButton.Parent" xml:space="preserve">
+    <value>GageReferenceGroup</value>
+  </data>
+  <data name="&gt;&gt;SillReferencedButton.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="GageReferenceGroup.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="GageReferenceGroup.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 165</value>
+  </data>
+  <data name="GageReferenceGroup.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 80</value>
+  </data>
+  <data name="GageReferenceGroup.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="GageReferenceGroup.Text" xml:space="preserve">
+    <value>Gage &amp;Reference</value>
+  </data>
+  <data name="&gt;&gt;GageReferenceGroup.Name" xml:space="preserve">
+    <value>GageReferenceGroup</value>
+  </data>
+  <data name="&gt;&gt;GageReferenceGroup.Type" xml:space="preserve">
+    <value>WinFlume.ctl_GroupBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;GageReferenceGroup.Parent" xml:space="preserve">
+    <value>DataPanel</value>
+  </data>
+  <data name="&gt;&gt;GageReferenceGroup.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="WallGageOptionsBox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="HeadSmartRangeButton.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="HeadSmartRangeButton.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="HeadSmartRangeButton.Location" type="System.Drawing.Point, System.Drawing">
+    <value>43, 118</value>
+  </data>
+  <data name="HeadSmartRangeButton.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 25</value>
+  </data>
+  <data name="HeadSmartRangeButton.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="HeadSmartRangeButton.Text" xml:space="preserve">
+    <value>Smart Range</value>
+  </data>
+  <data name="&gt;&gt;HeadSmartRangeButton.Name" xml:space="preserve">
+    <value>HeadSmartRangeButton</value>
+  </data>
+  <data name="&gt;&gt;HeadSmartRangeButton.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Button, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadSmartRangeButton.Parent" xml:space="preserve">
+    <value>WallGageOptionsBox</value>
+  </data>
+  <data name="&gt;&gt;HeadSmartRangeButton.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="HeadIncrementSingle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="HeadIncrementSingle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="HeadIncrementSingle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 83</value>
+  </data>
+  <data name="HeadIncrementSingle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="HeadIncrementSingle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 23</value>
+  </data>
+  <data name="HeadIncrementSingle.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;HeadIncrementSingle.Name" xml:space="preserve">
+    <value>HeadIncrementSingle</value>
+  </data>
+  <data name="&gt;&gt;HeadIncrementSingle.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUnits, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadIncrementSingle.Parent" xml:space="preserve">
+    <value>WallGageOptionsBox</value>
+  </data>
+  <data name="&gt;&gt;HeadIncrementSingle.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="HeadIncrementLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="HeadIncrementLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="HeadIncrementLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="HeadIncrementLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>40, 86</value>
+  </data>
+  <data name="HeadIncrementLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 17</value>
+  </data>
+  <data name="HeadIncrementLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="HeadIncrementLabel.Text" xml:space="preserve">
+    <value>Increment</value>
+  </data>
+  <data name="&gt;&gt;HeadIncrementLabel.Name" xml:space="preserve">
+    <value>HeadIncrementLabel</value>
+  </data>
+  <data name="&gt;&gt;HeadIncrementLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;HeadIncrementLabel.Parent" xml:space="preserve">
+    <value>WallGageOptionsBox</value>
+  </data>
+  <data name="&gt;&gt;HeadIncrementLabel.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="MaximumHeadSingle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MaximumHeadSingle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="MaximumHeadSingle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>116, 55</value>
+  </data>
+  <data name="MaximumHeadSingle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="MaximumHeadSingle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 23</value>
+  </data>
+  <data name="MaximumHeadSingle.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;MaximumHeadSingle.Name" xml:space="preserve">
+    <value>MaximumHeadSingle</value>
+  </data>
+  <data name="&gt;&gt;MaximumHeadSingle.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUnits, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MaximumHeadSingle.Parent" xml:space="preserve">
+    <value>WallGageOptionsBox</value>
+  </data>
+  <data name="&gt;&gt;MaximumHeadSingle.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="MaximumHeadLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MaximumHeadLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="MaximumHeadLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="MaximumHeadLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>44, 58</value>
+  </data>
+  <data name="MaximumHeadLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 17</value>
+  </data>
+  <data name="MaximumHeadLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="MaximumHeadLabel.Text" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="&gt;&gt;MaximumHeadLabel.Name" xml:space="preserve">
+    <value>MaximumHeadLabel</value>
+  </data>
+  <data name="&gt;&gt;MaximumHeadLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MaximumHeadLabel.Parent" xml:space="preserve">
+    <value>WallGageOptionsBox</value>
+  </data>
+  <data name="&gt;&gt;MaximumHeadLabel.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="MinimumHeadSingle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MinimumHeadSingle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="MinimumHeadSingle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>115, 27</value>
+  </data>
+  <data name="MinimumHeadSingle.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="MinimumHeadSingle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 23</value>
+  </data>
+  <data name="MinimumHeadSingle.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;MinimumHeadSingle.Name" xml:space="preserve">
+    <value>MinimumHeadSingle</value>
+  </data>
+  <data name="&gt;&gt;MinimumHeadSingle.Type" xml:space="preserve">
+    <value>WinFlume.ctl_SingleUnits, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MinimumHeadSingle.Parent" xml:space="preserve">
+    <value>WallGageOptionsBox</value>
+  </data>
+  <data name="&gt;&gt;MinimumHeadSingle.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="MinimumHeadLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="MinimumHeadLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="MinimumHeadLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="MinimumHeadLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>47, 30</value>
+  </data>
+  <data name="MinimumHeadLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 17</value>
+  </data>
+  <data name="MinimumHeadLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="MinimumHeadLabel.Text" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="&gt;&gt;MinimumHeadLabel.Name" xml:space="preserve">
+    <value>MinimumHeadLabel</value>
+  </data>
+  <data name="&gt;&gt;MinimumHeadLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;MinimumHeadLabel.Parent" xml:space="preserve">
+    <value>WallGageOptionsBox</value>
+  </data>
+  <data name="&gt;&gt;MinimumHeadLabel.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="WallGageOptionsBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="WallGageOptionsBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="WallGageOptionsBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>270, 154</value>
+  </data>
+  <data name="WallGageOptionsBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="WallGageOptionsBox.Text" xml:space="preserve">
+    <value>Wall &amp;Gage Options</value>
+  </data>
+  <data name="&gt;&gt;WallGageOptionsBox.Name" xml:space="preserve">
+    <value>WallGageOptionsBox</value>
+  </data>
+  <data name="&gt;&gt;WallGageOptionsBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_GroupBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;WallGageOptionsBox.Parent" xml:space="preserve">
+    <value>DataPanel</value>
+  </data>
+  <data name="&gt;&gt;WallGageOptionsBox.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="WallGageDataBox.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="FixedHeadIntervalTable.AccessibleDescription" xml:space="preserve">
+    <value>Copyable table of data</value>
+  </data>
+  <data name="FixedHeadIntervalTable.AccessibleName" xml:space="preserve">
+    <value>Fixed Head Wall Gage Data</value>
+  </data>
+  <metadata name="FhiHead.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="FhiHead.HeaderText" xml:space="preserve">
+    <value>Head</value>
+  </data>
+  <metadata name="FhiDistance.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="FhiDistance.HeaderText" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <metadata name="FhiDischarge.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="FhiDischarge.HeaderText" xml:space="preserve">
+    <value>Discharge</value>
+  </data>
+  <data name="FixedHeadIntervalTable.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="FixedHeadIntervalTable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 19</value>
+  </data>
+  <data name="FixedHeadIntervalTable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>459, 288</value>
+  </data>
+  <data name="FixedHeadIntervalTable.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadIntervalTable.Name" xml:space="preserve">
+    <value>FixedHeadIntervalTable</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadIntervalTable.Type" xml:space="preserve">
+    <value>WinFlume.ctl_DataGridView, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadIntervalTable.Parent" xml:space="preserve">
+    <value>WallGageDataBox</value>
+  </data>
+  <data name="&gt;&gt;FixedHeadIntervalTable.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="WallGageDataBox.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="WallGageDataBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>280, 3</value>
+  </data>
+  <data name="WallGageDataBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>465, 310</value>
+  </data>
+  <data name="WallGageDataBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="WallGageDataBox.Text" xml:space="preserve">
+    <value>Wall Gage Data</value>
+  </data>
+  <data name="&gt;&gt;WallGageDataBox.Name" xml:space="preserve">
+    <value>WallGageDataBox</value>
+  </data>
+  <data name="&gt;&gt;WallGageDataBox.Type" xml:space="preserve">
+    <value>WinFlume.ctl_GroupBox, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;WallGageDataBox.Parent" xml:space="preserve">
+    <value>DataPanel</value>
+  </data>
+  <data name="&gt;&gt;WallGageDataBox.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="DataPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="DataPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="DataPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="DataPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="DataPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>750, 320</value>
+  </data>
+  <data name="DataPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;DataPanel.Name" xml:space="preserve">
+    <value>DataPanel</value>
+  </data>
+  <data name="&gt;&gt;DataPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Panel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DataPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;DataPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="StatusPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Bottom</value>
+  </data>
+  <data name="StatusPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="StatusPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 320</value>
+  </data>
+  <data name="StatusPanel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="StatusPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>750, 80</value>
+  </data>
+  <data name="StatusPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;StatusPanel.Name" xml:space="preserve">
+    <value>StatusPanel</value>
+  </data>
+  <data name="&gt;&gt;StatusPanel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_StatusPanel, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;StatusPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;StatusPanel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AccessibleDescription" xml:space="preserve">
+    <value>Define Fixed-Head wall gage parameters</value>
+  </data>
+  <data name="$this.AccessibleName" xml:space="preserve">
+    <value>Fixed-Head Wall Gage</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>8, 16</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt</value>
+  </data>
+  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
+  </data>
+  <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
+    <value>750, 400</value>
+  </data>
+  <data name="&gt;&gt;FhiHead.Name" xml:space="preserve">
+    <value>FhiHead</value>
+  </data>
+  <data name="&gt;&gt;FhiHead.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FhiDistance.Name" xml:space="preserve">
+    <value>FhiDistance</value>
+  </data>
+  <data name="&gt;&gt;FhiDistance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;FhiDischarge.Name" xml:space="preserve">
+    <value>FhiDischarge</value>
+  </data>
+  <data name="&gt;&gt;FhiDischarge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FixedHeadDataControl</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+</root>
