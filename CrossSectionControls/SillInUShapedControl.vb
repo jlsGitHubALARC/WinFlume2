@@ -8,6 +8,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class SillInUShapedControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 
@@ -307,15 +308,15 @@ Public Class SillInUShapedControl
         Dim TWtxt As String = UnitsDialog.UiValueUnitsText(mChannelWidth, "m")
         Me.TwKey.ShowValue(TWtxt)
 
-        ' Sill Width
-        Dim SWval As Single
+        ' Control Width
+        Dim CWval As Single
         If (D1 < DF / 2) Then
-            SWval = 2 * CSng(Math.Sqrt(D1 - D1 ^ 2))
+            CWval = 2 * CSng(Math.Sqrt(D1 - D1 ^ 2))
         Else
-            SWval = DF
+            CWval = DF
         End If
-        Dim SWtxt As String = UnitsDialog.UiValueUnitsText(SWval, "m")
-        Me.SwKey.ShowValue(SWtxt)
+        Dim CWtxt As String = UnitsDialog.UiValueUnitsText(CWval, "m")
+        Me.CwKey.ShowValue(CWtxt)
 
     End Sub
 

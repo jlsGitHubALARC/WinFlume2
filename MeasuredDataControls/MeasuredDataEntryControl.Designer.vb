@@ -32,7 +32,7 @@ Partial Class MeasuredDataEntryControl
         Me.h2Label1 = New WinFlume.ctl_Label()
         Me.CvLabel = New WinFlume.ctl_Label()
         Me.CdLabel = New WinFlume.ctl_Label()
-        Me.VaLabel = New WinFlume.ctl_Label()
+        Me.V1Table = New WinFlume.ctl_Label()
         Me.y1Label = New WinFlume.ctl_Label()
         Me.H1Label = New WinFlume.ctl_Label()
         Me.H1LLabel = New WinFlume.ctl_Label()
@@ -77,7 +77,7 @@ Partial Class MeasuredDataEntryControl
         Me.RatingTableParametersBox.Controls.Add(Me.h2Label1)
         Me.RatingTableParametersBox.Controls.Add(Me.CvLabel)
         Me.RatingTableParametersBox.Controls.Add(Me.CdLabel)
-        Me.RatingTableParametersBox.Controls.Add(Me.VaLabel)
+        Me.RatingTableParametersBox.Controls.Add(Me.V1Table)
         Me.RatingTableParametersBox.Controls.Add(Me.y1Label)
         Me.RatingTableParametersBox.Controls.Add(Me.H1Label)
         Me.RatingTableParametersBox.Controls.Add(Me.H1LLabel)
@@ -138,11 +138,11 @@ Partial Class MeasuredDataEntryControl
         Me.CdLabel.Name = "CdLabel"
         Me.CdLabel.Tag = "8"
         '
-        'VaLabel
+        'V1Table
         '
-        resources.ApplyResources(Me.VaLabel, "VaLabel")
-        Me.VaLabel.Name = "VaLabel"
-        Me.VaLabel.Tag = "7"
+        resources.ApplyResources(Me.V1Table, "V1Table")
+        Me.V1Table.Name = "V1Table"
+        Me.V1Table.Tag = "7"
         '
         'y1Label
         '
@@ -401,7 +401,7 @@ Partial Class MeasuredDataEntryControl
     Friend WithEvents h2Label1 As ctl_Label
     Friend WithEvents CvLabel As ctl_Label
     Friend WithEvents CdLabel As ctl_Label
-    Friend WithEvents VaLabel As ctl_Label
+    Friend WithEvents V1Table As ctl_Label
     Friend WithEvents y1Label As ctl_Label
     Friend WithEvents H1Label As ctl_Label
     Friend WithEvents H1LLabel As ctl_Label

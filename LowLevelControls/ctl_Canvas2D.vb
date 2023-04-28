@@ -518,7 +518,7 @@ Public Class ctl_Canvas2D
         Dim canvas As ctl_Canvas2D = DirectCast(sender, ctl_Canvas2D)
 
         Try
-            If (canvas.Visible) Then
+            If (canvas.Visible And mCanvasObjects IsNot Nothing) Then
                 ' What to do depends on which button was released
                 Select Case (e.Button)
                     Case MouseButtons.Left

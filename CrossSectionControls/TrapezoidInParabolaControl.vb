@@ -7,6 +7,7 @@
 Imports WinFlume.WinFlumeSectionType
 
 Public Class TrapezoidInParabolaControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 
@@ -130,8 +131,8 @@ Public Class TrapezoidInParabolaControl
             Dim PW As Single = CSng(2 * Math.Sqrt(2 * DF * PD)) ' Parabola top width (at CD)
 
             Dim Z1 As Single = mSection.Z1                      ' Trapezoid side slope
-            Dim SW As Single = mSection.BottomWidth             ' Trapezoid bottom width (i.e. sill width)
-            Dim TW As Single = SW + 2 * Z1 * SD                 ' Trapezoid top width (at CD)
+            Dim CW As Single = mSection.BottomWidth             ' Trapezoid bottom width (i.e. control width)
+            Dim TW As Single = CW + 2 * Z1 * SD                 ' Trapezoid top width (at CD)
 
             Dim x1, x2, dx, y1, y2 As Single
 
@@ -145,8 +146,8 @@ Public Class TrapezoidInParabolaControl
             Dim idx As Integer = 0
 
             ' Case by trapezoid fit within parabola
-            Dim maxSW As Single = CSng(2 * Math.Sqrt(2 * DF * D1)) ' Maximum sill width for D1
-            If (maxSW <= SW) Then ' Degenerate case: Sill-In-Parabola
+            Dim maxCW As Single = CSng(2 * Math.Sqrt(2 * DF * D1)) ' Maximum control width for D1
+            If (maxCW <= CW) Then ' Degenerate case: Sill-In-Parabola
 
                 For odx As Integer = 0 To NumPts
                     If (SD > outer(odx).Y) Then ' parabolic section above sill
@@ -183,20 +184,20 @@ Public Class TrapezoidInParabolaControl
 
                     x1 = outer(0).X + (PW - TW) * mHorzScale / 2  ' Left edge
                     y1 = outer(0).Y
-                    x2 = x1 + (TW - SW) * mHorzScale / 2
+                    x2 = x1 + (TW - CW) * mHorzScale / 2
                     y2 = SD
                     inner(0) = New PointF(x1, y1)
                     inner(1) = New PointF(x2, y2)
 
                     x1 = x2                                     ' Invert / Sill
                     y1 = y2
-                    x2 = x1 + SW * mHorzScale
+                    x2 = x1 + CW * mHorzScale
                     y2 = y1
                     inner(2) = New PointF(x2, y2)
 
                     x1 = x2                                     ' Right edge
                     y1 = y2
-                    x2 = x1 + (TW - SW) * mHorzScale / 2
+                    x2 = x1 + (TW - CW) * mHorzScale / 2
                     y2 = outer(0).Y
                     inner(3) = New PointF(x2, y2)
 
@@ -226,7 +227,7 @@ Public Class TrapezoidInParabolaControl
                             inner(idx) = outer(odx)
                             idx += 1
                         Else ' parabolic section at or below trapezoid
-                            dx = (TW - SW) * mHorzScale / 2
+                            dx = (TW - CW) * mHorzScale / 2
 
                             x1 = outer(odx).X + dx                      ' Left edge
                             y1 = SD
@@ -234,7 +235,7 @@ Public Class TrapezoidInParabolaControl
                             inner(idx).Y = y1
                             idx += 1
 
-                            x1 += SW * mHorzScale                       ' Right end of sill
+                            x1 += CW * mHorzScale                       ' Right end of sill
                             y1 = SD
                             inner(idx).X = x1
                             inner(idx).Y = y1

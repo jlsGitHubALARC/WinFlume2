@@ -29,7 +29,7 @@ Partial Class SillInCircleControl
         Me.SillHeightSingle = New WinFlume.ctl_SingleUnits()
         Me.D1Key = New WinFlume.ctl_Label()
         Me.DiaLabel = New WinFlume.ctl_Label()
-        Me.SwKey = New WinFlume.ctl_Label()
+        Me.CwKey = New WinFlume.ctl_Label()
         Me.TwKey = New WinFlume.ctl_Label()
         CType(Me.Thumbnail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -134,17 +134,17 @@ Partial Class SillInCircleControl
         Me.DiaLabel.Text = "Diam"
         Me.DiaLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'SwKey
+        'CwKey
         '
-        Me.SwKey.AutoSize = True
-        Me.SwKey.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.SwKey.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.SwKey.Location = New System.Drawing.Point(2, 104)
-        Me.SwKey.Name = "SwKey"
-        Me.SwKey.Size = New System.Drawing.Size(66, 17)
-        Me.SwKey.TabIndex = 7
-        Me.SwKey.Text = "Sill Width"
-        Me.SwKey.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CwKey.AutoSize = True
+        Me.CwKey.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CwKey.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.CwKey.Location = New System.Drawing.Point(2, 104)
+        Me.CwKey.Name = "CwKey"
+        Me.CwKey.Size = New System.Drawing.Size(66, 17)
+        Me.CwKey.TabIndex = 7
+        Me.CwKey.Text = "Control Width"
+        Me.CwKey.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TwKey
         '
@@ -163,7 +163,7 @@ Partial Class SillInCircleControl
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.TwKey)
-        Me.Controls.Add(Me.SwKey)
+        Me.Controls.Add(Me.CwKey)
         Me.Controls.Add(Me.DiaLabel)
         Me.Controls.Add(Me.D1Label)
         Me.Controls.Add(Me.SillHeightSingle)
@@ -185,6 +185,6 @@ Partial Class SillInCircleControl
     Friend WithEvents SillHeightSingle As ctl_SingleUnits
     Friend WithEvents D1Key As ctl_Label
     Friend WithEvents DiaLabel As ctl_Label
-    Friend WithEvents SwKey As ctl_Label
+    Friend WithEvents CwKey As ctl_Label
     Friend WithEvents TwKey As ctl_Label
 End Class

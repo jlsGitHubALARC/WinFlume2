@@ -15,6 +15,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class TrapezoidInRectangleControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 

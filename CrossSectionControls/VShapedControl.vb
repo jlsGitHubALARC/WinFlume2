@@ -8,6 +8,7 @@
 Imports Flume.Globals
 
 Public Class VShapedControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 

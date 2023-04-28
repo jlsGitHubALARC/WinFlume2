@@ -298,8 +298,8 @@
     <value>Section height matches bottom profile sill height</value>
     <comment>Match Constraint</comment>
   </data>
-  <data name="ThroatWidth" xml:space="preserve">
-    <value>Throat Width</value>
+  <data name="ControlWidth" xml:space="preserve">
+    <value>Control Width</value>
   </data>
   <data name="RaiseLowerInnerSection" xml:space="preserve">
     <value>Raise or Lower inner section</value>
@@ -709,8 +709,8 @@
     <value>Float and recorder in stilling well</value>
     <comment>Gage description</comment>
   </data>
-  <data name="ThroatDiameter" xml:space="preserve">
-    <value>Throat Diameter</value>
+  <data name="ControlDiameter" xml:space="preserve">
+    <value>Control Diameter</value>
   </data>
   <data name="CopyableBitmap" xml:space="preserve">
     <value>Copyable bitmap of graph</value>
@@ -808,8 +808,8 @@
   <data name="FlumeRatingEquation" xml:space="preserve">
     <value>Flume Rating Equation</value>
   </data>
-  <data name="ThroatFocalDistance" xml:space="preserve">
-    <value>Throat Focal Distance</value>
+  <data name="ControlFocalDistance" xml:space="preserve">
+    <value>Control Focal Distance</value>
   </data>
   <data name="EquationReport" xml:space="preserve">
     <value>Equation Report</value>

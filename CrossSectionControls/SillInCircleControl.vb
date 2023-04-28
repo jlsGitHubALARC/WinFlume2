@@ -10,6 +10,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class SillInCircleControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 
@@ -276,12 +277,12 @@ Public Class SillInCircleControl
         Dim TWtxt As String = UnitsDialog.UiValueUnitsText(mChannelWidth, "m")
         Me.TwKey.ShowValue(TWtxt)
 
-        ' Sill Width
+        ' Control Width
         Dim r As Double = DF / 2
         Dim l As Double = D1 - r
-        Dim SWval As Single = 2 * CSng(Math.Sqrt(r ^ 2 - l ^ 2))              ' Sill Width
-        Dim SWtxt As String = UnitsDialog.UiValueUnitsText(SWval, "m")
-        Me.SwKey.ShowValue(SWtxt)
+        Dim CWval As Single = 2 * CSng(Math.Sqrt(r ^ 2 - l ^ 2))              ' Control Width
+        Dim CWtxt As String = UnitsDialog.UiValueUnitsText(CWval, "m")
+        Me.CwKey.ShowValue(CWtxt)
 
     End Sub
 
@@ -368,7 +369,7 @@ Public Class SillInCircleControl
             y1 = mOuter.First.Y - DFsize.Height
             eGraphics.DrawString(DFtext, Me.Font, mBlackBrush, x1, y1)
 
-            ' Sill Width (i.e. Bottom Width)
+            ' Control Width (i.e. Bottom Width)
             Dim BW As Single = mSection.BottomWidth
             Dim BWtext As String = UnitsDialog.UiValueUnitsText(BW, "m")
             Dim BWsize As SizeF = eGraphics.MeasureString(BWtext, Me.Font)

@@ -43,6 +43,7 @@ Partial Class AboutWinFlumeDialog
         Me.WinFlume_URL = New System.Windows.Forms.LinkLabel()
         Me.WinFlumeVersionLabel = New WinFlume.ctl_Label()
         Me.DetailsButton = New System.Windows.Forms.Button()
+        Me.ReleaseDateLabel = New WinFlume.ctl_Label()
         Me.TableLayoutPanel1.SuspendLayout()
         CType(Me.FlumePicture, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ILRI_Logo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,11 +170,17 @@ Partial Class AboutWinFlumeDialog
         Me.DetailsButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.DetailsButton.Name = "DetailsButton"
         '
+        'ReleaseDateLabel
+        '
+        resources.ApplyResources(Me.ReleaseDateLabel, "ReleaseDateLabel")
+        Me.ReleaseDateLabel.Name = "ReleaseDateLabel"
+        '
         'AboutWinFlumeDialog
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Cancel_Button
+        Me.Controls.Add(Me.ReleaseDateLabel)
         Me.Controls.Add(Me.DetailsButton)
         Me.Controls.Add(Me.WinFlumeVersionLabel)
         Me.Controls.Add(Me.WinFlume_URL)
@@ -227,4 +234,5 @@ Partial Class AboutWinFlumeDialog
     Friend WithEvents WinFlume_URL As LinkLabel
     Friend WithEvents WinFlumeVersionLabel As ctl_Label
     Friend WithEvents DetailsButton As Button
+    Friend WithEvents ReleaseDateLabel As ctl_Label
 End Class

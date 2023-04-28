@@ -11,6 +11,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class VShapedInVShapedControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 

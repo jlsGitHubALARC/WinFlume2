@@ -30,7 +30,7 @@ Partial Class TableChoicesControl
         Me.h2Label1 = New WinFlume.ctl_Label()
         Me.CvLabel = New WinFlume.ctl_Label()
         Me.CdLabel = New WinFlume.ctl_Label()
-        Me.VaLabel = New WinFlume.ctl_Label()
+        Me.V1Table = New WinFlume.ctl_Label()
         Me.y1Label = New WinFlume.ctl_Label()
         Me.H1Label = New WinFlume.ctl_Label()
         Me.H1LLabel = New WinFlume.ctl_Label()
@@ -78,7 +78,7 @@ Partial Class TableChoicesControl
         Me.RatingTableOutputsBox.Controls.Add(Me.h2Label1)
         Me.RatingTableOutputsBox.Controls.Add(Me.CvLabel)
         Me.RatingTableOutputsBox.Controls.Add(Me.CdLabel)
-        Me.RatingTableOutputsBox.Controls.Add(Me.VaLabel)
+        Me.RatingTableOutputsBox.Controls.Add(Me.V1Table)
         Me.RatingTableOutputsBox.Controls.Add(Me.y1Label)
         Me.RatingTableOutputsBox.Controls.Add(Me.H1Label)
         Me.RatingTableOutputsBox.Controls.Add(Me.H1LLabel)
@@ -139,11 +139,11 @@ Partial Class TableChoicesControl
         Me.CdLabel.Name = "CdLabel"
         Me.CdLabel.Tag = "8"
         '
-        'VaLabel
+        'V1Table
         '
-        resources.ApplyResources(Me.VaLabel, "VaLabel")
-        Me.VaLabel.Name = "VaLabel"
-        Me.VaLabel.Tag = "7"
+        resources.ApplyResources(Me.V1Table, "V1Table")
+        Me.V1Table.Name = "V1Table"
+        Me.V1Table.Tag = "7"
         '
         'y1Label
         '
@@ -494,7 +494,7 @@ Partial Class TableChoicesControl
     Friend WithEvents H1H2Label As WinFlume.ctl_Label
     Friend WithEvents y1Label As WinFlume.ctl_Label
     Friend WithEvents CdLabel As WinFlume.ctl_Label
-    Friend WithEvents VaLabel As WinFlume.ctl_Label
+    Friend WithEvents V1Table As WinFlume.ctl_Label
     Friend WithEvents CvLabel As WinFlume.ctl_Label
     Friend WithEvents h2Label1 As WinFlume.ctl_Label
     Friend WithEvents h2Label2 As WinFlume.ctl_Label

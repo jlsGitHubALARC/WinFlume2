@@ -11,6 +11,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class ParabolaInParabolaControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 

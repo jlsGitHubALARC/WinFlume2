@@ -8,6 +8,7 @@
 Imports WinFlume.WinFlumeSectionType
 
 Public Class UShapedInUShapedControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 

@@ -318,37 +318,37 @@
   <data name="&gt;&gt;CdLabel.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="VaLabel.AutoSize" type="System.Boolean, mscorlib">
+  <data name="V1Table.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="VaLabel.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="V1Table.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 10pt</value>
   </data>
-  <data name="VaLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="V1Table.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="VaLabel.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="V1Table.Location" type="System.Drawing.Point, System.Drawing">
     <value>227, 102</value>
   </data>
-  <data name="VaLabel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="V1Table.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 17</value>
   </data>
-  <data name="VaLabel.TabIndex" type="System.Int32, mscorlib">
+  <data name="V1Table.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="VaLabel.Text" xml:space="preserve">
-    <value>(Va)</value>
+  <data name="V1Table.Text" xml:space="preserve">
+    <value>(V1)</value>
   </data>
-  <data name="&gt;&gt;VaLabel.Name" xml:space="preserve">
-    <value>VaLabel</value>
+  <data name="&gt;&gt;V1Table.Name" xml:space="preserve">
+    <value>V1Table</value>
   </data>
-  <data name="&gt;&gt;VaLabel.Type" xml:space="preserve">
+  <data name="&gt;&gt;V1Table.Type" xml:space="preserve">
     <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;VaLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;V1Table.Parent" xml:space="preserve">
     <value>RatingTableOutputsBox</value>
   </data>
-  <data name="&gt;&gt;VaLabel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;V1Table.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="y1Label.AutoSize" type="System.Boolean, mscorlib">
@@ -535,7 +535,7 @@
     <value>24</value>
   </data>
   <data name="ModularLimitCheckBox.Text" xml:space="preserve">
-    <value>Modular Limit</value>
+    <value>Modular Limit, ML</value>
   </data>
   <data name="&gt;&gt;ModularLimitCheckBox.Name" xml:space="preserve">
     <value>ModularLimitCheckBox</value>
@@ -760,7 +760,7 @@
     <value>14</value>
   </data>
   <data name="VelocityCoefficientCheckBox.Text" xml:space="preserve">
-    <value>Velocity Coefficient</value>
+    <value>Velocity coefficient</value>
   </data>
   <data name="&gt;&gt;VelocityCoefficientCheckBox.Name" xml:space="preserve">
     <value>VelocityCoefficientCheckBox</value>
@@ -826,7 +826,7 @@
     <value>10</value>
   </data>
   <data name="UpstreamVelocityCheckBox.Text" xml:space="preserve">
-    <value>Upstream Velocity</value>
+    <value>Upstream velocity</value>
   </data>
   <data name="&gt;&gt;UpstreamVelocityCheckBox.Name" xml:space="preserve">
     <value>UpstreamVelocityCheckBox</value>

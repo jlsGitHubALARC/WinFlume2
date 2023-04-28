@@ -158,7 +158,7 @@ Public Class TableChoicesControl
 
         value = RatingResultsEnum.V1
         name = Me.UpstreamVelocityCheckBox.Text
-        symbol = SymbolFromLabel(Me.VaLabel.Text)
+        symbol = SymbolFromLabel(Me.V1Table.Text)
         siUnits = "m/s"
         selected = 0 < (RatingParametersToShow And 1 << CInt(UpstreamVelocityCheckBox.Tag))
         mTableChoices.Add(New TableChoice(value, name, symbol, siUnits, selected))
@@ -172,7 +172,7 @@ Public Class TableChoicesControl
 
         value = RatingResultsEnum.Cv
         name = Me.VelocityCoefficientCheckBox.Text
-        symbol = SymbolFromLabel(Me.VaLabel.Text)
+        symbol = SymbolFromLabel(Me.CvLabel.Text)
         siUnits = ""
         selected = 0 < (RatingParametersToShow And 1 << CInt(VelocityCoefficientCheckBox.Tag))
         mTableChoices.Add(New TableChoice(value, name, symbol, siUnits, selected))

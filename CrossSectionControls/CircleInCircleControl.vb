@@ -8,6 +8,7 @@
 Imports WinFlume.WinFlumeSectionType
 
 Public Class CircleInCircleControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 

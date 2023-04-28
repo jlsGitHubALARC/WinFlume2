@@ -263,7 +263,7 @@ Public Class RatingEquationControl
                     Me.DataPanel.Controls.Add(mTable)
                 End If
 
-                UpdateRatingEquationTable(RatingResults, mFlume.RatingTableType)
+                UpdateRatingEquationTable(RatingResults)
 
             Else ' Assume Me.ShowGraphButton.Checked
 
@@ -354,8 +354,10 @@ Public Class RatingEquationControl
 
 #Region " Update Rating Equation Table "
 
-    Public Sub UpdateRatingEquationTable(ByVal RatingResults() As RatingResultsType,
-                                         ByVal TableType As Integer)
+    '*********************************************************************************************************
+    ' UpdateRatingEquationTable - Update Rating Equation Table using input Rating Results
+    '*********************************************************************************************************
+    Public Sub UpdateRatingEquationTable(ByVal RatingResults() As RatingResultsType)
 
         Dim choicesControl As TableChoicesControl = mWinFlumeForm.GetTableChoicesControl
         Dim tblChoices As List(Of TableChoice) = choicesControl.TableChoices()

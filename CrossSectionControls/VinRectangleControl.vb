@@ -10,6 +10,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class VinRectangleControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 
@@ -40,7 +41,6 @@ Public Class VinRectangleControl
             mSection = mFlume.Section(mSectionIdx)  ' Flume.Section
 
             If (WinFlumeForm.ControlMatchedToApproach) Then
-                Debug.Assert(mFlume.Section(cApproach).Shape = shRectangular)
                 ' Match Control Section cross-section to Approach Channel cross-section
                 With mSection
                     .Z1 = mFlume.Section(cApproach).Z1

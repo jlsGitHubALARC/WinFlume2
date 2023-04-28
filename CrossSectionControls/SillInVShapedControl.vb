@@ -11,6 +11,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class SillInVShapedControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 
@@ -222,10 +223,10 @@ Public Class SillInVShapedControl
         Dim TWtxt As String = UnitsDialog.UiValueUnitsText(mChannelWidth, "m")
         Me.TwKey.ShowValue(TWtxt)
 
-        ' Sill Width
-        Dim SWval As Single = mSection.TopWidth(0, errVal)
-        Dim SWtxt As String = UnitsDialog.UiValueUnitsText(SWval, "m")
-        Me.SwKey.ShowValue(SWtxt)
+        ' Control Width
+        Dim CWval As Single = mSection.TopWidth(0, errVal)
+        Dim CWtxt As String = UnitsDialog.UiValueUnitsText(CWval, "m")
+        Me.CwKey.ShowValue(CWtxt)
 
     End Sub
 
@@ -297,7 +298,7 @@ Public Class SillInVShapedControl
         y1 -= Z1size.Height
         eGraphics.DrawString(Z1text, Me.Font, mBlackBrush, x1, y1)
 
-        ' Sill Width (i.e. Bottom Width)
+        ' Control Width (i.e. Bottom Width)
         Dim BW As Single = mSection.BottomWidth
         Dim BWtext As String = UnitsDialog.UiValueUnitsText(BW, "m")
         Dim BWsize As SizeF = eGraphics.MeasureString(BWtext, Me.Font)

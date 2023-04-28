@@ -561,6 +561,34 @@ Public Class CrossSectionControl
 #Region " Section Methods "
 
     '*********************************************************************************************************
+    ' Sub MatchControlToApproach
+    '*********************************************************************************************************
+    Protected Sub MatchControlToApproach(ByVal mFlume As FlumeType)
+
+        If (mFlume IsNot Nothing) Then
+            mSection = mFlume.Section(mSectionIdx)  ' Flume.Section
+
+            If (WinFlumeForm.ControlMatchedToApproach) Then
+                'Debug.Assert(mFlume.Section(cApproach).Shape = shSimpleTrapezoid)
+                ' Match Control Section cross-section to Approach Channel cross-section
+                With mSection
+                    .D1 = mFlume.SillHeight
+                    ' .Z1 = mFlume.Section(cApproach).Z1
+                    ' .Z2 = mFlume.Section(cApproach).Z1
+                    .Z3 = mFlume.Section(cApproach).Z1
+                    '.BottomWidth = mFlume.Section(cApproach).TopWidth(.D1, False)
+                    .OuterBottomWidth = mFlume.Section(cApproach).BottomWidth
+                End With
+                'Else
+                '    Debug.Assert(False)
+            End If
+        Else
+            Debug.Assert(False)
+        End If
+
+    End Sub
+
+    '*********************************************************************************************************
     ' Sub SetControlBW() - set Control Section's Bottom Width
     '*********************************************************************************************************
     Protected Sub SetControlBW(ByVal BW As Single)
@@ -579,6 +607,12 @@ Public Class CrossSectionControl
                 If (mSection.BottomWidth > BW) Then
                     mSection.BottomWidth = BW
                 End If
+
+                Dim Z1 As Single = MatchZ1ToApproach(mSection.Z1)
+                If (mSection.Z1 <> Z1) Then
+                    mSection.Z1 = Z1
+                End If
+
             Else ' Not Matched
                 Select Case (mSection.Shape)
                     Case shTrapezoidInCircle, shTrapezoidInParabola, shTrapezoidInUShaped
@@ -917,7 +951,7 @@ Public Class CrossSectionControl
 
             Case shTrapezoidInCircle, shTrapezoidInParabola, shTrapezoidInUShaped,
                     shTrapezoidInTrapezoid, shTrapezoidInVShaped, shTrapezoidInRectangle,
-                    shRectangleInRectangle
+                    shRectangleInRectangle, shComplexTrapezoid
 
                 Dim msg As String = My.Resources.BottomWidthLimited & vbCrLf & vbCrLf
                 msg &= My.Resources.SimplifyToSill
@@ -1028,6 +1062,8 @@ Public Class CrossSectionControl
                     If (Z1 > apprSection.Z1) Then
                         Z1 = apprSection.Z1
                         MsgBox(My.Resources.SideSlopeLimited, MsgBoxStyle.Exclamation, My.Resources.SideSlope)
+                        'ElseIf (Z1 < apprSection.Z1) Then
+                        '    Z1 = apprSection.Z1
                     End If
             End Select
         End If

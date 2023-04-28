@@ -11,6 +11,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class SillInRectangleControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 
@@ -211,10 +212,10 @@ Public Class SillInRectangleControl
         Dim TWtxt As String = UnitsDialog.UiValueUnitsText(mChannelWidth, "m")
         Me.TwKey.ShowValue(TWtxt)
 
-        ' Sill Width
-        Dim SWval As Single = mSection.TopWidth(0, errVal)
-        Dim SWtxt As String = UnitsDialog.UiValueUnitsText(SWval, "m")
-        Me.SwKey.ShowValue(SWtxt)
+        ' Control Width
+        Dim CWval As Single = mSection.TopWidth(0, errVal)
+        Dim CWtxt As String = UnitsDialog.UiValueUnitsText(CWval, "m")
+        Me.CwKey.ShowValue(CWtxt)
 
     End Sub
 

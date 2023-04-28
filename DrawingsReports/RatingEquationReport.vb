@@ -64,7 +64,7 @@ Public Class RatingEquationReport
             '
             ' Generate Rating Equation Table
             '
-            ratingEquationControl.UpdateRatingEquationTable(RatingResults, mFlume.RatingTableType)
+            ratingEquationControl.UpdateRatingEquationTable(RatingResults)
             Dim ratingTable As ctl_DataGridView = ratingEquationControl.RatingEquationGridView
 
             ' Start of report page header

@@ -8,6 +8,7 @@
 Imports Flume.Globals
 
 Public Class SimpleTrapezoidControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 
@@ -168,6 +169,11 @@ Public Class SimpleTrapezoidControl
         ' Top Width
         Dim TWtxt As String = UnitsDialog.UiValueUnitsText(mChannelWidth, "m")
         Me.TwKey.ShowValue(TWtxt)
+
+        ' Control Width
+        Dim errval As Boolean
+        Dim CWText As String = UnitsDialog.UiValueUnitsText(mSection.TopWidth(mSillHeight, errval), "m")
+        Me.ControlWidthKey.ShowValue(CWText)
 
         ' Set Read-Only state, when appropriate
         Select Case (mSectionIdx)
@@ -332,6 +338,12 @@ Public Class SimpleTrapezoidControl
     ' FlumeDataChanged event handler
     '*********************************************************************************************************
     Protected Sub FlumeDataChanged() Handles mWinFlumeForm.FlumeDataChanged
+
+        Dim Z1 As Single = MatchZ1ToApproach(mSection.Z1)
+        If (mSection.Z1 <> Z1) Then
+            mSection.Z1 = Z1
+        End If
+
         Me.UpdateUI()
     End Sub
 

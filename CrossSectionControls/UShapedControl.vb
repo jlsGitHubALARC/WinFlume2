@@ -8,6 +8,7 @@
 Imports Flume.Globals
 
 Public Class UShapedControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 

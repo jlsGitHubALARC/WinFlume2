@@ -7,6 +7,7 @@
 Imports WinFlume.WinFlumeSectionType
 
 Public Class SillInParabolaControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 
@@ -257,10 +258,10 @@ Public Class SillInParabolaControl
         Dim TWtxt As String = UnitsDialog.UiValueUnitsText(mChannelWidth, "m")
         Me.TwKey.ShowValue(TWtxt)
 
-        ' Sill Width
-        Dim SWval As Single = 2 * CSng(Math.Sqrt(2 * DF * D1))
-        Dim SWtxt As String = UnitsDialog.UiValueUnitsText(SWval, "m")
-        Me.SwKey.ShowValue(SWtxt)
+        ' Control Width
+        Dim CWval As Single = 2 * CSng(Math.Sqrt(2 * DF * D1))
+        Dim CWtxt As String = UnitsDialog.UiValueUnitsText(CWval, "m")
+        Me.CwKey.ShowValue(CWtxt)
 
     End Sub
 
@@ -350,13 +351,13 @@ Public Class SillInParabolaControl
             y1 = sill(1).Y
             eGraphics.DrawString(D1Txt, Me.Font, mBlackBrush, x1, y1)
 
-            ' Sill Width
-            Dim SWval As Single = 2 * CSng(Math.Sqrt(2 * DF * D1))
-            Dim SWtxt As String = UnitsDialog.UiValueUnitsText(SWval, "m")
-            Dim SWsiz As RectangleF = MeasureString(eGraphics, SWtxt, Me.Font)
-            x1 = (sill(0).X + sill(1).X - SWsiz.Width) / 2
-            y1 = sill(0).Y - SWsiz.Height
-            eGraphics.DrawString(SWtxt, Me.Font, mBlackBrush, x1, y1)
+            ' Control Width
+            Dim CWval As Single = 2 * CSng(Math.Sqrt(2 * DF * D1))
+            Dim CWtxt As String = UnitsDialog.UiValueUnitsText(CWval, "m")
+            Dim CWsiz As RectangleF = MeasureString(eGraphics, CWtxt, Me.Font)
+            x1 = (sill(0).X + sill(1).X - CWsiz.Width) / 2
+            y1 = sill(0).Y - CWsiz.Height
+            eGraphics.DrawString(CWtxt, Me.Font, mBlackBrush, x1, y1)
 
         Catch ex As Exception
             Debug.Assert(False)

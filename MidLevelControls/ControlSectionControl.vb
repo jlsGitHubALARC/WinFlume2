@@ -54,55 +54,55 @@ Public Class ControlSectionControl
     Public Function GetCrossSectionControl(ByVal SectionIdx As Integer) As CrossSectionControl
         Dim crossSectionCtrl As CrossSectionControl = Nothing
         Select Case SectionIdx
-            Case shSimpleTrapezoid
+            Case shSimpleTrapezoid                          ' 1
                 crossSectionCtrl = stCtrl
-            Case shRectangular
+            Case shRectangular                              ' 2
                 crossSectionCtrl = reCtrl
-            Case shVShaped
+            Case shVShaped                                  ' 3
                 crossSectionCtrl = vsCtrl
-            Case shCircle
+            Case shCircle                                   ' 4
                 crossSectionCtrl = ciCtrl
-            Case shUShaped
+            Case shUShaped                                  ' 5
                 crossSectionCtrl = usCtrl
-            Case shParabola
+            Case shParabola                                 ' 6
                 crossSectionCtrl = paCtrl
-            Case shComplexTrapezoid
+            Case shComplexTrapezoid                         ' 7
                 crossSectionCtrl = ctCtrl
-            Case shSillInCircle
-                crossSectionCtrl = sincCtrl
-            Case shTrapezoidInCircle
+            Case shTrapezoidInCircle                        ' 8
                 crossSectionCtrl = tincCtrl
-            Case shSillInParabola
-                crossSectionCtrl = sinpCtrl
-            Case shTrapezoidInParabola
-                crossSectionCtrl = tinpCtrl
-            Case shSillInUShaped
-                crossSectionCtrl = sinuCtrl
-            Case shTrapezoidInUShaped
+            Case shTrapezoidInU, shTrapezoidInUShaped       ' 9 & 10
                 crossSectionCtrl = tinuCtrl
-            Case shVInRectangle
+            Case shTrapezoidInParabola                      ' 11
+                crossSectionCtrl = tinpCtrl
+            Case shSillInCircle                             ' 12
+                crossSectionCtrl = sincCtrl
+            Case shSillInU, shSillInUShaped                 ' 13 & 14
+                crossSectionCtrl = sinuCtrl
+            Case shSillInParabola                           ' 15
+                crossSectionCtrl = sinpCtrl
+            Case shVInRectangle                             ' 16
                 crossSectionCtrl = vinrCtrl
-            Case shSillInTrapezoid
+            Case shSillInTrapezoid                          ' 17
                 crossSectionCtrl = sintCtrl
-            Case shTrapezoidInTrapezoid
+            Case shTrapezoidInTrapezoid                     ' 18
                 crossSectionCtrl = tintCtrl
-            Case shSillInRectangle
+            Case shSillInRectangle                          ' 19
                 crossSectionCtrl = sinrCtrl
-            Case shRectangleInRectangle
+            Case shRectangleInRectangle                     ' 20
                 crossSectionCtrl = rinrCtrl
-            Case shSillInVShaped
+            Case shSillInVShaped                            ' 21
                 crossSectionCtrl = sinvCtrl
-            Case shTrapezoidInVShaped
+            Case shTrapezoidInVShaped                       ' 22
                 crossSectionCtrl = tinvCtrl
-            Case shCircleInCircle
-                crossSectionCtrl = cincCtrl
-            Case shUShapedInUShaped
-                crossSectionCtrl = uinuCtrl
-            Case shParabolaInParabola
-                crossSectionCtrl = pinpCtrl
-            Case shVShapedInVShaped
+            Case shVShapedInVShaped                         ' 23
                 crossSectionCtrl = vinvCtrl
-            Case shTrapezoidInRectangle
+            Case shCircleInCircle                           ' 24
+                crossSectionCtrl = cincCtrl
+            Case shUShapedInUShaped                         ' 25
+                crossSectionCtrl = uinuCtrl
+            Case shParabolaInParabola                       ' 26
+                crossSectionCtrl = pinpCtrl
+            Case shTrapezoidInRectangle                     ' 27
                 crossSectionCtrl = tinrCtrl
             Case Else
                 Debug.Assert(False)
@@ -194,7 +194,7 @@ Public Class ControlSectionControl
             ' Update cross section control to match Section data
             Select Case (mControlSection.Shape)
 
-                Case shSimpleTrapezoid
+                Case shSimpleTrapezoid                                  ' 1
 
                     If (stCtrl Is Nothing) Then
                         stCtrl = New SimpleTrapezoidControl(cControl)
@@ -203,7 +203,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(stCtrl)
                     stCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shRectangular
+                Case shRectangular                                      ' 2
 
                     If (reCtrl Is Nothing) Then
                         reCtrl = New RectangularControl(cControl)
@@ -212,7 +212,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(reCtrl)
                     reCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shVShaped
+                Case shVShaped                                          ' 3
 
                     If (vsCtrl Is Nothing) Then
                         vsCtrl = New VShapedControl(cControl)
@@ -221,7 +221,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(vsCtrl)
                     vsCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shCircle
+                Case shCircle                                           ' 4
 
                     If (ciCtrl Is Nothing) Then
                         ciCtrl = New CircleControl(cControl)
@@ -230,7 +230,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(ciCtrl)
                     ciCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shUShaped
+                Case shUShaped                                          ' 5
 
                     If (usCtrl Is Nothing) Then
                         usCtrl = New UShapedControl(cControl)
@@ -239,7 +239,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(usCtrl)
                     usCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shParabola
+                Case shParabola                                         ' 6
 
                     If (paCtrl Is Nothing) Then
                         paCtrl = New ParabolaControl(cControl)
@@ -248,7 +248,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(paCtrl)
                     paCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shComplexTrapezoid
+                Case shComplexTrapezoid                                 ' 7
 
                     If (ctCtrl Is Nothing) Then
                         ctCtrl = New ComplexTrapezoidControl(cControl)
@@ -257,7 +257,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(ctCtrl)
                     ctCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shTrapezoidInCircle
+                Case shTrapezoidInCircle                                ' 8
 
                     If (tincCtrl Is Nothing) Then
                         tincCtrl = New TrapezoidInCircleControl(cControl)
@@ -266,7 +266,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(tincCtrl)
                     tincCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shTrapezoidInUShaped
+                Case shTrapezoidInU, shTrapezoidInUShaped               ' 9 & 10
 
                     If (tinuCtrl Is Nothing) Then
                         tinuCtrl = New TrapezoidInUShapedControl(cControl)
@@ -275,7 +275,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(tinuCtrl)
                     tinuCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shTrapezoidInParabola
+                Case shTrapezoidInParabola                              ' 11
 
                     If (tinpCtrl Is Nothing) Then
                         tinpCtrl = New TrapezoidInParabolaControl(cControl)
@@ -284,7 +284,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(tinpCtrl)
                     tinpCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shSillInCircle
+                Case shSillInCircle                                     ' 12
 
                     If (sincCtrl Is Nothing) Then
                         sincCtrl = New SillInCircleControl(cControl)
@@ -293,7 +293,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(sincCtrl)
                     sincCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shSillInUShaped
+                Case shSillInU, shSillInUShaped                         ' 13 & 14
 
                     If (sinuCtrl Is Nothing) Then
                         sinuCtrl = New SillInUShapedControl(cControl)
@@ -302,7 +302,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(sinuCtrl)
                     sinuCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shSillInParabola
+                Case shSillInParabola                                   ' 15
 
                     If (sinpCtrl Is Nothing) Then
                         sinpCtrl = New SillInParabolaControl(cControl)
@@ -311,7 +311,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(sinpCtrl)
                     sinpCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shVInRectangle
+                Case shVInRectangle                                     ' 16
 
                     If (vinrCtrl Is Nothing) Then
                         vinrCtrl = New VinRectangleControl(cControl)
@@ -320,7 +320,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(vinrCtrl)
                     vinrCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shSillInTrapezoid
+                Case shSillInTrapezoid                                  ' 17
 
                     If (sintCtrl Is Nothing) Then
                         sintCtrl = New SillInTrapezoidControl(cControl)
@@ -329,7 +329,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(sintCtrl)
                     sintCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shTrapezoidInTrapezoid
+                Case shTrapezoidInTrapezoid                             ' 18
 
                     If (tintCtrl Is Nothing) Then
                         tintCtrl = New TrapezoidInTrapezoidControl(cControl)
@@ -338,7 +338,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(tintCtrl)
                     tintCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shSillInRectangle
+                Case shSillInRectangle                                  ' 19
 
                     If (sinrCtrl Is Nothing) Then
                         sinrCtrl = New SillInRectangleControl(cControl)
@@ -347,7 +347,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(sinrCtrl)
                     sinrCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shRectangleInRectangle
+                Case shRectangleInRectangle                             ' 20
 
                     If (rinrCtrl Is Nothing) Then
                         rinrCtrl = New RectangleInRectangleControl(cControl)
@@ -356,7 +356,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(rinrCtrl)
                     rinrCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shSillInVShaped
+                Case shSillInVShaped                                    ' 21
 
                     If (sinvCtrl Is Nothing) Then
                         sinvCtrl = New SillInVShapedControl(cControl)
@@ -365,7 +365,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(sinvCtrl)
                     sinvCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shTrapezoidInVShaped
+                Case shTrapezoidInVShaped                               ' 22
 
                     If (tinvCtrl Is Nothing) Then
                         tinvCtrl = New TrapezoidInVShapedControl(cControl)
@@ -374,34 +374,7 @@ Public Class ControlSectionControl
                     UpdateCrossSection(tinvCtrl)
                     tinvCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shCircleInCircle
-
-                    If (cincCtrl Is Nothing) Then
-                        cincCtrl = New CircleInCircleControl(cControl)
-                    End If
-
-                    UpdateCrossSection(cincCtrl)
-                    cincCtrl.UpdateUI(mWinFlumeForm)
-
-                Case shUShapedInUShaped
-
-                    If (uinuCtrl Is Nothing) Then
-                        uinuCtrl = New UShapedInUShapedControl(cControl)
-                    End If
-
-                    UpdateCrossSection(uinuCtrl)
-                    uinuCtrl.UpdateUI(mWinFlumeForm)
-
-                Case shParabolaInParabola
-
-                    If (pinpCtrl Is Nothing) Then
-                        pinpCtrl = New ParabolaInParabolaControl(cControl)
-                    End If
-
-                    UpdateCrossSection(pinpCtrl)
-                    pinpCtrl.UpdateUI(mWinFlumeForm)
-
-                Case shVShapedInVShaped
+                Case shVShapedInVShaped                                 ' 23
 
                     If (vinvCtrl Is Nothing) Then
                         vinvCtrl = New VShapedInVShapedControl(cControl)
@@ -410,7 +383,34 @@ Public Class ControlSectionControl
                     UpdateCrossSection(vinvCtrl)
                     vinvCtrl.UpdateUI(mWinFlumeForm)
 
-                Case shTrapezoidInRectangle
+                Case shCircleInCircle                                   ' 24
+
+                    If (cincCtrl Is Nothing) Then
+                        cincCtrl = New CircleInCircleControl(cControl)
+                    End If
+
+                    UpdateCrossSection(cincCtrl)
+                    cincCtrl.UpdateUI(mWinFlumeForm)
+
+                Case shUShapedInUShaped                                 ' 25
+
+                    If (uinuCtrl Is Nothing) Then
+                        uinuCtrl = New UShapedInUShapedControl(cControl)
+                    End If
+
+                    UpdateCrossSection(uinuCtrl)
+                    uinuCtrl.UpdateUI(mWinFlumeForm)
+
+                Case shParabolaInParabola                               ' 26
+
+                    If (pinpCtrl Is Nothing) Then
+                        pinpCtrl = New ParabolaInParabolaControl(cControl)
+                    End If
+
+                    UpdateCrossSection(pinpCtrl)
+                    pinpCtrl.UpdateUI(mWinFlumeForm)
+
+                Case shTrapezoidInRectangle                             ' 27
 
                     If (tinrCtrl Is Nothing) Then
                         tinrCtrl = New TrapezoidInRectangleControl(cControl)
@@ -581,12 +581,14 @@ Public Class ControlSectionControl
         If ((mWinFlumeForm IsNot Nothing) And (mFlume IsNot Nothing)) Then
             Dim itemIdx As Integer = Me.ControlCrossSection.Value
             Dim itemText As String = DirectCast(Me.ControlCrossSection.Items(itemIdx), String)
+            Dim ChannelDepth = mFlume.Section(cApproach).TopWidth(mFlume.ChannelDepth, False)
 
             mControlSection = mFlume.Section(cControl)                     ' Section data
             mApproachChannel = mFlume.Section(cApproach)
 
-            Dim SW As Single = mApproachChannel.TopWidth(mControlSection.D1, False)
-            Dim TW As Single = mApproachChannel.TopWidth(mFlume.SillHeight, False)
+            Dim CW As Single = mApproachChannel.TopWidth(mControlSection.D1, False)
+            'Dim TW As Single = mApproachChannel.TopWidth(mFlume.SillHeight, False)
+            Dim TW As Single = mApproachChannel.TopWidth(ChannelDepth, False)
 
             Dim crestType As Integer = mFlume.CrestType
             Select Case (crestType)
@@ -596,13 +598,19 @@ Public Class ControlSectionControl
                         If (sectionText = itemText) Then
                             mControlSection.Shape = sdx
 
+                            Dim diam As Single = mControlSection.DiameterFocalD
+
+                            Dim flumeSectionType As Flume.SectionType = DirectCast(mControlSection, Flume.SectionType)
+                            flumeSectionType.Shape = sdx
+
                             ' Set bottom width so trapezoid-in-xyz is clearly visible
                             Select Case mControlSection.Shape
                                 Case shTrapezoidInVShaped, shTrapezoidInParabola, shTrapezoidInRectangle
-                                    mControlSection.BottomWidth = SW / 2
+                                    mControlSection.BottomWidth = CW / 2
                                 Case shTrapezoidInUShaped, shTrapezoidInCircle
-                                    Dim diam As Single = mControlSection.DiameterFocalD
                                     mControlSection.BottomWidth = diam / 2
+                                Case shCircle, shParabola, shSillInCircle, shSillInParabola, shSillInUShaped, shUShaped
+                                    mControlSection.BottomWidth = diam
                             End Select
 
                             If (mControlSection.GetType Is GetType(WinFlumeSectionType)) Then
@@ -620,10 +628,12 @@ Public Class ControlSectionControl
                                                 Select Case mControlSection.Shape
                                                     Case shTrapezoidInCircle, shTrapezoidInUShaped, shRectangleInRectangle
                                                         winFlumeSection.BottomWidth = mApproachChannel.BottomWidth / 2
-                                                    Case shTrapezoidInVShaped, shTrapezoidInParabola, shTrapezoidInRectangle
+                                                    Case shTrapezoidInVShaped, shTrapezoidInRectangle
                                                         winFlumeSection.BottomWidth = TW / 2
                                                     Case shSillInTrapezoid
-                                                        winFlumeSection.BottomWidth = SW
+                                                        winFlumeSection.BottomWidth = CW
+                                                    Case shTrapezoidInParabola
+                                                        winFlumeSection.BottomWidth = CW / 2
                                                     Case Else
                                                         winFlumeSection.BottomWidth = mApproachChannel.BottomWidth
                                                 End Select
@@ -670,6 +680,9 @@ Public Class ControlSectionControl
                 Case Else
                     Debug.Assert(False, "Invalid Crest Type")
             End Select
+
+            mFlume.Section(cControl) = mControlSection
+
             mWinFlumeForm.RaiseFlumeDataChanged()
         End If
     End Sub
@@ -685,11 +698,13 @@ Public Class ControlSectionControl
 
     '*********************************************************************************************************
     ' Handler for 'Match Control to Approach' button
+    '
+    ' Note - MatchControlToApproachCheckBox is toggling so if it is not checked, it is being checked
     '*********************************************************************************************************
     Private Sub MatchControlToApproachCheckBox_MouseDown(sender As Object, e As EventArgs) _
         Handles MatchControlToApproachCheckBox.MouseDown
 
-        If (Me.MatchControlToApproachCheckBox.Value = True) Then ' Match is checked
+        If (Me.MatchControlToApproachCheckBox.Value = True) Then ' CheckBox is being unchecked
 
             Debug.Assert(mFlume.Section(cControl).GetType Is GetType(WinFlumeSectionType))
 

@@ -26,6 +26,7 @@ Partial Class SimpleTrapezoidControl
         Me.BottomWidthKey = New WinFlume.ctl_Label()
         Me.Thumbnail = New WinFlume.ctl_PictureBox()
         Me.TwKey = New WinFlume.ctl_Label()
+        Me.ControlWidthKey = New WinFlume.ctl_Label()
         CType(Me.Thumbnail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -81,11 +82,17 @@ Partial Class SimpleTrapezoidControl
         resources.ApplyResources(Me.TwKey, "TwKey")
         Me.TwKey.Name = "TwKey"
         '
+        'ControlWidthKey
+        '
+        resources.ApplyResources(Me.ControlWidthKey, "ControlWidthKey")
+        Me.ControlWidthKey.Name = "ControlWidthKey"
+        '
         'SimpleTrapezoidControl
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.Controls.Add(Me.ControlWidthKey)
         Me.Controls.Add(Me.TwKey)
         Me.Controls.Add(Me.Z1Single)
         Me.Controls.Add(Me.Z1Key)
@@ -104,4 +111,5 @@ Partial Class SimpleTrapezoidControl
     Friend WithEvents Z1Key As WinFlume.ctl_Label
     Friend WithEvents Z1Single As WinFlume.ctl_Single
     Friend WithEvents TwKey As ctl_Label
+    Friend WithEvents ControlWidthKey As ctl_Label
 End Class

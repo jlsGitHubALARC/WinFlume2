@@ -148,7 +148,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Z1Single.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="Z1Key.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -163,7 +163,7 @@
     <value>2, 19</value>
   </data>
   <data name="Z1Key.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 17</value>
+    <value>27, 20</value>
   </data>
   <data name="Z1Key.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -184,7 +184,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Z1Key.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="BottomWidthSingle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -199,7 +199,7 @@
     <value>4, 4, 4, 4</value>
   </data>
   <data name="BottomWidthSingle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 31</value>
+    <value>84, 31</value>
   </data>
   <data name="BottomWidthSingle.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -214,7 +214,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BottomWidthSingle.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="BottomWidthKey.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -229,7 +229,7 @@
     <value>2, 2</value>
   </data>
   <data name="BottomWidthKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 17</value>
+    <value>111, 20</value>
   </data>
   <data name="BottomWidthKey.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -250,7 +250,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BottomWidthKey.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="Thumbnail.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -274,7 +274,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;Thumbnail.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="TwKey.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -289,7 +289,7 @@
     <value>2, 87</value>
   </data>
   <data name="TwKey.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 17</value>
+    <value>85, 20</value>
   </data>
   <data name="TwKey.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -310,13 +310,40 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;TwKey.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ControlWidthKey.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ControlWidthKey.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 108</value>
+  </data>
+  <data name="ControlWidthKey.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 20</value>
+  </data>
+  <data name="ControlWidthKey.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="ControlWidthKey.Text" xml:space="preserve">
+    <value>Control Width</value>
+  </data>
+  <data name="&gt;&gt;ControlWidthKey.Name" xml:space="preserve">
+    <value>ControlWidthKey</value>
+  </data>
+  <data name="&gt;&gt;ControlWidthKey.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ControlWidthKey.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ControlWidthKey.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>10, 20</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 10pt</value>

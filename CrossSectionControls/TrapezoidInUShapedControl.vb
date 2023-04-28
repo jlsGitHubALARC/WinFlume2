@@ -8,6 +8,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class TrapezoidInUShapedControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 
@@ -183,8 +184,8 @@ Public Class TrapezoidInUShapedControl
             Dim PD As Single = CD - PH                          ' Semi-circle depth from canal top
 
             Dim Z1 As Single = mSection.Z1                      ' Trapezoid side slope
-            Dim SW As Single = mSection.BottomWidth             ' Trapezoid bottom width (i.e. sill width)
-            Dim TW As Single = SW + 2 * Z1 * SD                 ' Trapezoid top width (at CD)
+            Dim CW As Single = mSection.BottomWidth             ' Trapezoid bottom width (i.e. control width)
+            Dim TW As Single = CW + 2 * Z1 * SD                 ' Trapezoid top width (at CD)
 
             Dim x1, x2, y1, y2 As Single
 
@@ -198,11 +199,11 @@ Public Class TrapezoidInUShapedControl
             Dim idx As Integer = 0
 
             ' Case by trapezoid fit within semi-circle
-            Dim maxSW As Single = DF
+            Dim maxCW As Single = DF
             If (D1 < DF / 2) Then
-                maxSW = CircleWidth(DF, D1) ' Maximum sill width for D1
+                maxCW = CircleWidth(DF, D1) ' Maximum control width for D1
             End If
-            If (maxSW <= SW) Then ' Degenerate case: Sill-In-Ushape
+            If (maxCW <= CW) Then ' Degenerate case: Sill-In-Ushape
 
                 For odx As Integer = 0 To oub
                     If (SD > outer(odx).Y) Then ' Ushape section above sill
@@ -239,20 +240,20 @@ Public Class TrapezoidInUShapedControl
 
                     x1 = outer(0).X + (DF - TW) * mHorzScale / 2  ' Left edge
                     y1 = outer(0).Y
-                    x2 = x1 + (TW - SW) * mHorzScale / 2
+                    x2 = x1 + (TW - CW) * mHorzScale / 2
                     y2 = SD
                     inner(0) = New PointF(x1, y1)
                     inner(1) = New PointF(x2, y2)
 
                     x1 = x2                                     ' Invert / Sill
                     y1 = y2
-                    x2 = x1 + SW * mHorzScale
+                    x2 = x1 + CW * mHorzScale
                     y2 = y1
                     inner(2) = New PointF(x2, y2)
 
                     x1 = x2                                     ' Right edge
                     y1 = y2
-                    x2 = x1 + (TW - SW) * mHorzScale / 2
+                    x2 = x1 + (TW - CW) * mHorzScale / 2
                     y2 = outer(0).Y
                     inner(3) = New PointF(x2, y2)
 
@@ -261,15 +262,15 @@ Public Class TrapezoidInUShapedControl
                 Else ' Trapezoid and Ushape intersect
 
                     ' Find trapezoid/Ushape intersection point; ported from Winflume.bas
-                    Dim xa As Single = SW / 2
+                    Dim xa As Single = CW / 2
                     Dim ya As Single = -DF / 2 + D1
 
                     Dim X, Y As Double
 
                     If (Z1 <= 0) Then
-                        X = SW / 2
+                        X = CW / 2
                         Y = Math.Sqrt(DF ^ 2 / 4 - xa ^ 2)
-                        TW = SW
+                        TW = CW
                     Else
                         Dim A As Double = 1 + 1 / Z1 ^ 2
                         Dim B As Double = 2 * (ya / Z1 - xa / Z1 ^ 2)
@@ -283,7 +284,7 @@ Public Class TrapezoidInUShapedControl
                     Y = Y + DF / 2
 
                     If ((X > DF / 2) Or (Y > DF / 2) Or (D1 > DF / 2)) Then ' intersection above semi-circle
-                        Dim dx As Double = (DF - SW) / 2
+                        Dim dx As Double = (DF - CW) / 2
                         Dim dy As Double = dx / Z1
 
                         X = DF / 2
@@ -307,13 +308,13 @@ Public Class TrapezoidInUShapedControl
                             inner(idx).Y = y1
                             idx += 1
 
-                            x1 += (TW - SW) * mHorzScale / 2
+                            x1 += (TW - CW) * mHorzScale / 2
                             y1 = SD
                             inner(idx).X = x1
                             inner(idx).Y = y1
                             idx += 1
 
-                            x1 += SW * mHorzScale                       ' Invert / Sill
+                            x1 += CW * mHorzScale                       ' Invert / Sill
                             y1 = SD
                             inner(idx).X = x1
                             inner(idx).Y = y1

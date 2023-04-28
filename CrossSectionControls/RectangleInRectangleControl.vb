@@ -8,6 +8,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class RectangleInRectangleControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 

@@ -2225,7 +2225,7 @@ Public Class BottomProfileControl
                             ctrlSection.D1 = siSillHeight
 
                             Dim apprTW As Single = apprSection.TopWidth(siSillHeight, False)
-                            Select Case winFlumeSection.ControlShape
+                            Select Case winFlumeSection.Shape
                                 Case shTrapezoidInParabola, shTrapezoidInRectangle, shTrapezoidInTrapezoid,
                                      shTrapezoidInUShaped, shTrapezoidInVShaped
                                     If (ctrlSection.BottomWidth > apprTW) Then

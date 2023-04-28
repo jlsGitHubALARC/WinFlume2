@@ -165,10 +165,11 @@ Partial Class WinFlumeForm
         '
         'MenuStrip
         '
+        Me.MenuStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.ViewMenu, Me.EditMenu, Me.OptionsMenu, Me.HelpMenu})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.Name = "MenuStrip"
-        Me.MenuStrip.Size = New System.Drawing.Size(784, 24)
+        Me.MenuStrip.Size = New System.Drawing.Size(784, 28)
         Me.MenuStrip.TabIndex = 0
         Me.MenuStrip.Text = "Menu Strip"
         '
@@ -176,232 +177,232 @@ Partial Class WinFlumeForm
         '
         Me.FileMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileNewItem, Me.FileOpenItem, Me.FileCloseItem, Me.FileMenuSeparator1, Me.FileSaveItem, Me.FileSaveAsItem, Me.FileMenuSeparator2, Me.FileExportGraphImageItem, Me.FileExportTableDataItem, Me.FileMenuSeparator3, Me.FilePrintGageItem, Me.FilePrintReportItem, Me.FileMenuSeparator4, Me.FileExamplesItem, Me.FileRecentItem, Me.FileExportAsItem, Me.FileMenuSeparator5, Me.FileExitItem})
         Me.FileMenu.Name = "FileMenu"
-        Me.FileMenu.Size = New System.Drawing.Size(37, 20)
+        Me.FileMenu.Size = New System.Drawing.Size(46, 24)
         Me.FileMenu.Text = "&File"
         '
         'FileNewItem
         '
         Me.FileNewItem.Name = "FileNewItem"
         Me.FileNewItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.FileNewItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileNewItem.Size = New System.Drawing.Size(225, 26)
         Me.FileNewItem.Text = "&New..."
         '
         'FileOpenItem
         '
         Me.FileOpenItem.Name = "FileOpenItem"
         Me.FileOpenItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.FileOpenItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileOpenItem.Size = New System.Drawing.Size(225, 26)
         Me.FileOpenItem.Text = "&Open..."
         '
         'FileCloseItem
         '
         Me.FileCloseItem.Name = "FileCloseItem"
-        Me.FileCloseItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileCloseItem.Size = New System.Drawing.Size(225, 26)
         Me.FileCloseItem.Text = "&Close"
         '
         'FileMenuSeparator1
         '
         Me.FileMenuSeparator1.Name = "FileMenuSeparator1"
-        Me.FileMenuSeparator1.Size = New System.Drawing.Size(175, 6)
+        Me.FileMenuSeparator1.Size = New System.Drawing.Size(222, 6)
         '
         'FileSaveItem
         '
         Me.FileSaveItem.Name = "FileSaveItem"
         Me.FileSaveItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.FileSaveItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileSaveItem.Size = New System.Drawing.Size(225, 26)
         Me.FileSaveItem.Text = "&Save"
         '
         'FileSaveAsItem
         '
         Me.FileSaveAsItem.Name = "FileSaveAsItem"
-        Me.FileSaveAsItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileSaveAsItem.Size = New System.Drawing.Size(225, 26)
         Me.FileSaveAsItem.Text = "Save &As..."
         '
         'FileMenuSeparator2
         '
         Me.FileMenuSeparator2.Name = "FileMenuSeparator2"
-        Me.FileMenuSeparator2.Size = New System.Drawing.Size(175, 6)
+        Me.FileMenuSeparator2.Size = New System.Drawing.Size(222, 6)
         '
         'FileExportGraphImageItem
         '
         Me.FileExportGraphImageItem.Name = "FileExportGraphImageItem"
-        Me.FileExportGraphImageItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileExportGraphImageItem.Size = New System.Drawing.Size(225, 26)
         Me.FileExportGraphImageItem.Text = "Export Graph &Image"
         '
         'FileExportTableDataItem
         '
         Me.FileExportTableDataItem.Name = "FileExportTableDataItem"
-        Me.FileExportTableDataItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileExportTableDataItem.Size = New System.Drawing.Size(225, 26)
         Me.FileExportTableDataItem.Text = "Export &Table Data"
         '
         'FileMenuSeparator3
         '
         Me.FileMenuSeparator3.Name = "FileMenuSeparator3"
-        Me.FileMenuSeparator3.Size = New System.Drawing.Size(175, 6)
+        Me.FileMenuSeparator3.Size = New System.Drawing.Size(222, 6)
         '
         'FilePrintGageItem
         '
         Me.FilePrintGageItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintFixedHeadIntervalGageItem, Me.PrintFixedDischargeIntervalGageItem})
         Me.FilePrintGageItem.Name = "FilePrintGageItem"
-        Me.FilePrintGageItem.Size = New System.Drawing.Size(178, 22)
+        Me.FilePrintGageItem.Size = New System.Drawing.Size(225, 26)
         Me.FilePrintGageItem.Text = "Print &Gage"
         '
         'PrintFixedHeadIntervalGageItem
         '
         Me.PrintFixedHeadIntervalGageItem.Name = "PrintFixedHeadIntervalGageItem"
-        Me.PrintFixedHeadIntervalGageItem.Size = New System.Drawing.Size(239, 22)
+        Me.PrintFixedHeadIntervalGageItem.Size = New System.Drawing.Size(300, 26)
         Me.PrintFixedHeadIntervalGageItem.Text = "Fixed-&Head Interval Gage..."
         '
         'PrintFixedDischargeIntervalGageItem
         '
         Me.PrintFixedDischargeIntervalGageItem.Name = "PrintFixedDischargeIntervalGageItem"
-        Me.PrintFixedDischargeIntervalGageItem.Size = New System.Drawing.Size(239, 22)
+        Me.PrintFixedDischargeIntervalGageItem.Size = New System.Drawing.Size(300, 26)
         Me.PrintFixedDischargeIntervalGageItem.Text = "Fixed-&Discharge Interval Gage..."
         '
         'FilePrintReportItem
         '
         Me.FilePrintReportItem.Name = "FilePrintReportItem"
-        Me.FilePrintReportItem.Size = New System.Drawing.Size(178, 22)
+        Me.FilePrintReportItem.Size = New System.Drawing.Size(225, 26)
         Me.FilePrintReportItem.Text = "&Print Report..."
         '
         'FileMenuSeparator4
         '
         Me.FileMenuSeparator4.Name = "FileMenuSeparator4"
-        Me.FileMenuSeparator4.Size = New System.Drawing.Size(175, 6)
+        Me.FileMenuSeparator4.Size = New System.Drawing.Size(222, 6)
         '
         'FileExamplesItem
         '
         Me.FileExamplesItem.Name = "FileExamplesItem"
-        Me.FileExamplesItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileExamplesItem.Size = New System.Drawing.Size(225, 26)
         Me.FileExamplesItem.Text = "&Examples"
         '
         'FileRecentItem
         '
         Me.FileRecentItem.Name = "FileRecentItem"
-        Me.FileRecentItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileRecentItem.Size = New System.Drawing.Size(225, 26)
         Me.FileRecentItem.Text = "&Recent"
         '
         'FileExportAsItem
         '
         Me.FileExportAsItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileExportAsV7Item, Me.FileExportAsV6Item, Me.FileExportAsV5Item, Me.FileExportAsV4Item, Me.FileExportAsV3Item, Me.FileExportAsV2Item, Me.FileExportAsV1Item})
         Me.FileExportAsItem.Name = "FileExportAsItem"
-        Me.FileExportAsItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileExportAsItem.Size = New System.Drawing.Size(225, 26)
         Me.FileExportAsItem.Text = "Ex&port As..."
         '
         'FileExportAsV7Item
         '
         Me.FileExportAsV7Item.Name = "FileExportAsV7Item"
-        Me.FileExportAsV7Item.Size = New System.Drawing.Size(87, 22)
+        Me.FileExportAsV7Item.Size = New System.Drawing.Size(109, 26)
         Me.FileExportAsV7Item.Text = "V7"
         '
         'FileExportAsV6Item
         '
         Me.FileExportAsV6Item.Name = "FileExportAsV6Item"
-        Me.FileExportAsV6Item.Size = New System.Drawing.Size(87, 22)
+        Me.FileExportAsV6Item.Size = New System.Drawing.Size(109, 26)
         Me.FileExportAsV6Item.Text = "V6"
         '
         'FileExportAsV5Item
         '
         Me.FileExportAsV5Item.Name = "FileExportAsV5Item"
-        Me.FileExportAsV5Item.Size = New System.Drawing.Size(87, 22)
+        Me.FileExportAsV5Item.Size = New System.Drawing.Size(109, 26)
         Me.FileExportAsV5Item.Text = "V5"
         '
         'FileExportAsV4Item
         '
         Me.FileExportAsV4Item.Name = "FileExportAsV4Item"
-        Me.FileExportAsV4Item.Size = New System.Drawing.Size(87, 22)
+        Me.FileExportAsV4Item.Size = New System.Drawing.Size(109, 26)
         Me.FileExportAsV4Item.Text = "V4"
         '
         'FileExportAsV3Item
         '
         Me.FileExportAsV3Item.Name = "FileExportAsV3Item"
-        Me.FileExportAsV3Item.Size = New System.Drawing.Size(87, 22)
+        Me.FileExportAsV3Item.Size = New System.Drawing.Size(109, 26)
         Me.FileExportAsV3Item.Text = "V3"
         '
         'FileExportAsV2Item
         '
         Me.FileExportAsV2Item.Name = "FileExportAsV2Item"
-        Me.FileExportAsV2Item.Size = New System.Drawing.Size(87, 22)
+        Me.FileExportAsV2Item.Size = New System.Drawing.Size(109, 26)
         Me.FileExportAsV2Item.Text = "V2"
         '
         'FileExportAsV1Item
         '
         Me.FileExportAsV1Item.Name = "FileExportAsV1Item"
-        Me.FileExportAsV1Item.Size = New System.Drawing.Size(87, 22)
+        Me.FileExportAsV1Item.Size = New System.Drawing.Size(109, 26)
         Me.FileExportAsV1Item.Text = "V1"
         '
         'FileMenuSeparator5
         '
         Me.FileMenuSeparator5.Name = "FileMenuSeparator5"
-        Me.FileMenuSeparator5.Size = New System.Drawing.Size(175, 6)
+        Me.FileMenuSeparator5.Size = New System.Drawing.Size(222, 6)
         '
         'FileExitItem
         '
         Me.FileExitItem.Name = "FileExitItem"
-        Me.FileExitItem.Size = New System.Drawing.Size(178, 22)
+        Me.FileExitItem.Size = New System.Drawing.Size(225, 26)
         Me.FileExitItem.Text = "E&xit"
         '
         'ViewMenu
         '
         Me.ViewMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewRefreshItem, Me.ViewSizeItem, Me.ViewDefinitionSketchItem, Me.ViewMenuSeparator1, Me.ViewAsDialogItem, Me.ViewMenuSeparator2, Me.ViewTabItem, Me.ViewSubtabItem, Me.ViewMenuSeparator3, Me.ViewWizardItem})
         Me.ViewMenu.Name = "ViewMenu"
-        Me.ViewMenu.Size = New System.Drawing.Size(44, 20)
+        Me.ViewMenu.Size = New System.Drawing.Size(55, 24)
         Me.ViewMenu.Text = "&View"
         '
         'ViewRefreshItem
         '
         Me.ViewRefreshItem.Name = "ViewRefreshItem"
         Me.ViewRefreshItem.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.ViewRefreshItem.Size = New System.Drawing.Size(164, 22)
+        Me.ViewRefreshItem.Size = New System.Drawing.Size(205, 26)
         Me.ViewRefreshItem.Text = "&Refresh"
         '
         'ViewSizeItem
         '
         Me.ViewSizeItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewSize800x600Item, Me.ViewSize900x675Item, Me.ViewSize1024x768Item, Me.ViewSizeCustomItem})
         Me.ViewSizeItem.Name = "ViewSizeItem"
-        Me.ViewSizeItem.Size = New System.Drawing.Size(164, 22)
+        Me.ViewSizeItem.Size = New System.Drawing.Size(205, 26)
         Me.ViewSizeItem.Text = "Si&ze"
         '
         'ViewSize800x600Item
         '
         Me.ViewSize800x600Item.Name = "ViewSize800x600Item"
-        Me.ViewSize800x600Item.Size = New System.Drawing.Size(180, 22)
+        Me.ViewSize800x600Item.Size = New System.Drawing.Size(224, 26)
         Me.ViewSize800x600Item.Text = "&800x600"
         '
         'ViewSize900x675Item
         '
         Me.ViewSize900x675Item.Name = "ViewSize900x675Item"
-        Me.ViewSize900x675Item.Size = New System.Drawing.Size(180, 22)
+        Me.ViewSize900x675Item.Size = New System.Drawing.Size(224, 26)
         Me.ViewSize900x675Item.Text = "&900x675"
         '
         'ViewSize1024x768Item
         '
         Me.ViewSize1024x768Item.Name = "ViewSize1024x768Item"
-        Me.ViewSize1024x768Item.Size = New System.Drawing.Size(180, 22)
+        Me.ViewSize1024x768Item.Size = New System.Drawing.Size(224, 26)
         Me.ViewSize1024x768Item.Text = "&1024x768"
         '
         'ViewSizeCustomItem
         '
         Me.ViewSizeCustomItem.Name = "ViewSizeCustomItem"
-        Me.ViewSizeCustomItem.Size = New System.Drawing.Size(180, 22)
+        Me.ViewSizeCustomItem.Size = New System.Drawing.Size(224, 26)
         Me.ViewSizeCustomItem.Text = "&Custom (949x768) ..."
         '
         'ViewDefinitionSketchItem
         '
         Me.ViewDefinitionSketchItem.Name = "ViewDefinitionSketchItem"
-        Me.ViewDefinitionSketchItem.Size = New System.Drawing.Size(164, 22)
+        Me.ViewDefinitionSketchItem.Size = New System.Drawing.Size(205, 26)
         Me.ViewDefinitionSketchItem.Text = "Definition &Sketch"
         '
         'ViewMenuSeparator1
         '
         Me.ViewMenuSeparator1.Name = "ViewMenuSeparator1"
-        Me.ViewMenuSeparator1.Size = New System.Drawing.Size(161, 6)
+        Me.ViewMenuSeparator1.Size = New System.Drawing.Size(202, 6)
         '
         'ViewAsDialogItem
         '
         Me.ViewAsDialogItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AlternativeDesignsItem, Me.ViewDialogSeparator1, Me.ViewRatingTableItem, Me.ViewRatingEquationTableItem, Me.ViewDitchridersTableItem, Me.ViewDialogSeparator2, Me.ViewRatingComparisonTableItem})
         Me.ViewAsDialogItem.Name = "ViewAsDialogItem"
-        Me.ViewAsDialogItem.Size = New System.Drawing.Size(164, 22)
+        Me.ViewAsDialogItem.Size = New System.Drawing.Size(205, 26)
         Me.ViewAsDialogItem.Text = "View as &Dialog"
         '
         'AlternativeDesignsItem
@@ -409,20 +410,20 @@ Partial Class WinFlumeForm
         Me.AlternativeDesignsItem.Name = "AlternativeDesignsItem"
         Me.AlternativeDesignsItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
-        Me.AlternativeDesignsItem.Size = New System.Drawing.Size(272, 22)
+        Me.AlternativeDesignsItem.Size = New System.Drawing.Size(338, 26)
         Me.AlternativeDesignsItem.Text = "Review &Possible Designs"
         '
         'ViewDialogSeparator1
         '
         Me.ViewDialogSeparator1.Name = "ViewDialogSeparator1"
-        Me.ViewDialogSeparator1.Size = New System.Drawing.Size(269, 6)
+        Me.ViewDialogSeparator1.Size = New System.Drawing.Size(335, 6)
         '
         'ViewRatingTableItem
         '
         Me.ViewRatingTableItem.Name = "ViewRatingTableItem"
         Me.ViewRatingTableItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.R), System.Windows.Forms.Keys)
-        Me.ViewRatingTableItem.Size = New System.Drawing.Size(272, 22)
+        Me.ViewRatingTableItem.Size = New System.Drawing.Size(338, 26)
         Me.ViewRatingTableItem.Text = "&Rating Table"
         '
         'ViewRatingEquationTableItem
@@ -430,7 +431,7 @@ Partial Class WinFlumeForm
         Me.ViewRatingEquationTableItem.Name = "ViewRatingEquationTableItem"
         Me.ViewRatingEquationTableItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.ViewRatingEquationTableItem.Size = New System.Drawing.Size(272, 22)
+        Me.ViewRatingEquationTableItem.Size = New System.Drawing.Size(338, 26)
         Me.ViewRatingEquationTableItem.Text = "Rating &Equation Table"
         '
         'ViewDitchridersTableItem
@@ -438,248 +439,249 @@ Partial Class WinFlumeForm
         Me.ViewDitchridersTableItem.Name = "ViewDitchridersTableItem"
         Me.ViewDitchridersTableItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.D), System.Windows.Forms.Keys)
-        Me.ViewDitchridersTableItem.Size = New System.Drawing.Size(272, 22)
+        Me.ViewDitchridersTableItem.Size = New System.Drawing.Size(338, 26)
         Me.ViewDitchridersTableItem.Text = "&Ditchrider's Table"
         '
         'ViewDialogSeparator2
         '
         Me.ViewDialogSeparator2.Name = "ViewDialogSeparator2"
-        Me.ViewDialogSeparator2.Size = New System.Drawing.Size(269, 6)
+        Me.ViewDialogSeparator2.Size = New System.Drawing.Size(335, 6)
         '
         'ViewRatingComparisonTableItem
         '
         Me.ViewRatingComparisonTableItem.Name = "ViewRatingComparisonTableItem"
         Me.ViewRatingComparisonTableItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Alt) _
             Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.ViewRatingComparisonTableItem.Size = New System.Drawing.Size(272, 22)
+        Me.ViewRatingComparisonTableItem.Size = New System.Drawing.Size(338, 26)
         Me.ViewRatingComparisonTableItem.Text = "Rating &Comparison Table"
         '
         'ViewMenuSeparator2
         '
         Me.ViewMenuSeparator2.Name = "ViewMenuSeparator2"
-        Me.ViewMenuSeparator2.Size = New System.Drawing.Size(161, 6)
+        Me.ViewMenuSeparator2.Size = New System.Drawing.Size(202, 6)
         '
         'ViewTabItem
         '
         Me.ViewTabItem.Name = "ViewTabItem"
-        Me.ViewTabItem.Size = New System.Drawing.Size(164, 22)
+        Me.ViewTabItem.Size = New System.Drawing.Size(205, 26)
         Me.ViewTabItem.Text = "View &Tab"
         '
         'ViewSubtabItem
         '
         Me.ViewSubtabItem.Name = "ViewSubtabItem"
-        Me.ViewSubtabItem.Size = New System.Drawing.Size(164, 22)
+        Me.ViewSubtabItem.Size = New System.Drawing.Size(205, 26)
         Me.ViewSubtabItem.Text = "View Su&btab"
         '
         'ViewMenuSeparator3
         '
         Me.ViewMenuSeparator3.Name = "ViewMenuSeparator3"
-        Me.ViewMenuSeparator3.Size = New System.Drawing.Size(161, 6)
+        Me.ViewMenuSeparator3.Size = New System.Drawing.Size(202, 6)
         '
         'ViewWizardItem
         '
         Me.ViewWizardItem.Name = "ViewWizardItem"
-        Me.ViewWizardItem.Size = New System.Drawing.Size(164, 22)
+        Me.ViewWizardItem.Size = New System.Drawing.Size(205, 26)
         Me.ViewWizardItem.Text = "View &Wizard..."
         '
         'EditMenu
         '
         Me.EditMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditUndoItem, Me.EditRedoItem, Me.EditMenuSeparator1, Me.EditCopyGraphBtimapItem, Me.EditCopyGraphDataItem, Me.EditCopyTableDataItem, Me.EditPasteTableDataItem, Me.EditMenuSeparator2})
         Me.EditMenu.Name = "EditMenu"
-        Me.EditMenu.Size = New System.Drawing.Size(39, 20)
+        Me.EditMenu.Size = New System.Drawing.Size(49, 24)
         Me.EditMenu.Text = "&Edit"
         '
         'EditUndoItem
         '
         Me.EditUndoItem.Name = "EditUndoItem"
         Me.EditUndoItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-        Me.EditUndoItem.Size = New System.Drawing.Size(178, 22)
+        Me.EditUndoItem.Size = New System.Drawing.Size(222, 26)
         Me.EditUndoItem.Text = "&Undo"
         '
         'EditRedoItem
         '
         Me.EditRedoItem.Name = "EditRedoItem"
         Me.EditRedoItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Y), System.Windows.Forms.Keys)
-        Me.EditRedoItem.Size = New System.Drawing.Size(178, 22)
+        Me.EditRedoItem.Size = New System.Drawing.Size(222, 26)
         Me.EditRedoItem.Text = "&Redo"
         '
         'EditMenuSeparator1
         '
         Me.EditMenuSeparator1.Name = "EditMenuSeparator1"
-        Me.EditMenuSeparator1.Size = New System.Drawing.Size(175, 6)
+        Me.EditMenuSeparator1.Size = New System.Drawing.Size(219, 6)
         '
         'EditCopyGraphBtimapItem
         '
         Me.EditCopyGraphBtimapItem.Name = "EditCopyGraphBtimapItem"
-        Me.EditCopyGraphBtimapItem.Size = New System.Drawing.Size(178, 22)
+        Me.EditCopyGraphBtimapItem.Size = New System.Drawing.Size(222, 26)
         Me.EditCopyGraphBtimapItem.Text = "Copy Graph &Btimap"
         '
         'EditCopyGraphDataItem
         '
         Me.EditCopyGraphDataItem.Name = "EditCopyGraphDataItem"
-        Me.EditCopyGraphDataItem.Size = New System.Drawing.Size(178, 22)
+        Me.EditCopyGraphDataItem.Size = New System.Drawing.Size(222, 26)
         Me.EditCopyGraphDataItem.Text = "Copy Graph &Data"
         '
         'EditCopyTableDataItem
         '
         Me.EditCopyTableDataItem.Name = "EditCopyTableDataItem"
-        Me.EditCopyTableDataItem.Size = New System.Drawing.Size(178, 22)
+        Me.EditCopyTableDataItem.Size = New System.Drawing.Size(222, 26)
         Me.EditCopyTableDataItem.Text = "Copy &Table Data"
         '
         'EditPasteTableDataItem
         '
         Me.EditPasteTableDataItem.Name = "EditPasteTableDataItem"
-        Me.EditPasteTableDataItem.Size = New System.Drawing.Size(178, 22)
+        Me.EditPasteTableDataItem.Size = New System.Drawing.Size(222, 26)
         Me.EditPasteTableDataItem.Text = "&Paste Table Data"
         '
         'EditMenuSeparator2
         '
         Me.EditMenuSeparator2.Name = "EditMenuSeparator2"
-        Me.EditMenuSeparator2.Size = New System.Drawing.Size(175, 6)
+        Me.EditMenuSeparator2.Size = New System.Drawing.Size(219, 6)
         '
         'OptionsMenu
         '
         Me.OptionsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsDefaultUnitsItem, Me.OptionsFlumeUnitsItem, Me.LocateTabsToolStripMenuItem, Me.LocateSubtabsToolStripMenuItem})
         Me.OptionsMenu.Name = "OptionsMenu"
-        Me.OptionsMenu.Size = New System.Drawing.Size(61, 20)
+        Me.OptionsMenu.Size = New System.Drawing.Size(75, 24)
         Me.OptionsMenu.Text = "&Options"
         '
         'OptionsDefaultUnitsItem
         '
         Me.OptionsDefaultUnitsItem.Name = "OptionsDefaultUnitsItem"
-        Me.OptionsDefaultUnitsItem.Size = New System.Drawing.Size(179, 22)
+        Me.OptionsDefaultUnitsItem.Size = New System.Drawing.Size(221, 26)
         Me.OptionsDefaultUnitsItem.Text = "&Default Units"
         '
         'OptionsFlumeUnitsItem
         '
         Me.OptionsFlumeUnitsItem.Name = "OptionsFlumeUnitsItem"
         Me.OptionsFlumeUnitsItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.U), System.Windows.Forms.Keys)
-        Me.OptionsFlumeUnitsItem.Size = New System.Drawing.Size(179, 22)
+        Me.OptionsFlumeUnitsItem.Size = New System.Drawing.Size(221, 26)
         Me.OptionsFlumeUnitsItem.Text = "Flume &Units"
         '
         'LocateTabsToolStripMenuItem
         '
         Me.LocateTabsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsMenuLocateTabsTop, Me.OptionsMenuLocateTabsBottom})
         Me.LocateTabsToolStripMenuItem.Name = "LocateTabsToolStripMenuItem"
-        Me.LocateTabsToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.LocateTabsToolStripMenuItem.Size = New System.Drawing.Size(221, 26)
         Me.LocateTabsToolStripMenuItem.Text = "&Locate Tabs"
         '
         'OptionsMenuLocateTabsTop
         '
         Me.OptionsMenuLocateTabsTop.Name = "OptionsMenuLocateTabsTop"
-        Me.OptionsMenuLocateTabsTop.Size = New System.Drawing.Size(114, 22)
+        Me.OptionsMenuLocateTabsTop.Size = New System.Drawing.Size(142, 26)
         Me.OptionsMenuLocateTabsTop.Text = "&Top"
         '
         'OptionsMenuLocateTabsBottom
         '
         Me.OptionsMenuLocateTabsBottom.Name = "OptionsMenuLocateTabsBottom"
-        Me.OptionsMenuLocateTabsBottom.Size = New System.Drawing.Size(114, 22)
+        Me.OptionsMenuLocateTabsBottom.Size = New System.Drawing.Size(142, 26)
         Me.OptionsMenuLocateTabsBottom.Text = "&Bottom"
         '
         'LocateSubtabsToolStripMenuItem
         '
         Me.LocateSubtabsToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OptionsMenuLocateSubtabsMiddle, Me.OptionsMenuLocateSubtabsBottom})
         Me.LocateSubtabsToolStripMenuItem.Name = "LocateSubtabsToolStripMenuItem"
-        Me.LocateSubtabsToolStripMenuItem.Size = New System.Drawing.Size(179, 22)
+        Me.LocateSubtabsToolStripMenuItem.Size = New System.Drawing.Size(221, 26)
         Me.LocateSubtabsToolStripMenuItem.Text = "L&ocate Subtabs"
         '
         'OptionsMenuLocateSubtabsMiddle
         '
         Me.OptionsMenuLocateSubtabsMiddle.Name = "OptionsMenuLocateSubtabsMiddle"
-        Me.OptionsMenuLocateSubtabsMiddle.Size = New System.Drawing.Size(114, 22)
+        Me.OptionsMenuLocateSubtabsMiddle.Size = New System.Drawing.Size(142, 26)
         Me.OptionsMenuLocateSubtabsMiddle.Text = "&Middle"
         '
         'OptionsMenuLocateSubtabsBottom
         '
         Me.OptionsMenuLocateSubtabsBottom.Name = "OptionsMenuLocateSubtabsBottom"
-        Me.OptionsMenuLocateSubtabsBottom.Size = New System.Drawing.Size(114, 22)
+        Me.OptionsMenuLocateSubtabsBottom.Size = New System.Drawing.Size(142, 26)
         Me.OptionsMenuLocateSubtabsBottom.Text = "&Bottom"
         '
         'HelpMenu
         '
         Me.HelpMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.HelpWhatsThisItem, Me.HelpAboutItem, Me.HelpMenuSeparator1, Me.HelpViewUserManualItem, Me.HelpMenuSeparator2, Me.HelpIntroductionItem, Me.HelpUserInterfaceItem, Me.HelpPrinciplesDesignItem, Me.HelpFlumeDesignItem, Me.BottomProfileToolStripMenuItem, Me.EndViewsToolStripMenuItem, Me.HelpMenuSeparator3, Me.F1HelpItem})
         Me.HelpMenu.Name = "HelpMenu"
-        Me.HelpMenu.Size = New System.Drawing.Size(44, 20)
+        Me.HelpMenu.Size = New System.Drawing.Size(55, 24)
         Me.HelpMenu.Text = "&Help"
         '
         'HelpWhatsThisItem
         '
         Me.HelpWhatsThisItem.Name = "HelpWhatsThisItem"
-        Me.HelpWhatsThisItem.Size = New System.Drawing.Size(229, 22)
+        Me.HelpWhatsThisItem.Size = New System.Drawing.Size(284, 26)
         Me.HelpWhatsThisItem.Text = "&What's This?"
         '
         'HelpAboutItem
         '
         Me.HelpAboutItem.Name = "HelpAboutItem"
-        Me.HelpAboutItem.Size = New System.Drawing.Size(229, 22)
+        Me.HelpAboutItem.Size = New System.Drawing.Size(284, 26)
         Me.HelpAboutItem.Text = "&About WinFlume"
         '
         'HelpMenuSeparator1
         '
         Me.HelpMenuSeparator1.Name = "HelpMenuSeparator1"
-        Me.HelpMenuSeparator1.Size = New System.Drawing.Size(226, 6)
+        Me.HelpMenuSeparator1.Size = New System.Drawing.Size(281, 6)
         '
         'HelpViewUserManualItem
         '
         Me.HelpViewUserManualItem.Name = "HelpViewUserManualItem"
-        Me.HelpViewUserManualItem.Size = New System.Drawing.Size(229, 22)
+        Me.HelpViewUserManualItem.Size = New System.Drawing.Size(284, 26)
         Me.HelpViewUserManualItem.Text = "View User &Manual"
         '
         'HelpMenuSeparator2
         '
         Me.HelpMenuSeparator2.Name = "HelpMenuSeparator2"
-        Me.HelpMenuSeparator2.Size = New System.Drawing.Size(226, 6)
+        Me.HelpMenuSeparator2.Size = New System.Drawing.Size(281, 6)
         '
         'HelpIntroductionItem
         '
         Me.HelpIntroductionItem.Name = "HelpIntroductionItem"
-        Me.HelpIntroductionItem.Size = New System.Drawing.Size(229, 22)
+        Me.HelpIntroductionItem.Size = New System.Drawing.Size(284, 26)
         Me.HelpIntroductionItem.Text = "&Introduction"
         '
         'HelpUserInterfaceItem
         '
         Me.HelpUserInterfaceItem.Name = "HelpUserInterfaceItem"
-        Me.HelpUserInterfaceItem.Size = New System.Drawing.Size(229, 22)
+        Me.HelpUserInterfaceItem.Size = New System.Drawing.Size(284, 26)
         Me.HelpUserInterfaceItem.Text = "WinFlume &User Interface"
         '
         'HelpPrinciplesDesignItem
         '
         Me.HelpPrinciplesDesignItem.Name = "HelpPrinciplesDesignItem"
-        Me.HelpPrinciplesDesignItem.Size = New System.Drawing.Size(229, 22)
+        Me.HelpPrinciplesDesignItem.Size = New System.Drawing.Size(284, 26)
         Me.HelpPrinciplesDesignItem.Text = "&Principles of Flume Design"
         '
         'HelpFlumeDesignItem
         '
         Me.HelpFlumeDesignItem.Name = "HelpFlumeDesignItem"
-        Me.HelpFlumeDesignItem.Size = New System.Drawing.Size(229, 22)
+        Me.HelpFlumeDesignItem.Size = New System.Drawing.Size(284, 26)
         Me.HelpFlumeDesignItem.Text = "Flume &Design with WinFlume"
         '
         'BottomProfileToolStripMenuItem
         '
         Me.BottomProfileToolStripMenuItem.Name = "BottomProfileToolStripMenuItem"
-        Me.BottomProfileToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.BottomProfileToolStripMenuItem.Size = New System.Drawing.Size(284, 26)
         Me.BottomProfileToolStripMenuItem.Text = "&Bottom Profile"
         '
         'EndViewsToolStripMenuItem
         '
         Me.EndViewsToolStripMenuItem.Name = "EndViewsToolStripMenuItem"
-        Me.EndViewsToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.EndViewsToolStripMenuItem.Size = New System.Drawing.Size(284, 26)
         Me.EndViewsToolStripMenuItem.Text = "&End Views"
         '
         'HelpMenuSeparator3
         '
         Me.HelpMenuSeparator3.Name = "HelpMenuSeparator3"
-        Me.HelpMenuSeparator3.Size = New System.Drawing.Size(226, 6)
+        Me.HelpMenuSeparator3.Size = New System.Drawing.Size(281, 6)
         '
         'F1HelpItem
         '
         Me.F1HelpItem.Name = "F1HelpItem"
         Me.F1HelpItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.F1HelpItem.Size = New System.Drawing.Size(229, 22)
+        Me.F1HelpItem.Size = New System.Drawing.Size(284, 26)
         Me.F1HelpItem.Text = "F1 Help"
         '
         'StatusStrip
         '
+        Me.StatusStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.StatusMessage1, Me.StatusMessage2})
         Me.StatusStrip.Location = New System.Drawing.Point(0, 540)
         Me.StatusStrip.Name = "StatusStrip"
@@ -692,7 +694,7 @@ Partial Class WinFlumeForm
         Me.StatusMessage1.AutoSize = False
         Me.StatusMessage1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.StatusMessage1.Name = "StatusMessage1"
-        Me.StatusMessage1.Size = New System.Drawing.Size(400, 17)
+        Me.StatusMessage1.Size = New System.Drawing.Size(400, 16)
         Me.StatusMessage1.Text = "Status message 1"
         Me.StatusMessage1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
@@ -701,7 +703,7 @@ Partial Class WinFlumeForm
         Me.StatusMessage2.AutoSize = False
         Me.StatusMessage2.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.StatusMessage2.Name = "StatusMessage2"
-        Me.StatusMessage2.Size = New System.Drawing.Size(369, 17)
+        Me.StatusMessage2.Size = New System.Drawing.Size(369, 16)
         Me.StatusMessage2.Spring = True
         Me.StatusMessage2.Text = "Status message 2"
         Me.StatusMessage2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -742,7 +744,7 @@ Partial Class WinFlumeForm
         Me.ToolBar.DropDownArrows = True
         Me.ToolBar.ImageList = Me.ToolbarImageList
         Me.ToolBar.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.ToolBar.Location = New System.Drawing.Point(0, 24)
+        Me.ToolBar.Location = New System.Drawing.Point(0, 28)
         Me.ToolBar.Name = "ToolBar"
         Me.ToolBar.ShowToolTips = True
         Me.ToolBar.Size = New System.Drawing.Size(784, 29)
@@ -873,7 +875,7 @@ Partial Class WinFlumeForm
         Me.SketchButton.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.SketchButton.Location = New System.Drawing.Point(425, 27)
         Me.SketchButton.Name = "SketchButton"
-        Me.SketchButton.Size = New System.Drawing.Size(109, 25)
+        Me.SketchButton.Size = New System.Drawing.Size(129, 28)
         Me.SketchButton.TabIndex = 5
         Me.SketchButton.Text = "Definition Sketch"
         Me.SketchButton.UseVisualStyleBackColor = False
@@ -888,7 +890,7 @@ Partial Class WinFlumeForm
         Me.RevisionNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.RevisionNumber.Location = New System.Drawing.Point(700, 30)
         Me.RevisionNumber.Name = "RevisionNumber"
-        Me.RevisionNumber.Size = New System.Drawing.Size(84, 17)
+        Me.RevisionNumber.Size = New System.Drawing.Size(97, 20)
         Me.RevisionNumber.TabIndex = 6
         Me.RevisionNumber.Text = "Revision #"
         Me.RevisionNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -903,7 +905,7 @@ Partial Class WinFlumeForm
         Me.CrestTypeSelection.Items.AddRange(New Object() {"Stationary Crest", "Movable Crest"})
         Me.CrestTypeSelection.Location = New System.Drawing.Point(541, 28)
         Me.CrestTypeSelection.Name = "CrestTypeSelection"
-        Me.CrestTypeSelection.Size = New System.Drawing.Size(150, 24)
+        Me.CrestTypeSelection.Size = New System.Drawing.Size(150, 28)
         Me.CrestTypeSelection.TabIndex = 7
         Me.CrestTypeSelection.UndoEnabled = True
         Me.CrestTypeSelection.Value = -1
@@ -922,10 +924,10 @@ Partial Class WinFlumeForm
         Me.WinFlumeTabControl.Controls.Add(Me.DrawingsReportsTab)
         Me.WinFlumeTabControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.WinFlumeTabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed
-        Me.WinFlumeTabControl.Location = New System.Drawing.Point(0, 53)
+        Me.WinFlumeTabControl.Location = New System.Drawing.Point(0, 57)
         Me.WinFlumeTabControl.Name = "WinFlumeTabControl"
         Me.WinFlumeTabControl.SelectedIndex = 0
-        Me.WinFlumeTabControl.Size = New System.Drawing.Size(784, 487)
+        Me.WinFlumeTabControl.Size = New System.Drawing.Size(784, 483)
         Me.WinFlumeTabControl.TabIndex = 4
         Me.WinFlumeTabControl.Value = 0
         Me.WinFlumeTabControl.Visible = False
@@ -936,7 +938,7 @@ Partial Class WinFlumeForm
         Me.DefineCanalTab.Controls.Add(Me.DefineCanalControl)
         Me.DefineCanalTab.Location = New System.Drawing.Point(4, 4)
         Me.DefineCanalTab.Name = "DefineCanalTab"
-        Me.DefineCanalTab.Size = New System.Drawing.Size(776, 461)
+        Me.DefineCanalTab.Size = New System.Drawing.Size(776, 450)
         Me.DefineCanalTab.TabIndex = 0
         Me.DefineCanalTab.Text = "Define Canal"
         Me.DefineCanalTab.UseVisualStyleBackColor = True
@@ -951,7 +953,7 @@ Partial Class WinFlumeForm
         Me.DefineCanalControl.Location = New System.Drawing.Point(0, 0)
         Me.DefineCanalControl.Margin = New System.Windows.Forms.Padding(4)
         Me.DefineCanalControl.Name = "DefineCanalControl"
-        Me.DefineCanalControl.Size = New System.Drawing.Size(776, 461)
+        Me.DefineCanalControl.Size = New System.Drawing.Size(776, 450)
         Me.DefineCanalControl.TabIndex = 0
         '
         'DefineControlTab
@@ -960,7 +962,7 @@ Partial Class WinFlumeForm
         Me.DefineControlTab.Controls.Add(Me.DefineControlControl)
         Me.DefineControlTab.Location = New System.Drawing.Point(4, 4)
         Me.DefineControlTab.Name = "DefineControlTab"
-        Me.DefineControlTab.Size = New System.Drawing.Size(776, 461)
+        Me.DefineControlTab.Size = New System.Drawing.Size(776, 450)
         Me.DefineControlTab.TabIndex = 1
         Me.DefineControlTab.Text = "Define Control"
         Me.DefineControlTab.UseVisualStyleBackColor = True
@@ -975,7 +977,7 @@ Partial Class WinFlumeForm
         Me.DefineControlControl.Location = New System.Drawing.Point(0, 0)
         Me.DefineControlControl.Margin = New System.Windows.Forms.Padding(4)
         Me.DefineControlControl.Name = "DefineControlControl"
-        Me.DefineControlControl.Size = New System.Drawing.Size(776, 461)
+        Me.DefineControlControl.Size = New System.Drawing.Size(776, 450)
         Me.DefineControlControl.TabIndex = 0
         '
         'DesignTab
@@ -984,7 +986,7 @@ Partial Class WinFlumeForm
         Me.DesignTab.Controls.Add(Me.DesignControl)
         Me.DesignTab.Location = New System.Drawing.Point(4, 4)
         Me.DesignTab.Name = "DesignTab"
-        Me.DesignTab.Size = New System.Drawing.Size(776, 461)
+        Me.DesignTab.Size = New System.Drawing.Size(776, 450)
         Me.DesignTab.TabIndex = 2
         Me.DesignTab.Text = "Design"
         Me.DesignTab.UseVisualStyleBackColor = True
@@ -998,7 +1000,7 @@ Partial Class WinFlumeForm
         Me.DesignControl.Location = New System.Drawing.Point(0, 0)
         Me.DesignControl.Margin = New System.Windows.Forms.Padding(4)
         Me.DesignControl.Name = "DesignControl"
-        Me.DesignControl.Size = New System.Drawing.Size(776, 461)
+        Me.DesignControl.Size = New System.Drawing.Size(776, 450)
         Me.DesignControl.TabIndex = 0
         '
         'CalibrationTab
@@ -1007,7 +1009,7 @@ Partial Class WinFlumeForm
         Me.CalibrationTab.Controls.Add(Me.CalibrationControl)
         Me.CalibrationTab.Location = New System.Drawing.Point(4, 4)
         Me.CalibrationTab.Name = "CalibrationTab"
-        Me.CalibrationTab.Size = New System.Drawing.Size(776, 461)
+        Me.CalibrationTab.Size = New System.Drawing.Size(776, 450)
         Me.CalibrationTab.TabIndex = 3
         Me.CalibrationTab.Text = "Calibration"
         Me.CalibrationTab.UseVisualStyleBackColor = True
@@ -1021,7 +1023,7 @@ Partial Class WinFlumeForm
         Me.CalibrationControl.Location = New System.Drawing.Point(0, 0)
         Me.CalibrationControl.Margin = New System.Windows.Forms.Padding(4)
         Me.CalibrationControl.Name = "CalibrationControl"
-        Me.CalibrationControl.Size = New System.Drawing.Size(776, 461)
+        Me.CalibrationControl.Size = New System.Drawing.Size(776, 450)
         Me.CalibrationControl.TabIndex = 0
         '
         'WallGagesTab
@@ -1029,7 +1031,7 @@ Partial Class WinFlumeForm
         Me.WallGagesTab.Controls.Add(Me.WallGageControl)
         Me.WallGagesTab.Location = New System.Drawing.Point(4, 4)
         Me.WallGagesTab.Name = "WallGagesTab"
-        Me.WallGagesTab.Size = New System.Drawing.Size(776, 461)
+        Me.WallGagesTab.Size = New System.Drawing.Size(776, 450)
         Me.WallGagesTab.TabIndex = 6
         Me.WallGagesTab.Text = "Wall Gages"
         Me.WallGagesTab.UseVisualStyleBackColor = True
@@ -1046,7 +1048,7 @@ Partial Class WinFlumeForm
         Me.WallGageControl.Location = New System.Drawing.Point(0, 0)
         Me.WallGageControl.Margin = New System.Windows.Forms.Padding(4)
         Me.WallGageControl.Name = "WallGageControl"
-        Me.WallGageControl.Size = New System.Drawing.Size(776, 461)
+        Me.WallGageControl.Size = New System.Drawing.Size(776, 450)
         Me.WallGageControl.TabIndex = 0
         '
         'DataComparisonTab
@@ -1054,7 +1056,7 @@ Partial Class WinFlumeForm
         Me.DataComparisonTab.Controls.Add(Me.DataComparisonControl)
         Me.DataComparisonTab.Location = New System.Drawing.Point(4, 4)
         Me.DataComparisonTab.Name = "DataComparisonTab"
-        Me.DataComparisonTab.Size = New System.Drawing.Size(776, 461)
+        Me.DataComparisonTab.Size = New System.Drawing.Size(776, 450)
         Me.DataComparisonTab.TabIndex = 4
         Me.DataComparisonTab.Text = "Data Comparison"
         Me.DataComparisonTab.UseVisualStyleBackColor = True
@@ -1069,7 +1071,7 @@ Partial Class WinFlumeForm
         Me.DataComparisonControl.Location = New System.Drawing.Point(0, 0)
         Me.DataComparisonControl.Margin = New System.Windows.Forms.Padding(4)
         Me.DataComparisonControl.Name = "DataComparisonControl"
-        Me.DataComparisonControl.Size = New System.Drawing.Size(776, 461)
+        Me.DataComparisonControl.Size = New System.Drawing.Size(776, 450)
         Me.DataComparisonControl.TabIndex = 0
         '
         'DrawingsReportsTab
@@ -1077,7 +1079,7 @@ Partial Class WinFlumeForm
         Me.DrawingsReportsTab.Controls.Add(Me.DrawingsReportsControl)
         Me.DrawingsReportsTab.Location = New System.Drawing.Point(4, 4)
         Me.DrawingsReportsTab.Name = "DrawingsReportsTab"
-        Me.DrawingsReportsTab.Size = New System.Drawing.Size(776, 458)
+        Me.DrawingsReportsTab.Size = New System.Drawing.Size(776, 450)
         Me.DrawingsReportsTab.TabIndex = 5
         Me.DrawingsReportsTab.Text = "Drawings & Reports"
         Me.DrawingsReportsTab.UseVisualStyleBackColor = True
@@ -1091,7 +1093,7 @@ Partial Class WinFlumeForm
         Me.DrawingsReportsControl.Location = New System.Drawing.Point(0, 0)
         Me.DrawingsReportsControl.Margin = New System.Windows.Forms.Padding(4)
         Me.DrawingsReportsControl.Name = "DrawingsReportsControl"
-        Me.DrawingsReportsControl.Size = New System.Drawing.Size(776, 458)
+        Me.DrawingsReportsControl.Size = New System.Drawing.Size(776, 450)
         Me.DrawingsReportsControl.TabIndex = 0
         '
         'WinFlumeForm
@@ -1099,7 +1101,7 @@ Partial Class WinFlumeForm
         Me.AccessibleDescription = "Software for the design and calibration of long-throated flumes and broad-crested" &
     " weirs."
         Me.AccessibleName = "WinFlume"
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLight
         Me.ClientSize = New System.Drawing.Size(784, 562)
@@ -1117,7 +1119,7 @@ Partial Class WinFlumeForm
         Me.MinimumSize = New System.Drawing.Size(800, 600)
         Me.Name = "WinFlumeForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "WinFlume 2.0"
+        Me.Text = "WinFlume 2.1"
         Me.MenuStrip.ResumeLayout(False)
         Me.MenuStrip.PerformLayout()
         Me.StatusStrip.ResumeLayout(False)

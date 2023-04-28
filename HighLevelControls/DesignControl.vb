@@ -10,18 +10,28 @@ Public Class DesignControl
     '
     Protected WithEvents mWinFlumeForm As WinFlumeForm
 
+    Enum DesignTabSelection
+        DesignOptions = 0
+        AlternationDesigns = 1
+    End Enum
+
 #End Region
 
 #Region " UI Methods "
 
+    '*********************************************************************************************************
+    ' UpdateUI() - Update the Design Control's User Interface
+    '
+    ' Input(s):     WinFlume - reference to the top-level WinFlume form
+    '*********************************************************************************************************
     Public Sub UpdateUI(ByVal WinFlume As WinFlumeForm)
         mWinFlumeForm = WinFlume
         Me.UpdateUI()
     End Sub
 
-    Private mUpdatingUI As Boolean = False
+    Private mUpdatingUI As Boolean = False      ' Flag used to prevent UpdateUI from recursivly calling itself
     Protected Sub UpdateUI()
-        If Not (Me.Visible) Then
+        If Not (Me.Visible) Then    ' Only update UI when control is visible
             Return
         End If
 
@@ -34,6 +44,7 @@ Public Class DesignControl
                     Me.VerticalSplitter.SplitterDistance = Me.Width - WinFlumeForm.MaxSideBarWidth
                 End If
 
+                ' Update the Controls contained in the DeSign Control tab
                 Me.BottomProfileControl.UpdateUI(mWinFlumeForm)
                 Me.SideBarControl.UpdateUI(mWinFlumeForm)
 
@@ -86,10 +97,13 @@ Public Class DesignControl
     ' Event handlers check if its corresponding Flume value has changed; if so, the Flume value is updated
     ' and an event is raised to let others know of the change.
     '*********************************************************************************************************
-    Private Sub DesignControlTabControl_ValueChanged() Handles DesignControlTabControl.ValueChanged
+    Private Sub DesignControlTabControl_ValueChanged() _
+        Handles DesignControlTabControl.ValueChanged
+
         If (mWinFlumeForm IsNot Nothing) Then
             mWinFlumeForm.RaiseFlumeDataChanged()
         End If
+
     End Sub
 
 #End Region

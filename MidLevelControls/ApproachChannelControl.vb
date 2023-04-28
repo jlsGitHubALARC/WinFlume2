@@ -75,10 +75,6 @@ Public Class ApproachChannelControl
 
             mApproachSection = mFlume.Section(cApproach)                    ' Approach Section data
 
-            ' Update value of Control / Approach matching
-            Me.ControlMatchedToApproachCheckBox.Value = WinFlumeForm.ControlMatchedToApproach
-            Me.ControlMatchedToApproachCheckBox.Visible = WinFlumeForm.ControlMatchedToApproach
-
             ' Update cross section control to match Section data
             Select Case (mApproachSection.Shape)
 
@@ -173,10 +169,6 @@ Public Class ApproachChannelControl
                 Me.CrossSectionPanel.Controls.Add(Ctrl) ' Add requested one
             End If
 
-            ' Add back the 'Control is Matched to Approach' button
-            Me.CrossSectionPanel.Controls.Add(Me.ControlMatchedToApproachCheckBox)
-            Me.ControlMatchedToApproachCheckBox.BringToFront()
-
             If (ControlSection.GetType Is GetType(WinFlumeSectionType)) Then
                 ' Set behavior of the Cross-Section Control for the Approach Channel
                 Dim sectionType As WinFlumeSectionType = DirectCast(ControlSection, WinFlumeSectionType)
@@ -206,14 +198,6 @@ Public Class ApproachChannelControl
         loc.X = Me.Width - Me.ApproachCrossSection.Width
         Me.ApproachCrossSection.Location = loc
 
-        If (WinFlumeForm.ControlMatchedToApproach) Then
-            loc = Me.ControlMatchedToApproachCheckBox.Location
-            loc.X = Me.Width - Me.ControlMatchedToApproachCheckBox.Width - Me.Margin.Horizontal
-            loc.Y = Margin.Vertical
-            Me.ControlMatchedToApproachCheckBox.Location = loc
-            Me.ControlMatchedToApproachCheckBox.BringToFront()
-        End If
-
     End Sub
 
 #End Region
@@ -242,10 +226,6 @@ Public Class ApproachChannelControl
     Handles MyBase.Load
         ' Load cross section selections
         ApproachChannelControl_Load()
-
-        ' Default to NO Control to Approach matching
-        Me.ControlMatchedToApproachCheckBox.Value = False
-        Me.ControlMatchedToApproachCheckBox.HandleCheckedChanged = False
 
         ' Default to Simple Trapezoid cross section
         stCtrl = New SimpleTrapezoidControl(Flume.cApproach)
@@ -304,94 +284,6 @@ Public Class ApproachChannelControl
     Handles MyBase.Resize
         Dim ctrlSize As Size = New Size(Me.Width, Me.Height - Me.CrossSectionPanel.Location.Y)
         Me.CrossSectionPanel.Size = ctrlSize
-    End Sub
-
-    '*********************************************************************************************************
-    ' Handlers for 'Match Control To Approach' check box
-    '*********************************************************************************************************
-    Private Sub MatchControlToApproachCheckBox_MouseDown(sender As Object, e As EventArgs) _
-        Handles ControlMatchedToApproachCheckBox.MouseDown
-
-        If (Me.ControlMatchedToApproachCheckBox.Value = True) Then ' Match is checked
-
-            Debug.Assert(mFlume.Section(cControl).GetType Is GetType(WinFlumeSectionType))
-
-            ' Set current Flume object as Undo point; new Flume object must be created for new data
-            ControlMatchedToApproachCheckBox.AddUndoItem(mFlume)
-            WinFlumeForm.ClearRedoStack() ' Clear Redo stack in Click handler only
-
-            ' Instantiate new Flume object
-            mFlume = WinFlumeForm.NewFlumeType(mFlume)
-            mFlume.ControlMatchedToApproach = False
-            mFlume.MatchedControlShape = 0
-
-            ' Demote WinFlumeSectionType to Flume.SectionType
-            mFlume.Section(cControl) = New Flume.SectionType(mFlume.Section(cControl))
-
-            ' Generate 'non-matched' equivalent Control cross-section
-            With mFlume.Section(cControl)
-                Select Case (.Shape)
-                    Case shSillInTrapezoid, shSillInVShaped
-                        .BottomWidth = .TopWidth(0, False)
-                        .Shape = shSimpleTrapezoid
-                    Case shTrapezoidInTrapezoid, shTrapezoidInVShaped
-                        .Shape = shSimpleTrapezoid
-                    Case shSillInRectangle, shRectangleInRectangle
-                        .Shape = shRectangular
-                    Case shCircleInCircle
-                        .Shape = shCircle
-                    Case shParabolaInParabola
-                        .Shape = shParabola
-                    Case shUShapedInUShaped
-                        .Shape = shUShaped
-                    Case shVShapedInVShaped
-                        .Shape = shVShaped
-                    Case shTrapezoidInRectangle
-                        .Shape = shComplexTrapezoid
-                End Select
-            End With
-
-            WinFlumeForm.SetFlume(mFlume)
-            mWinFlumeForm.RaiseFlumeDataChanged()
-
-        Else ' Match is not checked; show Match Control to Approach dialog
-            Debug.Assert(False)
-        End If
-
-    End Sub
-
-    Private Sub MatchControlToApproachCheckBox_UndoButtonEvent(ByVal UndoValue As Object) _
-        Handles ControlMatchedToApproachCheckBox.UndoButtonEvent
-
-        If ((mWinFlumeForm IsNot Nothing) And (mFlume IsNot Nothing)) Then
-            If (UndoValue.GetType Is GetType(FlumeType)) Then
-                ' Set Flume for Redo point
-                ControlMatchedToApproachCheckBox.AddRedoItem(mFlume)
-                ' Restore Flume object
-                mFlume = DirectCast(UndoValue, FlumeType)
-                WinFlumeForm.SetFlume(mFlume)
-                mWinFlumeForm.RaiseFlumeDataChanged()
-            Else
-                Debug.Assert(False, "Undo - Invalid value type")
-            End If
-        End If
-    End Sub
-
-    Private Sub MatchControlToApproachCheckBox_RedoButtonEvent(ByVal RedoValue As Object) _
-        Handles ControlMatchedToApproachCheckBox.RedoButtonEvent
-
-        If ((mWinFlumeForm IsNot Nothing) And (mFlume IsNot Nothing)) Then
-            If (RedoValue.GetType Is GetType(FlumeType)) Then
-                ' Set Flume for Undo point
-                ControlMatchedToApproachCheckBox.AddUndoItem(mFlume)
-                ' Restore Flume table
-                mFlume = DirectCast(RedoValue, FlumeType)
-                WinFlumeForm.SetFlume(mFlume)
-                mWinFlumeForm.RaiseFlumeDataChanged()
-            Else
-                Debug.Assert(False, "Redo - Invalid value type")
-            End If
-        End If
     End Sub
 
 #End Region

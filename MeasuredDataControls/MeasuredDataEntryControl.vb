@@ -145,7 +145,7 @@ Public Class MeasuredDataEntryControl
 
         value = RatingResultsEnum.V1
         name = Me.UpstreamVelocityCheckBox.Text
-        symbol = SymbolFromLabel(Me.VaLabel.Text)
+        symbol = SymbolFromLabel(Me.V1Table.Text)
         siUnits = "m/s"
         selected = 0 < (MeasuredParametersToShow And 1 << CInt(UpstreamVelocityCheckBox.Tag))
         mTableChoices.Add(New TableChoice(value, name, symbol, siUnits, selected))

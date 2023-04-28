@@ -79,6 +79,7 @@ Public Class ctl_DataGridView
                 .WrapMode = DataGridViewTriState.True
                 .Alignment = DataGridViewContentAlignment.TopCenter
             End With
+
         End With
     End Sub
 

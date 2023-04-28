@@ -8,6 +8,7 @@
 Imports Flume.Globals
 
 Public Class CircleControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 

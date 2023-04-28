@@ -8,9 +8,11 @@
 '        Approach Channel's Simple Trapezoid cross-section
 '*************************************************************************************************************
 Imports Flume.Globals
+
 Imports WinFlume.WinFlumeSectionType
 
 Public Class TrapezoidInTrapezoidControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 
@@ -45,9 +47,13 @@ Public Class TrapezoidInTrapezoidControl
                 ' Match Control Section cross-section to Approach Channel cross-section
                 With mSection
                     .D1 = mFlume.SillHeight
-                    .Z3 = mFlume.Section(cApproach).Z1
+                    .Z1 = mFlume.Section(cApproach).Z1
                     .OuterBottomWidth = mFlume.Section(cApproach).BottomWidth
                 End With
+
+                ' The inner Z1 for Trapezoid-in-Trapezoid always matches the outer Z1
+                ' So, set it to ReadOnly
+                'Me.Z1Single.IsReadOnly = True
             Else
                 Debug.Assert(False)
             End If
@@ -197,7 +203,7 @@ Public Class TrapezoidInTrapezoidControl
             Return
         End If
 
-        Debug.Assert(mSection.Z3 = mFlume.Section(cApproach).Z1)
+        'Debug.Assert(mSection.Z3 = mFlume.Section(cApproach).Z1)
 
         ' Bottom Width control (inner shape)
         Me.BottomWidthSingle.Label = Me.BottomWidthKey.BaseText
@@ -387,19 +393,21 @@ Public Class TrapezoidInTrapezoidControl
     ' and an event is raised to let others know of the change.
     '*********************************************************************************************************
     Protected Sub BottomWidthSingle_ValueChanged() Handles BottomWidthSingle.ValueChanged
-        Dim BW As Single = Me.BottomWidthSingle.SiValue
+        Dim BW As Single = BottomWidthSingle.SiValue
         SetControlBW(BW)
     End Sub
 
     Protected Sub Z1Single_ValueChanged() Handles Z1Single.ValueChanged
-        Dim Z1 = Me.Z1Single.SiValue
+        Dim Z1 As Single = Z1Single.SiValue
         SetZ1(Z1)
+        Me.UpdateUI()
     End Sub
 
     '*********************************************************************************************************
     ' FlumeDataChanged event handler
     '*********************************************************************************************************
     Protected Sub FlumeDataChanged() Handles mWinFlumeForm.FlumeDataChanged
+        MatchControlToApproach(mFlume)
         Me.UpdateUI()
     End Sub
 

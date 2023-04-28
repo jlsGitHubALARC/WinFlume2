@@ -148,6 +148,7 @@ Public Class SideBarControl
             If (Me.SelectSideBars.Height = 0) Then
                 sideBarView = SideBarModes.ShowDesignReview
             End If
+
             Select Case (sideBarView)
                 Case SideBarModes.ShowEndViews
 
@@ -229,28 +230,47 @@ Public Class SideBarControl
     '*********************************************************************************************************
     Protected Sub UpdateDesignReview()
 
-        Dim WinFlumeDesign As WinFlumeDesign = New WinFlumeDesign
-        Dim DesignResult As DesignResultType = New DesignResultType
+        Dim WinFlumeDesign = New WinFlumeDesign
+        Dim DesignResult = New DesignResultType
         Dim Criteria(6) As Boolean
         Dim HeadlossComment As String = ""
         Dim DesignReview As String
 
-        Dim ReviewDesignCtrl As AlternativeDesignsControl = mWinFlumeForm.GetAlternativeDesignsControl
-        If (ReviewDesignCtrl.Visible) Then
-            ' Show Brief Design Review for Highlighted Design from Alternative Designs
-            DesignReview = ReviewDesignCtrl.BriefDesignReview
-            DesignReview = DesignReview.Replace("     Max allowed", vbCrLf & "              Max allowed")
-            DesignReview = DesignReview.Replace("     Min allowed", vbCrLf & "              Min allowed")
-            DesignReview = DesignReview.Replace("     Min for accuracy", vbCrLf & "         Min for accuracy")
-            DesignReview = My.Resources.StatusOfHighlightedDesign & vbCrLf & vbCrLf & DesignReview
-            Me.DesignReviewText.BackColor = Color.LightBlue
-        Else
-            ' Show Very Brief Design Review for current design
-            DesignReview = WinFlumeDesign.VeryBriefDesignReview(mFlume, DesignResult, Criteria, HeadlossComment)
-            Me.DesignReviewText.BackColor = SystemColors.Info
-        End If
+        Dim AlternativeReviewDesignCtrl As AlternativeDesignsControl = mWinFlumeForm.GetAlternativeDesignsControl
 
-        Me.DesignReviewText.Text = DesignReview
+        If (Me.Visible) Then
+
+            If (AlternativeReviewDesignCtrl.Visible) Then
+                AlternativeReviewDesignCtrl.UpdateUI(mWinFlumeForm)
+
+                If (AlternativeReviewDesignCtrl.ExactMatch) Then
+                    ' Show Brief Design Review for Highlighted Design from Alternative Designs
+                    DesignReview = AlternativeReviewDesignCtrl.BriefDesignReview
+                    DesignReview = DesignReview.Replace("     Max allowed", vbCrLf & "              Max allowed")
+                    DesignReview = DesignReview.Replace("     Min allowed", vbCrLf & "              Min allowed")
+                    DesignReview = DesignReview.Replace("     Min for accuracy", vbCrLf & "         Min for accuracy")
+                    DesignReview = My.Resources.StatusOfHighlightedDesign & vbCrLf & vbCrLf & DesignReview
+                Else
+                    DesignReview = "Current design is outside the design table range."
+                    DesignReview &= vbCrLf & vbCrLf
+                    DesignReview &= "Select an Alternative Design from the table."
+                End If
+
+            Else
+                ' Show Very Brief Design Review for current design
+                DesignReview = WinFlumeDesign.VeryBriefDesignReview(mFlume, DesignResult, Criteria, HeadlossComment)
+
+                Dim DesignControl As DesignControl = mWinFlumeForm.GetDesignControl
+                If (DesignControl.Visible) Then
+                    DesignReview &= vbCrLf & vbCrLf
+
+                    DesignReview &= "Before proceeding to the Alternative Designs tab, we recommend saving the Base Design to file"
+                End If
+            End If
+
+            Me.DesignReviewText.BackColor = SystemColors.Info
+            Me.DesignReviewText.Text = DesignReview
+        End If
 
     End Sub
 
@@ -303,7 +323,7 @@ Public Class SideBarControl
     ' FlumeDataChanged event handler
     '*********************************************************************************************************
     Protected Sub FlumeDataChanged() Handles mWinFlumeForm.FlumeDataChanged
-        Me.UpdateUI()
+        Me.UpdateUI(WinFlumeForm)
     End Sub
 
     Private Sub SideBarControl_Load(sender As Object, e As EventArgs) Handles MyBase.Load

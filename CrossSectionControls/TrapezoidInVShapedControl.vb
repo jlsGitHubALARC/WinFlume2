@@ -8,6 +8,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class TrapezoidInVShapedControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 
@@ -187,6 +188,14 @@ Public Class TrapezoidInVShapedControl
         Me.BottomWidthSingle.Label = Me.BottomWidthKey.BaseText
         Me.BottomWidthSingle.SiDefaultValue = mDefaultSection.BottomWidth
         Me.BottomWidthSingle.SiValue = mSection.BottomWidth
+
+        If (WinFlumeForm.ControlMatchedToApproach) Then
+            If (Me.BottomWidthSingle.SiValue > Me.SillHeightSingle.SiValue) Then
+                Me.BottomWidthSingle.SiValue = Me.SillHeightSingle.SiValue
+                SetControlBW(Me.BottomWidthSingle.SiValue)
+            End If
+        End If
+
         Me.BottomWidthSingle.SiUnits = WinFlumeForm.SiLengthUnitsText
         Me.BottomWidthKey.ShowValue(Me.BottomWidthSingle.UiValueUnitsText)
 
@@ -370,6 +379,13 @@ Public Class TrapezoidInVShapedControl
     '*********************************************************************************************************
     Protected Sub BottomWidthSingle_ValueChanged() Handles BottomWidthSingle.ValueChanged
         Dim BW As Single = Me.BottomWidthSingle.SiValue
+
+        If (WinFlumeForm.ControlMatchedToApproach) Then
+            If (BW > Me.SillHeightSingle.SiValue) Then
+                BW = Me.SillHeightSingle.SiValue
+            End If
+        End If
+
         SetControlBW(BW)
     End Sub
 

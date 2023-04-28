@@ -32,49 +32,56 @@ Public Class DesignOptionsControl
     '
     ' Note - array is indexed using the Control Section's shape (e.g. shSimpleTrapezoid, shSillInCircle)
     '
-    Private mDesignOptions As Integer() = {0,
+    Private mDesignOptions As Integer() = {MethodOfContraction.RaiseLowerSillHeight _
+                                         + MethodOfContraction.RaiseLowerEntireSection _
+                                         + MethodOfContraction.VarySideContraction,         ' shSimpleTrapezoid
                                            MethodOfContraction.RaiseLowerSillHeight _
                                          + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shSimpleTrapezoid
+                                         + MethodOfContraction.VarySideContraction,         ' shRectangular
                                            MethodOfContraction.RaiseLowerSillHeight _
-                                         + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shRectangular
-                                           MethodOfContraction.RaiseLowerSillHeight _
-                                         + MethodOfContraction.RaiseLowerEntireSection,  ' shVShaped
+                                         + MethodOfContraction.RaiseLowerEntireSection,     ' shVShaped
                                            MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shCircle
+                                         + MethodOfContraction.VarySideContraction,         ' shCircle
                                            MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shUShaped
+                                         + MethodOfContraction.VarySideContraction,         ' shUShaped
                                            MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shParabola
+                                         + MethodOfContraction.VarySideContraction,         ' shParabola
+                                           MethodOfContraction.RaiseLowerSillHeight _
+                                         + MethodOfContraction.RaiseLowerEntireSection _
+                                         + MethodOfContraction.VarySideContraction _
+                                         + MethodOfContraction.RaiseLowerInnerSection,      ' shComplexTrapezoid
                                            MethodOfContraction.RaiseLowerSillHeight _
                                          + MethodOfContraction.RaiseLowerEntireSection _
                                          + MethodOfContraction.RaiseLowerInnerSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shComplexTrapezoid
+                                         + MethodOfContraction.VarySideContraction,         ' shTrapezoidInCircle
                                            MethodOfContraction.RaiseLowerSillHeight _
                                          + MethodOfContraction.RaiseLowerEntireSection _
                                          + MethodOfContraction.RaiseLowerInnerSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shTrapezoidInCircle
-                                           MethodOfContraction.RaiseLowerSillHeight _
+                                         + MethodOfContraction.VarySideContraction,
+                                           MethodOfContraction.RaiseLowerSillHeight _       ' shTrapezoidInU
+                                         + MethodOfContraction.RaiseLowerEntireSection _
+                                         + MethodOfContraction.RaiseLowerInnerSection,
+                                           MethodOfContraction.RaiseLowerSillHeight _       ' shTrapezoidInUShaped
                                          + MethodOfContraction.RaiseLowerEntireSection _
                                          + MethodOfContraction.RaiseLowerInnerSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shTrapezoidInUShaped
+                                         + MethodOfContraction.VarySideContraction,         ' shTrapezoidInParabola
                                            MethodOfContraction.RaiseLowerSillHeight _
                                          + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.RaiseLowerInnerSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shTrapezoidInParabola
+                                         + MethodOfContraction.VarySideContraction,         ' shSillInCircle
                                            MethodOfContraction.RaiseLowerSillHeight _
                                          + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shSillInCircle
-                                           MethodOfContraction.RaiseLowerSillHeight _
+                                         + MethodOfContraction.VarySideContraction,
+                                           MethodOfContraction.RaiseLowerSillHeight _       ' shSillInU
                                          + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shSillInUShaped
-                                           MethodOfContraction.RaiseLowerSillHeight _
+                                         + MethodOfContraction.VarySideContraction,
+                                           MethodOfContraction.RaiseLowerSillHeight _       ' shSillInUShaped
                                          + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,      ' shSillInParabola
+                                         + MethodOfContraction.VarySideContraction,
+                                         +MethodOfContraction.VarySideContraction,      '    shSillInParabola
                                            MethodOfContraction.RaiseLowerEntireSection _
                                          + MethodOfContraction.RaiseLowerInnerSection _
-                                         + MethodOfContraction.VarySideContraction}      ' shVInRectangle
+                                         + MethodOfContraction.VarySideContraction}         ' shVInRectangle
+
 #End Region
 
 #Region " UI Methods "
@@ -152,7 +159,7 @@ Public Class DesignOptionsControl
             Else ' mSection.GetType Is GetType(Flume.SectionType)
                 ' Flume.dll supported cross-section
                 Dim ctrlShape As Integer = ctrlSection.Shape
-                Debug.Assert(ctrlShape - 1 < mDesignOptions.Length)
+                Debug.Assert(ctrlShape - 1 <= mDesignOptions.Length)
                 designOptions = mDesignOptions(ctrlShape - 1)
             End If
         End If
@@ -161,6 +168,69 @@ Public Class DesignOptionsControl
         Me.AdjustEntireSection.Enabled = BitSet(designOptions, MethodOfContraction.RaiseLowerEntireSection)
         Me.AdjustInnerSection.Enabled = BitSet(designOptions, MethodOfContraction.RaiseLowerInnerSection)
         Me.AdjustSideContraction.Enabled = BitSet(designOptions, MethodOfContraction.VarySideContraction)
+
+        ' Add/Remove design options
+        Dim shape As Integer = mFlume.Section(1).Shape
+
+        If (Not WinFlumeForm.ControlMatchedToApproach) Then     ' NOT matched
+            Select Case shape
+                Case shRectangular
+                    Me.AdjustSillHeight.Enabled = False
+                Case shVShaped
+                    Me.AdjustSillHeight.Enabled = False
+                Case shVInRectangle
+                    Me.AdjustEntireSection.Enabled = True
+                    Me.AdjustInnerSection.Enabled = True
+                Case shComplexTrapezoid
+                    Me.AdjustSillHeight.Enabled = True
+                Case shTrapezoidInUShaped
+                    Me.AdjustSideContraction.Enabled = True
+            End Select
+        End If
+
+        If (Not Me.AdjustSillHeight.Enabled) And (Me.AdjustSillHeight.Checked) Then
+            ' Disabled and checked = invalid combination
+            If (Me.AdjustEntireSection.Enabled) Then
+                Me.AdjustEntireSection.Checked = True
+            ElseIf (Me.AdjustInnerSection.Enabled) Then
+                Me.AdjustInnerSection.Checked = True
+            ElseIf (Me.AdjustSideContraction.Enabled) Then
+                Me.AdjustSideContraction.Checked = True
+            End If
+        End If
+
+        If (Not Me.AdjustEntireSection.Enabled) And (Me.AdjustEntireSection.Checked) Then
+            ' Disabled and checked = invalid combination
+            If (Me.AdjustSillHeight.Enabled) Then
+                Me.AdjustSillHeight.Checked = True
+            ElseIf (Me.AdjustInnerSection.Enabled) Then
+                Me.AdjustInnerSection.Checked = True
+            ElseIf (Me.AdjustSideContraction.Enabled) Then
+                Me.AdjustSideContraction.Checked = True
+            End If
+        End If
+
+        If (Not Me.AdjustInnerSection.Enabled) And (Me.AdjustInnerSection.Checked) Then
+            ' Disabled and checked = invalid combination
+            If (Me.AdjustEntireSection.Enabled) Then
+                Me.AdjustEntireSection.Checked = True
+            ElseIf (Me.AdjustSillHeight.Enabled) Then
+                Me.AdjustSillHeight.Checked = True
+            ElseIf (Me.AdjustSideContraction.Enabled) Then
+                Me.AdjustSideContraction.Checked = True
+            End If
+        End If
+
+        If (Not Me.AdjustSideContraction.Enabled) And (Me.AdjustSideContraction.Checked) Then
+            ' Disabled and checked = invalid combination
+            If (Me.AdjustEntireSection.Enabled) Then
+                Me.AdjustEntireSection.Checked = True
+            ElseIf (Me.AdjustInnerSection.Enabled) Then
+                Me.AdjustInnerSection.Checked = True
+            ElseIf (Me.AdjustSillHeight.Enabled) Then
+                Me.AdjustSillHeight.Checked = True
+            End If
+        End If
 
         mUpdatingUI = False
     End Sub

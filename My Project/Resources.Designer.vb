@@ -22,7 +22,7 @@ Namespace My.Resources
     '''<summary>
     '''  A strongly-typed resource class, for looking up localized strings, etc.
     '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0"),  _
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
      Global.Microsoft.VisualBasic.HideModuleNameAttribute()>  _
@@ -307,6 +307,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Control Diameter.
+        '''</summary>
+        Friend ReadOnly Property ControlDiameter() As String
+            Get
+                Return ResourceManager.GetString("ControlDiameter", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Control Focal Distance.
+        '''</summary>
+        Friend ReadOnly Property ControlFocalDistance() As String
+            Get
+                Return ResourceManager.GetString("ControlFocalDistance", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to Control Section is matched to Approach Section.
         '''</summary>
         Friend ReadOnly Property ControlMatchedToApproach() As String
@@ -348,6 +366,15 @@ Namespace My.Resources
         Friend ReadOnly Property ControlSideSlopeMatchesApproach() As String
             Get
                 Return ResourceManager.GetString("ControlSideSlopeMatchesApproach", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Control Width.
+        '''</summary>
+        Friend ReadOnly Property ControlWidth() As String
+            Get
+                Return ResourceManager.GetString("ControlWidth", resourceCulture)
             End Get
         End Property
         
@@ -2289,33 +2316,6 @@ Namespace My.Resources
         Friend ReadOnly Property TheoreticalDischarge() As String
             Get
                 Return ResourceManager.GetString("TheoreticalDischarge", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Throat Diameter.
-        '''</summary>
-        Friend ReadOnly Property ThroatDiameter() As String
-            Get
-                Return ResourceManager.GetString("ThroatDiameter", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Throat Focal Distance.
-        '''</summary>
-        Friend ReadOnly Property ThroatFocalDistance() As String
-            Get
-                Return ResourceManager.GetString("ThroatFocalDistance", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Looks up a localized string similar to Throat Width.
-        '''</summary>
-        Friend ReadOnly Property ThroatWidth() As String
-            Get
-                Return ResourceManager.GetString("ThroatWidth", resourceCulture)
             End Get
         End Property
         

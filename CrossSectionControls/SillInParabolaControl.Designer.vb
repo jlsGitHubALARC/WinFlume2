@@ -29,7 +29,7 @@ Partial Class SillInParabolaControl
         Me.D1Key = New WinFlume.ctl_Label()
         Me.FdLabel = New WinFlume.ctl_Label()
         Me.D1Label = New WinFlume.ctl_Label()
-        Me.SwKey = New WinFlume.ctl_Label()
+        Me.CwKey = New WinFlume.ctl_Label()
         Me.TwKey = New WinFlume.ctl_Label()
         CType(Me.Thumbnail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -133,17 +133,17 @@ Partial Class SillInParabolaControl
         Me.D1Label.Text = "D1"
         Me.D1Label.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'SwKey
+        'CwKey
         '
-        Me.SwKey.AutoSize = True
-        Me.SwKey.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.SwKey.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.SwKey.Location = New System.Drawing.Point(2, 104)
-        Me.SwKey.Name = "SwKey"
-        Me.SwKey.Size = New System.Drawing.Size(66, 17)
-        Me.SwKey.TabIndex = 12
-        Me.SwKey.Text = "Sill Width"
-        Me.SwKey.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CwKey.AutoSize = True
+        Me.CwKey.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CwKey.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.CwKey.Location = New System.Drawing.Point(2, 104)
+        Me.CwKey.Name = "CwKey"
+        Me.CwKey.Size = New System.Drawing.Size(66, 17)
+        Me.CwKey.TabIndex = 12
+        Me.CwKey.Text = "Control Width"
+        Me.CwKey.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'TwKey
         '
@@ -162,7 +162,7 @@ Partial Class SillInParabolaControl
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.TwKey)
-        Me.Controls.Add(Me.SwKey)
+        Me.Controls.Add(Me.CwKey)
         Me.Controls.Add(Me.D1Label)
         Me.Controls.Add(Me.FdLabel)
         Me.Controls.Add(Me.SillHeightSingle)
@@ -184,6 +184,6 @@ Partial Class SillInParabolaControl
     Friend WithEvents D1Key As ctl_Label
     Friend WithEvents FdLabel As ctl_Label
     Friend WithEvents D1Label As ctl_Label
-    Friend WithEvents SwKey As ctl_Label
+    Friend WithEvents CwKey As ctl_Label
     Friend WithEvents TwKey As ctl_Label
 End Class

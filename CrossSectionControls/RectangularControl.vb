@@ -8,6 +8,7 @@
 Imports Flume.Globals
 
 Public Class RectangularControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 

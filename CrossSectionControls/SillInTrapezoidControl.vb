@@ -11,6 +11,7 @@ Imports Flume.Globals
 Imports WinFlume.WinFlumeSectionType
 
 Public Class SillInTrapezoidControl
+    Inherits CrossSectionControl
 
 #Region " Constructor(s) "
 
@@ -82,15 +83,19 @@ Public Class SillInTrapezoidControl
             ' Baseclass initializes cross section data
             MyBase.OuterOutline(SectionIdx, ViewPort)
 
-            Dim CD As Single = mCanalDepth              ' Canal depth
-            Dim SH As Single = mBottomHeight            ' Sill height from canal bottom
+            Dim CD As Single = mCanalDepth                  ' Canal depth
+            Dim SH As Single = mBottomHeight                ' Sill height from canal bottom
 
-            Dim D1 As Single = mSection.D1              ' Inner sill height
-            Dim PH As Single = SH - D1                  ' Trapezoid height from canal bottom
+            Dim D1 As Single = mSection.D1                  ' Inner sill height
+            Dim PH As Single = SH - D1                      ' Trapezoid height from canal bottom
 
-            Dim CW As Single = mCanalWidth              ' Top Width of canal
-            Dim BW As Single = mSection.OuterBottomWidth ' Bottom width of outer section
-            Dim TW As Single = mChannelWidth            ' Top Width of section
+            Dim CW As Single = mCanalWidth                  ' Top Width of canal
+            Dim BW As Single = mSection.OuterBottomWidth    ' Bottom width of outer section
+            Dim TW As Single = mChannelWidth                ' Top Width of section
+
+            If (WinFlumeForm.ControlMatchedToApproach) Then
+                TW = CW
+            End If
 
             ' Define the trapezoid cross section shape
             Dim trapezoid(3) As PointF
@@ -211,13 +216,13 @@ Public Class SillInTrapezoidControl
         End If
 
         ' Top Width
-        Dim TWtxt As String = UnitsDialog.UiValueUnitsText(mChannelWidth, "m")
+        Dim TWtxt As String = UnitsDialog.UiValueUnitsText(mCanalWidth, "m")
         Me.TwKey.ShowValue(TWtxt)
 
-        ' Sill Width
-        Dim SWval As Single = mSection.TopWidth(0, errVal)
-        Dim SWtxt As String = UnitsDialog.UiValueUnitsText(SWval, "m")
-        Me.SwKey.ShowValue(SWtxt)
+        ' Control Width
+        Dim CWval As Single = mFlume.Section(cApproach).TopWidth(mSillHeight, errVal)
+        Dim CWtxt As String = UnitsDialog.UiValueUnitsText(CWval, "m")
+        Me.CwKey.ShowValue(CWtxt)
 
     End Sub
 
@@ -300,7 +305,7 @@ Public Class SillInTrapezoidControl
         y1 = outer(1).Y + 2
         eGraphics.DrawString(OBWtext, Me.Font, mBlackBrush, x1, y1)
 
-        ' Sill Width (i.e. Bottom Width)
+        ' Control Width (i.e. Bottom Width)
         Dim BW As Single = mSection.BottomWidth
         Dim BWtext As String = UnitsDialog.UiValueUnitsText(BW, "m")
         Dim BWsize As SizeF = eGraphics.MeasureString(BWtext, Me.Font)

@@ -55,6 +55,7 @@ Public Class DitchridersTableControl
 
         Private mFlume As FlumeType = Nothing
 
+        ' GEt the Ditchrider's data from the Flume object during construction
         Public Sub New(ByVal Flume As FlumeType)
             mFlume = Flume
             If (mFlume IsNot Nothing) Then
@@ -66,6 +67,7 @@ Public Class DitchridersTableControl
             End If
         End Sub
 
+        ' Check if any data has changed
         Public Function Changed() As Boolean
             If (mFlume IsNot Nothing) Then
                 Changed = True
@@ -82,6 +84,7 @@ Public Class DitchridersTableControl
             End If
         End Function
 
+        ' Save the Ditchrider's data back into the Flume object
         Public Sub Save()
             If (mFlume IsNot Nothing) Then
                 mFlume.RatingHMin = Me.RatingHMin
@@ -103,7 +106,7 @@ Public Class DitchridersTableControl
 
 #Region " Properties "
     '
-    ' Ditchrider's table & caption
+    ' Ditchrider's properties
     '
     Private Property HminSI As Single                       ' Flow Depth (h1) min/max
         Get
@@ -121,6 +124,7 @@ Public Class DitchridersTableControl
             End If
         End Set
     End Property
+
     Private Property HminUI As Single
 
     Private Property HmaxSI As Single
@@ -189,6 +193,7 @@ Public Class DitchridersTableControl
             End If
         End Set
     End Property
+
     Private Property DitchIncrementUI As Single
 
     Private Property DitchZ As Single                       ' Gage slope
@@ -485,6 +490,9 @@ Public Class DitchridersTableControl
 
     End Sub
 
+    '*********************************************************************************************************
+    ' Sub UpdateDepthTable() - update the depth table
+    '*********************************************************************************************************
     Private Sub UpdateDepthTable()
 
         ' Generate the Rating Results table for the user input flow depth values
@@ -595,6 +603,9 @@ Public Class DitchridersTableControl
 
     End Sub
 
+    '*********************************************************************************************************
+    ' Sub UpdateSlopeTable() - update the slope table
+    '*********************************************************************************************************
     Private Sub UpdateSlopeTable()
 
         ' Calculate Slope Distance values based on Flow Depth values

@@ -64,6 +64,76 @@ Public Class WinFlumeDesign
         End If
     End Sub
 
+    '*********************************************************************************************************
+    ' InsertDesign - Insert BaseFlume into Alternative Designs list IF it is not already in the list
+    '
+    ' Input(s)      - BaseFlume (i.e. the current flume the user has specified
+    '               - NumGood (the number of flume designs in the Alternative Designs list
+    '*********************************************************************************************************
+    Public Sub InsertDesign(ByVal BaseFlume As FlumeType, ByRef NumGood As Integer)
+
+        Dim AltDesign1, AltDesign2 As FlumeType
+
+        If (0 < NumGood) Then
+
+            Debug.Assert(Me.EvaluationFlumes.Length = NumGood + 1)
+
+            AltDesign1 = EvaluationFlumes(1) ' Evaluation Flume(0) in list is undefined
+
+            For adx As Integer = 2 To NumGood
+
+                Dim sillHeight1 As Single = AltDesign1.SillHeight
+                Dim controlWidth1 As Single = AltDesign1.Section(1).BottomWidth
+
+                If ThisClose(BaseFlume.SillHeight, AltDesign1.SillHeight, 0.001) And
+                   ThisClose(BaseFlume.Section(1).BottomWidth, AltDesign1.Section(1).BottomWidth, 0.001) Then
+
+                    ' BaseFlume is in the Alternative Design table
+                    Exit For
+
+                Else
+
+                    AltDesign2 = EvaluationFlumes(adx)
+
+                    Dim sillHeight2 As Single = AltDesign2.SillHeight
+                    Dim controlWidth2 As Single = AltDesign2.Section(1).BottomWidth
+
+                    If (sillHeight1 < BaseFlume.SillHeight) And (BaseFlume.SillHeight < sillHeight2) Then
+
+                        If (controlWidth1 <= BaseFlume.Section(1).BottomWidth) And (BaseFlume.Section(1).BottomWidth <= controlWidth2) Then
+
+                            ' BaseFlume is not in the table, insert it into its proper location
+                            ReDim Preserve EvaluationFlumes(NumGood + 1)
+
+                            For mdx As Integer = EvaluationFlumes.Length - 1 To adx - 1
+                                EvaluationFlumes(mdx) = EvaluationFlumes(mdx - 1)
+                            Next mdx
+
+                            Dim ratio As Single = (BaseFlume.SillHeight - sillHeight1) / (sillHeight2 - sillHeight1)
+                            Dim delta As Single = (controlWidth2 - controlWidth1) * ratio
+
+                            BaseFlume.Section(1).BottomWidth += delta
+
+                            EvaluationFlumes(adx - 1) = BaseFlume
+
+                            NumGood += 1
+
+                        End If
+
+                    End If
+
+                    sillHeight1 = sillHeight2
+                    controlWidth1 = controlWidth2
+                End If
+
+                AltDesign1 = AltDesign2
+
+            Next adx
+
+        End If
+
+    End Sub
+
 #End Region
 
 #Region " ToFlumeType "
@@ -219,20 +289,20 @@ Public Class WinFlumeDesign
                 Select Case ToFlumeType.Section(cControl).Shape
                     Case shCircle, shCircleInCircle,
                          shUShaped, shUShapedInUShaped
-                        If (apprDiam < ctrlDiam) Then
+                        If (apprDiam * 1.01 < ctrlDiam) Then
                             flumeList.RemoveAt(ftx)
                             flumeRemoved = True
                             Exit For
                         End If
                     Case shParabola, shParabolaInParabola
-                        If (apprFocalDist < ctrlFocalDist) Then
+                        If (apprFocalDist * 1.01 < ctrlFocalDist) Then
                             flumeList.RemoveAt(ftx)
                             flumeRemoved = True
                             Exit For
                         End If
                     Case shRectangular, shRectangleInRectangle, shTrapezoidInRectangle,
                          shSimpleTrapezoid, shTrapezoidInTrapezoid, shTrapezoidInVShaped
-                        If (apprTopWidth < ctrlTopWidth) Then
+                        If (apprTopWidth * 1.01 < ctrlTopWidth) Then
                             flumeList.RemoveAt(ftx)
                             flumeRemoved = True
                             Exit For

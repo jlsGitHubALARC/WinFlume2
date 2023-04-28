@@ -37,26 +37,27 @@ Partial Class ControlSectionControl
         '
         'MatchAsMenu
         '
+        Me.MatchAsMenu.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.MatchAsMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MatchItem1, Me.MatchItem2, Me.MatchItem3})
         Me.MatchAsMenu.Name = "ContextMenuStrip1"
-        Me.MatchAsMenu.Size = New System.Drawing.Size(145, 70)
+        Me.MatchAsMenu.Size = New System.Drawing.Size(166, 76)
         '
         'MatchItem1
         '
         Me.MatchItem1.Name = "MatchItem1"
-        Me.MatchItem1.Size = New System.Drawing.Size(144, 22)
+        Me.MatchItem1.Size = New System.Drawing.Size(165, 24)
         Me.MatchItem1.Text = "Match Item 1"
         '
         'MatchItem2
         '
         Me.MatchItem2.Name = "MatchItem2"
-        Me.MatchItem2.Size = New System.Drawing.Size(144, 22)
+        Me.MatchItem2.Size = New System.Drawing.Size(165, 24)
         Me.MatchItem2.Text = "Match Item 2"
         '
         'MatchItem3
         '
         Me.MatchItem3.Name = "MatchItem3"
-        Me.MatchItem3.Size = New System.Drawing.Size(144, 22)
+        Me.MatchItem3.Size = New System.Drawing.Size(165, 24)
         Me.MatchItem3.Text = "Match Item 3"
         '
         'CrossSectionPanel
@@ -79,7 +80,7 @@ Partial Class ControlSectionControl
         Me.MatchControlToApproachCheckBox.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.MatchControlToApproachCheckBox.Location = New System.Drawing.Point(160, 4)
         Me.MatchControlToApproachCheckBox.Name = "MatchControlToApproachCheckBox"
-        Me.MatchControlToApproachCheckBox.Size = New System.Drawing.Size(302, 21)
+        Me.MatchControlToApproachCheckBox.Size = New System.Drawing.Size(358, 24)
         Me.MatchControlToApproachCheckBox.TabIndex = 6
         Me.MatchControlToApproachCheckBox.Text = "Match Control Section to Approach Channel"
         Me.MatchControlToApproachCheckBox.UndoEnabled = True
@@ -88,6 +89,8 @@ Partial Class ControlSectionControl
         '
         'ControlCrossSection
         '
+        Me.ControlCrossSection.AccessibleDescription = "Drop down control used to select the Control Section's Cross Section"
+        Me.ControlCrossSection.AccessibleName = "Cross Section Selection Control"
         Me.ControlCrossSection.BackColor = System.Drawing.SystemColors.Info
         Me.ControlCrossSection.DefaultValue = 0
         Me.ControlCrossSection.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
@@ -95,7 +98,7 @@ Partial Class ControlSectionControl
         Me.ControlCrossSection.FormattingEnabled = True
         Me.ControlCrossSection.Location = New System.Drawing.Point(283, 0)
         Me.ControlCrossSection.Name = "ControlCrossSection"
-        Me.ControlCrossSection.Size = New System.Drawing.Size(180, 24)
+        Me.ControlCrossSection.Size = New System.Drawing.Size(180, 28)
         Me.ControlCrossSection.TabIndex = 1
         Me.ControlCrossSection.UndoEnabled = True
         Me.ControlCrossSection.Value = -1
@@ -108,7 +111,7 @@ Partial Class ControlSectionControl
         Me.ControlSectionDescription.ImeMode = System.Windows.Forms.ImeMode.NoControl
         Me.ControlSectionDescription.Location = New System.Drawing.Point(0, 5)
         Me.ControlSectionDescription.Name = "ControlSectionDescription"
-        Me.ControlSectionDescription.Size = New System.Drawing.Size(179, 17)
+        Me.ControlSectionDescription.Size = New System.Drawing.Size(208, 20)
         Me.ControlSectionDescription.TabIndex = 0
         Me.ControlSectionDescription.Text = "Control Section (throat&)"
         Me.ControlSectionDescription.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -117,7 +120,7 @@ Partial Class ControlSectionControl
         '
         Me.AccessibleDescription = "Select and edit the control cross section"
         Me.AccessibleName = "Control Section"
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Controls.Add(Me.CrossSectionPanel)

@@ -78,7 +78,8 @@ Public Class WinFlumeForm
          New WinFlumeSectionType(shSimpleTrapezoid, shComplexTrapezoid, 0,
                                  MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
                                + MatchConstraint.OuterShapeMatchesApproachChannel,
-                                 MethodOfContraction.RaiseLowerInnerSection _
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
                                + MethodOfContraction.VarySideContraction),
          New WinFlumeSectionType(shRectangular, shSillInRectangle, 0,
                                  MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
@@ -98,6 +99,114 @@ Public Class WinFlumeForm
                                  MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
                                + MatchConstraint.OuterShapeMatchesApproachChannel,
                                  MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shVShaped, shSillInVShaped, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight),
+         New WinFlumeSectionType(shVShaped, shVShapedInVShaped, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerInnerSection),
+         New WinFlumeSectionType(shVShaped, shTrapezoidInVShaped, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel _
+                               + MatchConstraint.InnerSideSlopeMatchesApproach,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shCircle, shSillInCircle, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shCircle, shTrapezoidInCircle, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shUShaped, shSillInUShaped, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight),
+         New WinFlumeSectionType(shUShaped, shTrapezoidInUShaped, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shUShaped, shUShapedInUShaped, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shParabola, shSillInParabola, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight),
+         New WinFlumeSectionType(shParabola, shTrapezoidInParabola, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shParabola, shParabolaInParabola, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shComplexTrapezoid, shComplexTrapezoid, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction)}
+
+    '*********************************************************************************************************
+    ' Table controlling when the Control Section i NOT matched to the Approach Channel based on:
+    '   Technical note:  Matching Approach Section2016-05-16.docx; Author: Bert Clemmens
+    '
+    ' WinFlumeSectionType is subclassed from Flume.SectionType
+    '*********************************************************************************************************
+    Public ApproachControlUnmatchTypes() As WinFlumeSectionType =
+        {New WinFlumeSectionType(shSimpleTrapezoid, shSillInTrapezoid, 0,
+                                  MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                                + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                  MethodOfContraction.RaiseLowerSillHeight),
+         New WinFlumeSectionType(shSimpleTrapezoid, shTrapezoidInTrapezoid, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel _
+                               + MatchConstraint.InnerSideSlopeMatchesApproach,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shSimpleTrapezoid, shComplexTrapezoid, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shRectangular, shSillInRectangle, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight),
+         New WinFlumeSectionType(shRectangular, shVInRectangle, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerInnerSection),
+         New WinFlumeSectionType(shRectangular, shTrapezoidInRectangle, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
+                               + MethodOfContraction.VarySideContraction),
+         New WinFlumeSectionType(shRectangular, shRectangleInRectangle, 0,
+                                 MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
+                               + MatchConstraint.OuterShapeMatchesApproachChannel,
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
                                + MethodOfContraction.VarySideContraction),
          New WinFlumeSectionType(shVShaped, shSillInVShaped, 0,
                                  MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
@@ -157,7 +266,8 @@ Public Class WinFlumeForm
          New WinFlumeSectionType(shComplexTrapezoid, shComplexTrapezoid, 0,
                                  MatchConstraint.InnerSillHeightMatchesProfileSillHeight _
                                + MatchConstraint.OuterShapeMatchesApproachChannel,
-                                 MethodOfContraction.RaiseLowerInnerSection _
+                                 MethodOfContraction.RaiseLowerSillHeight _
+                               + MethodOfContraction.RaiseLowerInnerSection _
                                + MethodOfContraction.VarySideContraction)}
 
     Public CrossSectionShapeNames() As String =
@@ -166,7 +276,7 @@ Public Class WinFlumeForm
          SectionString(10), SectionString(11), SectionString(12), SectionString(13), SectionString(14),
          SectionString(15), SectionString(16), SectionString(17), SectionString(18), SectionString(19),
          SectionString(20), SectionString(21), SectionString(22), SectionString(23), SectionString(24),
-         SectionString(25)}
+         SectionString(25), SectionString(26), SectionString(27)}
 
     ' User interface
     Public Const MaxSideBarWidth As Integer = 500
@@ -251,6 +361,8 @@ Public Class WinFlumeForm
     Private mCopyTableDataText As String
     Private mPasteTableDataText As String
     Private mSaveTableDataText As String
+
+    Private DesignTabFirstSelected As Boolean = True
 
 #End Region
 
@@ -347,6 +459,23 @@ Public Class WinFlumeForm
 
     Public Property Message1 As String = ""
     Public Property Message2 As String = ""
+    '
+    ' Most recently Selected Tab
+    '
+    Public Enum SelectedTab
+        DefineCanal
+        DefineControl
+        Design
+        Calibration
+        WallGages
+        DataCompression
+        DrawingsReports
+    End Enum
+
+    Shared Property PrevMRT As SelectedTab = SelectedTab.DefineCanal
+    Shared Property MRT As SelectedTab = SelectedTab.DefineCanal
+
+    Shared Property ShowSaveDesignDialog As Boolean = True
 
 #End Region
 
@@ -1892,55 +2021,55 @@ Public Class WinFlumeForm
         Dim controlCtrl As CrossSectionControl = GetDefineControlControl.ControlSectionControl.GetCrossSectionControl(controlShape)
         If (controlCtrl Is Nothing) Then
             Select Case (controlShape)
-                Case shCircle
-                    controlCtrl = New CircleControl(cControl)
-                Case shCircleInCircle
-                    controlCtrl = New CircleInCircleControl(cControl)
-                Case shComplexTrapezoid
-                    controlCtrl = New ComplexTrapezoidControl(cControl)
-                Case shParabola
-                    controlCtrl = New ParabolaControl(cControl)
-                Case shParabolaInParabola
-                    controlCtrl = New ParabolaInParabolaControl(cControl)
-                Case shRectangular
-                    controlCtrl = New RectangularControl(cControl)
-                Case shSillInCircle
-                    controlCtrl = New SillInCircleControl(cControl)
-                Case shSillInParabola
-                    controlCtrl = New SillInParabolaControl(cControl)
-                Case shSillInUShaped
-                    controlCtrl = New SillInUShapedControl(cControl)
-                Case shSimpleTrapezoid
+                Case shSimpleTrapezoid                                      ' 1
                     controlCtrl = New SimpleTrapezoidControl(cControl)
-                Case shTrapezoidInCircle
-                    controlCtrl = New TrapezoidInCircleControl(cControl)
-                Case shTrapezoidInParabola
-                    controlCtrl = New TrapezoidInParabolaControl(cControl)
-                Case shTrapezoidInUShaped
-                    controlCtrl = New TrapezoidInUShapedControl(cControl)
-                Case shUShaped
-                    controlCtrl = New UShapedControl(cControl)
-                Case shUShapedInUShaped
-                    controlCtrl = New UShapedInUShapedControl(cControl)
-                Case shVInRectangle
-                    controlCtrl = New VinRectangleControl(cControl)
-                Case shVShaped
+                Case shRectangular                                          ' 2
+                    controlCtrl = New RectangularControl(cControl)
+                Case shVShaped                                              ' 3
                     controlCtrl = New VShapedControl(cControl)
-                Case shVShapedInVShaped
-                    controlCtrl = New VShapedInVShapedControl(cControl)
-                Case shSillInTrapezoid
+                Case shCircle                                               ' 4
+                    controlCtrl = New CircleControl(cControl)
+                Case shUShaped                                              ' 5
+                    controlCtrl = New UShapedControl(cControl)
+                Case shParabola                                             ' 6
+                    controlCtrl = New ParabolaControl(cControl)
+                Case shComplexTrapezoid                                     ' 7
+                    controlCtrl = New ComplexTrapezoidControl(cControl)
+                Case shTrapezoidInCircle                                    ' 8
+                    controlCtrl = New TrapezoidInCircleControl(cControl)
+                Case shTrapezoidInU, shTrapezoidInUShaped                   ' 9 & 10
+                    controlCtrl = New TrapezoidInUShapedControl(cControl)
+                Case shTrapezoidInParabola                                  ' 11
+                    controlCtrl = New TrapezoidInParabolaControl(cControl)
+                Case shSillInCircle                                         ' 12
+                    controlCtrl = New SillInCircleControl(cControl)
+                Case shSillInU, shSillInUShaped                             ' 13 & 14
+                    controlCtrl = New SillInUShapedControl(cControl)
+                Case shSillInParabola                                       ' 15
+                    controlCtrl = New SillInParabolaControl(cControl)
+                Case shVInRectangle                                         ' 16
+                    controlCtrl = New VinRectangleControl(cControl)
+                Case shSillInTrapezoid                                      ' 17
                     controlCtrl = New SillInTrapezoidControl(cControl)
-                Case shTrapezoidInTrapezoid
+                Case shTrapezoidInTrapezoid                                 ' 18
                     controlCtrl = New TrapezoidInTrapezoidControl(cControl)
-                Case shSillInRectangle
+                Case shSillInRectangle                                      ' 19
                     controlCtrl = New SillInRectangleControl(cControl)
-                Case shRectangleInRectangle
+                Case shRectangleInRectangle                                 ' 20
                     controlCtrl = New RectangleInRectangleControl(cControl)
-                Case shSillInVShaped
+                Case shSillInVShaped                                        ' 21
                     controlCtrl = New SillInVShapedControl(cControl)
-                Case shTrapezoidInVShaped
+                Case shTrapezoidInVShaped                                   ' 22
                     controlCtrl = New TrapezoidInVShapedControl(cControl)
-                Case shTrapezoidInRectangle
+                Case shVShapedInVShaped                                     ' 23
+                    controlCtrl = New VShapedInVShapedControl(cControl)
+                Case shCircleInCircle                                       ' 24
+                    controlCtrl = New CircleInCircleControl(cControl)
+                Case shUShapedInUShaped                                     ' 25
+                    controlCtrl = New UShapedInUShapedControl(cControl)
+                Case shParabolaInParabola                                   ' 26
+                    controlCtrl = New ParabolaInParabolaControl(cControl)
+                Case shTrapezoidInRectangle                                 ' 27
                     controlCtrl = New TrapezoidInRectangleControl(cControl)
                 Case Else
                     Debug.Assert(False)
@@ -2974,8 +3103,24 @@ Public Class WinFlumeForm
     ' Event handlers check if its corresponding Flume value has changed; if so, the Flume value is updated
     ' and an event is raised to let others know of the change.
     '*********************************************************************************************************
-    Private Sub WinFlumeTabControl_ValueChanged() Handles WinFlumeTabControl.ValueChanged
+    Private Sub WinFlumeTabControl_ValueChanged() _
+        Handles WinFlumeTabControl.ValueChanged
+
+        MRT = DirectCast(WinFlumeTabControl.Value, WinFlumeForm.SelectedTab)
+
         RaiseFlumeDataChanged()
+
+        If (MRT = SelectedTab.Design) Then
+            'If ShowSaveDesignDialog Then
+            '    SaveBaseDesignDialog.Show()
+            'End If
+            If (DesignTabFirstSelected) Then
+                GetDesignControl.DesignControlTabControl.SelectedIndex = 0
+                DesignTabFirstSelected = False
+            End If
+        End If
+
+        PrevMRT = MRT
     End Sub
 
     Private Sub WinFlumeTabControl_Deselecting(sender As Object, e As TabControlCancelEventArgs) _
@@ -3786,30 +3931,29 @@ Public Class WinFlumeForm
             End If
 
             Dim ctrl As AlternativeDesignsControl = New AlternativeDesignsControl(Me)
-            ctrl.MakeSelectedCurrentButton.Text &= " " & My.Resources.ThenCloseDialog & "."
             ctrl.UpdateUI(Me)
-            ctrl.ViewAsDialogButton.Hide()
 
-            Dim db As ControlViewerDialog = New ControlViewerDialog(ctrl) With {
+            Dim db = New ControlViewerDialog(ctrl) With {
             .Size = RPDsize,
             .Text = My.Resources.AlternativeDesigns
             }
 
             ctrl.Dialog = db
 
-            db.OK_Button.Hide()
-            db.Cancel_Button.Text = My.Resources.Close
+            db.OK_Button.Text = "Select"
+            db.Cancel_Button.Text = "Cancel"
 
             Dim result As DialogResult = db.ShowDialog()
             If (result = DialogResult.OK) Then
-                If (ctrl.SelectedFlume IsNot Nothing) Then ' a new Flume was selected
-                    ' Setup Undo point
-                    Dim undoText As String = My.Resources.Dialog & " - " & My.Resources.AlternativeDesigns
-                    AddUndoItem(Me.Name, ctrl.Name, undoText, mFlume)
+                ctrl.MakeSelectedCurrent()
+                'If (ctrl.SelectedFlume IsNot Nothing) Then ' a new Flume was selected
+                '    ' Setup Undo point
+                '    Dim undoText As String = My.Resources.Dialog & " - " & My.Resources.AlternativeDesigns
+                '    AddUndoItem(Me.Name, ctrl.Name, undoText, mFlume)
 
-                    SetFlume(ctrl.SelectedFlume) ' Set selected Flume as new application Flume
-                    RaiseFlumeDataChanged() ' Inform others of change
-                End If
+                '    SetFlume(ctrl.SelectedFlume) ' Set selected Flume as new application Flume
+                '    'RaiseFlumeDataChanged() ' Inform others of change
+                'End If
             End If
 
             RPDsize = db.Size
@@ -4028,11 +4172,11 @@ Public Class WinFlumeForm
         Try
             If (mPdfViewer Is Nothing) Then
                 mPdfViewer = New PdfViewerDialog With {
-                .Text = "WinFlume2 User Manual",
+                .Text = "WinFlume2.1 User Manual",
                 .Height = Me.Height,
                 .Width = Me.Width
                 }
-                mPdfViewer.PdfViewer.LoadFile("WinFlume2_UserManual.pdf")
+                mPdfViewer.PdfViewer.LoadFile("WinFlume2.1_UserManual.pdf")
                 mPdfViewer.PdfViewer.setPageMode("none")
                 mPdfViewer.PdfViewer.gotoFirstPage()
                 mPdfViewer.PdfViewer.setViewScroll("FitH", 0)

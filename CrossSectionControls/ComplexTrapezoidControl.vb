@@ -347,12 +347,15 @@ Public Class ComplexTrapezoidControl
             Me.BinSingle.Visible = True
             Me.BinLabel.Visible = True
             Me.BinKey.Visible = True
+
             Me.Z1Single.Visible = True
             Me.Z1Label.Visible = True
             Me.Z1Key.Visible = True
+
             Me.Z2Single.Visible = True
             Me.Z2Label.Visible = True
             Me.Z2Key.Visible = True
+
             Me.D2Single.Visible = True
             Me.D2Label.Visible = True
             Me.D2Key.Visible = True
@@ -386,10 +389,13 @@ Public Class ComplexTrapezoidControl
             ' Set Read-Only state, when appropriate
             Me.BinSingle.IsReadOnly = False
             Me.BinSingle.ReadOnlyMsgBox = Nothing
+
             Me.Z1Single.IsReadOnly = False
             Me.Z1Single.ReadOnlyMsgBox = Nothing
+
             Me.Z2Single.IsReadOnly = False
             Me.Z2Single.ReadOnlyMsgBox = Nothing
+
             Me.D2Single.IsReadOnly = False
             Me.D2Single.ReadOnlyMsgBox = Nothing
 
@@ -403,10 +409,13 @@ Public Class ComplexTrapezoidControl
                     If (WinFlumeForm.TailwaterMatchedToApproach) Then
                         Me.BinSingle.IsReadOnly = True
                         Me.BinSingle.ReadOnlyMsgBox = TailwaterMatchedToApproachDialog
+
                         Me.Z1Single.IsReadOnly = True
                         Me.Z1Single.ReadOnlyMsgBox = TailwaterMatchedToApproachDialog
+
                         Me.Z2Single.IsReadOnly = True
                         Me.Z2Single.ReadOnlyMsgBox = TailwaterMatchedToApproachDialog
+
                         Me.D2Single.IsReadOnly = True
                         Me.D2Single.ReadOnlyMsgBox = TailwaterMatchedToApproachDialog
                     End If
@@ -417,12 +426,15 @@ Public Class ComplexTrapezoidControl
             Me.BinSingle.Visible = False
             Me.BinLabel.Visible = False
             Me.BinKey.Visible = False
+
             Me.Z1Single.Visible = False
             Me.Z1Label.Visible = False
             Me.Z1Key.Visible = False
+
             Me.Z2Single.Visible = False
             Me.Z2Label.Visible = False
             Me.Z2Key.Visible = False
+
             Me.D2Single.Visible = False
             Me.D2Label.Visible = False
             Me.D2Key.Visible = False
@@ -437,42 +449,47 @@ Public Class ComplexTrapezoidControl
             Me.BoutSingle.Visible = True
             Me.BoutLabel.Visible = True
             Me.BoutKey.Visible = True
+
             Me.Z3Single.Visible = True
             Me.Z3Label.Visible = True
             Me.Z3Key.Visible = True
+
+            Me.D1Single.Visible = True
+            Me.D1Label.Visible = True
+            Me.D1Key.Visible = True
 
             Me.BoutSingle.Label = BoutKey.BaseText
             Me.BoutSingle.SiDefaultValue = mDefaultSection.OuterBottomWidth
             Me.BoutSingle.SiValue = mSection.OuterBottomWidth
             Me.BoutSingle.SiUnits = WinFlumeForm.SiLengthUnitsText
-
             Me.BoutKey.ShowValue(Me.BoutSingle.UiValueUnitsText)
 
             Me.Z3Single.Label = Z3Key.BaseText
             Me.Z3Single.SiDefaultValue = mDefaultSection.Z3
             Me.Z3Single.SiValue = mSection.Z3
-
             Me.Z3Key.ShowValue(Me.Z3Single.UiValueText)
 
             Me.D1Single.Label = D1Key.BaseText
             Me.D1Single.SiDefaultValue = mDefaultSection.D1
             Me.D1Single.SiValue = mSection.D1
             Me.D1Single.SiUnits = WinFlumeForm.SiLengthUnitsText
-
             Me.D1Key.ShowValue(Me.D1Single.UiValueUnitsText)
 
             ' Set Visible / Read-Only state, when appropriate
             Me.BoutSingle.IsReadOnly = False
             Me.BoutSingle.ReadOnlyMsgBox = Nothing
+
             Me.Z3Single.IsReadOnly = False
             Me.Z3Single.ReadOnlyMsgBox = Nothing
+
             Me.D1Single.IsReadOnly = False
             Me.D1Single.ReadOnlyMsgBox = Nothing
 
             Select Case (mSectionIdx)
+
                 Case cApproach
-                    Me.D1Single.Visible = D1visible
-                    Me.D1Label.Visible = D1visible
+                    Me.D1Single.Visible = D1visible()
+                    Me.D1Label.Visible = D1visible()
                     Me.D1Key.Visible = True
 
                 Case cControl
@@ -497,8 +514,8 @@ Public Class ComplexTrapezoidControl
                     End If
 
                 Case cTailwater
-                    Me.D1Single.Visible = D1visible
-                    Me.D1Label.Visible = D1visible
+                    Me.D1Single.Visible = D1visible()
+                    Me.D1Label.Visible = D1visible()
                     Me.D1Key.Visible = True
 
                     If (WinFlumeForm.TailwaterMatchedToApproach) Then
@@ -514,9 +531,11 @@ Public Class ComplexTrapezoidControl
             Me.BoutSingle.Visible = False
             Me.BoutLabel.Visible = False
             Me.BoutKey.Visible = False
+
             Me.Z3Single.Visible = False
             Me.Z3Label.Visible = False
             Me.Z3Key.Visible = False
+
             Me.D1Single.Visible = False
             Me.D1Label.Visible = False
             Me.D1Key.Visible = False
@@ -946,13 +965,16 @@ Public Class ComplexTrapezoidControl
                         Debug.Assert(False)
 
                 End Select
+
                 mWinFlumeForm.RaiseFlumeDataChanged()
             End If
         End If
     End Sub
 
     Protected Sub Z1Single_ValueChanged() Handles Z1Single.ValueChanged
+
         If ((mWinFlumeForm IsNot Nothing) And (mSection IsNot Nothing)) Then
+
             Dim Z1 As Single = Me.Z1Single.SiValue
             If (mSection.Z1 <> Z1) Then
                 mSection.Z1 = Z1
@@ -991,12 +1013,14 @@ Public Class ComplexTrapezoidControl
                     Case Else
                         Debug.Assert(False)
                 End Select
+
                 mWinFlumeForm.RaiseFlumeDataChanged()
             End If
         End If
     End Sub
 
     Protected Sub Z2Single_ValueChanged() Handles Z2Single.ValueChanged
+
         If ((mWinFlumeForm IsNot Nothing) And (mSection IsNot Nothing)) Then
             Dim Z2 As Single = Me.Z2Single.SiValue
             If (mSection.Z2 <> Z2) Then
@@ -1024,7 +1048,7 @@ Public Class ComplexTrapezoidControl
                             ' Keep Control Section's cross-section within Approach Channel
                             With ctrlSection
                                 Z2 = MatchZ2ToApproach(Z2)
-                                mSection.Z2 = Z2
+                                .Z2 = Z2
                             End With
                         End If
 

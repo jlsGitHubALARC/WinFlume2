@@ -125,6 +125,9 @@
   <data name="HorizontalSplitter.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="HorizontalSplitter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="HorizontalSplitter.Orientation" type="System.Windows.Forms.Orientation, System.Windows.Forms">
     <value>Horizontal</value>
   </data>
@@ -147,7 +150,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="BottomProfileControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>768, 165</value>
+    <value>960, 206</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="BottomProfileControl.TabIndex" type="System.Int32, mscorlib">
@@ -186,6 +189,9 @@
   <data name="VerticalSplitter.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
+  <data name="VerticalSplitter.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
   <data name="CalibrationControlTabControl.AccessibleDescription" xml:space="preserve">
     <value>Various tab pages for displaying and editing the flume calibration.</value>
   </data>
@@ -211,7 +217,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="TableChoicesControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 256</value>
+    <value>572, 324</value>
   </data>
   <data name="TableChoicesControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -229,10 +235,13 @@
     <value>0</value>
   </data>
   <data name="TableChoicesTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
+    <value>4, 29</value>
+  </data>
+  <data name="TableChoicesTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="TableChoicesTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>456, 256</value>
+    <value>572, 324</value>
   </data>
   <data name="TableChoicesTab.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -271,7 +280,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="RatingTableControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 256</value>
+    <value>572, 324</value>
   </data>
   <data name="RatingTableControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -289,10 +298,13 @@
     <value>0</value>
   </data>
   <data name="RatingTableTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
+    <value>4, 29</value>
+  </data>
+  <data name="RatingTableTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="RatingTableTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 256</value>
+    <value>572, 324</value>
   </data>
   <data name="RatingTableTab.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -331,7 +343,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="RatingEquationControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 256</value>
+    <value>572, 323</value>
   </data>
   <data name="RatingEquationControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -349,10 +361,13 @@
     <value>0</value>
   </data>
   <data name="RatingEquationTableTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
+    <value>4, 29</value>
+  </data>
+  <data name="RatingEquationTableTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="RatingEquationTableTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 256</value>
+    <value>572, 323</value>
   </data>
   <data name="RatingEquationTableTab.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -391,7 +406,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="DitchridersTableControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 256</value>
+    <value>572, 323</value>
   </data>
   <data name="DitchridersTableControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -409,10 +424,13 @@
     <value>0</value>
   </data>
   <data name="DitchridersTableTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
+    <value>4, 29</value>
+  </data>
+  <data name="DitchridersTableTab.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="DitchridersTableTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>492, 256</value>
+    <value>572, 323</value>
   </data>
   <data name="DitchridersTableTab.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -442,7 +460,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="CalibrationControlTabControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>464, 285</value>
+    <value>580, 357</value>
   </data>
   <data name="CalibrationControlTabControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -487,7 +505,7 @@
     <value>2, 2, 2, 2</value>
   </data>
   <data name="SideBarControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>300, 285</value>
+    <value>375, 357</value>
   </data>
   <data name="SideBarControl.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -520,10 +538,13 @@
     <value>300</value>
   </data>
   <data name="VerticalSplitter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>768, 285</value>
+    <value>960, 357</value>
   </data>
   <data name="VerticalSplitter.SplitterDistance" type="System.Int32, mscorlib">
-    <value>464</value>
+    <value>580</value>
+  </data>
+  <data name="VerticalSplitter.SplitterWidth" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="VerticalSplitter.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -556,10 +577,13 @@
     <value>150</value>
   </data>
   <data name="HorizontalSplitter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>768, 454</value>
+    <value>960, 568</value>
   </data>
   <data name="HorizontalSplitter.SplitterDistance" type="System.Int32, mscorlib">
-    <value>165</value>
+    <value>206</value>
+  </data>
+  <data name="HorizontalSplitter.SplitterWidth" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="HorizontalSplitter.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -583,16 +607,16 @@
     <value>CalibrationControl</value>
   </data>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
+    <value>10, 20</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 10pt</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>5, 5, 5, 5</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>768, 454</value>
+    <value>960, 568</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>CalibrationControl</value>

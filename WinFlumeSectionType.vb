@@ -80,7 +80,6 @@ Public Class WinFlumeSectionType
     ' Load Flume.SectionType values
     Public Sub LoadFlumeSectionType(ByVal SectionType As Flume.SectionType)
         With SectionType
-            Me.BottomWidth = .BottomWidth
             Me.D1 = .D1
             Me.D2 = .D2
             Me.DiameterFocalD = .DiameterFocalD
@@ -89,6 +88,14 @@ Public Class WinFlumeSectionType
             Me.Z1 = .Z1
             Me.Z2 = .Z2
             Me.Z3 = .Z3
+
+            Select Case (SectionType.Shape)
+                Case Flume.shCircle, Flume.shParabola, Flume.shSillInCircle,
+                     Flume.shSillInParabola, Flume.shSillInUShaped, Flume.shUShaped
+                    Me.BottomWidth = .DiameterFocalD
+                Case Else
+                    Me.BottomWidth = .BottomWidth
+            End Select
         End With
     End Sub
 

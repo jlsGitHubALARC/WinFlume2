@@ -3,7 +3,6 @@
 ' Class DownstreamViewControl - UserControl for displaying the downstream view of the flume
 '*************************************************************************************************************
 Imports System.Windows
-Imports Flume
 Imports Flume.Globals
 
 Public Class DownstreamViewControl
@@ -36,7 +35,7 @@ Public Class DownstreamViewControl
         If (mWinFlumeForm IsNot Nothing) Then
             mFlume = WinFlumeForm.Flume         ' Flume data
         End If
-        'Me.UpdateUI()
+        Me.UpdateUI()
     End Sub
 
     Protected Sub UpdateUI()
@@ -167,11 +166,15 @@ Public Class DownstreamViewControl
             Dim trEdge As PointF() = mTailwater.RightEdgeOutline(cTailwater, ViewPort)
             Dim clEdge As PointF() = mControl.LeftEdgeOutline(cControl, ViewPort)
             Dim crEdge As PointF() = mControl.RightEdgeOutline(cControl, ViewPort)
+
             clEdge = clEdge.Reverse().ToArray
             crEdge = crEdge.Reverse().ToArray
+
             Dim face As PointF() = tlEdge.Concat(trEdge).ToArray
+
             face = face.Concat(crEdge).ToArray
             face = face.Concat(clEdge).ToArray
+
             ' Fill & draw polygon to depict face of control/tailwater channel
             eGraphics.FillPolygon(LightGraySemiTransparentBrush, face)
             eGraphics.DrawPolygon(dPen, face)
@@ -190,11 +193,14 @@ Public Class DownstreamViewControl
             '
             Dim tEdge As PointF() = mTailwater.LeftEdgeOutline(cTailwater, ViewPort)
             Dim cEdge As PointF() = mControl.LeftEdgeOutline(cControl, ViewPort)
+
             cEdge = cEdge.Reverse().ToArray
             Dim leftSide As PointF() = tEdge.Concat(cEdge).ToArray
+
             ' Fill & draw polygon to depict left side of tailwater channel
             eGraphics.FillPolygon(LightGraySemiTransparentBrush, leftSide)
             eGraphics.DrawPolygon(dPen, leftSide)
+
         Catch ex As Exception
             Debug.Assert(False, ex.Message)
         End Try
@@ -210,11 +216,14 @@ Public Class DownstreamViewControl
             '
             Dim tEdge As PointF() = mTailwater.RightEdgeOutline(cTailwater, ViewPort)
             Dim cEdge As PointF() = mControl.RightEdgeOutline(cControl, ViewPort)
+
             cEdge = cEdge.Reverse().ToArray
             Dim rightSide As PointF() = tEdge.Concat(cEdge).ToArray
+
             ' Fill & draw polygon to depict left side of tailwater channel
             eGraphics.FillPolygon(LightGraySemiTransparentBrush, rightSide)
             eGraphics.DrawPolygon(dPen, rightSide)
+
         Catch ex As Exception
             Debug.Assert(False, ex.Message)
         End Try
@@ -230,11 +239,14 @@ Public Class DownstreamViewControl
             '
             Dim tEdge As PointF() = mTailwater.InvertOutline(cTailwater, ViewPort)
             Dim cEdge As PointF() = mControl.SillOutline(cControl, ViewPort)
+
             cEdge = cEdge.Reverse().ToArray
             Dim ramp As PointF() = tEdge.Concat(cEdge).ToArray
+
             ' Fill & draw polygon to depict ramp of tailwater channel
             eGraphics.FillPolygon(MediumGraySemiTransparentBrush, ramp)
             eGraphics.DrawPolygon(dPen, ramp)
+
         Catch ex As Exception
             Debug.Assert(False, ex.Message)
         End Try

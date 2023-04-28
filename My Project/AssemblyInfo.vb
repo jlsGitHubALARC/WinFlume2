@@ -8,11 +8,11 @@ Imports System.Runtime.InteropServices
 
 ' Review the values of the assembly attributes
 
-<Assembly: AssemblyTitle("WinFlume 2.0")>
+<Assembly: AssemblyTitle("WinFlume 2.1")>
 <Assembly: AssemblyDescription("Design and Calibration of Long-Throated Flumes and Broad-Crested Weirs for Open-Channel Water Flow Measurement")>
 <Assembly: AssemblyCompany("USBR / USDA")>
 <Assembly: AssemblyProduct("WinFlume")>
-<Assembly: AssemblyCopyright("Copyright © USBR / USDA 2020")>
+<Assembly: AssemblyCopyright("Copyright © USBR / USDA 2023")>
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -32,4 +32,4 @@ Imports System.Runtime.InteropServices
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
 <Assembly: AssemblyVersion("1.0.0.0")>
-<Assembly: AssemblyFileVersion("2.0")>
+<Assembly: AssemblyFileVersion("2.1")>

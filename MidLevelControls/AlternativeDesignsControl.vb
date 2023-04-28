@@ -36,18 +36,24 @@ Public Class AlternativeDesignsControl
     Public Const MaxPrimaryCol As Integer = 5
     Public Const MinSecondaryCol As Integer = 6
     Public Const MaxSecondaryCol As Integer = 7
+    '
+    ' Visible changed flag
+    '
+    Private mVisibleChanged As Boolean = False
 
 #End Region
 
 #Region " Properties "
 
-    Public Property Dialog As Windows.Forms.Form = Nothing
+    Public Property Dialog As Windows.Forms.Form = Nothing      ' Dialog to use with "View as Dialog"
 
-    Public Property SelectedRowIndex As Integer = 0
+    Public Property SelectedRowIndex As Integer = 0             ' User selected row in table
 
-    Public Property ShowDesignNotFound As Boolean = True
+    Public Property ShowDesignNotFound As Boolean = True        ' Flag indicating if a design was found
 
-    Public Property SelectedFlume As FlumeType = Nothing
+    Public Property SelectedFlume As FlumeType = Nothing        ' Current Flume data
+
+    Public Property ExactMatch As Boolean = False
 
 #End Region
 
@@ -87,13 +93,6 @@ Public Class AlternativeDesignsControl
         CurrentFlume = Nothing
         Dim curRow As DataGridViewRow = ReviewDesignsTable.CurrentRow
         If (curRow IsNot Nothing) Then
-            ' Keep index within bounds
-            SelectedRowIndex = curRow.Index
-            If (SelectedRowIndex < 0) Then
-                SelectedRowIndex = 0
-            ElseIf (SelectedRowIndex >= mWinFlumeDesign.EvaluationFlumes.Length) Then
-                SelectedRowIndex = mWinFlumeDesign.EvaluationFlumes.Length - 1
-            End If
 
             CurrentFlume = mWinFlumeDesign.EvaluationFlumes(SelectedRowIndex + 1)
         End If
@@ -133,7 +132,6 @@ Public Class AlternativeDesignsControl
         End If
 
         If (mUpdatingUI) Then ' prevent recursive calls
-            Debug.Assert(False)
             Return
         End If
         mUpdatingUI = True
@@ -146,10 +144,6 @@ Public Class AlternativeDesignsControl
             Dim controlShape As Integer = mFlume.Section(cControl).Shape
             Dim shapeText As String = SectionString(controlShape)
             Me.ControlSectionShape.Text = shapeText
-
-            Dim loc As Point = Me.ViewAsDialogButton.Location
-            loc.X = Me.Width - Me.ViewAsDialogButton.Width - 2
-            Me.ViewAsDialogButton.Location = loc
 
             If (FlumeType.ChangedFlume(mFlume, mAltFlume)) Then
 
@@ -165,14 +159,14 @@ Public Class AlternativeDesignsControl
 
                         col.DefaultCellStyle.BackColor = System.Drawing.SystemColors.ControlLight
                         col.Frozen = True
-                    ElseIf (col.Name = "ThroatWidthColumn") Then
+                    ElseIf (col.Name = "ControlWidthColumn") Then
                         Select Case controlShape
                             Case shParabola, shSillInParabola
-                                col.HeaderText = GenColumnHeader(My.Resources.ThroatFocalDistance, 3) & Lunits
+                                col.HeaderText = GenColumnHeader(My.Resources.ControlFocalDistance, 3) & Lunits
                             Case shCircle, shUShaped, shSillInCircle, shSillInUShaped
-                                col.HeaderText = GenColumnHeader(My.Resources.ThroatDiameter, 3) & Lunits
+                                col.HeaderText = GenColumnHeader(My.Resources.ControlDiameter, 3) & Lunits
                             Case Else
-                                col.HeaderText = GenColumnHeader(My.Resources.ThroatWidth, 3) & Lunits
+                                col.HeaderText = GenColumnHeader(My.Resources.ControlWidth, 3) & Lunits
                         End Select
 
                         col.DefaultCellStyle.BackColor = System.Drawing.SystemColors.ControlLight
@@ -197,6 +191,7 @@ Public Class AlternativeDesignsControl
 
                 If NumGood > 0 Then
                     ShowDesignNotFound = True
+                    Call mWinFlumeDesign.InsertDesign(mFlume, NumGood)
                     Call ShowDesignResults(mFlume)
                 ElseIf UserCanceled Then
                     ShowDesignNotFound = True
@@ -212,17 +207,101 @@ Public Class AlternativeDesignsControl
 
                 ' Update selected row's details
                 If (0 < Me.ReviewDesignsTable.Rows.Count) Then
-                    If (SelectedRowIndex < 0) Then
+
+                    If ((SelectedRowIndex < 0) Or (ReviewDesignsTable.Rows.Count <= SelectedRowIndex)) Then
                         SelectedRowIndex = 0
                     End If
-                    If (SelectedRowIndex > Me.ReviewDesignsTable.Rows.Count - 1) Then
-                        SelectedRowIndex = Me.ReviewDesignsTable.Rows.Count - 1
-                    End If
+
                     Me.ReviewDesignsTable.CurrentCell = Me.ReviewDesignsTable.Rows(SelectedRowIndex).Cells(0)
                 End If
 
                 mAltFlume = New FlumeType(mFlume)
+
             End If ' ChangedFlume
+
+            '
+            ' Make sure the Selected Row in the table matches the current design.  This entails finding the
+            ' nearest row that matches both the Sill Height and the Control Width.  Note, if the current
+            ' design's values are outside the range of Alternative Designs, the first row is selected.
+            '
+
+            ' Get Current Design's Sill Height and Control Width
+            Dim cdSH As Single = mFlume.SillHeight
+            Dim cdCW As Single = mFlume.Section(cControl).BottomWidth
+
+            Dim Shape As Integer = mFlume.Section(cControl).Shape
+            Select Case Shape
+                Case shCircle, shUShaped, shSillInCircle, shSillInUShaped, shParabola, shSillInParabola,
+                         shCircleInCircle, shParabolaInParabola, shUShapedInUShaped
+                    cdCW = mFlume.Section(cControl).DiameterFocalD
+                Case shVShaped, shVShapedInVShaped
+                    cdCW = 0
+            End Select
+
+            ' Get first and last rows from Alternative Designs table
+            Dim rowCount As Integer = ReviewDesignsTable.Rows.Count
+
+            If (rowCount < 1) Then
+                Return
+            End If
+
+            Dim firstRow As DataGridViewRow = ReviewDesignsTable.Rows(0)
+            Dim lastRow As DataGridViewRow = ReviewDesignsTable.Rows(rowCount - 1)
+
+            Dim frSH, frCW, lrSH, lrCW As Single
+
+            Try
+                frSH = Single.Parse(firstRow.Cells(0).Value.ToString)
+                frCW = Single.Parse(firstRow.Cells(1).Value.ToString)
+                lrSH = Single.Parse(lastRow.Cells(0).Value.ToString)
+                lrCW = Single.Parse(lastRow.Cells(1).Value.ToString)
+            Catch ex As Exception
+                Debug.Assert(False, ex.Message)
+            End Try
+
+            Dim rdx As Integer
+
+            Dim lSH As Single = Single.MaxValue
+            Dim lCW As Single = Single.MaxValue
+
+            ReviewDesignsTable.Rows(0).Selected = False
+
+            If (cdSH < frSH - 0.001 Or lrSH + 0.001 < cdSH) Then
+                ' Current Design's Sill Height is outside the range of Alternative Designs table
+                SelectedRowIndex = 0 ' Select the first row in the table
+                ExactMatch = False
+            Else
+                ' Scan Review Designs Taable look for an 'exact' match
+                For rdx = 0 To rowCount - 1
+                    Dim row As DataGridViewRow = ReviewDesignsTable.Rows(rdx)
+
+                    Dim rSH As Single = Single.Parse(row.Cells(0).Value.ToString)
+                    Dim rCW As Single = Single.Parse(row.Cells(1).Value.ToString)
+
+                    If ThisClose(rSH, cdSH, 0.001) And ThisClose(rCW, cdCW, 0.001) Then ' Row is exact match
+
+                        SelectedRowIndex = rdx
+                        ReviewDesignsTable.Rows(rdx).Selected = True
+                        ExactMatch = True
+
+                        Exit For
+                    End If
+
+                Next rdx
+            End If
+
+            If (Me.Dialog IsNot Nothing) Then ' Being displayed in a Dialog
+                Me.ViewAsDialogButton.Hide()
+                Me.FormInstructions.Hide()
+                Me.DialogInstructions.Show()
+                Me.StatusLabel.Text = ""
+            Else
+                Me.ViewAsDialogButton.Show()
+                Me.FormInstructions.Show()
+                Me.DialogInstructions.Hide()
+            End If
+
+            Me.ReviewDesignsTable.Rows(SelectedRowIndex).Selected = True
 
         Catch ex As Exception
             Debug.Assert(False, ex.Message)
@@ -344,6 +423,7 @@ Public Class AlternativeDesignsControl
     '*********************************************************************************************************
     Private Sub ShowDesignResults(ByVal WorkingFlume As FlumeType)
         Dim i%, j%, N%, Fmt$, Fmt3$
+        Dim c%
         Dim Shape%
         Dim DesignOK As Boolean
         Dim siValue!, uiValue!
@@ -355,7 +435,8 @@ Public Class AlternativeDesignsControl
         Fmt3 = "######0.000"
         N = UBound(mWinFlumeDesign.EvaluationFlumes)
 
-        For i = 1 To N
+        For i = 1 To N - 1
+            c = i
 
             'Sill height, width/diameter
             With mWinFlumeDesign.EvaluationFlumes(i)
@@ -376,7 +457,7 @@ Public Class AlternativeDesignsControl
                         uiValue = UiLengthValue(siValue, UiLengthUnits)
                         rowString(1) = TrimmedFormat(uiValue, Fmt3)
                     Case shVShaped, shVShapedInVShaped
-                        rowString(1) = "---"
+                        rowString(1) = "0"
                     Case Else
                         siValue = .Section(cControl).BottomWidth
                         uiValue = UiLengthValue(siValue, UiLengthUnits)
@@ -452,6 +533,8 @@ Public Class AlternativeDesignsControl
             End With
 
             Me.ReviewDesignsTable.Rows.Add(rowString)
+
+            Debug.Assert(i = c)
         Next i
 
         ' Highlight the "Not OK" cells
@@ -494,7 +577,16 @@ Public Class AlternativeDesignsControl
     '*********************************************************************************************************
     Private Sub MyBase_VisibleChanged(ByVal sender As Object, ByVal e As EventArgs) _
         Handles MyBase.VisibleChanged
+        mVisibleChanged = True
+
+        mFlume = WinFlumeForm.Flume
+
+        If (mFlume Is Nothing) Then
+            Return
+        End If
+
         UpdateUI()
+
     End Sub
 
     '*********************************************************************************************************
@@ -503,39 +595,51 @@ Public Class AlternativeDesignsControl
     Private Sub ReviewDesignsTable_SelectionChanged(ByVal sender As Object, ByVal e As EventArgs) _
         Handles ReviewDesignsTable.SelectionChanged
 
-        If Not (mUpdatingUI) Then
-            Dim curRow As DataGridViewRow = ReviewDesignsTable.CurrentRow
-            SelectedRowIndex = curRow.Index
-            If (mWinFlumeDesign IsNot Nothing) Then
-                ' Display Control Section selection for selected design
-                Dim controlShape As Integer = mFlume.Section(cControl).Shape
+        If (Me.Dialog Is Nothing) Then ' Running in WinFlume control
+            If Not (mUpdatingUI) Then
+                Dim curRow As DataGridViewRow = ReviewDesignsTable.CurrentRow
+                SelectedRowIndex = curRow.Index
+                If (mWinFlumeDesign IsNot Nothing) Then
+                    ' Display Control Section selection for selected design
+                    Dim controlShape As Integer = mFlume.Section(cControl).Shape
 
-                Select Case (controlShape)
-                    Case shSillInTrapezoid, shTrapezoidInTrapezoid,
-                         shSillInRectangle, shRectangleInRectangle,
-                         shSillInVShaped, shTrapezoidInVShaped,
-                         shCircleInCircle, shParabolaInParabola,
-                         shUShapedInUShaped, shVShapedInVShaped,
-                         shTrapezoidInRectangle
-                        ' Leave as is
-                    Case Else
-                        Dim evalDesign As FlumeType = mWinFlumeDesign.EvaluationFlumes(SelectedRowIndex + 1)
-                        Dim evalShape As Integer = evalDesign.Section(cControl).Shape
-                        Dim shapeText As String = SectionString(evalShape)
-                        Me.ControlSectionShape.Text = shapeText
-                End Select
+                    Select Case (controlShape)
+                        Case shSillInTrapezoid, shSillInRectangle, shSillInVShaped,
+                             shTrapezoidInTrapezoid, shTrapezoidInVShaped, shTrapezoidInRectangle,
+                             shRectangleInRectangle,
+                             shCircleInCircle,
+                             shParabolaInParabola,
+                             shUShapedInUShaped,
+                             shVShapedInVShaped
+
+                            ' Leave as is
+                        Case Else
+                            Dim evalDesign As FlumeType = mWinFlumeDesign.EvaluationFlumes(SelectedRowIndex + 1)
+                            Dim evalShape As Integer = evalDesign.Section(cControl).Shape
+                            Dim shapeText As String = SectionString(evalShape)
+                            Me.ControlSectionShape.Text = shapeText
+                    End Select
+
+                End If
+
+                MakeSelectedCurrent()
+
+                mWinFlumeForm.GetDesignControl.SideBarControl.UpdateUI(mWinFlumeForm)
 
             End If
-            mWinFlumeForm.GetDesignControl.SideBarControl.UpdateUI(mWinFlumeForm)
         End If
+
     End Sub
 
     '*********************************************************************************************************
     ' Make Selected Design the Current Design button event handlers
     '*********************************************************************************************************
-    Private Sub MakeSelectedCurrentButton_Click(sender As Object, e As EventArgs) _
-        Handles MakeSelectedCurrentButton.Click
+    Friend Sub MakeSelectedCurrent()
+
         If ((mWinFlumeForm IsNot Nothing) And (mFlume IsNot Nothing) And (mWinFlumeDesign IsNot Nothing)) Then
+
+            ReviewDesignsTable.AddUndoItem(mFlume, "Alternate Selection Changed")
+
             Dim curRow As DataGridViewRow = ReviewDesignsTable.CurrentRow
             If (curRow IsNot Nothing) Then
 
@@ -543,7 +647,6 @@ Public Class AlternativeDesignsControl
 
                 ' If not within a Dialog; setup Undo/Redo
                 If (Me.Dialog Is Nothing) Then
-                    MakeSelectedCurrentButton.AddUndoItem(mFlume) ' Set current Flume Design as Undo point
                     WinFlumeForm.ClearRedoStack() ' Clear Redo stack in Click handler only
                 End If
 
@@ -560,7 +663,6 @@ Public Class AlternativeDesignsControl
                 Dim newContraction As Integer = mFlume.ContractionAdjustment
 
                 If (oldCtrlSection.GetType Is GetType(WinFlumeSectionType)) Then
-                    Debug.Assert(newCtrlSection.GetType Is GetType(Flume.SectionType))
 
                     ' Update new Flume from Flume.DLL to maintain WinFlume state
                     Dim oldWinFlumeSection = DirectCast(oldCtrlSection, WinFlumeSectionType)
@@ -584,8 +686,6 @@ Public Class AlternativeDesignsControl
 
                             Dim apprSection = mFlume.Section(cApproach)
                             Dim apprTWatD1 As Single = apprSection.TopWidth(D1, False)
-
-                            Debug.Assert(BW <= apprTWatD1)
 
                             If (BW >= apprTWatD1) Then
 
@@ -649,32 +749,23 @@ Public Class AlternativeDesignsControl
                     End Select
                 End If
 
-                ' If not within a Dialog; update WinFlume with newly selected Flume
-                If (Me.Dialog Is Nothing) Then
-                    WinFlumeForm.SetFlume(mFlume) ' Set new Flume
-                    mWinFlumeForm.RaiseFlumeDataChanged() ' Inform others of change
-                Else ' within Dialog; let caller handle Flume change
-                    Me.SelectedFlume = mFlume
-                    Me.Dialog.DialogResult = DialogResult.OK
-                    Me.Dialog.Close()
-                End If
+                Me.SelectedFlume = mFlume
+                WinFlumeForm.SetFlume(mFlume) ' Set new Flume
+                mWinFlumeForm.RaiseFlumeDataChanged() ' Inform others of change
 
-                msg = My.Resources.ReturnToDefineControl
-                title = My.Resources.HighlightedIsNewDesign
-                MsgBox(msg, MsgBoxStyle.OkOnly, title)
             End If ' (curRow IsNot Nothing)
         End If
     End Sub
 
-    Private Sub MakeSelectedCurrentButton_UndoButtonEvent(ByVal UndoValue As Object) _
-        Handles MakeSelectedCurrentButton.UndoButtonEvent
+    Private Sub ReviewDesignsTable_UndoTableEvent(ByVal UndoValue As Object) _
+        Handles ReviewDesignsTable.UndoTableEvent
         If ((mWinFlumeForm IsNot Nothing) And (mFlume IsNot Nothing)) Then
             If (Me.Dialog IsNot Nothing) Then
                 Debug.Assert(False)
             Else
                 If (UndoValue.GetType Is GetType(FlumeType)) Then
                     ' Set Flume for Redo point
-                    MakeSelectedCurrentButton.AddRedoItem(mFlume)
+                    ReviewDesignsTable.AddRedoItem(mFlume)
                     ' Restore Flume object
                     mFlume = DirectCast(UndoValue, FlumeType)
                     WinFlumeForm.SetFlume(mFlume)
@@ -686,15 +777,15 @@ Public Class AlternativeDesignsControl
         End If
     End Sub
 
-    Private Sub MakeSelectedCurrentButton_RedoButtonEvent(ByVal RedoValue As Object) _
-        Handles MakeSelectedCurrentButton.RedoButtonEvent
+    Private Sub ReviewDesignsTable_RedoTableEvent(ByVal RedoValue As Object) _
+        Handles ReviewDesignsTable.RedoTableEvent
         If ((mWinFlumeForm IsNot Nothing) And (mFlume IsNot Nothing)) Then
             If (Me.Dialog IsNot Nothing) Then
                 Debug.Assert(False)
             Else
                 If (RedoValue.GetType Is GetType(FlumeType)) Then
                     ' Set Flume for Undo point
-                    MakeSelectedCurrentButton.AddUndoItem(mFlume)
+                    ReviewDesignsTable.AddUndoItem(mFlume)
                     ' Restore Flume table
                     mFlume = DirectCast(RedoValue, FlumeType)
                     WinFlumeForm.SetFlume(mFlume)
@@ -737,7 +828,7 @@ Public Class AlternativeDesignsControl
     '*********************************************************************************************************
     ' Sub ViewAsDialogButton_Click() - display table/graph as dialog box
     '*********************************************************************************************************
-    Private Sub ViewAsDialogButton_Click(sender As Object, e As EventArgs) _
+    Private Sub ViewAsDialogButton_Click_1(sender As Object, e As EventArgs) _
         Handles ViewAsDialogButton.Click
         mWinFlumeForm.AlternativeDesignsAsDialog()
     End Sub

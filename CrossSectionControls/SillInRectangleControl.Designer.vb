@@ -19,7 +19,7 @@ Partial Class SillInRectangleControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.SwKey = New WinFlume.ctl_Label()
+        Me.CwKey = New WinFlume.ctl_Label()
         Me.D1Key = New WinFlume.ctl_Label()
         Me.D1Label = New WinFlume.ctl_Label()
         Me.SillHeightSingle = New WinFlume.ctl_SingleUnits()
@@ -28,17 +28,17 @@ Partial Class SillInRectangleControl
         CType(Me.Thumbnail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'SwKey
+        'CwKey
         '
-        Me.SwKey.AutoSize = True
-        Me.SwKey.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.SwKey.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.SwKey.Location = New System.Drawing.Point(2, 104)
-        Me.SwKey.Name = "SwKey"
-        Me.SwKey.Size = New System.Drawing.Size(66, 17)
-        Me.SwKey.TabIndex = 24
-        Me.SwKey.Text = "Sill Width"
-        Me.SwKey.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CwKey.AutoSize = True
+        Me.CwKey.ImageAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.CwKey.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.CwKey.Location = New System.Drawing.Point(2, 104)
+        Me.CwKey.Name = "CwKey"
+        Me.CwKey.Size = New System.Drawing.Size(66, 17)
+        Me.CwKey.TabIndex = 24
+        Me.CwKey.Text = "Control Width"
+        Me.CwKey.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'D1Key
         '
@@ -109,7 +109,7 @@ Partial Class SillInRectangleControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.Controls.Add(Me.TwKey)
-        Me.Controls.Add(Me.SwKey)
+        Me.Controls.Add(Me.CwKey)
         Me.Controls.Add(Me.D1Key)
         Me.Controls.Add(Me.D1Label)
         Me.Controls.Add(Me.SillHeightSingle)
@@ -121,7 +121,7 @@ Partial Class SillInRectangleControl
 
     End Sub
 
-    Friend WithEvents SwKey As ctl_Label
+    Friend WithEvents CwKey As ctl_Label
     Friend WithEvents D1Key As ctl_Label
     Friend WithEvents D1Label As ctl_Label
     Friend WithEvents SillHeightSingle As ctl_SingleUnits

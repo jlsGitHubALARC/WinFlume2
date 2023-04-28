@@ -26,14 +26,15 @@ Partial Class AlternativeDesignsControl
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AlternativeDesignsControl))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ControlPanel = New WinFlume.ctl_Panel()
-        Me.ViewAsDialogButton = New WinFlume.ctl_Button()
+        Me.DialogInstructions = New WinFlume.ctl_Label()
+        Me.ViewAsDialogButton = New System.Windows.Forms.Button()
+        Me.FormInstructions = New WinFlume.ctl_Label()
         Me.ControlSectionShape = New WinFlume.ctl_Label()
         Me.ControlSectionLabel = New WinFlume.ctl_Label()
-        Me.MakeSelectedCurrentButton = New WinFlume.ctl_Button()
         Me.StatusLabel = New WinFlume.ctl_Label()
         Me.ReviewDesignsTable = New WinFlume.ctl_DataGridView()
         Me.SillHeightColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.ThroatWidthColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ControlWidthColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FroudNumberColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FreeboardAtQmaxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TailwaterAtQmaxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -52,18 +53,33 @@ Partial Class AlternativeDesignsControl
         '
         'ControlPanel
         '
+        Me.ControlPanel.Controls.Add(Me.FormInstructions)
+        Me.ControlPanel.Controls.Add(Me.DialogInstructions)
         Me.ControlPanel.Controls.Add(Me.ViewAsDialogButton)
         Me.ControlPanel.Controls.Add(Me.ControlSectionShape)
         Me.ControlPanel.Controls.Add(Me.ControlSectionLabel)
-        Me.ControlPanel.Controls.Add(Me.MakeSelectedCurrentButton)
         resources.ApplyResources(Me.ControlPanel, "ControlPanel")
         Me.ControlPanel.Name = "ControlPanel"
+        '
+        'DialogInstructions
+        '
+        resources.ApplyResources(Me.DialogInstructions, "DialogInstructions")
+        Me.DialogInstructions.BackColor = System.Drawing.SystemColors.Info
+        Me.DialogInstructions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.DialogInstructions.Name = "DialogInstructions"
         '
         'ViewAsDialogButton
         '
         resources.ApplyResources(Me.ViewAsDialogButton, "ViewAsDialogButton")
         Me.ViewAsDialogButton.Name = "ViewAsDialogButton"
         Me.ViewAsDialogButton.UseVisualStyleBackColor = True
+        '
+        'FormInstructions
+        '
+        resources.ApplyResources(Me.FormInstructions, "FormInstructions")
+        Me.FormInstructions.BackColor = System.Drawing.SystemColors.Info
+        Me.FormInstructions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.FormInstructions.Name = "FormInstructions"
         '
         'ControlSectionShape
         '
@@ -75,13 +91,6 @@ Partial Class AlternativeDesignsControl
         '
         resources.ApplyResources(Me.ControlSectionLabel, "ControlSectionLabel")
         Me.ControlSectionLabel.Name = "ControlSectionLabel"
-        '
-        'MakeSelectedCurrentButton
-        '
-        Me.MakeSelectedCurrentButton.BackColor = System.Drawing.Color.LightBlue
-        resources.ApplyResources(Me.MakeSelectedCurrentButton, "MakeSelectedCurrentButton")
-        Me.MakeSelectedCurrentButton.Name = "MakeSelectedCurrentButton"
-        Me.MakeSelectedCurrentButton.UseVisualStyleBackColor = False
         '
         'StatusLabel
         '
@@ -113,7 +122,7 @@ Partial Class AlternativeDesignsControl
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.ReviewDesignsTable.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.ReviewDesignsTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.ReviewDesignsTable.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SillHeightColumn, Me.ThroatWidthColumn, Me.FroudNumberColumn, Me.FreeboardAtQmaxColumn, Me.TailwaterAtQmaxColumn, Me.TailwaterAtQminColumn, Me.AccuracyAtQmaxColumn, Me.AccuracyAtQminColumn, Me.HeadLossCommentColumn, Me.ActualHeadLossColumn, Me.ActualFroudeNumberColumn, Me.ExtraFreeboardColumn, Me.SubmergenceProtectionColumn, Me.EstimatedRandomErrorColumn})
+        Me.ReviewDesignsTable.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.SillHeightColumn, Me.ControlWidthColumn, Me.FroudNumberColumn, Me.FreeboardAtQmaxColumn, Me.TailwaterAtQmaxColumn, Me.TailwaterAtQminColumn, Me.AccuracyAtQmaxColumn, Me.AccuracyAtQminColumn, Me.HeadLossCommentColumn, Me.ActualHeadLossColumn, Me.ActualFroudeNumberColumn, Me.ExtraFreeboardColumn, Me.SubmergenceProtectionColumn, Me.EstimatedRandomErrorColumn})
         Me.ReviewDesignsTable.GridColor = System.Drawing.Color.Black
         Me.ReviewDesignsTable.MultiSelect = False
         Me.ReviewDesignsTable.Name = "ReviewDesignsTable"
@@ -129,12 +138,12 @@ Partial Class AlternativeDesignsControl
         Me.SillHeightColumn.Name = "SillHeightColumn"
         Me.SillHeightColumn.ReadOnly = True
         '
-        'ThroatWidthColumn
+        'ControlWidthColumn
         '
-        Me.ThroatWidthColumn.Frozen = True
-        resources.ApplyResources(Me.ThroatWidthColumn, "ThroatWidthColumn")
-        Me.ThroatWidthColumn.Name = "ThroatWidthColumn"
-        Me.ThroatWidthColumn.ReadOnly = True
+        Me.ControlWidthColumn.Frozen = True
+        resources.ApplyResources(Me.ControlWidthColumn, "ControlWidthColumn")
+        Me.ControlWidthColumn.Name = "ControlWidthColumn"
+        Me.ControlWidthColumn.ReadOnly = True
         '
         'FroudNumberColumn
         '
@@ -224,14 +233,13 @@ Partial Class AlternativeDesignsControl
 
     End Sub
     Friend WithEvents ControlPanel As WinFlume.ctl_Panel
-    Friend WithEvents MakeSelectedCurrentButton As WinFlume.ctl_Button
     Friend WithEvents ControlSectionShape As WinFlume.ctl_Label
     Friend WithEvents ControlSectionLabel As WinFlume.ctl_Label
-    Friend WithEvents ViewAsDialogButton As ctl_Button
     Friend WithEvents StatusLabel As ctl_Label
     Friend WithEvents ReviewDesignsTable As ctl_DataGridView
+    Friend WithEvents FormInstructions As ctl_Label
     Friend WithEvents SillHeightColumn As DataGridViewTextBoxColumn
-    Friend WithEvents ThroatWidthColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ControlWidthColumn As DataGridViewTextBoxColumn
     Friend WithEvents FroudNumberColumn As DataGridViewTextBoxColumn
     Friend WithEvents FreeboardAtQmaxColumn As DataGridViewTextBoxColumn
     Friend WithEvents TailwaterAtQmaxColumn As DataGridViewTextBoxColumn
@@ -244,4 +252,6 @@ Partial Class AlternativeDesignsControl
     Friend WithEvents ExtraFreeboardColumn As DataGridViewTextBoxColumn
     Friend WithEvents SubmergenceProtectionColumn As DataGridViewTextBoxColumn
     Friend WithEvents EstimatedRandomErrorColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ViewAsDialogButton As Button
+    Friend WithEvents DialogInstructions As ctl_Label
 End Class

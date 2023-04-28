@@ -8,6 +8,7 @@
 Imports Flume.Globals
 
 Public Class ParabolaControl
+    Inherits CrossSectionControl
 
 #Region " Constants "
 
