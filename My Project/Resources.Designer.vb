@@ -1672,7 +1672,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Raise or Lower entire section.
+        '''  Looks up a localized string similar to Raise or Lower Entire Section.
         '''</summary>
         Friend ReadOnly Property RaiseLowerEntireSection() As String
             Get
@@ -1681,7 +1681,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Raise or Lower inner section.
+        '''  Looks up a localized string similar to Raise or Lower Inner Section.
         '''</summary>
         Friend ReadOnly Property RaiseLowerInnerSection() As String
             Get
@@ -1690,7 +1690,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Raise or Lower sill height.
+        '''  Looks up a localized string similar to Raise or Lower Sill Height.
         '''</summary>
         Friend ReadOnly Property RaiseLowerSillHeight() As String
             Get
@@ -2547,7 +2547,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Vary side contraction.
+        '''  Looks up a localized string similar to Vary Side Contraction.
         '''</summary>
         Friend ReadOnly Property VarySideContraction() As String
             Get

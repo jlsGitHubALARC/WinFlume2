@@ -117,32 +117,101 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DesignOptionSelection.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="DesignOptionSelection.Location" type="System.Drawing.Point, System.Drawing">
+    <value>188, 28</value>
+  </data>
+  <data name="DesignOptionSelection.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="DesignOptionSelection.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 47</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="DesignOptionSelection.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="DesignOptionSelection.Text" xml:space="preserve">
+    <value>Selected Option</value>
+  </data>
+  <data name="DesignOptionSelection.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="&gt;&gt;DesignOptionSelection.Name" xml:space="preserve">
+    <value>DesignOptionSelection</value>
+  </data>
+  <data name="&gt;&gt;DesignOptionSelection.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DesignOptionSelection.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DesignOptionSelection.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="DesignOptionLabel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 10pt, style=Bold</value>
+  </data>
+  <data name="DesignOptionLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="DesignOptionLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>184, 5</value>
+  </data>
+  <data name="DesignOptionLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 0, 4, 0</value>
+  </data>
+  <data name="DesignOptionLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>156, 20</value>
+  </data>
+  <data name="DesignOptionLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="DesignOptionLabel.Text" xml:space="preserve">
+    <value>Design Option</value>
+  </data>
+  <data name="DesignOptionLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="&gt;&gt;DesignOptionLabel.Name" xml:space="preserve">
+    <value>DesignOptionLabel</value>
+  </data>
+  <data name="&gt;&gt;DesignOptionLabel.Type" xml:space="preserve">
+    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;DesignOptionLabel.Parent" xml:space="preserve">
+    <value>ControlPanel</value>
+  </data>
+  <data name="&gt;&gt;DesignOptionLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="FormInstructions.AccessibleDescription" xml:space="preserve">
     <value>Use the slide control to view additional table rows.  Select an Alternative design and display its Design Review by selecting a row.</value>
   </data>
   <data name="FormInstructions.AccessibleName" xml:space="preserve">
     <value>Instructions</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="FormInstructions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="FormInstructions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 2</value>
+    <value>348, 2</value>
   </data>
   <data name="FormInstructions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
   </data>
   <data name="FormInstructions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>422, 71</value>
+    <value>293, 71</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="FormInstructions.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
   <data name="FormInstructions.Text" xml:space="preserve">
-    <value>Use the slide control to view additional table rows.  Select an Alternative design and display its Design Review by selecting a row.</value>
+    <value>Use slide control to view additional table rows then select an Alternative design to display its Design Review.</value>
   </data>
   <data name="FormInstructions.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
@@ -157,46 +226,7 @@
     <value>ControlPanel</value>
   </data>
   <data name="&gt;&gt;FormInstructions.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="DialogInstructions.AccessibleDescription" xml:space="preserve">
-    <value>Use the slide control to view additional table rows.  Select an Alternative design and press the Select Button</value>
-  </data>
-  <data name="DialogInstructions.AccessibleName" xml:space="preserve">
-    <value>Instructions</value>
-  </data>
-  <data name="DialogInstructions.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="DialogInstructions.Location" type="System.Drawing.Point, System.Drawing">
-    <value>219, 1</value>
-  </data>
-  <data name="DialogInstructions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="DialogInstructions.Size" type="System.Drawing.Size, System.Drawing">
-    <value>422, 71</value>
-  </data>
-  <data name="DialogInstructions.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="DialogInstructions.Text" xml:space="preserve">
-    <value>Use the slide control to view additional table rows.  Select an Alternative design and press Select.</value>
-  </data>
-  <data name="DialogInstructions.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;DialogInstructions.Name" xml:space="preserve">
-    <value>DialogInstructions</value>
-  </data>
-  <data name="&gt;&gt;DialogInstructions.Type" xml:space="preserve">
-    <value>WinFlume.ctl_Label, WinFlume, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;DialogInstructions.Parent" xml:space="preserve">
-    <value>ControlPanel</value>
-  </data>
-  <data name="&gt;&gt;DialogInstructions.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="ViewAsDialogButton.AccessibleName" xml:space="preserve">
     <value>View As Dialog Button</value>
@@ -211,7 +241,7 @@
     <value>94, 75</value>
   </data>
   <data name="ViewAsDialogButton.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="ViewAsDialogButton.Text" xml:space="preserve">
     <value>View As Dialog</value>
@@ -226,7 +256,7 @@
     <value>ControlPanel</value>
   </data>
   <data name="&gt;&gt;ViewAsDialogButton.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="ControlSectionShape.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -235,7 +265,7 @@
     <value>NoControl</value>
   </data>
   <data name="ControlSectionShape.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 38</value>
+    <value>5, 28</value>
   </data>
   <data name="ControlSectionShape.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -259,7 +289,7 @@
     <value>ControlPanel</value>
   </data>
   <data name="&gt;&gt;ControlSectionShape.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="ControlSectionLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -271,7 +301,7 @@
     <value>NoControl</value>
   </data>
   <data name="ControlSectionLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 12</value>
+    <value>5, 5</value>
   </data>
   <data name="ControlSectionLabel.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 0, 4, 0</value>
@@ -280,10 +310,10 @@
     <value>139, 20</value>
   </data>
   <data name="ControlSectionLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="ControlSectionLabel.Text" xml:space="preserve">
-    <value>Cont&amp;rol Section</value>
+    <value>Control Section</value>
   </data>
   <data name="&gt;&gt;ControlSectionLabel.Name" xml:space="preserve">
     <value>ControlSectionLabel</value>
@@ -295,7 +325,7 @@
     <value>ControlPanel</value>
   </data>
   <data name="&gt;&gt;ControlSectionLabel.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="ControlPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>

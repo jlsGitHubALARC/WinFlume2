@@ -86,8 +86,6 @@ Public Class ParabolaInParabolaControl
             ' Baseclass initializes cross section data
             MyBase.OuterOutline(SectionIdx, ViewPort)
 
-            Debug.Assert(mSection.GetType Is GetType(WinFlumeSectionType))
-
             Dim CD As Single = mCanalDepth              ' Canal depth
             Dim SH As Single = mBottomHeight            ' Sill height from canal bottom
             Dim ODF As Single = mOuterDiamFocalDist     ' Outer Diameter / Focal Distance(2f)
@@ -145,8 +143,6 @@ Public Class ParabolaInParabolaControl
         Try
             ' Baseclass initializes cross section data
             MyBase.InnerOutline(SectionIdx, ViewPort)
-
-            Debug.Assert(mSection.GetType Is GetType(WinFlumeSectionType))
 
             Dim CD As Single = mCanalDepth              ' Canal depth
             Dim BH As Single = mBottomHeight            ' Height from canal bottom to section bottom

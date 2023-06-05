@@ -236,16 +236,17 @@ Public Class SideBarControl
         Dim HeadlossComment As String = ""
         Dim DesignReview As String
 
-        Dim AlternativeReviewDesignCtrl As AlternativeDesignsControl = mWinFlumeForm.GetAlternativeDesignsControl
+        Dim AlternativeDesignsCtrl As AlternativeDesignsControl = mWinFlumeForm.GetAlternativeDesignsControl
 
         If (Me.Visible) Then
 
-            If (AlternativeReviewDesignCtrl.Visible) Then
-                AlternativeReviewDesignCtrl.UpdateUI(mWinFlumeForm)
+            If (AlternativeDesignsCtrl.Visible) Then
+                AlternativeDesignsCtrl.UpdateUI(mWinFlumeForm)
 
-                If (AlternativeReviewDesignCtrl.ExactMatch) Then
+                If (AlternativeDesignsCtrl.ExactMatch) Then
                     ' Show Brief Design Review for Highlighted Design from Alternative Designs
-                    DesignReview = AlternativeReviewDesignCtrl.BriefDesignReview
+                    'DesignReview = AlternativeDesignsCtrl.BriefDesignReview
+                    DesignReview = WinFlumeDesign.VeryBriefDesignReview(mFlume, DesignResult, Criteria, HeadlossComment)
                     DesignReview = DesignReview.Replace("     Max allowed", vbCrLf & "              Max allowed")
                     DesignReview = DesignReview.Replace("     Min allowed", vbCrLf & "              Min allowed")
                     DesignReview = DesignReview.Replace("     Min for accuracy", vbCrLf & "         Min for accuracy")

@@ -221,7 +221,7 @@
     <value>Rating Comparison Graph</value>
   </data>
   <data name="RaiseLowerSillHeight" xml:space="preserve">
-    <value>Raise or Lower sill height</value>
+    <value>Raise or Lower Sill Height</value>
     <comment>Method of Contraction</comment>
   </data>
   <data name="ExpansionRampStyle" xml:space="preserve">
@@ -302,7 +302,7 @@
     <value>Control Width</value>
   </data>
   <data name="RaiseLowerInnerSection" xml:space="preserve">
-    <value>Raise or Lower inner section</value>
+    <value>Raise or Lower Inner Section</value>
     <comment>Method of Contraction</comment>
   </data>
   <data name="User" xml:space="preserve">
@@ -487,7 +487,7 @@
     <comment>Tailwater calculation method</comment>
   </data>
   <data name="RaiseLowerEntireSection" xml:space="preserve">
-    <value>Raise or Lower entire section</value>
+    <value>Raise or Lower Entire Section</value>
     <comment>Method of Contraction</comment>
   </data>
   <data name="V" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -724,7 +724,7 @@
     <comment>Drawings &amp; Reports</comment>
   </data>
   <data name="VarySideContraction" xml:space="preserve">
-    <value>Vary side contraction</value>
+    <value>Vary Side Contraction</value>
     <comment>Method of Contraction</comment>
   </data>
   <data name="ConcreteSmooth" xml:space="preserve">

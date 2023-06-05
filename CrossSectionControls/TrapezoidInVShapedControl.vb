@@ -182,7 +182,15 @@ Public Class TrapezoidInVShapedControl
             Return
         End If
 
-        Debug.Assert(mSection.Z3 = mFlume.Section(cApproach).Z1)
+        If (WinFlumeForm.ControlMatchedToApproach) Then
+            mSection.Z3 = mFlume.Section(cApproach).Z1
+            Dim errval As Boolean
+            Dim BW As Single = mFlume.Section(cApproach).TopWidth(mSillHeight, errval)
+
+            If (mSection.BottomWidth > BW) Then
+                mSection.BottomWidth = BW / 2
+            End If
+        End If
 
         ' Bottom Width control (inner shape)
         Me.BottomWidthSingle.Label = Me.BottomWidthKey.BaseText
@@ -190,8 +198,12 @@ Public Class TrapezoidInVShapedControl
         Me.BottomWidthSingle.SiValue = mSection.BottomWidth
 
         If (WinFlumeForm.ControlMatchedToApproach) Then
-            If (Me.BottomWidthSingle.SiValue > Me.SillHeightSingle.SiValue) Then
-                Me.BottomWidthSingle.SiValue = Me.SillHeightSingle.SiValue
+
+            Dim errVal As Boolean
+            Dim MaxBW As Single = mSection.TopWidth(Me.SillHeightSingle.SiValue, errVal)
+
+            If (Me.BottomWidthSingle.SiValue > MaxBW) Then
+                Me.BottomWidthSingle.SiValue = MaxBW
                 SetControlBW(Me.BottomWidthSingle.SiValue)
             End If
         End If
@@ -379,13 +391,6 @@ Public Class TrapezoidInVShapedControl
     '*********************************************************************************************************
     Protected Sub BottomWidthSingle_ValueChanged() Handles BottomWidthSingle.ValueChanged
         Dim BW As Single = Me.BottomWidthSingle.SiValue
-
-        If (WinFlumeForm.ControlMatchedToApproach) Then
-            If (BW > Me.SillHeightSingle.SiValue) Then
-                BW = Me.SillHeightSingle.SiValue
-            End If
-        End If
-
         SetControlBW(BW)
     End Sub
 

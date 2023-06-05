@@ -36,10 +36,6 @@ Public Class AlternativeDesignsControl
     Public Const MaxPrimaryCol As Integer = 5
     Public Const MinSecondaryCol As Integer = 6
     Public Const MaxSecondaryCol As Integer = 7
-    '
-    ' Visible changed flag
-    '
-    Private mVisibleChanged As Boolean = False
 
 #End Region
 
@@ -93,8 +89,12 @@ Public Class AlternativeDesignsControl
         CurrentFlume = Nothing
         Dim curRow As DataGridViewRow = ReviewDesignsTable.CurrentRow
         If (curRow IsNot Nothing) Then
-
-            CurrentFlume = mWinFlumeDesign.EvaluationFlumes(SelectedRowIndex + 1)
+            If (SelectedRowIndex < 1) Then
+                SelectedRowIndex = 1
+            ElseIf (SelectedRowIndex > mWinFlumeDesign.EvaluationFlumes.Length - 1) Then
+                SelectedRowIndex = mWinFlumeDesign.EvaluationFlumes.Length - 1
+            End If
+            CurrentFlume = mWinFlumeDesign.EvaluationFlumes(SelectedRowIndex)
         End If
     End Function
 
@@ -131,12 +131,15 @@ Public Class AlternativeDesignsControl
             Return
         End If
 
+        ' Debug.Assert(mFlume.Section(cControl).Shape = shVShaped)
+
         If (mUpdatingUI) Then ' prevent recursive calls
             Return
         End If
         mUpdatingUI = True
 
         Dim NumGood As Integer
+        Dim MinError As Integer
         Dim DesignStillPossible, UserCanceled As Boolean
 
         Try
@@ -144,6 +147,20 @@ Public Class AlternativeDesignsControl
             Dim controlShape As Integer = mFlume.Section(cControl).Shape
             Dim shapeText As String = SectionString(controlShape)
             Me.ControlSectionShape.Text = shapeText
+
+            ' Update Design Option selection
+            Dim AdjSelection As Integer = mFlume.ContractionAdjustment
+
+            Select Case AdjSelection
+                Case RaiseSillHeight
+                    Me.DesignOptionSelection.Text = My.Resources.RaiseLowerSillHeight
+                Case RaiseLowerEntireSection
+                    Me.DesignOptionSelection.Text = My.Resources.RaiseLowerEntireSection
+                Case RaiseLowerInnerSection
+                    Me.DesignOptionSelection.Text = My.Resources.RaiseLowerInnerSection
+                Case VarySideContraction
+                    Me.DesignOptionSelection.Text = My.Resources.VarySideContraction
+            End Select
 
             If (FlumeType.ChangedFlume(mFlume, mAltFlume)) Then
 
@@ -161,7 +178,7 @@ Public Class AlternativeDesignsControl
                         col.Frozen = True
                     ElseIf (col.Name = "ControlWidthColumn") Then
                         Select Case controlShape
-                            Case shParabola, shSillInParabola
+                            Case shParabola, shSillInParabola, shParabolaInParabola, shUShapedInUShaped
                                 col.HeaderText = GenColumnHeader(My.Resources.ControlFocalDistance, 3) & Lunits
                             Case shCircle, shUShaped, shSillInCircle, shSillInUShaped
                                 col.HeaderText = GenColumnHeader(My.Resources.ControlDiameter, 3) & Lunits
@@ -187,7 +204,7 @@ Public Class AlternativeDesignsControl
                 Me.ReviewDesignsTable.Rows.Clear()
 
                 ' Update display of alternative designs
-                mWinFlumeDesign.EvaluateDesigns(mFlume, NumGood, DesignStillPossible, UserCanceled)
+                MinError = mWinFlumeDesign.EvaluateDesigns(mFlume, NumGood, DesignStillPossible, UserCanceled)
 
                 If NumGood > 0 Then
                     ShowDesignNotFound = True
@@ -205,19 +222,93 @@ Public Class AlternativeDesignsControl
                     'Call ShowDesignResults(mFlume)
                 End If
 
+                If (0 < MinError) Then
+                    Dim Title As String = "Error calculating minimum Alternative Design"
+                    Dim Msg As String = "it is suggested that you raise the Sill Height to correct this error."
+                    MsgBox(Title, MsgBoxStyle.Information, Msg)
+                End If
+
                 ' Update selected row's details
                 If (0 < Me.ReviewDesignsTable.Rows.Count) Then
 
-                    If ((SelectedRowIndex < 0) Or (ReviewDesignsTable.Rows.Count <= SelectedRowIndex)) Then
+                    ' Eliminate rows where Focal Distance of an Alternate Design row is greater than the
+                    ' Focal Distance of the Approach Channel when Control is matched to Approach.
+
+                    If (WinFlumeForm.ControlMatchedToApproach) Then
+
+                        Dim HeaderRow As DataGridViewColumnCollection = Me.ReviewDesignsTable.Columns
+                        Dim HeaderCell1 As DataGridViewColumn = HeaderRow.Item(1)
+                        Dim HeaderCell1Text As String = HeaderCell1.HeaderText
+
+                        If HeaderCell1Text.Contains("Focal") Then
+
+                            Dim ApprFocalDistance As Single = mFlume.Section(0).DiameterFocalD
+
+                            Dim RowRemoved As Boolean = True
+
+                            Dim EvalueList As New List(Of FlumeType)
+                            EvalueList.AddRange(mWinFlumeDesign.EvaluationFlumes)
+
+                            While RowRemoved
+
+                                If (Me.ReviewDesignsTable.Rows.Count = 0) Then
+                                    Return
+                                End If
+
+                                Dim tdx As Integer = 0
+                                For Each TableRow As DataGridViewRow In Me.ReviewDesignsTable.Rows
+
+                                    tdx += 1
+
+                                    Dim RowValueCell1 = TableRow.Cells(1)
+
+                                    Dim TableRowFocalDistance As Single = CSng(RowValueCell1.Value)
+
+                                    If (TableRowFocalDistance > ApprFocalDistance) Then
+                                        ' Remove this row from the EvaluationFlumes and the Review Designs Table
+                                        EvalueList.RemoveAt(tdx)
+                                        Me.ReviewDesignsTable.Rows.Remove(TableRow)
+                                        Exit For
+                                    Else
+                                        RowRemoved = False
+                                        Exit For
+                                    End If
+
+                                Next
+
+                            End While
+
+                            mWinFlumeDesign.EvaluationFlumes = EvalueList.ToArray
+
+                        End If ' Focal
+
+                    End If ' Matched
+
+                    If (SelectedRowIndex < 0) Then
                         SelectedRowIndex = 0
                     End If
 
+                    If (SelectedRowIndex > ReviewDesignsTable.Rows.Count - 1) Then
+                        SelectedRowIndex = ReviewDesignsTable.Rows.Count - 1
+                    End If
+
                     Me.ReviewDesignsTable.CurrentCell = Me.ReviewDesignsTable.Rows(SelectedRowIndex).Cells(0)
+
                 End If
 
                 mAltFlume = New FlumeType(mFlume)
 
             End If ' ChangedFlume
+
+            Dim row0 As DataGridViewRow = Me.ReviewDesignsTable.Rows(0)
+            Dim cell1 As DataGridViewCell = row0.Cells(1)
+            Dim val1 As Double = CDbl(cell1.Value)
+
+            If (val1 = 1) Then
+                Dim a As Integer = 1
+            Else
+                Dim a As Integer = 1
+            End If
 
             '
             ' Make sure the Selected Row in the table matches the current design.  This entails finding the
@@ -240,10 +331,6 @@ Public Class AlternativeDesignsControl
 
             ' Get first and last rows from Alternative Designs table
             Dim rowCount As Integer = ReviewDesignsTable.Rows.Count
-
-            If (rowCount < 1) Then
-                Return
-            End If
 
             Dim firstRow As DataGridViewRow = ReviewDesignsTable.Rows(0)
             Dim lastRow As DataGridViewRow = ReviewDesignsTable.Rows(rowCount - 1)
@@ -293,12 +380,10 @@ Public Class AlternativeDesignsControl
             If (Me.Dialog IsNot Nothing) Then ' Being displayed in a Dialog
                 Me.ViewAsDialogButton.Hide()
                 Me.FormInstructions.Hide()
-                Me.DialogInstructions.Show()
                 Me.StatusLabel.Text = ""
             Else
                 Me.ViewAsDialogButton.Show()
                 Me.FormInstructions.Show()
-                Me.DialogInstructions.Hide()
             End If
 
             Me.ReviewDesignsTable.Rows(SelectedRowIndex).Selected = True
@@ -423,7 +508,6 @@ Public Class AlternativeDesignsControl
     '*********************************************************************************************************
     Private Sub ShowDesignResults(ByVal WorkingFlume As FlumeType)
         Dim i%, j%, N%, Fmt$, Fmt3$
-        Dim c%
         Dim Shape%
         Dim DesignOK As Boolean
         Dim siValue!, uiValue!
@@ -435,106 +519,110 @@ Public Class AlternativeDesignsControl
         Fmt3 = "######0.000"
         N = UBound(mWinFlumeDesign.EvaluationFlumes)
 
-        For i = 1 To N - 1
-            c = i
+        For i = 1 To N
 
-            'Sill height, width/diameter
-            With mWinFlumeDesign.EvaluationFlumes(i)
+            If (mWinFlumeDesign.EvaluationFlumes(i) IsNot Nothing) Then
 
-                If WorkingFlume.CrestType = StationaryCrest Then
-                    siValue = .SillHeight
-                Else
-                    siValue = .OperatingDepth
-                End If
-                uiValue = UiLengthValue(siValue, UiLengthUnits)
-                rowString(0) = TrimmedFormat(uiValue, Fmt3)
+                'Sill height, width/diameter
+                With mWinFlumeDesign.EvaluationFlumes(i)
 
-                Shape = WorkingFlume.Section(cControl).Shape
-                Select Case Shape
-                    Case shCircle, shUShaped, shSillInCircle, shSillInUShaped, shParabola, shSillInParabola,
+                    If WorkingFlume.CrestType = StationaryCrest Then
+                        siValue = .SillHeight
+                    Else
+                        siValue = .OperatingDepth
+                    End If
+                    uiValue = UiLengthValue(siValue, UiLengthUnits)
+                    rowString(0) = TrimmedFormat(uiValue, Fmt3)
+
+                    Shape = WorkingFlume.Section(cControl).Shape
+                    Select Case Shape
+                        Case shCircle, shUShaped, shSillInCircle, shSillInUShaped, shParabola, shSillInParabola,
                          shCircleInCircle, shParabolaInParabola, shUShapedInUShaped
-                        siValue = .Section(cControl).DiameterFocalD
-                        uiValue = UiLengthValue(siValue, UiLengthUnits)
-                        rowString(1) = TrimmedFormat(uiValue, Fmt3)
-                    Case shVShaped, shVShapedInVShaped
-                        rowString(1) = "0"
-                    Case Else
-                        siValue = .Section(cControl).BottomWidth
-                        uiValue = UiLengthValue(siValue, UiLengthUnits)
-                        rowString(1) = TrimmedFormat(uiValue, Fmt3)
-                End Select
-            End With
+                            siValue = .Section(cControl).DiameterFocalD
+                            uiValue = UiLengthValue(siValue, UiLengthUnits)
+                            rowString(1) = TrimmedFormat(uiValue, Fmt3)
 
-            'Design criteria results
-            DesignOK = True
-            For j = 1 To 6
-                If mWinFlumeDesign.BooleanResults(mWinFlumeDesign.CriteriaDisplayOrder(j), i) Then
-                    rowString(j + 1) = My.Resources.OK
-                Else
-                    rowString(j + 1) = My.Resources.NotOK
-                    DesignOK = False
-                End If
-            Next j
+                            Dim fd As String = rowString(1)
 
-            'Actual performance data and headloss comments
-            With mWinFlumeDesign.QuantitativeResults(i)
-                SubmergenceProtectionMax = .AllowedTailwaterDepthAtQMax - .MaxTailwater
-                SubmergenceProtectionMin = .AllowedTailwaterDepthAtQMin - .MinTailwater
-                SubmergenceProtection = minsingle(SubmergenceProtectionMin, SubmergenceProtectionMax)
-                If i = 1 Then
-                    'Candidate for a min-headloss design
-                    If (SubmergenceProtection < .MaxTailwater / 100) Then
-                        mWinFlumeDesign.HLComment(i) = My.Resources.Minimum
+                        Case shVShaped, shVShapedInVShaped
+                            rowString(1) = "0"
+                        Case Else
+                            siValue = .Section(cControl).BottomWidth
+                            uiValue = UiLengthValue(siValue, UiLengthUnits)
+                            rowString(1) = TrimmedFormat(uiValue, Fmt3)
+                    End Select
+                End With
+
+                'Design criteria results
+                DesignOK = True
+                For j = 1 To 6
+                    If mWinFlumeDesign.BooleanResults(mWinFlumeDesign.CriteriaDisplayOrder(j), i) Then
+                        rowString(j + 1) = My.Resources.OK
+                    Else
+                        rowString(j + 1) = My.Resources.NotOK
+                        DesignOK = False
                     End If
-                End If
-                If i = N Then
-                    'Candidate for a max-headloss design
-                    If (.ActualFreeboard - .RequiredFreeboard < .MaxTailwater / 100) Then
-                        mWinFlumeDesign.HLComment(i) = My.Resources.Maximum
+                Next j
+
+                'Actual performance data and headloss comments
+                With mWinFlumeDesign.QuantitativeResults(i)
+                    SubmergenceProtectionMax = .AllowedTailwaterDepthAtQMax - .MaxTailwater
+                    SubmergenceProtectionMin = .AllowedTailwaterDepthAtQMin - .MinTailwater
+                    SubmergenceProtection = minsingle(SubmergenceProtectionMin, SubmergenceProtectionMax)
+                    If i = 1 Then
+                        'Candidate for a min-headloss design
+                        If (SubmergenceProtection < .MaxTailwater / 100) Then
+                            mWinFlumeDesign.HLComment(i) = My.Resources.Minimum
+                        End If
                     End If
-                End If
-                'Headloss comments
-                If DesignOK Then
-                    rowString(8) = mWinFlumeDesign.HLComment(i)
-                Else
-                    rowString(8) = "---"
-                End If
+                    If i = N Then
+                        'Candidate for a max-headloss design
+                        If (.ActualFreeboard - .RequiredFreeboard < .MaxTailwater / 100) Then
+                            mWinFlumeDesign.HLComment(i) = My.Resources.Maximum
+                        End If
+                    End If
+                    'Headloss comments
+                    If DesignOK Then
+                        rowString(8) = mWinFlumeDesign.HLComment(i)
+                    Else
+                        rowString(8) = "---"
+                    End If
 
-                'Actual headloss
-                If mWinFlumeDesign.EvaluationFlumes(i).CrestType = StationaryCrest Then
-                    siValue = mWinFlumeDesign.EvaluationFlumes(i).SillHeight
-                    siValue += mWinFlumeDesign.EvaluationFlumes(i).BedDrop
-                    siValue += .SMALLh1atQMax
-                    siValue -= .MaxTailwater
-                Else        'Movable crest
-                    siValue = mWinFlumeDesign.EvaluationFlumes(i).OperatingDepth
-                    siValue += mWinFlumeDesign.EvaluationFlumes(i).BedDrop
-                    siValue -= .MinTailwater
-                End If
-                uiValue = UiLengthValue(siValue, UiLengthUnits)
-                rowString(9) = Format$(uiValue, Fmt)
+                    'Actual headloss
+                    If mWinFlumeDesign.EvaluationFlumes(i).CrestType = StationaryCrest Then
+                        siValue = mWinFlumeDesign.EvaluationFlumes(i).SillHeight
+                        siValue += mWinFlumeDesign.EvaluationFlumes(i).BedDrop
+                        siValue += .SMALLh1atQMax
+                        siValue -= .MaxTailwater
+                    Else        'Movable crest
+                        siValue = mWinFlumeDesign.EvaluationFlumes(i).OperatingDepth
+                        siValue += mWinFlumeDesign.EvaluationFlumes(i).BedDrop
+                        siValue -= .MinTailwater
+                    End If
+                    uiValue = UiLengthValue(siValue, UiLengthUnits)
+                    rowString(9) = Format$(uiValue, Fmt)
 
-                'Froude number
-                rowString(10) = Format$(.FroudeNumberMax, Fmt)
+                    'Froude number
+                    rowString(10) = Format$(.FroudeNumberMax, Fmt)
 
-                'Extra freeboard
-                siValue = .ActualFreeboard - .RequiredFreeboard
-                uiValue = UiLengthValue(siValue, UiLengthUnits)
-                rowString(11) = Format$(uiValue, Fmt)
+                    'Extra freeboard
+                    siValue = .ActualFreeboard - .RequiredFreeboard
+                    uiValue = UiLengthValue(siValue, UiLengthUnits)
+                    rowString(11) = Format$(uiValue, Fmt)
 
-                'Extra head loss (i.e., submergence protection)
-                siValue = SubmergenceProtection
-                uiValue = UiLengthValue(siValue, UiLengthUnits)
-                rowString(12) = Format$(uiValue, Fmt)
+                    'Extra head loss (i.e., submergence protection)
+                    siValue = SubmergenceProtection
+                    uiValue = UiLengthValue(siValue, UiLengthUnits)
+                    rowString(12) = Format$(uiValue, Fmt)
 
-                'Error at Qmax and Qmin
-                rowString(13) = "± " & Format$(.FlowRateMeasurementErrorAtQMax, "######0.00 ") & "to " &
+                    'Error at Qmax and Qmin
+                    rowString(13) = "± " & Format$(.FlowRateMeasurementErrorAtQMax, "######0.00 ") & "to " &
                                    Format$(.FlowRateMeasurementErrorAtQMin, "######0.00 ") & "%"
-            End With
+                End With
 
-            Me.ReviewDesignsTable.Rows.Add(rowString)
+                Me.ReviewDesignsTable.Rows.Add(rowString)
 
-            Debug.Assert(i = c)
+            End If
         Next i
 
         ' Highlight the "Not OK" cells
@@ -559,6 +647,8 @@ Public Class AlternativeDesignsControl
             Next col
         Next row
 
+        ReviewDesignsTable.Refresh()
+
     End Sub
 
 #End Region
@@ -577,16 +667,7 @@ Public Class AlternativeDesignsControl
     '*********************************************************************************************************
     Private Sub MyBase_VisibleChanged(ByVal sender As Object, ByVal e As EventArgs) _
         Handles MyBase.VisibleChanged
-        mVisibleChanged = True
-
-        mFlume = WinFlumeForm.Flume
-
-        If (mFlume Is Nothing) Then
-            Return
-        End If
-
         UpdateUI()
-
     End Sub
 
     '*********************************************************************************************************
@@ -597,30 +678,9 @@ Public Class AlternativeDesignsControl
 
         If (Me.Dialog Is Nothing) Then ' Running in WinFlume control
             If Not (mUpdatingUI) Then
+
                 Dim curRow As DataGridViewRow = ReviewDesignsTable.CurrentRow
                 SelectedRowIndex = curRow.Index
-                If (mWinFlumeDesign IsNot Nothing) Then
-                    ' Display Control Section selection for selected design
-                    Dim controlShape As Integer = mFlume.Section(cControl).Shape
-
-                    Select Case (controlShape)
-                        Case shSillInTrapezoid, shSillInRectangle, shSillInVShaped,
-                             shTrapezoidInTrapezoid, shTrapezoidInVShaped, shTrapezoidInRectangle,
-                             shRectangleInRectangle,
-                             shCircleInCircle,
-                             shParabolaInParabola,
-                             shUShapedInUShaped,
-                             shVShapedInVShaped
-
-                            ' Leave as is
-                        Case Else
-                            Dim evalDesign As FlumeType = mWinFlumeDesign.EvaluationFlumes(SelectedRowIndex + 1)
-                            Dim evalShape As Integer = evalDesign.Section(cControl).Shape
-                            Dim shapeText As String = SectionString(evalShape)
-                            Me.ControlSectionShape.Text = shapeText
-                    End Select
-
-                End If
 
                 MakeSelectedCurrent()
 
@@ -654,13 +714,23 @@ Public Class AlternativeDesignsControl
                 Dim oldCtrlSection = mFlume.Section(cControl)
                 Dim oldCtrlShape As Integer = oldCtrlSection.Shape
                 Dim oldContraction As Integer = mFlume.ContractionAdjustment
+                Dim oldSillHeight As Single = mFlume.SillHeight
+                Dim oldDiamFocalId As Single = mFlume.Section(1).DiameterFocalD
 
                 ' Get newly selected Flume
                 SelectedRowIndex = curRow.Index
-                mFlume = mWinFlumeDesign.EvaluationFlumes(SelectedRowIndex + 1)
+
+                If (WinFlumeForm.ControlMatchedToApproach) Then
+                    mFlume = mWinFlumeDesign.EvaluationFlumes(SelectedRowIndex + 1)
+                Else
+                    mFlume = mWinFlumeDesign.EvaluationFlumes(SelectedRowIndex + 1)
+                End If
+
                 Dim newCtrlSection = mFlume.Section(cControl)
                 Dim newCtrlShape As Integer = newCtrlSection.Shape
                 Dim newContraction As Integer = mFlume.ContractionAdjustment
+                Dim newSillHeight As Single = mFlume.SillHeight
+                Dim newDiamFocalId As Single = mFlume.Section(1).DiameterFocalD
 
                 If (oldCtrlSection.GetType Is GetType(WinFlumeSectionType)) Then
 

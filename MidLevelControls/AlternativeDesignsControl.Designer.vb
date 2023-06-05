@@ -26,9 +26,10 @@ Partial Class AlternativeDesignsControl
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AlternativeDesignsControl))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ControlPanel = New WinFlume.ctl_Panel()
-        Me.DialogInstructions = New WinFlume.ctl_Label()
-        Me.ViewAsDialogButton = New System.Windows.Forms.Button()
+        Me.DesignOptionSelection = New WinFlume.ctl_Label()
+        Me.DesignOptionLabel = New WinFlume.ctl_Label()
         Me.FormInstructions = New WinFlume.ctl_Label()
+        Me.ViewAsDialogButton = New System.Windows.Forms.Button()
         Me.ControlSectionShape = New WinFlume.ctl_Label()
         Me.ControlSectionLabel = New WinFlume.ctl_Label()
         Me.StatusLabel = New WinFlume.ctl_Label()
@@ -53,26 +54,25 @@ Partial Class AlternativeDesignsControl
         '
         'ControlPanel
         '
+        Me.ControlPanel.Controls.Add(Me.DesignOptionSelection)
+        Me.ControlPanel.Controls.Add(Me.DesignOptionLabel)
         Me.ControlPanel.Controls.Add(Me.FormInstructions)
-        Me.ControlPanel.Controls.Add(Me.DialogInstructions)
         Me.ControlPanel.Controls.Add(Me.ViewAsDialogButton)
         Me.ControlPanel.Controls.Add(Me.ControlSectionShape)
         Me.ControlPanel.Controls.Add(Me.ControlSectionLabel)
         resources.ApplyResources(Me.ControlPanel, "ControlPanel")
         Me.ControlPanel.Name = "ControlPanel"
         '
-        'DialogInstructions
+        'DesignOptionSelection
         '
-        resources.ApplyResources(Me.DialogInstructions, "DialogInstructions")
-        Me.DialogInstructions.BackColor = System.Drawing.SystemColors.Info
-        Me.DialogInstructions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.DialogInstructions.Name = "DialogInstructions"
+        Me.DesignOptionSelection.BackColor = System.Drawing.SystemColors.ControlLight
+        resources.ApplyResources(Me.DesignOptionSelection, "DesignOptionSelection")
+        Me.DesignOptionSelection.Name = "DesignOptionSelection"
         '
-        'ViewAsDialogButton
+        'DesignOptionLabel
         '
-        resources.ApplyResources(Me.ViewAsDialogButton, "ViewAsDialogButton")
-        Me.ViewAsDialogButton.Name = "ViewAsDialogButton"
-        Me.ViewAsDialogButton.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.DesignOptionLabel, "DesignOptionLabel")
+        Me.DesignOptionLabel.Name = "DesignOptionLabel"
         '
         'FormInstructions
         '
@@ -80,6 +80,12 @@ Partial Class AlternativeDesignsControl
         Me.FormInstructions.BackColor = System.Drawing.SystemColors.Info
         Me.FormInstructions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FormInstructions.Name = "FormInstructions"
+        '
+        'ViewAsDialogButton
+        '
+        resources.ApplyResources(Me.ViewAsDialogButton, "ViewAsDialogButton")
+        Me.ViewAsDialogButton.Name = "ViewAsDialogButton"
+        Me.ViewAsDialogButton.UseVisualStyleBackColor = True
         '
         'ControlSectionShape
         '
@@ -253,5 +259,6 @@ Partial Class AlternativeDesignsControl
     Friend WithEvents SubmergenceProtectionColumn As DataGridViewTextBoxColumn
     Friend WithEvents EstimatedRandomErrorColumn As DataGridViewTextBoxColumn
     Friend WithEvents ViewAsDialogButton As Button
-    Friend WithEvents DialogInstructions As ctl_Label
+    Friend WithEvents DesignOptionSelection As ctl_Label
+    Friend WithEvents DesignOptionLabel As ctl_Label
 End Class

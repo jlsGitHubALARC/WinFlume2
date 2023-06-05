@@ -437,12 +437,25 @@ Public Class CrossSectionControl
     '*********************************************************************************************************
     ' Sub UpdateUI() - Update UI
     '*********************************************************************************************************
+    Private mUpdatingUI As Boolean = False
+
     Public Overridable Sub UpdateUI(ByVal WinFlume As WinFlumeForm)
         mWinFlumeForm = WinFlume
         Me.UpdateUI()
     End Sub
 
     Protected Overridable Sub UpdateUI()
+
+        If Not Me.Visible Then
+            Return
+        End If
+
+        If (mUpdatingUI) Then
+            Return
+        End If
+
+        mUpdatingUI = True
+
         mFlume = WinFlumeForm.Flume                 ' Flume data
 
         Try
@@ -456,6 +469,8 @@ Public Class CrossSectionControl
         Catch ex As Exception
             Debug.Assert(False, ex.Message)
         End Try
+
+        mUpdatingUI = False
     End Sub
 
     '*********************************************************************************************************
@@ -576,7 +591,7 @@ Public Class CrossSectionControl
                     ' .Z1 = mFlume.Section(cApproach).Z1
                     ' .Z2 = mFlume.Section(cApproach).Z1
                     .Z3 = mFlume.Section(cApproach).Z1
-                    '.BottomWidth = mFlume.Section(cApproach).TopWidth(.D1, False)
+                    ' .BottomWidth = mFlume.Section(cApproach).TopWidth(.D1, False)
                     .OuterBottomWidth = mFlume.Section(cApproach).BottomWidth
                 End With
                 'Else

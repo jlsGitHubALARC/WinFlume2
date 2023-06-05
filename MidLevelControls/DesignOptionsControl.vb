@@ -14,6 +14,7 @@ Public Class DesignOptionsControl
     ' WinFlume User Interface
     '
     Private WithEvents mWinFlumeForm As WinFlumeForm
+    Private mReplacedAlternativeDesignOption As Boolean = False
     '
     ' Flume DLL accessors
     '
@@ -58,26 +59,17 @@ Public Class DesignOptionsControl
                                          + MethodOfContraction.RaiseLowerEntireSection _
                                          + MethodOfContraction.RaiseLowerInnerSection _
                                          + MethodOfContraction.VarySideContraction,
-                                           MethodOfContraction.RaiseLowerSillHeight _       ' shTrapezoidInU
-                                         + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.RaiseLowerInnerSection,
                                            MethodOfContraction.RaiseLowerSillHeight _       ' shTrapezoidInUShaped
                                          + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.RaiseLowerInnerSection _
-                                         + MethodOfContraction.VarySideContraction,         ' shTrapezoidInParabola
-                                           MethodOfContraction.RaiseLowerSillHeight _
+                                         + MethodOfContraction.RaiseLowerInnerSection,
+                                           MethodOfContraction.RaiseLowerSillHeight _       ' shTrapezoidInParabola
                                          + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,         ' shSillInCircle
-                                           MethodOfContraction.RaiseLowerSillHeight _
-                                         + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,
-                                           MethodOfContraction.RaiseLowerSillHeight _       ' shSillInU
-                                         + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,
+                                         + MethodOfContraction.RaiseLowerInnerSection,
+                                           MethodOfContraction.RaiseLowerSillHeight,        ' shSillInCircle
                                            MethodOfContraction.RaiseLowerSillHeight _       ' shSillInUShaped
                                          + MethodOfContraction.RaiseLowerEntireSection _
-                                         + MethodOfContraction.VarySideContraction,
-                                         +MethodOfContraction.VarySideContraction,      '    shSillInParabola
+                                         + MethodOfContraction.RaiseLowerInnerSection,
+                                           MethodOfContraction.VarySideContraction,         ' shSillInParabola
                                            MethodOfContraction.RaiseLowerEntireSection _
                                          + MethodOfContraction.RaiseLowerInnerSection _
                                          + MethodOfContraction.VarySideContraction}         ' shVInRectangle
@@ -91,11 +83,12 @@ Public Class DesignOptionsControl
     '*********************************************************************************************************
     Public Sub UpdateUI(ByVal WinFlume As WinFlumeForm)
         mWinFlumeForm = WinFlume
+        mReplacedAlternativeDesignOption = False
         Me.UpdateUI()
     End Sub
 
-    Protected mUpdatingUI As Boolean = False
-    Protected Sub UpdateUI()
+    Private mUpdatingUI As Boolean = False
+    Private Sub UpdateUI()
 
         mFlume = WinFlumeForm.Flume                                         ' Flume accessors
         If (mFlume Is Nothing) Then
@@ -159,7 +152,7 @@ Public Class DesignOptionsControl
             Else ' mSection.GetType Is GetType(Flume.SectionType)
                 ' Flume.dll supported cross-section
                 Dim ctrlShape As Integer = ctrlSection.Shape
-                Debug.Assert(ctrlShape - 1 <= mDesignOptions.Length)
+                Debug.Assert(ctrlShape - 1 < mDesignOptions.Length)
                 designOptions = mDesignOptions(ctrlShape - 1)
             End If
         End If
@@ -170,7 +163,7 @@ Public Class DesignOptionsControl
         Me.AdjustSideContraction.Enabled = BitSet(designOptions, MethodOfContraction.VarySideContraction)
 
         ' Add/Remove design options
-        Dim shape As Integer = mFlume.Section(1).Shape
+        Dim shape As Integer = mFlume.Section(cControl).Shape
 
         If (Not WinFlumeForm.ControlMatchedToApproach) Then     ' NOT matched
             Select Case shape
@@ -178,58 +171,126 @@ Public Class DesignOptionsControl
                     Me.AdjustSillHeight.Enabled = False
                 Case shVShaped
                     Me.AdjustSillHeight.Enabled = False
+                    Me.AdjustEntireSection.Enabled = True
+                    Me.AdjustInnerSection.Enabled = False
+                    Me.AdjustSideContraction.Enabled = False
                 Case shVInRectangle
+                    Me.AdjustSillHeight.Enabled = False
                     Me.AdjustEntireSection.Enabled = True
                     Me.AdjustInnerSection.Enabled = True
+                    Me.AdjustSideContraction.Enabled = True
                 Case shComplexTrapezoid
                     Me.AdjustSillHeight.Enabled = True
                 Case shTrapezoidInUShaped
                     Me.AdjustSideContraction.Enabled = True
+                Case shTrapezoidInParabola
+                    Me.AdjustSideContraction.Enabled = True
             End Select
         End If
 
-        If (Not Me.AdjustSillHeight.Enabled) And (Me.AdjustSillHeight.Checked) Then
-            ' Disabled and checked = invalid combination
-            If (Me.AdjustEntireSection.Enabled) Then
-                Me.AdjustEntireSection.Checked = True
-            ElseIf (Me.AdjustInnerSection.Enabled) Then
-                Me.AdjustInnerSection.Checked = True
-            ElseIf (Me.AdjustSideContraction.Enabled) Then
-                Me.AdjustSideContraction.Checked = True
-            End If
-        End If
+        ' Validate Adjustment Selection is valid. If not, selecte a valid one.
+        If (mReplacedAlternativeDesignOption = False) Then
+            Dim OldAdjSelection As Integer = mFlume.ContractionAdjustment
+            Dim NewAdjSelection As Integer = 0
 
-        If (Not Me.AdjustEntireSection.Enabled) And (Me.AdjustEntireSection.Checked) Then
-            ' Disabled and checked = invalid combination
-            If (Me.AdjustSillHeight.Enabled) Then
-                Me.AdjustSillHeight.Checked = True
-            ElseIf (Me.AdjustInnerSection.Enabled) Then
-                Me.AdjustInnerSection.Checked = True
-            ElseIf (Me.AdjustSideContraction.Enabled) Then
-                Me.AdjustSideContraction.Checked = True
+            If (Not Me.AdjustSillHeight.Enabled) And (Me.AdjustSillHeight.Checked) Then
+                ' Disabled and checked = invalid combination
+                If (Me.AdjustEntireSection.Enabled) Then
+                    NewAdjSelection = RaiseLowerEntireSection
+                    Me.AdjustEntireSection.Checked = True
+                ElseIf (Me.AdjustInnerSection.Enabled) Then
+                    NewAdjSelection = RaiseLowerInnerSection
+                    Me.AdjustInnerSection.Checked = True
+                ElseIf (Me.AdjustSideContraction.Enabled) Then
+                    NewAdjSelection = VarySideContraction
+                    Me.AdjustSideContraction.Checked = True
+                End If
             End If
-        End If
 
-        If (Not Me.AdjustInnerSection.Enabled) And (Me.AdjustInnerSection.Checked) Then
-            ' Disabled and checked = invalid combination
-            If (Me.AdjustEntireSection.Enabled) Then
-                Me.AdjustEntireSection.Checked = True
-            ElseIf (Me.AdjustSillHeight.Enabled) Then
-                Me.AdjustSillHeight.Checked = True
-            ElseIf (Me.AdjustSideContraction.Enabled) Then
-                Me.AdjustSideContraction.Checked = True
+            If (Not Me.AdjustEntireSection.Enabled) And (Me.AdjustEntireSection.Checked) Then
+                ' Disabled and checked = invalid combination
+                If (Me.AdjustSillHeight.Enabled) Then
+                    NewAdjSelection = RaiseSillHeight
+                    Me.AdjustSillHeight.Checked = True
+                ElseIf (Me.AdjustInnerSection.Enabled) Then
+                    NewAdjSelection = RaiseLowerInnerSection
+                    Me.AdjustInnerSection.Checked = True
+                ElseIf (Me.AdjustSideContraction.Enabled) Then
+                    NewAdjSelection = VarySideContraction
+                    Me.AdjustSideContraction.Checked = True
+                End If
             End If
-        End If
 
-        If (Not Me.AdjustSideContraction.Enabled) And (Me.AdjustSideContraction.Checked) Then
-            ' Disabled and checked = invalid combination
-            If (Me.AdjustEntireSection.Enabled) Then
-                Me.AdjustEntireSection.Checked = True
-            ElseIf (Me.AdjustInnerSection.Enabled) Then
-                Me.AdjustInnerSection.Checked = True
-            ElseIf (Me.AdjustSillHeight.Enabled) Then
-                Me.AdjustSillHeight.Checked = True
+            If (Not Me.AdjustInnerSection.Enabled) And (Me.AdjustInnerSection.Checked) Then
+                ' Disabled and checked = invalid combination
+                If (Me.AdjustEntireSection.Enabled) Then
+                    NewAdjSelection = RaiseLowerEntireSection
+                    Me.AdjustEntireSection.Checked = True
+                ElseIf (Me.AdjustSillHeight.Enabled) Then
+                    NewAdjSelection = RaiseSillHeight
+                    Me.AdjustSillHeight.Checked = True
+                ElseIf (Me.AdjustSideContraction.Enabled) Then
+                    NewAdjSelection = VarySideContraction
+                    Me.AdjustSideContraction.Checked = True
+                End If
             End If
+
+            If (Not Me.AdjustSideContraction.Enabled) And (Me.AdjustSideContraction.Checked) Then
+                ' Disabled and checked = invalid combination
+                If (Me.AdjustEntireSection.Enabled) Then
+                    NewAdjSelection = RaiseLowerEntireSection
+                    Me.AdjustEntireSection.Checked = True
+                ElseIf (Me.AdjustInnerSection.Enabled) Then
+                    NewAdjSelection = RaiseLowerInnerSection
+                    Me.AdjustInnerSection.Checked = True
+                ElseIf (Me.AdjustSillHeight.Enabled) Then
+                    NewAdjSelection = RaiseSillHeight
+                    Me.AdjustSillHeight.Checked = True
+                End If
+            End If
+
+            If (NewAdjSelection <> 0) And (OldAdjSelection <> NewAdjSelection) Then
+
+                mFlume.ContractionAdjustment = NewAdjSelection
+                '
+                ' Display message informing user that the Alternative Design option in the currently opened file
+                ' is no longer supported and was replaced with a supported method.
+                '
+                Dim title As String = "Alternative Design Option is no longer supported"
+
+                Dim msg As String = "This Design Option is no longer supported:" & vbCrLf & vbCrLf
+
+                Select Case OldAdjSelection
+                    Case RaiseSillHeight
+                        msg &= "    Raise or Lower Height of Sill"
+                    Case RaiseLowerEntireSection
+                        msg &= "    Raise or Lower Entire Section"
+                    Case RaiseLowerInnerSection
+                        msg &= "    Raise or Lower Inner Section"
+                    Case VarySideContraction
+                        msg &= "    Vasy Side Contraction"
+                End Select
+
+                msg &= vbCrLf & vbCrLf
+
+                msg &= "This Design Option replaces the unsupported option:" & vbCrLf & vbCrLf
+
+                Select Case NewAdjSelection
+                    Case RaiseSillHeight
+                        msg &= "    Raise or Lower Height of Sill"
+                    Case RaiseLowerEntireSection
+                        msg &= "    Raise or Lower Entire Section"
+                    Case RaiseLowerInnerSection
+                        msg &= "    Raise or Lower Inner Section"
+                    Case VarySideContraction
+                        msg &= "    Vasy Side Contraction"
+                End Select
+
+                MsgBox(msg, MsgBoxStyle.Information, title)
+
+            End If
+
+            mReplacedAlternativeDesignOption = True
         End If
 
         mUpdatingUI = False

@@ -35,7 +35,7 @@ Public Class UpstreamViewControl
         If (mWinFlumeForm IsNot Nothing) Then
             mFlume = WinFlumeForm.Flume         ' Flume data
         End If
-        'Me.UpdateUI()
+        Me.UpdateUI()
     End Sub
 
     Protected Sub UpdateUI()

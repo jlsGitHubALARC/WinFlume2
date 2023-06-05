@@ -48,13 +48,16 @@ Public Class WinFlumeDesign
     End Function
 
     '*********************************************************************************************************
-    ' Sub EvaluateDesigns() - generates the table of alternative designs then validates they meet the perhaps
-    '                         more restrictive UI limits
+    ' Function EvaluateDesigns() - generates the table of alternative designs then validates they meet the
+    '                              perhaps more restrictive UI limits
     '*********************************************************************************************************
-    Public Overrides Sub EvaluateDesigns(WorkingFlume As FlumeType, ByRef NumGood As Integer,
-                                         ByRef DesignStillPossible As Boolean, ByRef UserCanceled As Boolean)
+    Public Overrides Function EvaluateDesigns(WorkingFlume As FlumeType, ByRef NumGood As Integer,
+                                              ByRef DesignStillPossible As Boolean,
+                                              ByRef UserCanceled As Boolean) As Integer
+
         Dim ToFlumeType As FlumeType = Me.ToFlumeType(WorkingFlume)
-        MyBase.EvaluateDesigns(ToFlumeType, NumGood, DesignStillPossible, UserCanceled)
+
+        Dim MinError As Integer = MyBase.EvaluateDesigns(ToFlumeType, NumGood, DesignStillPossible, UserCanceled)
 
         ' When the Control Section is 'matched' with the Approach Channel, the list of alternative designs
         ' must be validated against the Approach Channel cross-section
@@ -62,7 +65,9 @@ Public Class WinFlumeDesign
         If (ctrlSection.GetType Is GetType(WinFlumeSectionType)) Then
             Me.ValidateDesigns(ToFlumeType, NumGood, DesignStillPossible, UserCanceled)
         End If
-    End Sub
+
+        Return MinError
+    End Function
 
     '*********************************************************************************************************
     ' InsertDesign - Insert BaseFlume into Alternative Designs list IF it is not already in the list
@@ -76,17 +81,17 @@ Public Class WinFlumeDesign
 
         If (0 < NumGood) Then
 
-            Debug.Assert(Me.EvaluationFlumes.Length = NumGood + 1)
+            NumGood = Me.EvaluationFlumes.Length
 
             AltDesign1 = EvaluationFlumes(1) ' Evaluation Flume(0) in list is undefined
 
-            For adx As Integer = 2 To NumGood
+            For adx As Integer = 2 To NumGood - 1
 
                 Dim sillHeight1 As Single = AltDesign1.SillHeight
-                Dim controlWidth1 As Single = AltDesign1.Section(1).BottomWidth
+                Dim controlWidth1 As Single = AltDesign1.Section(cControl).BottomWidth
 
                 If ThisClose(BaseFlume.SillHeight, AltDesign1.SillHeight, 0.001) And
-                   ThisClose(BaseFlume.Section(1).BottomWidth, AltDesign1.Section(1).BottomWidth, 0.001) Then
+                   ThisClose(BaseFlume.Section(cControl).BottomWidth, AltDesign1.Section(cControl).BottomWidth, 0.001) Then
 
                     ' BaseFlume is in the Alternative Design table
                     Exit For
@@ -96,11 +101,11 @@ Public Class WinFlumeDesign
                     AltDesign2 = EvaluationFlumes(adx)
 
                     Dim sillHeight2 As Single = AltDesign2.SillHeight
-                    Dim controlWidth2 As Single = AltDesign2.Section(1).BottomWidth
+                    Dim controlWidth2 As Single = AltDesign2.Section(cControl).BottomWidth
 
                     If (sillHeight1 < BaseFlume.SillHeight) And (BaseFlume.SillHeight < sillHeight2) Then
 
-                        If (controlWidth1 <= BaseFlume.Section(1).BottomWidth) And (BaseFlume.Section(1).BottomWidth <= controlWidth2) Then
+                        If (controlWidth1 <= BaseFlume.Section(cControl).BottomWidth) And (BaseFlume.Section(cControl).BottomWidth <= controlWidth2) Then
 
                             ' BaseFlume is not in the table, insert it into its proper location
                             ReDim Preserve EvaluationFlumes(NumGood + 1)
@@ -112,7 +117,7 @@ Public Class WinFlumeDesign
                             Dim ratio As Single = (BaseFlume.SillHeight - sillHeight1) / (sillHeight2 - sillHeight1)
                             Dim delta As Single = (controlWidth2 - controlWidth1) * ratio
 
-                            BaseFlume.Section(1).BottomWidth += delta
+                            BaseFlume.Section(cControl).BottomWidth += delta
 
                             EvaluationFlumes(adx - 1) = BaseFlume
 

@@ -175,7 +175,7 @@ Public Class RectangleInRectangleControl
             Return
         End If
 
-        Debug.Assert(mSection.Z3 = mFlume.Section(cApproach).Z1)
+        mSection.Z3 = mFlume.Section(cApproach).Z1
 
         ' Bottom Width
         Me.BottomWidthSingle.Label = Me.BwKey.BaseText

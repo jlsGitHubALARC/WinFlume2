@@ -236,6 +236,7 @@ Public Class MatchControlDialog
         Me.DialogResult = System.Windows.Forms.DialogResult.OK
 
         Dim approachChannel As Flume.SectionType = mFlume.Section(cApproach)
+        Dim controlSection As SectionType = mFlume.Section(cControl)
 
         If (ControlSectionType IsNot Nothing) Then
             With ControlSectionType
@@ -264,6 +265,7 @@ Public Class MatchControlDialog
                         Else
                             .OuterBottomWidth = approachChannel.OuterBottomWidth
                         End If
+                        .BottomWidth = controlSection.BottomWidth
                         .Z3 = approachChannel.Z1
                 End Select
             End With
